@@ -1,41 +1,61 @@
-# SAP-samples/repository-template
-This default template for SAP Samples repositories includes files for README, LICENSE, and .reuse/dep5. All repositories on github.com/SAP-samples will be created based on this template.
-
-# Containing Files
-
-1. The LICENSE file:
-In most cases, the license for SAP sample projects is `Apache 2.0`.
-
-2. The .reuse/dep5 file: 
-The [Reuse Tool](https://reuse.software/) must be used for your samples project. You can find the .reuse/dep5 in the project initial. Please replace the parts inside the single angle quotation marks < > by the specific information for your repository.
-
-3. The README.md file (this file):
-Please edit this file as it is the primary description file for your project. You can find some placeholder titles for sections below.
-
-# [Title]
-<!-- Please include descriptive title -->
-
-<!--- Register repository https://api.reuse.software/register, then add REUSE badge:
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/REPO-NAME)](https://api.reuse.software/info/github.com/SAP-samples/REPO-NAME)
--->
+# Expose capabilities of SAP AI Core with the SAP Cloud Application Programming Model
 
 ## Description
-<!-- Please include SEO-friendly description -->
 
-## Requirements
+This repository contains the material for the "Expose SAP AI Core capabilities with the SAP Cloud Application Programming Model" CodeJam, brought to you by the Developer Advocates at SAP.
 
-## Download and Installation
+## Overview
 
-## Known Issues
-<!-- You may simply state "No known issues. -->
+This CodeJam introduces attendees to aspects of exposing generative artificial intelligence (genAI) capabilities to execute tasks in a business context.
+
+During this event, you'll become acquainted with the theory behind genAI, SAP AI Core and how you can use the SAP Cloud Application Programming Model to expose AI capabilities through your own service application.
+In working through the exercises you'll become comfortable with creating CDS based service definitions, integration into SAP Business Technology Platform (BTP) and SAP AI Core Foundation Models.
+
+## Session prerequisites
+
+In order to get the most from this CodeJam, and to be able to work through the exercises, there are certain prerequisites that you must have sorted out before the day of the CodeJam.
+
+The prerequisites are detailed in a separate [prerequisites](prerequisites.md) file. Please ensure you have everything ready before attending the CodeJam.
+
+## Exercises
+
+These are the exercises, each in their own directory, sometimes with supporting files and scripts. We will work through the exercises in the order shown here. From a session flow perspective, we are taking the "coordinated" approach:
+
+The instructor will set you off on the first exercise, and that's the only one you should do; if you finish before others, there are some questions at the end of the exercise for you to ponder. Do not proceed to the next exercise until the instructor tells you to do so.
+
+// Use Case: CAP Documentation embeddings, questions to the LLM w. Chat Client
+1. Set up your workspace
+1. Create SAP HANA Cloud with Vector Engine, create HDI container // theory, we already have that enabled, everyone uses their own HDI container **(Kevin & Nora)**
+1. Configure the Generative AI Hub // we already have that enabled (they create own resource group and deployment) **(Nora)**
+1. Experience Prompt Editor and work with Gen AI Hub **(Nora)**
+1. Destination configuration // Destination is already created, Service Key, AI Core
+1. Create AI connection configuration, cdsrc file, (maybe change embedding model to Google?)
+1. Add service bindings for SAP HANA Cloud Vector Engine and Destination Service
+
+CAP
+1. Define the database schema
+1. Define the embedding service **(Kevin)**. Talk about Langchain and Langchain package **(Nora)**
+1. Implement the embedding service **(Kevin)**. What is chunking? What is important?  **(Nora)**
+1. Understanding the UI
+1. Connecting the services to the UI
+1. Run CAP service locally, link deployment tutorial/ documetation
+
+## Feedback
+
+If you can spare a couple of minutes at the end of the session, please help us improve for next time by providing some feedback.
+
+Simply use this [Give Feedback](https://github.com/SAP-samples/codejam-cap-llm/issues/new?assignees=&labels=feedback&template=session-feedback-template.md&title=Session%20Feedback) link to create a special "feedback" issue, and follow the instructions in there.
+
+Thank you!
+
+## Acknowledgements
+
+The exercise content in this repository is based on a sample repository created by the CAP team.
 
 ## How to obtain support
-[Create an issue](https://github.com/SAP-samples/<repository-name>/issues) in this repository if you find a bug or have questions about the content.
- 
-For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html).
 
-## Contributing
-If you wish to contribute code, offer fixes or improvements, please send a pull request. Due to legal reasons, contributors will be asked to accept a DCO when they create the first pull request to this project. This happens in an automated fashion during the submission process. SAP uses [the standard DCO text of the Linux Foundation](https://developercertificate.org/).
+Support for the content in this repository is available during the actual time of the CodeJam event for which this content has been designed.
 
 ## License
-Copyright (c) 2024 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
+
+Copyright (c) 2023 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.

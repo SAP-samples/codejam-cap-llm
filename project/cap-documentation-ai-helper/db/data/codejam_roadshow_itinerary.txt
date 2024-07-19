@@ -1,0 +1,20 @@
+SAP CodeJam Roadshow 2024
+Developer Advocate Rich Heilman
+Yes, someone did say “Roadshow”! Attention SAP Developers! 
+Thomas Jung and I are hitting the road again this year for another SAP CodeJam Roadshow in Europe.
+Last year, we drove about 1500km around Germany and the Netherlands, I don’t think we will be doing that again anytime soon.
+This time the roadshow is a bit more spread out geographically, so it will be planes and trains for us this time.
+We will have 5 stops on the roadshow from April 12th through April 22nd 2024.
+Below is a listing of the SAP CodeJam events on the roadshow schedule:
+- ABAP Cloud & RESTful Application Programming Model 04/12/2024 Amsterdam, Netherlands
+- ABAP Cloud & RESTful Application Programming Model 04/15/2024 Bucharest, Romania
+- ABAP Cloud & RESTful Application Programming Model 04/17/2024 Leverkusen, Germany
+- ABAP Cloud & RESTful Application Programming Model 04/19/2024 Paris, France
+- ABAP Cloud/RAP & CAP 04/22/2024 Madrid, Spain
+
+I have a feeling these events will fill up fast, so if you want to join us for a day of coding awesomeness, make sure to register to secure your seat.
+I’d also like to take a second and thank our hosts for partnering with us on these events.
+Thanks to PVH and Partners in Technology in Amsterdam, IBM in Bucharest, Covestro in Leverkusen, VINCI Energies in Paris,
+and of course our own Antonio Maradiaga at SAP Espana in Madrid.
+
+See you all somewhere in Europe on the roadshow!
