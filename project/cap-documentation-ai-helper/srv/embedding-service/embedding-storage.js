@@ -1,11 +1,9 @@
 const cds = require('@sap/cds')
 const { INSERT, DELETE } = cds.ql
-const { TextLoader } = require('langchain/document_loaders/fs/text')
 const { PDFLoader } = require('langchain/document_loaders/fs/pdf')
 const { RecursiveCharacterTextSplitter } = require('langchain/text_splitter')
-const { PDFDocument } = require('pdf-lib')
 const path = require('path')
-const fs = require('fs')
+const filePath = 'db/data/CAP_Documentation_V8.pdf'
   
 // Helper method to convert embeddings to buffer for insertion
 let array2VectorBuffer = (data) => {
@@ -22,25 +20,34 @@ let array2VectorBuffer = (data) => {
   return buffer
 }
 
+async function loadPDF(fromPath) {
+      const loader = new PDFLoader(fromPath)
+      const document = await loader.load()
+      return document
+}
+
+async function chunk(pdf) {
+  const splitter = new RecursiveCharacterTextSplitter({
+    chunkSize: 500,
+    chunkOverlap: 0,
+    addStartIndex: true
+  })
+    
+  const textChunks = await splitter.splitDocuments(document)
+  console.log(`Documents split into ${textChunks.length} chunks.`)
+  return textChunks
+}
+
 module.exports = function() {
   this.on('storeEmbeddings', async (req) => {
     try {
       const vectorPlugin = await cds.connect.to('cap-llm-plugin')
       const { DocumentChunk } = this.entities
       let textChunkEntries = []
-      console.log(__dirname)
-      console.log(path.resolve('codejam_roadshow_itinerary.txt'))
-      const loader = new TextLoader(path.resolve('db/data/codejam_roadshow_itinerary.txt'))
-      const document = await loader.load()
 
-      const splitter = new RecursiveCharacterTextSplitter({
-        chunkSize: 500,
-        chunkOverlap: 0,
-        addStartIndex: true
-      })
-        
-      const textChunks = await splitter.splitDocuments(document)
-      console.log(`Documents split into ${textChunks.length} chunks.`)
+      const pdf = loadPDF(path.resolve(`${filePath}`))
+
+      const textChunks = chunk(pdf)
 
       console.log("Generating the vector embeddings for the text chunks.")
       // For each text chunk generate the embeddings
