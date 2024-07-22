@@ -1,7 +1,9 @@
 const cds = require('@sap/cds')
-const { INSERT, DELETE, SELECT } = cds.ql
+const { INSERT, DELETE } = cds.ql
 const { TextLoader } = require('langchain/document_loaders/fs/text')
+const { PDFLoader } = require('langchain/document_loaders/fs/pdf')
 const { RecursiveCharacterTextSplitter } = require('langchain/text_splitter')
+const { PDFDocument } = require('pdf-lib')
 const path = require('path')
 const fs = require('fs')
   
@@ -18,25 +20,6 @@ let array2VectorBuffer = (data) => {
     buffer.writeFloatLE(value, index * sizeFloat + sizeDimensions);
   })
   return buffer
-}
-
-// Helper method to delete file if it already exists
-let deleteIfExists = (filePath) => {
-    try {
-        fs.unlink(filePath, (err) => {
-        if (err) {
-            if (err.code === 'ENOENT') {
-            console.log('File does not exist')
-            } else {
-            console.error('Error deleting file:', err)
-            }
-        } else {
-            console.log('File deleted successfully')
-        }
-        })
-    } catch (unlinkErr) {
-        console.error('Error occurred while attempting to delete file:', unlinkErr)
-    }
 }
 
 module.exports = function() {

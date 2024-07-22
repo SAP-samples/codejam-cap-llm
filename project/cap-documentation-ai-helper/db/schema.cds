@@ -1,21 +1,29 @@
-namespace sap.advocates.demo;
+namespace sap.codejam;
 
-using {
-    cuid,
-    managed
-} from '@sap/cds/common';
+// Chat client entities
 
-entity DocumentChunk {
-    text_chunk: LargeString;
-    metadata_column: LargeString;
-    embedding: Vector(1536);
+entity Conversation {
+    key conversation_id: UUID not null;
+    user_id             : String;
+    title               : String;
+    time_of_creation    : Timestamp;
+    time_of_last_update : Timestamp;
+    to_message          : Composition of many Message 
+                            on to_message.conversation_id = $self;
 }
 
-entity Files: cuid, managed {
-    @Core.MediaType: mediaType @Core.ContentDisposition.Filename: fileName
-    content: LargeBinary;
-    @Core.IsMediaType: true
-    mediaType: String;
-    fileName: String;
-    size: String;
+entity Message {
+    key conversation_id : Association to Conversation;
+    key message_id      : UUID not null;
+    role                : String;
+    content             : LargeString;
+    time_of_creation    : Timestamp;
+}
+
+// Embedding entities
+
+entity DocumentChunk {
+    text_chunk          : LargeString;
+    metadata_column     : LargeString;
+    embedding           : Vector(1536);
 }
