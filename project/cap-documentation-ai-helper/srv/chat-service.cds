@@ -1,4 +1,4 @@
-using { sap.codejam as db } from '../../db/schema';
+using { sap.codejam as db } from '../db/schema';
 
 service ChatService @(requires: 'authenticated-user') {
     

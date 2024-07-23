@@ -43,7 +43,11 @@ How to enable and create a SAP HANA Cloud instance is described in the following
 
 ![Deploy SAP HANA Cloud](https://developers.sap.com/tutorials/hana-cloud-deploying.html)
 
-Now that you have a SAP HANA Cloud instance up and running, we can utilize the Vector Engine. The Vector Engine is part of a new SAP HANA Cloud database instance, and a vector is just another datatype that can be created and used like any other datatype for SAP HANA DB.
+Make sure you have the `SAP HANA Cloud` instance as well as the `SAP HANA Administration Tools` entitled and created in your subaccount. The tools will provide your subaccount with the correct role collection and administrative tools to manage your SAP HANA Cloud instance. If you use the `Set Up SAP HANA Cloud Administration Tools` booster, you get all the tools including the role collections set up automatically. If you want to enable the tools manually, you can add the `SAP HANA Cloud` entitlement using the `hana-cloud-tools` service plan. After you have entitled your subaccount, you can create an instance of the administration tools via the service marketplace. That will provide the necessary role collections to your subaccount. The role collections need to be assigned to your user manually.
+
+![set-up-hana-cloud-entitlements](./assets/set-up-hana/set-up-hana-entitlements.png)
+
+Now, that you have a SAP HANA Cloud instance up and running, we can utilize the Vector Engine. The Vector Engine is part of a new SAP HANA Cloud database instance, and a vector is just another datatype that can be created and used like any other datatype for SAP HANA DB.
 
 For information, you can read up on the following resources:
 
