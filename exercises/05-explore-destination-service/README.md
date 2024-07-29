@@ -3,8 +3,8 @@
 SAP BTP can route requests to different services provided by BTP, your own applications and services, and even on-premise systems. For that, it can use the destination service. The destination service allows for configuration and creation of destinations pointing to an API endpoint. A destination is a configuration file written in JSON with information about the target API URL and it allows for configuring authentication parameters to authenticate requests against such endpoint. A destination is a convenient way of routing requests towards a system. The destination is secured by BTP that only allowed application instances can connect/ bind against a destination. Such binding happens through issuing a service key for that destination. As an example, if a developer wants to use a destination within a CAP application, a binding can be created between the application and the destination service on BTP via the `cds bind` command using the CDS CLI. 
 
 In the following exercise you will learn:
-* **How to configure such a destination on BTP** and you will learn
-* **How to bind your CAP application against that destination**
+* How to configure such a destination on BTP and you will learn
+* How to bind your CAP application against that destination
 
 A destination can be configured on different levels within BTP, but for this use case, destinations get created within the Destination Service for the provided subaccount.
 
