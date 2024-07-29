@@ -1,11 +1,11 @@
-## 03 Exercise - deploy a Large Language Model with Generative AI Hub on SAP AI Core
+# 03 Exercise - deploy a Large Language Model with Generative AI Hub on SAP AI Core
 
-# Open SAP AI Launchpad
+## Open SAP AI Launchpad
 👉 Go to your BTP subaccount *CAP AI CodeJam*. Navigate to Instances and Subscriptions and select SAP AI Launchpad from the Subscriptions.
 
 ![BTP cockpit](assets/2024-07-17_14-43-29copy.png)
 
-# Create a new resource group for your team
+## Create a new resource group for your team
 👉 Make sure to create a new resource group for your team. DO NOT USE THE DEFAULT RESOURCE GROUP!
 
 ![SAP AI Launchpad - Recourse Group 1/2](assets/2024-07-22_10-47-54.png)
@@ -14,7 +14,7 @@
 
 ![SAP AI Launchpad - Recourse Group 2/2](assets/2024-07-22_10-51-07.png)
 
-# Create a configuration to deploy a proxy for a large language model on SAP AI Core
+## Create a configuration to deploy a proxy for a large language model on SAP AI Core
 
 👉 Open the ML Operations tab, go to Scenarios and select the foundation-models scenario. This is the only pre-configered scenario from SAP. For all other custom machine learning models you would need to create your own scenario.
 
@@ -52,7 +52,7 @@ gpt-34
 
 ![Create configuration 4/4](assets/2024-07-16_16-43-35.png)
 
-# Deploy a proxy for a large language model on SAP AI Core
+## Deploy a proxy for a large language model on SAP AI Core
 
 👉 Click on Create Deployment to create a deployment for that configuration. This will not actually deploy the model but it will deploy a proxy that will return a URL for you to use to query the large language model you specified in the configuration.
 
