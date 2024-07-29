@@ -1,1 +1,0 @@
-# Exercise 03 - Explore and understand SAP generative AI Hub
