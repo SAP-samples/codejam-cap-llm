@@ -1,4 +1,5 @@
 const cds = require('@sap/cds')
+const { uuid } = cds.utils
 const { INSERT, DELETE } = cds.ql
 const { PDFLoader } = require('langchain/document_loaders/fs/pdf')
 const { RecursiveCharacterTextSplitter } = require('langchain/text_splitter')
@@ -30,10 +31,10 @@ async function chunk(pdf) {
   const splitter = new RecursiveCharacterTextSplitter({
     chunkSize: 500,
     chunkOverlap: 0,
-    addStartIndex: true
+    separators: ["."]
   })
     
-  const textChunks = await splitter.splitDocuments(document)
+  const textChunks = await splitter.splitDocuments(pdf)
   console.log(`Documents split into ${textChunks.length} chunks.`)
   return textChunks
 }
@@ -45,17 +46,18 @@ module.exports = function() {
       const { DocumentChunk } = this.entities
       let textChunkEntries = []
 
-      const pdf = loadPDF(path.resolve(`${filePath}`))
+      const pdf = await loadPDF(path.resolve(`${filePath}`))
 
-      const textChunks = chunk(pdf)
+      const textChunks = await chunk(pdf)
 
       console.log("Generating the vector embeddings for the text chunks.")
       // For each text chunk generate the embeddings
       for (const chunk of textChunks) {
         const embedding = await vectorPlugin.getEmbedding(chunk.pageContent)
         const entry = {
+          "chunk_id": uuid(),
           "text_chunk": chunk.pageContent,
-          "metadata_column": loader.filePath,
+          "metadata_column": filePath,
           "embedding": array2VectorBuffer(embedding)
         }
         console.log(entry)
@@ -68,7 +70,7 @@ module.exports = function() {
       if (!insertStatus) {
         throw new Error("Insertion of text chunks into db failed!")
       }
-      return `Embeddings stored successfully to db.`
+      return `Embeddings stored successfully to table.`
     } catch (error) {
       // Handle any errors that occur during the execution
       console.log('Error while generating and storing vector embeddings:', error)
