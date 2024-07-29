@@ -80,5 +80,8 @@ If you take a look in your terminal, you can see that it is calling a `GET` ODat
 
 You probably noticed that the defined functions are not visible in the UI. But no worries, you will learn how to call them from the web browser directly in a later exercise.
 
-
 ## Further Reading
+
+* [CAP Service Integration CodeJam](https://github.com/SAP-samples/cap-service-integration-codejam)
+* [Back to Basics with SAP Cloud Application Programming Model(CAP) - YouTube](https://youtube.com/playlist?list=PL6RpkC85SLQABOpzhd7WI-hMpy99PxUo0&si=V9Rqcbg84UGLQOi-)
+* [Providing Services - CAP Documentation](https://cap.cloud.sap/docs/guides/providing-services#providing-services)
