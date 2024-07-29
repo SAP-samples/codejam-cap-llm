@@ -3,7 +3,7 @@
 # Open SAP AI Launchpad
 👉 Go to your BTP subaccount *CAP AI CodeJam*. Navigate to Instances and Subscriptions and select SAP AI Launchpad from the Subscriptions.
 
-[BTP cockpit](assets/2024-07-17_14-43-29copy.png)
+![BTP cockpit](assets/2024-07-17_14-43-29copy.png)
 
 # Create a new resource group for your team
 👉 Make sure to create a new resource group for your team. DO NOT USE THE DEFAULT RESOURCE GROUP!
