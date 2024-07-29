@@ -37,11 +37,15 @@ Let's follow the steps to set up a CF runtime and create a development space wit
 
 In the scenario implemented in this CodeJam, SAP HANA Cloud is being used to store the created vector embeddings. SAP HANA Cloud has a vector database built into it, the SAP HANA Cloud Vector Engine.
 
-The creation of the instance needs the correct service quota within the proper entitlement. Finally, the service can be created via the `Instances and Subscriptions` screen.
+The creation of the instance needs the correct service quota within the proper entitlement.
+
+Finally, the service can be created via the `Instances and Subscriptions` screen.
 
 How to enable and create a SAP HANA Cloud instance is described in the following tutorial:
 
-![Deploy SAP HANA Cloud](https://developers.sap.com/tutorials/hana-cloud-deploying.html)
+* ![Deploy SAP HANA Cloud](https://developers.sap.com/tutorials/hana-cloud-deploying.html)
+* ![Start Using SAP HANA Cloud Trial in SAP BTP Cockpit](https://developers.sap.com/tutorials/hana-cloud-mission-trial-2.html)
+* ![Provision an Instance of SAP HANA Cloud, SAP HANA Database](https://developers.sap.com/tutorials/hana-cloud-mission-trial-3.html)
 
 Make sure you have the `SAP HANA Cloud` instance as well as the `SAP HANA Administration Tools` entitled and created in your subaccount. The tools will provide your subaccount with the correct role collection and administrative tools to manage your SAP HANA Cloud instance. If you use the `Set Up SAP HANA Cloud Administration Tools` booster, you get all the tools including the role collections set up automatically. If you want to enable the tools manually, you can add the `SAP HANA Cloud` entitlement using the `hana-cloud-tools` service plan. After you have entitled your subaccount, you can create an instance of the administration tools via the service marketplace. That will provide the necessary role collections to your subaccount. The role collections need to be assigned to your user manually.
 
