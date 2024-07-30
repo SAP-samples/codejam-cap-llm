@@ -27,7 +27,7 @@ Let's take a look at the used packages:
 
 2. Under the `/srv` directory, create a new file `embedding-storage.js`.
 
-3. Open the file and add the following code to it:
+3. Open the file and add the following properties to it:
 
 ```JavaScript
 const cds = require('@sap/cds')
