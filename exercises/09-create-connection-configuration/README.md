@@ -198,5 +198,7 @@ Everything is configured to try out the `storeEmbeddings()` OData function.
 
 As you can see the entities are stored in the database. With that you can use the CAP-LLM-Plugin to execute RAG responses using the vector embeddings bringing contextual information to the chat model.
 
+You have implemented your first AI focused CAP application OData service, directly exposing SAP generative AI capabilities to the outside world! Let's keep the momentum going and implement a service allowing you to retrieve a RAG response based on the context information provided within the SAP HANA Cloud vector engine.
+
 
 
