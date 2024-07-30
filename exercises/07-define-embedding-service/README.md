@@ -68,7 +68,7 @@ You can see that your CAP service is creating and establishing a connection to y
 
 ![define-embedding-service-localhost](./assets/02-define-embedding-service-localhost.png)
 
-You will get a nice UI out of the box. It allows you to inspect your OData service, get the API documentation and call the different endpoints.
+You will get a UI out of the box. It allows you to inspect your OData service, get the API documentation and call the different endpoints.
 
 Try the endpoint for fetching the `DocumentChunks` from the database table.
 
@@ -76,7 +76,7 @@ Try the endpoint for fetching the `DocumentChunks` from the database table.
 
 ![define-embedding-service-cds-db](./assets/03-define-embedding-service-db.png)
 
-If you take a look in your terminal, you can see that it is calling a `GET` OData request. It is not doing anything at this point because a service implementation is missing.
+If you take a look in your terminal, you can see that it is calling a `GET` OData request. The database tables are empty at this point, in the next exercise you will change that by implementing the `storeEmbeddings()` function.
 
 You probably noticed that the defined functions are not visible in the UI. But no worries, you will learn how to call them from the web browser directly in a later exercise.
 
