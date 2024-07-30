@@ -1,6 +1,6 @@
 # Exercise 07 - Define the embeddings service
 
-With the database being in place, you can define the service that is responsible for chunking a PDF document, creating the vector embeddings, encoding them and storing it into the database.
+With the database being in place, you can define the service that is responsible for chunking the context information, creating the vector embeddings, encoding them and storing it into the database.
 
 In this exercise you will learn:
 
