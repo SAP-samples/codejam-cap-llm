@@ -77,7 +77,7 @@ The entity defines three fields:
 
 ## Build and deploy the schema to your HDI container
 
-Because we created a binding to our HDI container in exercise 02 we have all configurations in place to deploy HANA database artifacts to the instance. To do so you need to build the artifacts first, for that you can use the `hana` script from the `package.json` or manually enter the `cds deploy` command.
+Because you created a binding to our HDI container in exercise 02 you have all configurations in place to deploy HANA database artifacts to the instance. To do so you need to build the artifacts first, for that you can use the `hana` script from the `package.json` or manually enter the `cds deploy` command.
 
 👉 Open a terminal or use an existing one.
 
@@ -117,7 +117,7 @@ Great! The database is initialized and the table with all necessary fields creat
 
 ## Examine the database table
 
-There are multiple ways of viewing your database artifacts on SAP HANA Cloud. One would be to use the **SAP HANA Database Explorer** and of course via the CLI if you don't want to use the UI. You will find a tutorial in the [Further Reading]() section, if you are interested in how to use the **SAP HANA Database Explorer**. We will use the CLI today, because it is quicker. `#TheFutureIsTerminal`
+There are multiple ways of viewing your database artifacts on SAP HANA Cloud. One would be to use the **SAP HANA Database Explorer** and of course via the CLI if you don't want to use the UI. You will find a tutorial in the [Further Reading]() section, if you are interested in how to use the **SAP HANA Database Explorer**. You should use the CLI today, because it is quicker. `#TheFutureIsTerminal`
 
 The BAS instance as well as the container image you run locally have the [hana-cli](https://github.com/SAP-samples/hana-developer-cli-tool-example) installed.
 

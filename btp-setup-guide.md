@@ -4,7 +4,7 @@ Suppose you want to develop SAP Cloud Application Programming model applications
 
 The SAP Business Technology Platform, short BTP, is the platform in which all these services live. BTP will help you manage service instances, entitlements, user profiles, rights, and complete development environments. BTP is a Platform as a Service (PaaS) running on top of a hyperscaler like Google Cloud Platform or Amazon Web Services and SAP's data centers.
 
-You can initialize a BTP account and, subsequently, a subaccount in different global regions. Choosing a region makes sense because you want the service instances used close to your location. In our case, where we are using the Free Tier instance of BTP, the region is crucial to the availability of functionalities. Free Tier is a perfect fit for what we want to do because it allows us to go from an exploration phase to production without changing the landscape or even the whole account. A simple upgrade is all we need. SAP AI Core is available in the Free Tier account, but the generative AI hub on SAP AI Core, which we need to access LLMs, is only available over the `extended` service plan. For this CodeJam, SAP provides the extended service.
+You can initialize a BTP account and, subsequently, a subaccount in different global regions. Choosing a region makes sense because you want the service instances used close to your location. For this CodeJam, where you are using the Free Tier instance of BTP, the region is crucial to the availability of functionalities. Free Tier is a perfect fit for what you want to do because it allows us to go from an exploration phase to production without changing the landscape or even the whole account. A simple upgrade is all you need. SAP AI Core is available in the Free Tier account, but the generative AI hub on SAP AI Core, which you need to access LLMs, is only available over the `extended` service plan. For this CodeJam, SAP provides the extended service.
 
 Nothing described in this guide needs to be done by you as a CodeJam participant. We will provide you with a fully functioning environment, but this can be helpful if you want to replicate what you have learned at home.
 
@@ -17,9 +17,9 @@ If you want to learn more about BTP, regions, Free Tier, and the account structu
 
 ## Enable SAP BTP, Cloud Foundry runtime, and create a development space
 
-Working with BTP allows us to create and start a runtime environment to start service instances, develop applications, and deploy them. BTP provides two different options as runtimes: a runtime allowing for working directly with Kubernetes without much abstraction, providing full access and power over how services run, and one that is also running Kubernetes underneath but gives a nice abstraction layer on top that makes development and deployment easier but takes away a lot of the fine-granular administration you would get with a pure Kubernetes instance. The first is called SAP BTP, Kyma runtime, and the latter is SAP BTP, Cloud Foundry runtime. We will progress with the SAP BTP, Cloud Foundry runtime (CF) for our purpose.
+Working with BTP allows us to create and start a runtime environment to start service instances, develop applications, and deploy them. BTP provides two different options as runtimes: a runtime allowing for working directly with Kubernetes without much abstraction, providing full access and power over how services run, and one that is also running Kubernetes underneath but gives a nice abstraction layer on top that makes development and deployment easier but takes away a lot of the fine-granular administration you would get with a pure Kubernetes instance. The first is called SAP BTP, Kyma runtime, and the latter is SAP BTP, Cloud Foundry runtime. You will progress with the SAP BTP, Cloud Foundry runtime (CF) for our purpose.
 
-Within a CF instance, we can create a _Space_. A _Space_ provides users access to a shared app development, deployment, and maintenance location. You can have multiple spaces if needed.
+Within a CF instance, you can create a _Space_. A _Space_ provides users access to a shared app development, deployment, and maintenance location. You can have multiple spaces if needed.
 
 Let's follow the steps to set up a CF runtime and create a development space within the sub-account.
 
@@ -51,7 +51,7 @@ Make sure you have the `SAP HANA Cloud` instance as well as the `SAP HANA Admini
 
 ![set-up-hana-cloud-entitlements](./assets/set-up-hana/set-up-hana-entitlements.png)
 
-Now, that you have a SAP HANA Cloud instance up and running, we can utilize the Vector Engine. The Vector Engine is part of a new SAP HANA Cloud database instance, and a vector is just another datatype that can be created and used like any other datatype for SAP HANA DB.
+Now, that you have a SAP HANA Cloud instance up and running, you can utilize the Vector Engine. The Vector Engine is part of a new SAP HANA Cloud database instance, and a vector is just another datatype that can be created and used like any other datatype for SAP HANA DB.
 
 For information, you can read up on the following resources:
 
@@ -104,7 +104,7 @@ The service creation will take a second before it appears in the `Instances and 
 
 ## Enable and create an instance of SAP AI Launchpad
 
-An instance of SAP AI Launchpad is required to interact with and manage SAP AI Core. We follow the same procedure: add the correct entitlement to the subaccount and create a service instance based on that.
+An instance of SAP AI Launchpad is required to interact with and manage SAP AI Core. You can follow the same procedure: add the correct entitlement to the subaccount and create a service instance based on that.
 
 1. Click `Entitlements` on the left-hand navigation within your subaccount.
 
@@ -134,7 +134,7 @@ The service creation will take a second before it appears in the `Instances and 
 
 ## Setup the SAP AI Launchpad service
 
-In the last step, you have entitled your subaccount to use the SAP AI Launchpad service and created an instance. We will launch the SAP AI Launchpad UI and set it up for usage with SAP AI Core.
+In the last step, you have entitled your subaccount to use the SAP AI Launchpad service and created an instance. You will launch the SAP AI Launchpad UI and set it up for usage with SAP AI Core.
 
 1. Open the `Services & Subscriptions` view via the left-hand navigation within your subaccount.
 

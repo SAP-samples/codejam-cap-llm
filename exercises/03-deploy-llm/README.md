@@ -24,8 +24,8 @@
 
 ![Scenarios 2/2](assets/2024-07-22_13-04-27.png)
 
-👉 Copy the name of the model you want to deploy the proxy for. In this CodeJam we will use gpt-4.
-After that we will create a configuration.
+👉 Copy the name of the model you want to deploy the proxy for. In this CodeJam you will use gpt-4.
+After that, you will create a configuration.
 
 ![Available models](assets/2024-07-22_13-04-40.png)
 
@@ -76,7 +76,7 @@ Using the URL and the client id and the client secret from the SAP AI Core servi
 ![Create deployment 5/5](assets/2024-07-16_16-51-40.png)
 
 ## Deploy a proxy for an embedding model on SAP AI Core
-👉 To implement a retrieval augmented generation (RAG) use case we also need to deploy an embedding model. The embeddings for our text chunks will then be stored in a vector database (e.g. HANA Vector Store). To deploy the embedding model repeat the steps above using the model name: 
+👉 To implement a retrieval augmented generation (RAG) use case you also need to deploy an embedding model. The embeddings for our text chunks will then be stored in a vector database (e.g. HANA Vector Store). To deploy the embedding model repeat the steps above using the model name: 
 ```sh
 text-embedding-ada-002
 ```

@@ -56,7 +56,7 @@ mkdir -p $HOME/projects/ \
   && ln -s /workspaces/cap-service-integration-codejam/ $HOME/projects/
 ```
 
-> If the `projects/` directory already exists, for some reason, then the `mkdir` command would normally fail and emit a message; this would also mean that the subsequent `ln` command would not run (as they're connected via `&&`). So we use the `-p` option to tell `mkdir` not to complain.
+> If the `projects/` directory already exists, for some reason, then the `mkdir` command would normally fail and emit a message; this would also mean that the subsequent `ln` command would not run (as they're connected via `&&`). So you can use the `-p` option to tell `mkdir` not to complain.
 
 You can make sure that everything is OK by checking that you can see the directories inside the repo, via this new `projects/` directory in your dev container user's home directory. Here's an example, with what you might expect to see:
 
