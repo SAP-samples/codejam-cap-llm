@@ -38,7 +38,7 @@ CAP
 1. Implement the embedding service **(Kevin)**. What is chunking? What is important?  **(Nora)**
 1. Understanding the UI
 1. Connecting the services to the UI
-1. Run CAP service locally, link deployment tutorial/ documetation
+1. Run CAP service locally, link deployment tutorial/ documentation
 
 ## Feedback
 
