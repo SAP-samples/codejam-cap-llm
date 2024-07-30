@@ -23,11 +23,11 @@ Let's take a look at the used packages:
 
 ### Implement the package imports and function export skeleton
 
-1. Open SAP Business Application Studio or your local VSCode instance.
+👉 Open SAP Business Application Studio or your local VSCode instance.
 
-2. Under the `/srv` directory, create a new file `embedding-storage.js`.
+👉 Under the `/srv` directory, create a new file `embedding-storage.js`.
 
-3. Open the file and add the following properties to it:
+👉 Open the file and add the following properties to it:
 
 ```JavaScript
 const cds = require('@sap/cds')
@@ -40,7 +40,7 @@ const filePath = 'db/data/CAP_Documentation_V8.pdf'
 
 This code gives you instances for the above described packages and it defines the file path to the context information document.
 
-4. Below the constants add the following code:
+👉 Below the constants add the following code:
 
 ```JavaScript
 module.exports = function() {
@@ -56,7 +56,7 @@ The `deleteEmbeddings()` function is responsible for deleting all embeddings sto
 
 You will implement the function handler within the block of the function export.
 
-1. Add the following code within the curly brackets of the function export:
+👉 Add the following code within the curly brackets of the function export:
 
 ```JavaScript
 this.on ('deleteEmbeddings', async (req) => {
@@ -66,7 +66,7 @@ this.on ('deleteEmbeddings', async (req) => {
 
 This line of code defines a handler for the `deleteEmbeddings` OData function defined in the [embedding-storage.cds](../../project/cap-documentation-ai-helper/srv/embedding-storage.cds). When you call that function via a given API, the code within the block will be executed.
 
-2. Add the following lines of code to the `deleteEmbeddings`:
+👉 Add the following lines of code to the `deleteEmbeddings`:
 
 ```JavaScript
 try {
@@ -82,15 +82,15 @@ catch (error) {
 }
 ```
 
-3. Safe the file.
+👉 Safe the file.
 
 To test the implementation you can execute the `cds watch` command and run localhost.
 
-4. Open a new terminal or use an existing one.
+👉 Open a new terminal or use an existing one.
 
-5. Execute the `cds watch` command using the hybrid profile to try out the `deleteEmbeddings()` function.
+👉 Execute the `cds watch` command using the hybrid profile to try out the `deleteEmbeddings()` function.
 
-6. You can call the `deleteEmbeddings()` function by calling the following URL `http://localhost:4004/odata/v4/embedding-storage/deleteEmbeddings()`.
+👉 You can call the `deleteEmbeddings()` function by calling the following URL `http://localhost:4004/odata/v4/embedding-storage/deleteEmbeddings()`.
 
 > In case you are running into an error, log into the Cloud Foundry account again using `cf login`.
 
@@ -112,20 +112,20 @@ Now think what methods are necessary to implement:
 
 #### Implement the loadPDF(fromFilePath) method
 
-1. Add the following method declaration, right below the function export `module.exports = function() { ... }`:
+👉 Add the following method declaration, right below the function export `module.exports = function() { ... }`:
 
 ```JavaScript
 async function loadPDF(fromFilePath) { }
 ```
 
-2. In the block of the method, initialize a `PDFLoader(filePath)` and subsequently call `load()` on the object:
+👉 In the block of the method, initialize a `PDFLoader(filePath)` and subsequently call `load()` on the object:
 
 ```JavaScript
 const loader = new PDFLoader(fromFilePath)
 const document = await loader.load()
 ```
 
-3. Return the document:
+👉 Return the document:
 
 ```JavaScript
 return document
@@ -143,7 +143,7 @@ async function loadPDF(fromFilePath) {
 
 ### Implement the chunk(pdf) method
 
-1. Add the following method declaration, right below the `loadPDF(fromFilePath)` method:
+👉 Add the following method declaration, right below the `loadPDF(fromFilePath)` method:
 
 ```JavaScript
 async function chunk(pdf) { }
@@ -151,7 +151,7 @@ async function chunk(pdf) { }
 
 Initialize a `RecursiveCharacterTextSplitter` object from the Langchain package. The initializer expects the chunking configuration. That configuration decides on how the text splitter is executing the chunking.
 
-2. In the block of the method, initialize a `RecursiveCharacterTextSplitter(chunkSize, chunkOverlap, separators)`:
+👉 In the block of the method, initialize a `RecursiveCharacterTextSplitter(chunkSize, chunkOverlap, separators)`:
 
 ```JavaScript
 const splitter = new RecursiveCharacterTextSplitter({
@@ -163,14 +163,14 @@ const splitter = new RecursiveCharacterTextSplitter({
 
 The splitter is using punctuation to separate the chunks. The chunk size is set to 500 in that case.
 
-3. Execute the chunking by calling the `splitter.splitDocuments(document)` method:
+👉 Execute the chunking by calling the `splitter.splitDocuments(document)` method:
 
 ```JavaScript
 const textChunks = await splitter.splitDocuments(pdf)
 console.log(`Documents split into ${textChunks.length} chunks.`)
 ```
 
-4. Return the text chunks:
+👉 Return the text chunks:
 
 ```JavaScript
 return textChunks
@@ -196,13 +196,13 @@ async function chunk(pdf) {
 
 To convert the vector embeddings data to a format that is storable in the SAP HANA Cloud vector engine, you implement a helper method.
 
-1. Add the following method declaration, right below the `chunk(pdf)` method:
+👉 Add the following method declaration, right below the `chunk(pdf)` method:
 
 ```JavaScript
 function array2VectorBuffer(data) { }
 ```
 
-2. Add properties to the method used for calculating the buffer size:
+👉 Add properties to the method used for calculating the buffer size:
 
 ```JavaScript
 const sizeFloat = 4
@@ -210,13 +210,13 @@ const sizeDimensions = 4
 const bufferSize = data.length * sizeFloat + sizeDimensions
 ```
 
-3. Allocate a buffer using the above calculated buffer size. You will write the values into that buffer stream after.
+👉 Allocate a buffer using the above calculated buffer size. You will write the values into that buffer stream after.
 
 ```JavaScript
 const buffer = Buffer.allocUnsafe(bufferSize)
 ```
 
-4. Iterate over the vector embeddings data array. For each value do a conversion and write it to the buffer stream:
+👉 Iterate over the vector embeddings data array. For each value do a conversion and write it to the buffer stream:
 
 ```JavaScript
 buffer.writeUInt32LE(data.length, 0)
@@ -225,7 +225,7 @@ data.forEach((value, index) => {
 })
 ```
 
-5. Return the buffer:
+👉 Return the buffer:
 
 ```JavaScript
 return buffer
@@ -255,26 +255,26 @@ If you remember the presentation in the beginning, the Advocate showed you an ov
 
 The plugin requires additional configuration to know what destination to use and what embedding model to connect to. This configuration will be created by you in the next exercise.
 
-1. Add the following method declaration, right below the `array2VectorBuffer(data)` method:
+👉 Add the following method declaration, right below the `array2VectorBuffer(data)` method:
 
 ```JavaScript
 async function retrieveEmbeddings(forChunks) { }
 ```
 
-2. In the method's block add the connection to the CAP-LLM-Plugin:
+👉 In the method's block add the connection to the CAP-LLM-Plugin:
 
 ```JavaScript
 console.log("Connecting to the CAP-LLM-Plugin...")
 const vectorPlugin = await cds.connect.to('cap-llm-plugin')
 ```
 
-3. Implement an array for storing the text chunk entries that will subsequently inserted into the database:
+👉 Implement an array for storing the text chunk entries that will subsequently inserted into the database:
 
 ```JavaScript
 let textChunkEntries = []
 ```
 
-4. Iterate over the passed in chunks, call the `getEmbedding()` method to retrieve the vector embeddings for each chunk, and create the database entry:
+👉 Iterate over the passed in chunks, call the `getEmbedding()` method to retrieve the vector embeddings for each chunk, and create the database entry:
 
 ```JavaScript
 console.log("Generating the vector embeddings for the text chunks.")
@@ -290,7 +290,7 @@ for (const chunk of forChunks) {
 }
 ```
 
-5. Return the entries:
+👉 Return the entries:
 
 ```JavaScript
 return textChunkEntries
@@ -300,7 +300,7 @@ return textChunkEntries
 
 You have implemented all required helper methods as well as the creation of the text chunk entries for instering `DocumentChunk` entities to the database.
 
-1. To implement the function handler for the `storeEmbeddings` OData function, add the following lines of code to the `module.exports = function() { }`:
+👉 To implement the function handler for the `storeEmbeddings` OData function, add the following lines of code to the `module.exports = function() { }`:
 
 ```JavaScript
 this.on('storeEmbeddings', async (req) => {
@@ -312,37 +312,37 @@ this.on('storeEmbeddings', async (req) => {
 })
 ```
 
-2. Load the context information document from the file system. Within the `try` block call the `loadPDF(fromFilePath) helper method:
+👉 Load the context information document from the file system. Within the `try` block call the `loadPDF(fromFilePath) helper method:
 
 ```JavaScript
 const pdf = await loadPDF(path.resolve(`${filePath}`))
 ```
 
-3. Call the `chunk(pdf)` method to chunk the loaded PDF document.
+👉 Call the `chunk(pdf)` method to chunk the loaded PDF document.
 
 ```JavaScript
 const textChunks = await chunk(pdf)
 ```
 
-4. Create the vector embeddings from the text chunks by calling the `retrieveEmbeddings(forChunks)` method:
+👉 Create the vector embeddings from the text chunks by calling the `retrieveEmbeddings(forChunks)` method:
 
 ```JavaScript
 const textChunkEntries = await retrieveEmbeddings(textChunks)
 ```
 
-5. Insert the text chunk entry object into the `DocumentChunk` table of the database:
+👉 Insert the text chunk entry object into the `DocumentChunk` table of the database:
 
 ```JavaScript
 console.log("Inserting text chunks with embeddings into db.")
 const { DocumentChunk } = this.entities
 const insertStatus = await INSERT.into(DocumentChunk).entries(textChunkEntries)
 if (!insertStatus) {
-throw new Error("Insertion of text chunks into db failed!")
+  throw new Error("Insertion of text chunks into db failed!")
 }
 return `Embeddings stored successfully to table.`
 ```
 
-6. The database insert can throw and error. Within the `catch(error)` block implement the following error handling:
+👉 The database insert can throw and error. Within the `catch(error)` block implement the following error handling:
 
 ```JavaScript
 console.log('Error while generating and storing vector embeddings:', error)
@@ -351,7 +351,9 @@ throw error
 
 > The error handling you are implementing here is by far not suited for productive use. In production code implement proper error handling rather than throwing the error.
 
-7. Save the file.
+👉 Save the file.
+
+## Summary
 
 At this point the `storeEmbeddings` would run into an error if being executed because the CAP-LLM-Plugin does not yet know what destination it should uses for connecting against SAP generative AI Hub. In the next exercise you will adapt the `cdsrc-private.json` to include CAP-LLM-Plugin specific configuration.
 
@@ -362,3 +364,13 @@ At this point the `storeEmbeddings` would run into an error if being executed be
 *[Document Loaders - PDF](https://js.langchain.com/v0.1/docs/modules/data_connection/document_loaders/pdf/)
 *[Recursevly Split by Characters](https://js.langchain.com/v0.1/docs/modules/data_connection/document_transformers/recursive_text_splitter/)
 * [Error Handling CAP](https://cap.cloud.sap/docs/node.js/best-practices#error-handling)
+
+---
+
+## Questions
+
+If you finish earlier than your fellow participants, you might like to ponder these questions. There isn't always a single correct answer and there are no prizes - they're just to give you something else to think about.
+
+---
+
+[Next exercise](../09-create-connection-configuration/README.md)

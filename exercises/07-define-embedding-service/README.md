@@ -10,9 +10,9 @@ In this exercise you will learn:
 
 You can create an OData service using CDS to expose entities, provide functions, secure APIs and much more. You will find detailed reading material in the [Further Reading]() section.
 
-1. Create a new file in the `srv` folder and name it `embedding-storage.cds`.
+👉 Create a new file in the `srv` folder and name it `embedding-storage.cds`.
 
-2. In that file add a reference to the database schema:
+👉 In that file add a reference to the database schema:
 
 ```cds
 using { sap.codejam as db } from '../db/schema';
@@ -20,13 +20,13 @@ using { sap.codejam as db } from '../db/schema';
 
 This allows you to access entity definitions from the database schema.
 
-3. Define the service using the `service` keyword:
+👉 Define the service using the `service` keyword:
 
 ```cds
 service EmbeddingStorageService { }
 ```
 
-4. Within the curly brackets add a projection on the `DocumentChunk` entity to expose it via OData. Add the following lines of code:
+👉 Within the curly brackets add a projection on the `DocumentChunk` entity to expose it via OData. Add the following lines of code:
 
 ```cds
 entity DocumentChunk as projection on db.DocumentChunk
@@ -35,7 +35,7 @@ entity DocumentChunk as projection on db.DocumentChunk
 
 Using the `excluding` keyword, the embedding field is being excluded from the response.
 
-5. Define two functions for storing and deleting vector embeddings.
+👉 Define two functions for storing and deleting vector embeddings.
 
 ```cds
     function storeEmbeddings() returns String;
@@ -46,15 +46,15 @@ The `storeEmbeddings()` function will utilize third party npm packages to load t
 
 You will implement that in the next exercise. We're getting closer to see the first fruits of our hard work 😊🧑‍💻.
 
-6. Save the file.
+👉 Save the file.
 
 ## Inspect your service
 
 You can run `cds watch --profile hybrid` or `npm run hana` to run the service locally and establish a connection to SAP HANA Cloud.
 
-1. Open a new terminal or use an existing one
+👉 Open a new terminal or use an existing one
 
-2. Execute the `cds watch` command:
+👉 Execute the `cds watch` command:
 
 ```bash
 cds watch --profile hybrid
@@ -64,7 +64,7 @@ cds watch --profile hybrid
 
 You can see that your CAP service is creating and establishing a connection to your HDI container and database. The CAP service gets spun up and is now available under the path `/odata/v4/embedding-storage`.
 
-3. Inspect your service by opening `http://localhost:4004` in your web browser.
+👉 Inspect your service by opening `http://localhost:4004` in your web browser.
 
 ![define-embedding-service-localhost](./assets/02-define-embedding-service-localhost.png)
 
@@ -72,7 +72,7 @@ You will get a UI out of the box. It allows you to inspect your OData service, g
 
 Try the endpoint for fetching the `DocumentChunks` from the database table.
 
-4. Click on `DocumentChunk`.
+👉 Click on `DocumentChunk`.
 
 ![define-embedding-service-cds-db](./assets/03-define-embedding-service-db.png)
 
@@ -80,8 +80,22 @@ If you take a look in your terminal, you can see that it is calling a `GET` ODat
 
 You probably noticed that the defined functions are not visible in the UI. But no worries, you will learn how to call them from the web browser directly in a later exercise.
 
+## Summary
+
+At this point ...
+
 ## Further Reading
 
 * [CAP Service Integration CodeJam](https://github.com/SAP-samples/cap-service-integration-codejam)
 * [Back to Basics with SAP Cloud Application Programming Model(CAP) - YouTube](https://youtube.com/playlist?list=PL6RpkC85SLQABOpzhd7WI-hMpy99PxUo0&si=V9Rqcbg84UGLQOi-)
 * [Providing Services - CAP Documentation](https://cap.cloud.sap/docs/guides/providing-services#providing-services)
+
+---
+
+## Questions
+
+If you finish earlier than your fellow participants, you might like to ponder these questions. There isn't always a single correct answer and there are no prizes - they're just to give you something else to think about.
+
+---
+
+[Next exercise](../08-implement-embedding-service/README.md)

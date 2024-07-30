@@ -16,3 +16,7 @@ Go ahead and create the CDS service definition in a new file under the `srv` fol
 ## Solution
 
 For the solution, open the [solution](./solution.md) file.
+
+---
+
+[Next exercise](../11-implement-cap-doc-helper-service/README.md)

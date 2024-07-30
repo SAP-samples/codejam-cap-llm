@@ -35,17 +35,17 @@ The destination for a typical SAP AI Core connection can be configured as follow
 
 Feel free to explore the destination on SAP BTP yourself:
 
-1. Go to the [CodeJam subaccount on SAP BTP](https://emea.cockpit.btp.cloud.sap/cockpit/#/globalaccount/275320f9-4c26-4622-8728-b6f5196075f5/subaccount/6088766d-dcc4-4e56-972f-652baad796be/)
+👉 Go to the [CodeJam subaccount on SAP BTP](https://emea.cockpit.btp.cloud.sap/cockpit/#/globalaccount/275320f9-4c26-4622-8728-b6f5196075f5/subaccount/6088766d-dcc4-4e56-972f-652baad796be/)
 
-2. Open the **Instances & Subscriptions** page through the sidebar navigation.
+👉 Open the **Instances & Subscriptions** page through the sidebar navigation.
 
-3. Under the section **Instances**, you can find the `cap-ai-codejam-dev` Destination Service instance. Click on the instance link.
+👉 Under the section **Instances**, you can find the `cap-ai-codejam-dev` Destination Service instance. Click on the instance link.
 
 ![destination-service-codejam-instance](../05-explore-destination-service/assets/01-destination-service-codejam-instance.png)
 
-4. The destination service should open in a separate tab in your browser. Over the sidebar navigation, open the **Destinations** view.
+👉 The destination service should open in a separate tab in your browser. Over the sidebar navigation, open the **Destinations** view.
 
-5. In the list of destinations, you should see only one destination `codejam-ai-dest`. Click on it.
+👉 In the list of destinations, you should see only one destination `codejam-ai-dest`. Click on it.
 
 ![set-up-destination-create-dest](../../assets/set-up-destination/4-set-up-destination-create-dest.png)
 
@@ -63,11 +63,11 @@ Your CAP application needs a binding to the configured destination to send reque
 
 The `.cdsrc.json` or `.cdsrc-private.json` file is just one of many configuration files you can use within your CAP application. This particular file is for user-specific configurations that can be used across multiple projects. You could also add the binding configuration to a `.env` file if you want that configuration to be available only in the project environment. If you want to read more about the different configuration files, you can find a link to the documentation in the [Further Reading]() section of this exercise.
 
-1. Open the project in SAP Business Application Studio (BAS) or VSCode.
+👉 Open the project in SAP Business Application Studio (BAS) or VSCode.
 
-2. Open a new terminal if not already open.
+👉 Open a new terminal if not already open.
 
-3. Log into the provided Cloud Foundry instance and authenticate using the provided credentials:
+👉 Log into the provided Cloud Foundry instance and authenticate using the provided credentials:
 
 ```bash
 cf login -a https://api.cf.us10.hana.ondemand.com
@@ -77,7 +77,7 @@ cf login -a https://api.cf.us10.hana.ondemand.com
 
 Before you can bind the CAP application to the destination service, you need to retrieve the instance's name. You can do this via the SAP BTP UI or via the CLI.
 
-4. In the terminal, enter the following command to list all services for that subaccount:
+👉 In the terminal, enter the following command to list all services for that subaccount:
 
 ```bash
 cf services
@@ -85,11 +85,11 @@ cf services
 
 ![bind-destination-service-cf-services](./assets/02-bind-destination-service-cf-services.png)
 
-5. Copy the service name `cap-ai-codejam-dev`
+👉 Copy the service name `cap-ai-codejam-dev`
 
 Now that you have the service name you want to bind your application against you can use the cds cli to create the binding.
 
-6. In the terminal, enter the following command to create the binding (replace the placeholder with a meaningful name):
+👉 In the terminal, enter the following command to create the binding (replace the placeholder with a meaningful name):
 
 ```bash
 cds bind -2 cap-ai-codejam-dev:<your-service-key-name>
@@ -115,10 +115,23 @@ With the service key, the binding created and the binding configuration in place
 
 > You will create the needed connection configuration for the CAP-LLM-Plugin in exercise [09 Create the CAP-LLM-Plugin connection configuration](../09-create-connection-configuration/README.md). Please do not skip ahead.
 
-## Further Reading
+## Summary
+
+At this point ...
+
+## Further reading
 
 * [User-Specific Defaults in ~/.cdsrc.json](https://cap.cloud.sap/docs/node.js/cds-env#user-specific-defaults-in-cdsrc-json)
 * [Service Bindings](https://cap.cloud.sap/docs/node.js/cds-connect#service-bindings)
 * [Create and bind a Destination Service instance](https://help.sap.com/docs/connectivity/sap-btp-connectivity-cf/create-and-bind-destination-service-instance)
 * [Set Up Tools to Connect With and Operate SAP AI Core - Tutorial](https://developers.sap.com/tutorials/ai-core-setup..html)
 
+---
+
+## Questions
+
+If you finish earlier than your fellow participants, you might like to ponder these questions. There isn't always a single correct answer and there are no prizes - they're just to give you something else to think about.
+
+---
+
+[Next exercise](../06-define-db-schema/README.md)

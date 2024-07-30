@@ -1,6 +1,14 @@
-# Exercise 04 - Create a resource group within SAP generative AI Hub
+# Exercise nn - Title
+
+At the end of this exercise, ...
 
 ## Section
+
+...
+
+## Another section
+
+...
 
 ## Summary
 
@@ -18,4 +26,4 @@ If you finish earlier than your fellow participants, you might like to ponder th
 
 ---
 
-[Next exercise](../05-explore-destination-service/README.md)
+[Next exercise](../DIRNAME/)

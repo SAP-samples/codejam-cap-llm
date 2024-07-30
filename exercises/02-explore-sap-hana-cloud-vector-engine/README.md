@@ -18,3 +18,21 @@ https://cap.cloud.sap/docs/guides/databases-hana
 ## Bind local service to HANA instance for hybrid testing
 
 `cds bind -2 cap-ai-codejam-hdb:cap-ai-codejam-hdb-key`
+
+## Summary
+
+At this point ...
+
+## Further reading
+
+* ...
+
+---
+
+## Questions
+
+If you finish earlier than your fellow participants, you might like to ponder these questions. There isn't always a single correct answer and there are no prizes - they're just to give you something else to think about.
+
+---
+
+[Next exercise](../03-deploy-llm/README.md)

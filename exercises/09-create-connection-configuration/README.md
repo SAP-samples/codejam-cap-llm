@@ -18,11 +18,11 @@ In this exercise you will learn:
 
 ## Create the destination configuration
 
-1. Open BAS or your local VSCode instance.
+👉 Open BAS or your local VSCode instance.
 
-2. Open the `.cdsrc-private.json` file.
+👉 Open the `.cdsrc-private.json` file.
 
-3. Insert the destination configuration to the JSON. Make sure it is defined in the `requires` object right after the closing bracket of the `hybrid` object array.
+👉 Insert the destination configuration to the JSON. Make sure it is defined in the `requires` object right after the closing bracket of the `hybrid` object array.
 
 ```JSON
 {
@@ -50,9 +50,9 @@ If you observe closely, the destination configuration points to the destination 
 
 ## Create the CAP-LLM-Plugin configuration
 
-1. Make sure there is a comma present right below the `AICoreAzureOpenAIDestination` object.
+👉 Make sure there is a comma present right below the `AICoreAzureOpenAIDestination` object.
 
-2. Add the configuration for the CAP-LLM-Plugin right below the comma as a next object:
+👉 Add the configuration for the CAP-LLM-Plugin right below the comma as a next object:
 
 ```JSON
 "GENERATIVE_AI_HUB": {
@@ -126,79 +126,88 @@ What do you need:
 
 ### Lookup and configure the resource group name
 
-1. Open your web browser.
+👉 Open your web browser.
 
-2. Go to the [SAP BTP - Instances and Subscriptions](https://emea.cockpit.btp.cloud.sap/cockpit/#/globalaccount/275320f9-4c26-4622-8728-b6f5196075f5/subaccount/6088766d-dcc4-4e56-972f-652baad796be/service-instances) view.
+👉 Go to the [SAP BTP - Instances and Subscriptions](https://emea.cockpit.btp.cloud.sap/cockpit/#/globalaccount/275320f9-4c26-4622-8728-b6f5196075f5/subaccount/6088766d-dcc4-4e56-972f-652baad796be/service-instances) view.
 
-3. Click on the little icon right next to the `SAP AI Launchpad` application instance.
+👉 Click on the little icon right next to the `SAP AI Launchpad` application instance.
 
 ![create-connection-configuration-btp](./assets/01-create-connection-configuration-btp.png)
 
 That will launch the SAP AI Launchpad in a separate tab within your browser.
 
-4. Open the SAP AI Launchpad.
+👉 Open the SAP AI Launchpad.
 
 ![create-connection-configuration-launchpad](./assets/02-create-connection-configuration-launchpad.png)
 
-5. Through the sidebar navigate to `SAP AI Core Administration`.
+👉 Through the sidebar navigate to `SAP AI Core Administration`.
 
-6. Click on `Resource Groups` and copy the name.
+👉 Click on `Resource Groups` and copy the name.
 
 ![create-connection-configuration-resource-group](./assets/03-create-connection-configuration-resource-group.png)
 
-7. In BAS or your local VSCode instance open the `.cdsrc-private.json` file and add the resource group name to the:
+👉 In BAS or your local VSCode instance open the `.cdsrc-private.json` file and add the resource group name to the:
 
 * `CHAT_MODEL_RESOURCE_GROUP` and 
 * `EMBEDDING_MODEL_RESOURCE_GROUP`
 
-8. Save the file.
+👉 Save the file.
 
 ### Lookup and configure the deployment Id
 
-1. Open SAP AI Launchpad.
+👉 Open SAP AI Launchpad.
 
-2. Through the sidebar navigate to `ML Operations`.
+👉 Through the sidebar navigate to `ML Operations`.
 
-3. Click on `Deployments`.
+👉 Click on `Deployments`.
 
 You can see two different deployments. One for the embedding model and one for the chat model. Both of these have an identifier.
 
-4. Copy the identifiers of both models and replace the placeholder within the URLs of
+👉 Copy the identifiers of both models and replace the placeholder within the URLs of
 
 * `CHAT_MODEL_DEPLOYMENT_URL` and
 * `EMBEDDING_MODEL_DEPLOYMENT_UR`.
 
-5. Safe the file.
+👉 Safe the file.
 
 ## Test the storeEmbeddings() OData function
 
 Everything is configured to try out the `storeEmbeddings()` OData function.
 
-1. Open a new terminal or use an existing one.
+👉 Open a new terminal or use an existing one.
 
-2. Start your CAP application by running `cds watch --profile hybrid`.
+👉 Start your CAP application by running `cds watch --profile hybrid`.
 
-3. Open your web browser and enter the following URL `http://localhost:4004/odata/v4/embedding-storage/storeEmbeddings()`.
+👉 Open your web browser and enter the following URL `http://localhost:4004/odata/v4/embedding-storage/storeEmbeddings()`.
 
-4. Inspect your terminal output to understand the single steps happening with this call. You can clearly see all the steps happening from reading the context information, to chunking and table inserts.
+👉 Inspect your terminal output to understand the single steps happening with this call. You can clearly see all the steps happening from reading the context information, to chunking and table inserts.
 
 ![create-connection-configuration-run-api](./assets/04-create-connection-configuration-run-api.png)
 
 ## Check the entries in the database.
 
-1. Make sure the service is still running.
+👉 Make sure the service is still running.
 
-2. Open your web browser.
+👉 Open your web browser.
 
-3. Open `http://localhost:4040/`.
+👉 Open `http://localhost:4040/`.
 
-4. Click on `DocumentChunk`.
+👉 Click on `DocumentChunk`.
 
 ![create-connection-configuration-documentchunk](./assets/05-create-connection-configuration-documentchunk.png)
 
 As you can see the entities are stored in the database. With that you can use the CAP-LLM-Plugin to execute RAG responses using the vector embeddings bringing contextual information to the chat model.
 
-You have implemented your first AI focused CAP application OData service, directly exposing SAP generative AI capabilities to the outside world! Let's keep the momentum going and implement a service allowing you to retrieve a RAG response based on the context information provided within the SAP HANA Cloud vector engine.
+## Summary
 
+At this point you have implemented your first AI focused CAP application OData service, directly exposing SAP generative AI capabilities to the outside world! Let's keep the momentum going and implement a service allowing you to retrieve a RAG response based on the context information provided within the SAP HANA Cloud vector engine.
 
+---
 
+## Questions
+
+If you finish earlier than your fellow participants, you might like to ponder these questions. There isn't always a single correct answer and there are no prizes - they're just to give you something else to think about.
+
+---
+
+[Next exercise](../10-define-cap-doc-helper-service/README.md)
