@@ -23,16 +23,21 @@ module.exports = function() {
     })
 
     this.on('executeSimilaritySearch', async () => {
-        const vectorplugin = await cds.connect.to('cap-llm-plugin')
-        const embeddings = await vectorplugin.getEmbedding(userQuery)
-        const similaritySearchResults = await vectorplugin.similaritySearch(
-            tableName,
-            embeddingColumn,
-            contentColumn,
-            embeddings,
-            'L2DISTANCE',
-            3
-        )
-        return similaritySearchResults
+        try {
+            const vectorplugin = await cds.connect.to('cap-llm-plugin')
+            const embeddings = await vectorplugin.getEmbedding(userQuery)
+            const similaritySearchResults = await vectorplugin.similaritySearch(
+                tableName,
+                embeddingColumn,
+                contentColumn,
+                embeddings,
+                'L2DISTANCE',
+                3
+            )
+            return similaritySearchResults
+        } catch (error) {
+            console.log('Error while executing similarity search:', error)
+            throw error;
+        }
     })
 }
