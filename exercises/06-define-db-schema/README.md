@@ -151,7 +151,7 @@ You can see all created fields as defined in the [schema.cds](../../project/cap-
 
 ## Summary
 
-At this point ...
+At this point you have learned how to define a database schema using CDS, how to build and deploy database artifacts and how you can use the hana-cli to inspect your database tables.
 
 ## Further reading
 

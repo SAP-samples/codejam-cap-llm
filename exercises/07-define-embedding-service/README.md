@@ -82,7 +82,7 @@ You probably noticed that the defined functions are not visible in the UI. But n
 
 ## Summary
 
-At this point ...
+At this point you have learned what the embedding service is and how to define functions using CDS. You have also learned how to use `cds watch --profile hybrid` can be used to test the CAP application with a real connection to SAP HANA Cloud.
 
 ## Further Reading
 

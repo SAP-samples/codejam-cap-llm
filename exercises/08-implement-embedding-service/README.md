@@ -353,9 +353,11 @@ throw error
 
 👉 Save the file.
 
+At this point the `storeEmbeddings` would run into an error if being executed because the CAP-LLM-Plugin does not yet know what destination it should uses for connecting against SAP generative AI Hub. In the next exercise you will adapt the `cdsrc-private.json` to include CAP-LLM-Plugin specific configuration.
+
 ## Summary
 
-At this point the `storeEmbeddings` would run into an error if being executed because the CAP-LLM-Plugin does not yet know what destination it should uses for connecting against SAP generative AI Hub. In the next exercise you will adapt the `cdsrc-private.json` to include CAP-LLM-Plugin specific configuration.
+At this point you have learned how to implement function handlers and you learned about the Langchain package, chunking context information, using the CAP-LLM-Model to retrieve vector embeddings for the given chunks and finally insert it into the SAP HANA database.
 
 ## Further Reading
 

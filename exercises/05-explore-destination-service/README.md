@@ -118,7 +118,7 @@ With the service key, the binding created and the binding configuration in place
 
 ## Summary
 
-At this point ...
+At this point you have learned what the destination service is, how to configure a destination for connecting to SAP generative AI Hub, and how to bind to the destination service instance using the cds CLI.
 
 ## Further reading
 

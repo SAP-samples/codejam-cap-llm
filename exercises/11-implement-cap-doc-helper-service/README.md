@@ -220,7 +220,10 @@ Observe your terminal to see what the function call does in detail.
 
 ## Summary
 
-At this point ...
+You have completed all exercises for this CodeJam. Congratulations! You have build your first CAP application utilizing the CAP-LLM-Model and the power of SAP generative AI Hub to expose AI capabilities to your consumers.
+There is much more to explore and your journey has just begun.
+
+If you are done earlier than the rest or you simply want challenge yourself, there is an optional exercise containing a task to implement an additional service.
 
 ## Further Reading
 
@@ -228,6 +231,7 @@ At this point ...
 * [COSINE_SIMILARITY Function (Vector)](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine-guide/cosine-similarity-063e1366a7d54735b98b2513ea4a88c9?q=Cosine%20similarity)
 * [similarity search](https://github.com/SAP-samples/cap-llm-plugin-samples/blob/main/docs/api-documentation.md#async-similaritysearchtablename-embeddingcolumnname-contentcolumn-embedding-algoname-topk)
 * [RAG response](https://github.com/SAP-samples/cap-llm-plugin-samples/blob/main/docs/api-documentation.md#async-getragresponseinput-tablename-embeddingcolumnname-contentcolumn-chatinstruction-context-topk3-algonamecosine_similarity-chatparams)
+* [CAP-LLM-Plugin samples](https://github.com/SAP-samples/cap-llm-plugin-samples/tree/main)
 
 ---
 
