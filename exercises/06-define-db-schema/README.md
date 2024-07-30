@@ -14,7 +14,7 @@ The `package.json` file includes all Node.js project specific configurations lik
 
 1. Open the `package.json` file.
 
-2. Exermine the dependencies. Notice how there is a dependency for `langchain`, pdf-parse and the CAP-LLM-Plugin.
+2. Exermine the dependencies. Notice how there is a dependency for `langchain`, and the `CAP-LLM-Plugin`.
 
 ![define-db-schema-package-json](./assets/01-define-db-schema-package-json.png)
 
