@@ -2,11 +2,11 @@
 
 The repository you have cloned provides a skeleton project in the project folder. The skeleton project contains an already set up CAP application with the fully configured package.json and supporting files for the following exercices.
 
-In this exercise you will:
+In this exercise you will learn:
 
-* Explore the package.json and it's contents
-* You will define the database schema for the HANA database, and you will
-* Build and deploy the schema to your HDI container
+* How to explore the package.json and it's contents.
+* How to define the database schema for the HANA database, and you will.
+* How to build and deploy the schema to your HDI container.
 
 ## Explore the package.json file and it's contents
 
