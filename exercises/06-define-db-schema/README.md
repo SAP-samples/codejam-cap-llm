@@ -1,6 +1,6 @@
 # Exercise 06 - Create the database schema for the CAP application
 
-The repository you have cloned provides a skeleton project in the project folder. The skeleton project contains an already set up CAP application with the fully configured package.json and supporting files for the following exercices.
+The repository you have cloned provides a skeleton project in the project folder. The skeleton project contains an already-set-up CAP application with the fully configured package.json and supporting files for the following exercises.
 
 In this exercise you will learn:
 
@@ -8,13 +8,13 @@ In this exercise you will learn:
 * How to define the database schema for the HANA database, and you will.
 * How to build and deploy the schema to your HDI container.
 
-## Explore the package.json file and it's contents
+## Explore the package.json file and its contents
 
-The `package.json` file includes all Node.js project specific configurations like project name, version, dependencies, and run scripts but also cds specific configurations like the HANA runtime information.
+The `package.json` file includes all Node.js project-specific configurations like project name, version, dependencies, and run scripts but also CDS-specific configurations like the HANA runtime information.
 
 👉 Open the `package.json` file.
 
-👉 Exermine the dependencies. Notice how there is a dependency for `langchain`, and the `CAP-LLM-Plugin`.
+👉 Exermine the dependencies. Notice that there is a dependency for `Langchain` and the `CAP-LLM-Plugin`.
 
 ![define-db-schema-package-json](./assets/01-define-db-schema-package-json.png)
 
@@ -22,9 +22,9 @@ The `package.json` file includes all Node.js project specific configurations lik
 
 ![define-db-schema-package-json](./assets/02-define-db-schema-package-json-scripts.png)
 
-* `build`       : Runs a the `cds build` command to build the CAP project.
+* `build`       : Runs the `cds build` command to build the CAP project.
 * `build_sqlite`: Builds the CAP application for usage on a SQLite database.
-* `hana`        : Deploys the database artifacts to your HDI container and undeploys any delta to your current configuration in case artifacts are already deployed. Make sure to replace the instance name with your specific HDI instance.
+* `hana`        : Deploys the database artifacts to your HDI container and un-deploys any delta to your current configuration in case artifacts are already deployed. Make sure to replace the instance name with your specific HDI instance.
 * `start`       : Starts the CAP application.
 * `watch`       : Deploys your changes specific to your service to localhost using the hybrid profile establishing a connection to your real HDI container instance.
 * `sqlite`      : Deploys your changes specific to your service to localhost using the hybrid profile establishing a connection to a real SQLite database.
@@ -33,9 +33,9 @@ You can add as many scripts as you want here making it easier to run commands fo
 
 ## Define the database schema
 
-Within a CAP application you can define a database schema that can be build into HANA database artifacts. The artifacts can be deployed to a bound HDI container which will cause the creation of the database tables, relationships, views and any other HANA database artifacts.
+Within a CAP application, you can define a database schema that can be built into HANA database artifacts. The artifacts can be deployed to a bound HDI container, which will cause the creation of the database tables, relationships, views, and any other HANA database artifacts.
 
-For this project the schema has exactly one entity; `DocumentChunk`.
+For this project, the schema has exactly one entity; `DocumentChunk`.
 
 The `DocumentChunk` entity contains the text chunks and embeddings for the provided context information. In the next exercise [07 - Define the Embedding Service](../07-define-embedding-service/README.md), you will define a service for the chunking of a PDF document, the [CAP_Documentation_V8.pdf](../../project/cap-documentation-ai-helper/db/data/CAP_Documentation_V8.pdf), and retrieving vector embeddings for the individual chunks. The chunks and vector embeddings will be saved in the `DocumentChunk` entity.
 
@@ -47,7 +47,7 @@ The `DocumentChunk` entity contains the text chunks and embeddings for the provi
 namespace sap.codejam;
 ```
 
-The namespace allows for a better identification and provides uniqueness to the entities within that namespace. It also will cause the database table to be named `SAP_CODEJAM_<Entity Name>` in example `SAP_CODEJAM_DOCUMENTCHUNK`.
+The namespace allows for better identification and provides uniqueness to the entities within that namespace. It also will cause the database table to be named `SAP_CODEJAM_<Entity Name>` in example `SAP_CODEJAM_DOCUMENTCHUNK`.
 
 👉 Right below, add the following line of code:
 
@@ -55,7 +55,7 @@ The namespace allows for a better identification and provides uniqueness to the 
 using {  managed } from '@sap/cds/common';
 ```
 
-The entity should be managed, meaning it will get an autogenerated UUID, time stamps for creation and mutation.
+The entity should be managed, meaning it will get an autogenerated UUID and time stamps for creation and mutation.
 
 👉 Lastly, add the definition for the `DocumentChunk` entity. The entity is using the `managed` feature from the `cds.common` package.
 
@@ -69,11 +69,11 @@ entity DocumentChunk: managed {
 
 The entity defines three fields:
 
-* `text_chunk`      : Stores the individual created text chunks.
-* `metadata_column` : Stores the path to information document. The document is a PDF including business contextual information for creation of the vector embeddings.
+* `text_chunk`      : Stores the individual-created text chunks.
+* `metadata_column`: Stores the path to the information document. The document is a PDF that includes business contextual information for creating vector embeddings.
 * `embedding`       : Stores the encoded vector embeddings.
 
-👉 Safe the file.
+👉 Save the file.
 
 ## Build and deploy the schema to your HDI container
 
@@ -101,7 +101,7 @@ cf login
 cds deploy --to hana:cap-ai-codejam-hdb --auto-undeploy
 ```
 
-The `--auto-undeploy` argument cause the database to adjust to the new runtime definition of your database artifacts.
+The `--auto-undeploy` argument causes the database to adjust to the new runtime definition of your database artifacts.
 
 You can also use the provided script:
 
@@ -113,13 +113,13 @@ You will see a big terminal output listing the different steps of the building a
 
 ![define-db-schema-deployment](./assets/04-define-db-schema-deploy.png)
 
-Great! The database is initialized and the table with all necessary fields created.
+Great! The database is initialized, and the table with all necessary fields is created.
 
 ## Examine the database table
 
-There are multiple ways of viewing your database artifacts on SAP HANA Cloud. One would be to use the **SAP HANA Database Explorer** and of course via the CLI if you don't want to use the UI. You will find a tutorial in the [Further Reading]() section, if you are interested in how to use the **SAP HANA Database Explorer**. You should use the CLI today, because it is quicker. `#TheFutureIsTerminal`
+There are multiple ways of viewing your database artifacts on SAP HANA Cloud. One would be to use the **SAP HANA Database Explorer** and, of course, the CLI if you don't want to use the UI. If you are interested in using the ** SAP HANA Database Explorer **, you will find a tutorial in the [Further Reading]() section. You should use the CLI today because it is quicker. `#TheFutureIsTerminal`
 
-The BAS instance as well as the container image you run locally have the [hana-cli](https://github.com/SAP-samples/hana-developer-cli-tool-example) installed.
+The BAS instance, as well as the container image you run locally, have the [hana-cli](https://github.com/SAP-samples/hana-developer-cli-tool-example) installed.
 
 👉 Open a new terminal or use an existing one.
 
@@ -137,7 +137,7 @@ hana-cli tables
 
 ![define-db-schema-list-tables](./assets/05-define-db-schema-list-tables.png)
 
-From the response you can extract the schema name and the table name. You will use the information to fetch all information about that table.
+From the response, you can extract the schema name and the table name. You will use the information to fetch all information about that table.
 
 👉 Enter the following command to list the table information:
 
@@ -151,7 +151,7 @@ You can see all created fields as defined in the [schema.cds](../../project/cap-
 
 ## Summary
 
-At this point you have learned how to define a database schema using CDS, how to build and deploy database artifacts and how you can use the hana-cli to inspect your database tables.
+At this point, you have learned how to define a database schema using CDS, how to build and deploy database artifacts, and how you can use the hana-cli to inspect your database tables.
 
 ## Further reading
 
