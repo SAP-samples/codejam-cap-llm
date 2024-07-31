@@ -1,5 +1,5 @@
 {
-    "name": "CAP Service Integration CodeJam Dev Container",
+    "name": "CAP LLM CodeJam Dev Container",
     "build": {
         "dockerfile": "Dockerfile",
         "args": {
