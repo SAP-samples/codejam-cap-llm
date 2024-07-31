@@ -63,7 +63,7 @@ gpt-35-turbo
 
 ![Create deployment 1/5](assets/2024-07-16_16-43-57.png)
 
-👉 For the duration select Standard. You can also select Custom to have the deployment available for a limited time. Click Review.
+👉 For the duration select **Standard**. You can also select **Custom** to have the deployment available for a limited time. Click Review.
 
 ![Create deployment 2/5](assets/2024-07-16_16-44-17.png)
 
@@ -75,12 +75,12 @@ Once the deployment is running you will receive a URL to query the model. Refres
 
 ![Create deployment 4/5](assets/2024-07-16_16-44-49.png)
 
-Using the URL and the client id and the client secret from the SAP AI Core service key, you could now already query the model using any programming language or any API platform.
+Using the URL, the client id and the client secret from the SAP AI Core service key, you could now already query the model using any programming language or any API platform.
 
 ![Create deployment 5/5](assets/2024-07-16_16-51-40.png)
 
 ## Deploy a proxy for an embedding model on SAP AI Core
-👉 To implement a retrieval augmented generation (RAG) use case we also need to deploy an embedding model. The embeddings for our text chunks will then be stored in a vector database (e.g. HANA Vector Store). To deploy the embedding model repeat the steps above using the model name instead of **gpt-4**: 
+👉 To implement a retrieval augmented generation (RAG) use case we also need to deploy an embedding model. The embeddings for our text chunks will then be stored in a vector database (e.g. HANA Vector Store). To deploy the embedding model repeat the steps above using the model name **text-embedding-ada-002** instead of **gpt-4**: 
 ```sh
 text-embedding-ada-002
 ```
@@ -90,7 +90,8 @@ At this point ...
 
 ## Further reading
 
-* ...
+* [SAP AI Core Terminology](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/terminology)
+* [Available Models in the Generative AI Hub](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/models-and-scenarios-in-generative-ai-hub)
 
 ---
 
