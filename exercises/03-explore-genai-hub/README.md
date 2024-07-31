@@ -1,4 +1,4 @@
-# Exercise 04 - Explore Generative AI Hub in SAP AI Launchpad
+# Exercise 03 - Explore Generative AI Hub in SAP AI Launchpad
 
 ## Use the Chat in Generative AI Hub
 👉 Open the Generative AI Hub tab and select Chat. Now click Configure and have a look at the available fields. 

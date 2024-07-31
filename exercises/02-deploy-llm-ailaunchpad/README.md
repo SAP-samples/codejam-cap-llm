@@ -1,4 +1,4 @@
-# Exercise 03 - use SAP AI Launchpad to deploy a Large Language Model with Generative AI Hub on SAP AI Core
+# Exercise 02 - Use SAP AI Launchpad to deploy a Large Language Model with Generative AI Hub on SAP AI Core
 
 ## Open SAP AI Launchpad
 👉 Go to your BTP subaccount **CAP AI CodeJam**. Navigate to Instances and Subscriptions and select SAP AI Launchpad from the Subscriptions.

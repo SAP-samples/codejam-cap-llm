@@ -1,4 +1,4 @@
-# Exercise 02 - Explore SAP HANA Cloud Vector Engine
+# Exercise 04 - Explore SAP HANA Cloud Vector Engine
 
 At the end of this exercise, you'll have a basic understanding of SAP HANA Cloud, how to enable it and finally what the SAP HANA Cloud Vector Engine is. Within this exercise you are not going to actually setup SAP HANA Cloud 
 
