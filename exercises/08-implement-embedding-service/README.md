@@ -48,7 +48,7 @@ module.exports = function() {
 }
 ```
 
-Within the function export, the curly brackets, you will implement the `storeEmbeddings()` and `deleteEmbeddings()` function handlers. CAP allows you to write custom function handlers for defined OData functions. You can find more information about function handlers in the [Further Reading]() section.
+Within the function export, the curly brackets, you will implement the `storeEmbeddings()` and `deleteEmbeddings()` function handlers. CAP allows you to write custom function handlers for defined OData functions. You can find more information about function handlers in the **Further Reading** section.
 
 ### Implement the deleteEmbeddings()
 
