@@ -12,12 +12,12 @@ In this exercise you will learn:
 
 The embedding service implementation contains two function implementations: `storeEmbeddings()` and `deleteEmbeddings()`. Both functions use a set of helper methods taking care of single tasks to keep a cleaner code base.
 
-For a successful implementation, you are going to use different packages providing the functionality required to perform the tasks you want to accomplish.
+For a successful implementation, you will use different packages that provide the functionality required to perform the tasks you want to accomplish.
 
 Let's take a look at the used packages:
 
 * `PDFLoader`                       : The Langchain npm package provides different types of document loaders. Because the embedding document is a PDF, you will use the PDF loader to do so.
-* `RecursiveCharacterTextSplitter`  : The Langchain npm package provides different types of text splitters. Text splitters allow you to perform chunking of documents containing text. Splitting the text into chunks allows for fine granular creation of vector embeddings using an embedding model. The recursive character text splitter is one of the most frequently used text splitters available.
+* `RecursiveCharacterTextSplitter`: The Langchain npm package provides different types of text splitters. Text splitters allow you to chunk documents containing text. Splitting the text into chunks allows for the fine-granular creation of vector embeddings using an embedding model. The recursive character text splitter is one of the most frequently used text splitters available.
 * `cds.ql`                          : The Core Data Service package includes the query language package. From that package, you will use the insert and delete API to operate on the database.
 * `path`                            : The path API allows f
 
@@ -38,7 +38,7 @@ const path = require('path')
 const filePath = 'db/data/CAP_Documentation_V8.pdf'
 ```
 
-This code gives you instances for the above described packages and it defines the file path to the context information document.
+This code gives you instances for the above-described packages and defines the file path to the context information document.
 
 👉 Below the constants add the following code:
 
@@ -198,7 +198,7 @@ async function chunk(pdf) {
 
 ### Implement the array2VectorBuffer(data) method
 
-You implement a helper method to convert the vector embeddings data to a format that is storable in the SAP HANA Cloud vector engine.
+You implement a helper method to convert the vector embeddings data to a format that can be stored in the SAP HANA Cloud vector engine.
 
 👉 Add the following method declaration, right below the `chunk(pdf)` method:
 
