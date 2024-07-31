@@ -71,7 +71,7 @@ The `.cdsrc.json` or `.cdsrc-private.json` file is just one of many configuratio
 👉 Log into the provided Cloud Foundry instance and authenticate using the provided credentials:
 
 ```bash
-cf login -a https://api.cf.us10.hana.ondemand.com
+cf login
 ```
 
 ![bind-destination-service-cf-login](./assets/01-bind-destination-service-cf-login.png)
