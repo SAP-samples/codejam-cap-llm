@@ -8,7 +8,7 @@ The CAP-LLM-Plugin uses a set of configurations to have all required information
 * What resource group the chat model is in.
 * What destination to use for connecting to SAP generative AI Hub.
 
-Because you could have multiple destinations configured in your CAP application you have to explicitly tell the CAP-LLM-Plugin what destination to use. The complete configuration for the destination as well as the CAP-LLM-Plugin can be done in the `.cdsrc-private.json` file.
+Because you could have multiple destinations configured in your CAP application you have to explicitly tell the CAP-LLM-Plugin what destination to use. The complete configuration for the destination, as well as the CAP-LLM-Plugin, can be done in the `.cdsrc-private.json` file.
 
 In this exercise you will learn:
 
@@ -22,7 +22,7 @@ In this exercise you will learn:
 
 👉 Open the `.cdsrc-private.json` file.
 
-👉 Insert the destination configuration to the JSON. Make sure it is defined in the `requires` object right after the closing bracket of the `hybrid` object array.
+👉 Insert the destination configuration into the JSON. Make sure it is defined in the `requires` object right after the closing bracket of the `hybrid` object array.
 
 ```JSON
 {
@@ -46,13 +46,13 @@ In this exercise you will learn:
 }
 ```
 
-If you observe closely, the destination configuration points to the destination from the destination service on SAP BTP. The CAP-LLM-Plugin can connect to the destination service using the binding and lookup the destination with the given name.
+If you observe closely, the destination configuration points to the destination from the destination service on SAP BTP. The CAP-LLM-Plugin can connect to the destination service using the binding and look up the destination with the given name.
 
 ## Create the CAP-LLM-Plugin configuration
 
 👉 Make sure there is a comma present right below the `AICoreAzureOpenAIDestination` object.
 
-👉 Add the configuration for the CAP-LLM-Plugin right below the comma as a next object:
+👉 Add the configuration for the CAP-LLM-Plugin right below the comma as the next object:
 
 ```JSON
 "GENERATIVE_AI_HUB": {
@@ -168,7 +168,7 @@ You can see two different deployments. One for the embedding model and one for t
 * `CHAT_MODEL_DEPLOYMENT_URL` and
 * `EMBEDDING_MODEL_DEPLOYMENT_UR`.
 
-👉 Safe the file.
+👉 Save the file.
 
 ## Test the storeEmbeddings() OData function
 
@@ -180,7 +180,7 @@ Everything is configured to try out the `storeEmbeddings()` OData function.
 
 👉 Open your web browser and enter the following URL `http://localhost:4004/odata/v4/embedding-storage/storeEmbeddings()`.
 
-👉 Inspect your terminal output to understand the single steps happening with this call. You can clearly see all the steps happening from reading the context information, to chunking and table inserts.
+👉 Inspect your terminal output to understand the single steps happening with this call. You can clearly see all the steps happening, from reading the context information to chunking and table inserts.
 
 ![create-connection-configuration-run-api](./assets/04-create-connection-configuration-run-api.png)
 
@@ -196,11 +196,11 @@ Everything is configured to try out the `storeEmbeddings()` OData function.
 
 ![create-connection-configuration-documentchunk](./assets/05-create-connection-configuration-documentchunk.png)
 
-As you can see the entities are stored in the database. With that you can use the CAP-LLM-Plugin to execute RAG responses using the vector embeddings bringing contextual information to the chat model.
+As you can see the entities are stored in the database. With that, you can use the CAP-LLM-Plugin to execute RAG responses using vector embeddings, bringing contextual information to the chat model.
 
 ## Summary
 
-At this point you have implemented your first AI focused CAP application OData service, directly exposing SAP generative AI capabilities to the outside world! Let's keep the momentum going and implement a service allowing you to retrieve a RAG response based on the context information provided within the SAP HANA Cloud vector engine.
+At this point, you have implemented your first AI-focused CAP application OData service, directly exposing SAP generative AI capabilities to the outside world! Let's keep the momentum going and implement a service that allows you to retrieve an RAG response based on the context information provided within the SAP HANA Cloud vector engine.
 
 ---
 

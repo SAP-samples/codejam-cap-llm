@@ -1,10 +1,10 @@
 # Exercise 01 - Set up your workspace
 
-At the end of this exercise, you'll have an environment in which to work for the duration of this CodeJam, and the contents of this repository loaded and ready to use.
+At the end of this exercise, you'll have an environment to work in for the duration of this CodeJam, and your environment of choice will load the contents of this repository.
 
 ## Set up the environment and clone this repository
 
-To have the building blocks for this CodeJam ready to use, you'll need to clone this CodeJam repository and have the contents available in the workspace that you chose in the [prerequisites](../../prerequisites.md). Your workspace is either going to be a Dev Space in the SAP Business Application Studio (the "primary environment"), or VS Code with a dev container (the "alternative environment").
+To prepare the building blocks for this CodeJam, you'll need to clone this CodeJam repository and make its contents available in the workspace you chose in the [prerequisites](../../prerequisites.md). Your workspace will either be a Dev Space in the SAP Business Application Studio (the "primary environment") or VS Code with a dev container (the "alternative environment").
 
 Follow one of the two subsections here, as appropriate: either for a [primary environment](#primary-environment-a-dev-space-in-the-sap-business-application-studio) or for an [alternative environment](#alternative-environment-vs-code-and-a-container-image).
 
@@ -14,21 +14,21 @@ _Follow the "Alternative environment" subsection below if you want to use VS Cod
 
 #### Create a Dev Space
 
-👉 Via your subscription to the SAP Business Application Studio, create a new Dev Space, choosing the "Full Stack Cloud Application" type, make sure to select "SAP HANA Tools", and then make sure it's started up:
+👉 Via your subscription to the SAP Business Application Studio, create a new Dev Space, choosing the "Full Stack Cloud Application" type, make sure to select "SAP HANA Tools," and then make sure it's started up:
 
 ![Setting_up_a_dev_space](assets/create-full-stack-cloud-application-dev-space.png)
 
-Choosing the "Full Stack Cloud Application" brings in some predefined extensions, as you can see from the screenshot, including a CDS Graphical Modeler and the CAP Tools. The "SAP HANA Tools", will allow you to interact, deploy and observe the SAP HANA Cloud instance that you will be using for working with the SAP HANA Cloud Vector Engine.
+Choosing the "Full Stack Cloud Application" brings in some predefined extensions, as you can see from the screenshot, including a CDS Graphical Modeler and the CAP Tools. The "SAP HANA Tools" will allow you to interact with, deploy, and observe the SAP HANA Cloud instance that you will be using for working with the SAP HANA Cloud Vector Engine.
 
-> You may need to stop existing Dev Spaces to use this one, depending on your subscription access.
+> Depending on your subscription access, you may need to stop using existing Dev Spaces to use this one.
 
 #### Clone this repository
 
-👉 Once the Dev Space is started and you're in it, use the "Clone from Git" option in the "Get Started" screen that appears, to clone this repository, following the subsequent prompts to open the cloned repository; specify `https://github.com/SAP-samples/codejam-cap-llm` as the URL.
+👉 If the Dev Space is started and you're in it, use the "Clone from Git" option in the "Get Started" screen that appears to clone this repository. Follow the subsequent prompts to open the cloned repository; specify `https://github.com/SAP-samples/codejam-cap-llm` as the URL.
 
 ![Cloning the repo](assets/clone-the-codejam-repository.png)
 
-At this point your Dev Space will restart.
+At this point, your Dev Space will restart.
 
 ### Alternative environment: VS Code and a container image
 
@@ -41,13 +41,13 @@ git clone https://github.com/SAP-samples/codejam-cap-llm
 code codejam-cap-llm
 ```
 
-Once VS Code has started, and opened the directory, it should notice the [dev container configuration file](../../.devcontainer/devcontainer.json) (in the [.devcontainer/](../../.devcontainer/) directory) and ask you if you want to reopen everything in a container, as shown in the screenshot. Confirm that you want to, by selecting the default answer "Reopen in Container".
+Once VS Code has started and opened the directory, it should notice the [dev container configuration file](../../.devcontainer/devcontainer.json) (in the [.devcontainer/](../../.devcontainer/) directory) and ask you if you want to reopen everything in a container, as shown in the screenshot. Confirm that you wish to do so by selecting the default answer "Reopen in Container."
 
 > If this doesn't happen, check that you have the Dev Containers extension in VS Code - see the [corresponding prerequisites section](../../prerequisites.md#alternative-environment-vs-code-with-a-dev-container) section for details. You might also need to explicitly request this action, by opening the Command Palette and selecting "Dev Containers: Reopen in container".
 
 ![The dialog prompting you to "Reopen in Container"](assets/reopen-in-container.png)
 
-At this stage, once VS Code has reopened, you need to do one more thing, so that both primary and alternative environments are aligned (and so that the instructions in this CodeJam content don't need to differ between them). When you use the "git clone" facility in a Dev Space, the repo is cloned into a directory called `projects/`, which itself lives in your home directory, in other words, it gets cloned to `/home/user/projects/<the-repo>`. In a VS Code dev container, the equivalent repo will be in `/workspaces/<the-repo>`. So let's align the repo location in your VS Code dev container environment to the Dev Space one.
+At this stage, once VS Code has reopened, you need to do one more thing: both primary and alternative environments are aligned (and so that the instructions in this CodeJam content don't need to differ between them). When you use the "git clone" facility in a Dev Space, the repo is cloned into a directory called `projects/`, which itself lives in your home directory; in other words, it gets cloned to `/home/user/projects/<the-repo>.` The equivalent repo in a VS Code dev container will be in `/workspaces/<the-repo>`. So, let's align the repo location in your VS Code dev container environment to the Dev Space one.
 
 👉 Create a `projects/` directory in your dev container user's home directory, and then create a symbolic link to the repo in there:
 
@@ -56,9 +56,9 @@ mkdir -p $HOME/projects/ \
   && ln -s /workspaces/codejam-cap-llm/ $HOME/projects/
 ```
 
-> If the `projects/` directory already exists, for some reason, then the `mkdir` command would normally fail and emit a message; this would also mean that the subsequent `ln` command would not run (as they're connected via `&&`). So you can use the `-p` option to tell `mkdir` not to complain.
+> If the `projects/` directory already exists, for some reason, then the `mkdir` command would usually fail and emit a message; this would also mean that the subsequent `ln` command would not run (as they're connected via `&&`). So you can use the `-p` option to tell `mkdir` not to complain.
 
-You can make sure that everything is OK by checking that you can see the directories inside the repo, via this new `projects/` directory in your dev container user's home directory. Here's an example, with what you might expect to see:
+Ensure that everything is OK by checking that you can see the directories inside the repo via this new `projects/` directory in your dev container user's home directory. Here's an example of what you might expect to see:
 
 ```shell
 $ find -L $HOME/projects -maxdepth 2 -type d
@@ -75,13 +75,13 @@ $ find -L $HOME/projects -maxdepth 2 -type d
 /home/node/projects/codejam-cap-llm/project
 ```
 
-Now you should be all set. You are ready to explore service integration with CAP in your dev container.
+Now, you should be all set. You are ready to explore service integration with CAP in your dev container.
 
 ## Check the installation of the CDS development kit
 
 _This and subsequent steps apply to both the primary and alternative environments._
 
-👉 Inside your dev container or your Dev Space, open a terminal, using "Terminal: Create New Terminal" in the Command Palette, and at the prompt, check the version:
+👉 Inside your dev container or your Dev Space, open a terminal using "Terminal: Create New Terminal" in the Command Palette, and at the prompt, check the version:
 
 ```bash
 cds v
@@ -103,11 +103,11 @@ Node.js: v18.14.2
 home: /managed-content/globals/pnpm/5/.pnpm/@sap+cds@7.6.1_express@4.18.2/node_modules/@sap/cds
 ```
 
-> The CDS development kit is installed as part of any "Full Stack Cloud Application" type of Dev Space in the SAP Business Application Studio, and for the alternative environment there's a RUN command in the [Dockerfile](../../.devcontainer/Dockerfile) that installs it into the dev container.
+> The CDS development kit is installed as part of any "Full Stack Cloud Application" type of Dev Space in the SAP Business Application Studio. For the alternative environment, a RUN command in the [Dockerfile](../../.devcontainer/Dockerfile) is installed into the dev container.
 
 ## Install the NPM package dependencies
 
-We'll be working mostly within the `project/cap-documentation-ai-helper` directory of this repo, which contains a starter CAP project with code being already written to provide UI and some of the service functionalities to make the CodeJam experience more accessible. In there, the `package.json` file contains runtime and design time dependencies.
+We'll work primarily within the `project/cap-documentation-ai-helper` directory of this repo, which contains a starter CAP project with code already written to provide UI and some of the service functionalities to make the CodeJam experience more accessible. The `package.json` file contains runtime and design time dependencies.
 
 👉 Make sure you're in the `project/cap-documentation-ai-helper` directory (where `package.json` lives):
 
@@ -121,7 +121,7 @@ cd $HOME/projects/cap-llm-codejam/project/cap-documentation-ai-helper/
 npm install
 ```
 
-You can double check what's installed, with `npm list`, which should show you something similar to this:
+You can double-check what's installed with `npm list`, which should show you something similar to this:
 
 ```text
 cap-documentation-ai-helper@1.0.0 /Users/Developer/GitHub/codejam-cap-llm/project/cap-documentation-ai-helper
@@ -139,7 +139,7 @@ No worries, we will talk about these dependencies later.
 
 ## Summary
 
-At this point you've got an environment in which to work through the rest of the exercises in this CodeJam, you've got the contents of the repository, and you have the CDS development kit installed and ready to use.
+At this point, you have an environment in which to work through the rest of the exercises in this CodeJam, the repository contents, and the CDS development kit installed and ready to use.
 
 ## Further reading
 

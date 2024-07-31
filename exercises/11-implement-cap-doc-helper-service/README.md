@@ -1,22 +1,21 @@
 # Exercise 11 - Implement the CAP documentation helper service
 
-The implementation for the CAP documentation helper service follows the same principal of the embedding storage service. You are using the `module.exports = function() { }` to expose the function handlers.
+Implementing the CAP documentation helper service follows the same principle as the embedding storage service. You are using the `module.exports = function() { }` to expose the function handlers.
 
-You need to implement the function handlers for:
+You must implement the function handlers for:
 
 * `getRagResponse()` and
-* `executeSimilaritySearch()`
-
+* `executeSimilaritySearc
 Both methods require information on:
-* The table name                            : The table name is the name of the `SAP_CODEJAM_DOCUMENTCHUNK` table.
+* The time: The table name is the name of the `SAP_CODEJAM_DOCUMENTCHUNK` table.
 * The embedding column                      : The embedding column is defined in the database schema. `EMBEDDING`.
 * The content column                        : The content column is defined in the database schema. `TEXT_CHUNK`.
-* A defined user query                      : The user query is usually transmitted through a UI or via an API parameter. For this CodeJam it is hard coded.
-* (Optional) instructions for the chat model: A chat model can receive instructions on how it should answer the user query. You could tell it to respond speaking like a pirate *Arrr* 🏴‍☠️.
+* A defined user query                      : The query is usually transmitted through a UI or API parameter. For this CodeJam, it is hard coded.
+* (Optional) instructions for the chat model: A chat model can receive instructions on answering the user query. You could tell it to respond by speaking like a pirate *Arrr* 🏴‍☠️.
 
-In this exercise you will learn:
+In this exercise, you will learn the following:
 
-* How to retrieve a RAG response using the CAP-LLM-Plugin.
+* How to retrieve an RAG response using the CAP-LLM-Plugin?
 * How to execute a similarity search using the CAP-LLM-Plugin.
 
 ## Define the needed properties
@@ -36,15 +35,15 @@ const cds = require('@sap/cds')
 const tableName = 'SAP_CODEJAM_DOCUMENTCHUNK'
 const embeddingColumn = 'EMBEDDING'
 const contentColumn = 'TEXT_CHUNK'
-const userQuery = 'Explain to me what CAP is.' // This can be changed by you.
-const instructions = 'Return the result in json format.' // This can be changed by you.
+const userQuery = Explain to me what CAP is.' //You can change this.
+const instructions = 'Return the result in json format.' //You can change this.
 ```
 
-👉 Safe the file.
+👉 Save the file.
 
 ## Implement the getRagResponse() function handler
 
-The `getRagResponse` method, when called, reaches out to the SAP gen AI Hub and asks a given user query to the chat model. The chat model response back with an answer. Through using RAG, the chat model is getting additional contextual information.
+When called, the `getRagResponse` method reaches out to the SAP gen AI Hub and asks a given user query to the chat model. The chat model responds with an answer. By using RAG, the chat model gets additional contextual information.
 
 👉 Below the properties, implement the `module.exports = function() { }`:
 
@@ -67,7 +66,7 @@ this.on('getRagResponse', async () => {
     })
 ```
 
-👉 In the `try` block create a connection to the CAP-LLM-Plugin:
+👉 In the `try` block, create a connection to the CAP-LLM-Plugin:
 
 ```JavaScript
 const vectorplugin = await cds.connect.to('cap-llm-plugin')
@@ -84,7 +83,7 @@ const ragResponse = await vectorplugin.getRagResponse(
 )
 ```
 
-The call requires the information defined in the properties. If these values ever change you can just adjust the properties.
+The call requires the information defined in the properties. If these values ever change you can adjust the properties.
 
 👉 Return the response:
 
@@ -114,7 +113,7 @@ this.on('getRagResponse', async () => {
 
 ## Test the getRagResponse() OData function
 
-The function handler is fully implemented, you can start the application locally using the real connections to SAP generative AI Hub and SAP HANA Cloud to test a RAG response call. You should have vector embeddings in the database that will be used by the CAP-LLM-Plugin. In case you tried out the `deleteEmbeddings()` call, create new vector embeddings using the `storeEmbeddings()` call.
+The function handler is fully implemented, and you can start the application locally using the actual connections to SAP generative AI Hub and SAP HANA Cloud to test a RAG response call. You should have vector embeddings in the database that will be used by the CAP-LLM-Plugin. If you tried out the `deleteEmbeddings()` call, create new vector embeddings using the `storeEmbeddings()` call.
 
 👉 Start the CAP application using `cds watch --profile hybrid`.
 
@@ -130,13 +129,13 @@ The function handler is fully implemented, you can start the application locally
 
 👉 Check the response to see if the chat model returns any hallucinations.
 
-> In case there are hallucinations, you have to double check the context information if the requested response can even be answered due to potential missing information. In case the information is missing, add it to the context information or provide a second document. If that is not the issue, you might have to play around with the chunking until you get satisfying results. AI is smart, but it can't answer correctly if the provided contextual information is not proper.
+> In case of hallucinations, you must double-check the context information to see if the requested response can be answered due to potential missing details. Add the data to the context information or provide a second document if the data is missing. If that is not the issue, you might have to play around with the chunking until you get satisfying results. AI is intelligent but can only answer correctly if the contextual information is appropriately provided.
 
 ## Implement the executeSimilaritySearch() function handler
 
-The similarity search is used for searching objects where the only available comparator is the similarity between two objects. The CAP-LLM-Plugin is providing an API for this; `similaritySearch()`.
+The similarity search is used for searching objects where the only available comparator is the similarity between two objects. The CAP-LLM-Plugin provides an API for this; `similaritySearch()`.
 
-You are going to implement the function handler responsible for executing the similarity search of embeddings matching the user query. 
+You will implement the function handler responsible for executing the similarity search of embeddings matching the user query. 
 
 👉 Below the `getRagResponse()` function handler, add another function handler:
 
@@ -151,7 +150,7 @@ this.on('executeSimilaritySearch', async () => {
 })
 ```
 
-👉 In the `try` block connect to the CAP-LLM-Plugin:
+👉 In the `try` block, connect to the CAP-LLM-Plugin:
 
 ```JavaScript
 const vectorplugin = await cds.connect.to('cap-llm-plugin')
@@ -176,11 +175,11 @@ const similaritySearchResults = await vectorplugin.similaritySearch(
 )
 ```
 
-If you look into the API documentation for the [similarity search](https://github.com/SAP-samples/cap-llm-plugin-samples/blob/main/docs/api-documentation.md#async-similaritysearchtablename-embeddingcolumnname-contentcolumn-embedding-algoname-topk) call, you can specify two different algorithms. One is using the:
+If you look into the API documentation for the [similarity search](https://github.com/SAP-samples/cap-llm-plugin-samples/blob/main/docs/api-documentation.md#async-similaritysearchtablename-embeddingcolumnname-contentcolumn-embedding-algoname-topk) call, you can specify two different algorithms. One is using the following:
 * [L2DISTANCE Function (Vector)](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine-guide/l2distance) or
 * [COSINE_SIMILARITY Function (Vector)](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine-guide/cosine-similarity-063e1366a7d54735b98b2513ea4a88c9?q=Cosine%20similarity)
 
-You can try out both if you want to, you just have to change the parameter value.
+You can try out both if you want; you'll need to change the parameter value to do so.
 
 👉 Return the `similaritySearchResults`.
 
@@ -188,7 +187,7 @@ You can try out both if you want to, you just have to change the parameter value
 return similaritySearchResults
 ```
 
-You function handler should look like this:
+Your function handler should look like this:
 
 ```JavaScript
 this.on('executeSimilaritySearch', async () => {
@@ -211,19 +210,19 @@ this.on('executeSimilaritySearch', async () => {
 })
 ```
 
-👉 Safe the file.
+👉 Save the file.
 
 ## Test the executeSimilaritySearch() OData function
 
-Use the same technics like before to test the newly implemented service.
+Use the same technics as before to test the newly implemented service.
 Observe your terminal to see what the function call does in detail.
 
 ## Summary
 
-You have completed all exercises for this CodeJam. Congratulations! You have build your first CAP application utilizing the CAP-LLM-Model and the power of SAP generative AI Hub to expose AI capabilities to your consumers.
-There is much more to explore and your journey has just begun.
+You have completed all exercises for this CodeJam. Congratulations! You have built your first CAP application utilizing the CAP-LLM-Plugin and the power of SAP generative AI Hub to expose AI capabilities to your consumers.
+There is much more to explore, and your journey has just begun.
 
-If you are done earlier than the rest or you simply want challenge yourself, there is an optional exercise containing a task to implement an additional service.
+If you are done earlier than the rest or you want to challenge yourself, there is an optional exercise containing a task to implement an additional service.
 
 ## Further Reading
 

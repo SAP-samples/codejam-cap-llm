@@ -1,24 +1,24 @@
 # 08 - Implement the embedding service
 
-The embedding service has a service definition that allows CAP to produce an OData service API for the `DocumentChunk` entity and two exposed functions `storeEmbeddings()` and `deleteEmbeddings()`. In this exercise you will learn how to implement both of these functions by using libraries like [langchain](https://www.npmjs.com/package/@langchain/core), and the [CAP-LLM-Plugin](https://www.npmjs.com/package/cap-llm-plugin).
+The embedding service has a service definition that allows CAP to produce an OData service API for the `DocumentChunk` entity and two exposed functions `storeEmbeddings()` and `deleteEmbeddings()`. In this exercise, you will learn how to implement both of these functions by using libraries like [langchain](https://www.npmjs.com/package/@langchain/core) and the [CAP-LLM-Plugin](https://www.npmjs.com/package/cap-llm-plugin).
 
 In this exercise you will learn:
 
 * How to implement a service definition using Node.js.
-* How to process text for creation of vector embeddings using an embedding model.
+* How to process text for the creation of vector embeddings using an embedding model.
 * How to use the CAP-LLM-Plugin to create vector embeddings using the SAP generative AI Hub.
 
 ## Implement the embedding service
 
-The embedding service implementation contains of two function implementations `storeEmbeddings()` and `deleteEmbeddings()`. Both functions are using a set of helper methods taking care of single tasks to keep a cleaner code base.
+The embedding service implementation contains two function implementations: `storeEmbeddings()` and `deleteEmbeddings()`. Both functions use a set of helper methods taking care of single tasks to keep a cleaner code base.
 
-For a successful implementation you are going to use different packages providing functionality required to perform the tasks you want to accomplish.
+For a successful implementation, you will use different packages that provide the functionality required to perform the tasks you want to accomplish.
 
 Let's take a look at the used packages:
 
 * `PDFLoader`                       : The Langchain npm package provides different types of document loaders. Because the embedding document is a PDF, you will use the PDF loader to do so.
-* `RecursiveCharacterTextSplitter`  : The Langchain npm package provides different types of text splitters. Text splitters allow you to perform chunking of document containing text. Splitting the text into chunks allows for fine granular creation of vector embeddings using an embedding model. The recursive character text splitter is one of the most frequently used text splitters available.
-* `cds.ql`                          : The Core Data Service package includes the query language package. From that package you will use the insert and delete API to operate on the database.
+* `RecursiveCharacterTextSplitter`: The Langchain npm package provides different types of text splitters. Text splitters allow you to chunk documents containing text. Splitting the text into chunks allows for the fine-granular creation of vector embeddings using an embedding model. The recursive character text splitter is one of the most frequently used text splitters available.
+* `cds.ql`                          : The Core Data Service package includes the query language package. From that package, you will use the insert and delete API to operate on the database.
 * `path`                            : The path API allows f
 
 ### Implement the package imports and function export skeleton
@@ -38,7 +38,7 @@ const path = require('path')
 const filePath = 'db/data/CAP_Documentation_V8.pdf'
 ```
 
-This code gives you instances for the above described packages and it defines the file path to the context information document.
+This code gives you instances for the above-described packages and defines the file path to the context information document.
 
 👉 Below the constants add the following code:
 
@@ -82,7 +82,7 @@ catch (error) {
 }
 ```
 
-👉 Safe the file.
+👉 Save the file.
 
 To test the implementation you can execute the `cds watch` command and run localhost.
 
@@ -94,7 +94,7 @@ To test the implementation you can execute the `cds watch` command and run local
 
 </br>
 
-> In case you are running into an error, log into the Cloud Foundry account again using `cf login`.
+> In case you encounter an error, log into the Cloud Foundry account again using `cf login`.
 
 </br>
 
@@ -104,15 +104,15 @@ To test the implementation you can execute the `cds watch` command and run local
 
 The `storeEmbeddings()` function does quite some heavy lifting. It is responsible for processing the context information document, retrieving the vector embeddings, and storing the results in the HANA database.
 
-You will implement the function handler in a way that it is solely responsible for storing the vector embeddings to the database. All the other tasks will be extracted into single method implementations. That gives you a better separation of concerns.
+You will implement the function handler in a way that is solely responsible for storing the vector embeddings in the database. All the other tasks will be extracted into single-method implementations. That gives you a better separation of concerns.
 
-Now think what methods are necessary to implement:
+Now think about what methods are necessary to implement:
 
 * A method responsible for loading the context information document. The document is of type PDF. You will call that method `loadPDF(fromFilePath)`.
 * A method responsible for chunking the context information document. The method expects a document. You will call that method `chunk(pdf)`.
-* A method responsible for using the CAP-LLM-Plugin to establish connection to SAP generative AI hub and the embedding model. The CAP-LLM-Plugin call is not only establishing a backend connection but also constructs the HTTP request and sends it to the embedding model using the destination configuration. You will call that method `retrieveEmbeddings(forChunks)`.
-* A method to convert the vector embeddings data for storing them in the HANA database. You will call the method `array2VectorBuffer`.
-* A method to handle the OData function call. It's sole purpose is to call the helper methods and store the results in the HANA database. The method is being called `storeEmbeddings()`.
+* A method responsible for using the CAP-LLM-Plugin to establish a connection to the SAP generative AI hub and the embedding model. The CAP-LLM-Plugin call not only establishes a backend connection but also constructs the HTTP request and sends it to the embedding model using the destination configuration. You will call that method `retrieveEmbeddings(forChunks)`.
+* A method to convert the vector embedding data for storage in the HANA database. You will call the method `array2VectorBuffer`.
+* A method to handle the OData function call. Its sole purpose is to call the helper methods and store the results in the HANA database. The method is being called `storeEmbeddings()`.
 
 ### Implement the loadPDF(fromFilePath) method
 
@@ -153,7 +153,7 @@ async function loadPDF(fromFilePath) {
 async function chunk(pdf) { }
 ```
 
-Initialize a `RecursiveCharacterTextSplitter` object from the Langchain package. The initializer expects the chunking configuration. That configuration decides on how the text splitter is executing the chunking.
+Initialize a `RecursiveCharacterTextSplitter` object from the Langchain package. The initializer expects the chunking configuration, which decides how the text splitter executes the chunking.
 
 👉 In the block of the method, initialize a `RecursiveCharacterTextSplitter(chunkSize, chunkOverlap, separators)`:
 
@@ -165,7 +165,7 @@ const splitter = new RecursiveCharacterTextSplitter({
 })
 ```
 
-The splitter is using punctuation to separate the chunks. The chunk size is set to 500 in that case.
+The splitter uses punctuation to separate the chunks. In that case, the chunk size is set to 500.
 
 👉 Execute the chunking by calling the `splitter.splitDocuments(document)` method:
 
@@ -198,7 +198,7 @@ async function chunk(pdf) {
 
 ### Implement the array2VectorBuffer(data) method
 
-To convert the vector embeddings data to a format that is storable in the SAP HANA Cloud vector engine, you implement a helper method.
+You implement a helper method to convert the vector embeddings data to a format that can be stored in the SAP HANA Cloud vector engine.
 
 👉 Add the following method declaration, right below the `chunk(pdf)` method:
 
@@ -214,7 +214,7 @@ const sizeDimensions = 4
 const bufferSize = data.length * sizeFloat + sizeDimensions
 ```
 
-👉 Allocate a buffer using the above calculated buffer size. You will write the values into that buffer stream after.
+👉 Allocate a buffer using the above-calculated buffer size. Then, you will write the values into that buffer stream.
 
 ```JavaScript
 const buffer = Buffer.allocUnsafe(bufferSize)
@@ -255,9 +255,9 @@ function array2VectorBuffer(data) {
 
 ### Implement the retrieveEmbeddings(forChunks) method
 
-If you remember the presentation in the beginning, the Advocate showed you an overview of the available APIs provided by the CAP-LLM-Plugin. One of those API methods is for retrieving the vector embeddings for a given text chunk. If the `vectorPlugin.getEmbedding()` call gets executed the plugin looks up the connection configuration, constructs the HTTP request and sends that via the destination to the SAP generative AI Hub. The request is being forwarded from SAP to the partner embedding model for creating the vector embeddings.
+If you remember the presentation in the beginning, the Advocate gave you an overview of the available APIs provided by the CAP-LLM plugin. One of those API methods is for retrieving the vector embeddings for a given text chunk. If the `vectorPlugin.getEmbedding()` call gets executed, the plugin looks up the connection configuration, constructs the HTTP request, and sends that via the destination to the SAP generative AI Hub. The request is being forwarded from SAP to the partner embedding model for creating the vector embeddings.
 
-The plugin requires additional configuration to know what destination to use and what embedding model to connect to. This configuration will be created by you in the next exercise.
+The plugin requires additional configuration to determine what destination to use and what embedding model to connect to. You will create this configuration in the next exercise.
 
 👉 Add the following method declaration, right below the `array2VectorBuffer(data)` method:
 
@@ -278,7 +278,7 @@ const vectorPlugin = await cds.connect.to('cap-llm-plugin')
 let textChunkEntries = []
 ```
 
-👉 Iterate over the passed in chunks, call the `getEmbedding()` method to retrieve the vector embeddings for each chunk, and create the database entry:
+👉 Iterate over the passed-in chunks, call the `getEmbedding()` method to retrieve the vector embeddings for each chunk, and create the database entry:
 
 ```JavaScript
 console.log("Generating the vector embeddings for the text chunks.")
@@ -302,7 +302,7 @@ return textChunkEntries
 
 ### Implement the function handler for the storeEmbeddings OData function
 
-You have implemented all required helper methods as well as the creation of the text chunk entries for instering `DocumentChunk` entities to the database.
+You have implemented all required helper methods and created the text chunk entries for inserting `DocumentChunk` entities into the database.
 
 👉 To implement the function handler for the `storeEmbeddings` OData function, add the following lines of code to the `module.exports = function() { }`:
 
@@ -343,25 +343,25 @@ const insertStatus = await INSERT.into(DocumentChunk).entries(textChunkEntries)
 if (!insertStatus) {
   throw new Error("Insertion of text chunks into db failed!")
 }
-return `Embeddings stored successfully to table.`
+return `Embeddings stored successfully to the table.`
 ```
 
-👉 The database insert can throw and error. Within the `catch(error)` block implement the following error handling:
+👉 The database insert can throw an error. Within the `catch(error)` block implement the following error handling:
 
 ```JavaScript
 console.log('Error while generating and storing vector embeddings:', error)
 throw error
 ```
 
-> The error handling you are implementing here is by far not suited for productive use. In production code implement proper error handling rather than throwing the error.
+> The error handling you are implementing here is by far unsuitable for productive use. In production code, implement proper error handling rather than throwing the error.
 
 👉 Save the file.
 
-At this point the `storeEmbeddings` would run into an error if being executed because the CAP-LLM-Plugin does not yet know what destination it should uses for connecting against SAP generative AI Hub. In the next exercise you will adapt the `cdsrc-private.json` to include CAP-LLM-Plugin specific configuration.
+At this point, the `storeEmbeddings` would run into an error if executed because the CAP-LLM-Plugin does not yet know what destination it should use for connecting against SAP generative AI Hub. In the next exercise, you will adapt the `cdsrc-private.json` to include CAP-LLM-Plugin specific configuration.
 
 ## Summary
 
-At this point you have learned how to implement function handlers and you learned about the Langchain package, chunking context information, using the CAP-LLM-Model to retrieve vector embeddings for the given chunks and finally insert it into the SAP HANA database.
+At this point, you have learned how to implement function handlers, and you learned about the Langchain package, chunking context information, using the CAP-LLM-Model to retrieve vector embeddings for the given chunks, and finally insert it into the SAP HANA database.
 
 ## Further Reading
 

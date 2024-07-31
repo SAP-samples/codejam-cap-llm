@@ -1,6 +1,6 @@
 # Exercise 07 - Define the embeddings service
 
-With the database being in place, you can define the service that is responsible for chunking the context information, creating the vector embeddings, encoding them and storing it into the database.
+With the database in place, you can define the service that is responsible for chunking the context information, creating the vector embeddings, encoding them, and storing them in the database.
 
 In this exercise you will learn:
 
@@ -8,7 +8,7 @@ In this exercise you will learn:
 
 ## Create the embeddings service CDS definition
 
-You can create an OData service using CDS to expose entities, provide functions, secure APIs and much more. You will find detailed reading material in the [Further Reading]() section.
+You can create an OData service using CDS to expose entities, provide functions, secure APIs, and much more. You will find detailed reading material in the [Further Reading]() section.
 
 👉 Create a new file in the `srv` folder and name it `embedding-storage.cds`.
 
@@ -33,7 +33,7 @@ entity DocumentChunk as projection on db.DocumentChunk
                             excluding { embedding };
 ```
 
-Using the `excluding` keyword, the embedding field is being excluded from the response.
+Using the `excluding` keyword, the embedding field is excluded from the response.
 
 👉 Define two functions for storing and deleting vector embeddings.
 
@@ -42,9 +42,9 @@ Using the `excluding` keyword, the embedding field is being excluded from the re
     function deleteEmbeddings() returns String;
 ```
 
-The `storeEmbeddings()` function will utilize third party npm packages to load the PDF, extract the information and chunk it. The CAP-LLM-Plugin creates and sends a request to the embeddings model through SAP generative AI Hub using the previously defined destination and finally stores the result in the database using CDS queries.
+The `storeEmbeddings()` function will utilize third-party npm packages to load the PDF, extract the information, and chunk it. The CAP-LLM-Plugin creates and sends a request to the embeddings model through SAP generative AI Hub using the previously defined destination and finally stores the result in the database using CDS queries.
 
-You will implement that in the next exercise. You're getting closer to see the first fruits of our hard work 😊🧑‍💻.
+You will implement that in the next exercise. You're getting closer to seeing the first fruits of our hard work 😊🧑‍💻.
 
 👉 Save the file.
 
@@ -68,7 +68,7 @@ You can see that your CAP service is creating and establishing a connection to y
 
 ![define-embedding-service-localhost](./assets/02-define-embedding-service-localhost.png)
 
-You will get a UI out of the box. It allows you to inspect your OData service, get the API documentation and call the different endpoints.
+You will get a UI out of the box. It allows you to inspect your OData service, get the API documentation, and call the different endpoints.
 
 Try the endpoint for fetching the `DocumentChunks` from the database table.
 
@@ -82,7 +82,7 @@ You probably noticed that the defined functions are not visible in the UI. But n
 
 ## Summary
 
-At this point you have learned what the embedding service is and how to define functions using CDS. You have also learned how to use `cds watch --profile hybrid` can be used to test the CAP application with a real connection to SAP HANA Cloud.
+At this point, you have learned what the embedding service is and how to define functions using CDS. You have also learned how to use `cds watch --profile hybrid` can be used to test the CAP application with a real connection to SAP HANA Cloud.
 
 ## Further Reading
 
