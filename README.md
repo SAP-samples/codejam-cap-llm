@@ -9,6 +9,7 @@ This repository contains the material for the "Expose SAP AI Core capabilities w
 This CodeJam introduces attendees to aspects of exposing generative artificial intelligence (genAI) capabilities to execute tasks in a business context.
 
 During this event, you'll become acquainted with the theory behind genAI, SAP AI Core and how you can use the SAP Cloud Application Programming Model to expose AI capabilities through your own service application.
+
 In working through the exercises you'll become comfortable with creating CDS based service definitions, integration into SAP Business Technology Platform (BTP) and SAP AI Core Foundation Models.
 
 ## Session prerequisites
@@ -21,24 +22,7 @@ The prerequisites are detailed in a separate [prerequisites](prerequisites.md) f
 
 These are the exercises, each in their own directory, sometimes with supporting files and scripts. We will work through the exercises in the order shown here. From a session flow perspective, we are taking the "coordinated" approach:
 
-The instructor will set you off on the first exercise, and that's the only one you should do; if you finish before others, there are some questions at the end of the exercise for you to ponder. Do not proceed to the next exercise until the instructor tells you to do so.
-
-// Use Case: CAP Documentation embeddings, questions to the LLM w. Chat Client
-1. Set up your workspace
-1. Create SAP HANA Cloud with Vector Engine, create HDI container // theory, we already have that enabled, everyone uses their own HDI container **(Kevin & Nora)**
-1. Configure the Generative AI Hub // we already have that enabled (they create own resource group and deployment) **(Nora)**
-1. Experience Prompt Editor and work with Gen AI Hub **(Nora)**
-1. Destination configuration // Destination is already created, Service Key, AI Core
-1. Create AI connection configuration, cdsrc file, (maybe change embedding model to Google?)
-1. Add service bindings for SAP HANA Cloud Vector Engine and Destination Service
-
-CAP
-1. Define the database schema
-1. Define the embedding service **(Kevin)**. Talk about Langchain and Langchain package **(Nora)**
-1. Implement the embedding service **(Kevin)**. What is chunking? What is important?  **(Nora)**
-1. Understanding the UI
-1. Connecting the services to the UI
-1. Run CAP service locally, link deployment tutorial/ documentation
+The instructor will set you off on the first exercise, and that's the only one you should do. Do not proceed to the next exercise until the instructor tells you to do so.
 
 ## Feedback
 
