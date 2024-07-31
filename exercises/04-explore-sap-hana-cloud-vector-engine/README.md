@@ -81,7 +81,9 @@ cf login -a https://api.cf.us10.hana.ondemand.com
 
 👉 Create a binding for your CAP application:
 
-`cds bind -2 cap-ai-codejam-hdb:<Your-service-key-name>`
+```bash
+cds bind -2 cap-ai-codejam-hdb:<Your-service-key-name>
+```
 
 You can find the binding in form of a service key on the `cap-ai-codejam-hdb` instance on SAP BTP and in the `.cdsrc-private.json` file.
 
