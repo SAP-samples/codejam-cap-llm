@@ -92,7 +92,11 @@ To test the implementation you can execute the `cds watch` command and run local
 
 👉 You can call the `deleteEmbeddings()` function by calling the following URL `http://localhost:4004/odata/v4/embedding-storage/deleteEmbeddings()`.
 
+</br>
+
 > In case you are running into an error, log into the Cloud Foundry account again using `cf login`.
+
+</br>
 
 ![implement-embedding-service-delete-embeddings-call](./assets/01-implement-embedding-service-delete-embeddings-call.png)
 
@@ -110,7 +114,7 @@ Now think what methods are necessary to implement:
 * A method to convert the vector embeddings data for storing them in the HANA database. You will call the method `array2VectorBuffer`.
 * A method to handle the OData function call. It's sole purpose is to call the helper methods and store the results in the HANA database. The method is being called `storeEmbeddings()`.
 
-#### Implement the loadPDF(fromFilePath) method
+### Implement the loadPDF(fromFilePath) method
 
 👉 Add the following method declaration, right below the function export `module.exports = function() { ... }`:
 
