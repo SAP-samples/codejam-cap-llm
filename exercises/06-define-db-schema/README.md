@@ -135,7 +135,7 @@ hana-cli help
 hana-cli tables
 ```
 
-![define-db-schema-list-tables](./assets/06-define-db-schema-list-tables.png)
+![define-db-schema-list-tables](./assets/05-define-db-schema-list-tables.png)
 
 From the response you can extract the schema name and the table name. You will use the information to fetch all information about that table.
 
