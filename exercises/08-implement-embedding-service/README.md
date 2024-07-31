@@ -365,10 +365,10 @@ At this point you have learned how to implement function handlers and you learne
 
 ## Further Reading
 
-*[CAP-LLM-Plugin - getEmbedding API Doc](https://github.com/SAP-samples/cap-llm-plugin-samples/blob/main/docs/api-documentation.md#async-getembeddinginput)
-*[Providing Services - Actions&Functions](https://cap.cloud.sap/docs/guides/providing-services#actions-functions)
-*[Document Loaders - PDF](https://js.langchain.com/v0.1/docs/modules/data_connection/document_loaders/pdf/)
-*[Recursevly Split by Characters](https://js.langchain.com/v0.1/docs/modules/data_connection/document_transformers/recursive_text_splitter/)
+* [CAP-LLM-Plugin - getEmbedding API Doc](https://github.com/SAP-samples/cap-llm-plugin-samples/blob/main/docs/api-documentation.md#async-getembeddinginput)
+* [Providing Services - Actions&Functions](https://cap.cloud.sap/docs/guides/providing-services#actions-functions)
+* [Document Loaders - PDF](https://js.langchain.com/v0.1/docs/modules/data_connection/document_loaders/pdf/)
+* [Recursevly Split by Characters](https://js.langchain.com/v0.1/docs/modules/data_connection/document_transformers/recursive_text_splitter/)
 * [Error Handling CAP](https://cap.cloud.sap/docs/node.js/best-practices#error-handling)
 
 ---
