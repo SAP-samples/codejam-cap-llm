@@ -1,12 +1,15 @@
-# Exercise 03 - deploy a Large Language Model with Generative AI Hub on SAP AI Core
+# Exercise 03 - use SAP AI Launchpad to deploy a Large Language Model with Generative AI Hub on SAP AI Core
 
 ## Open SAP AI Launchpad
-👉 Go to your BTP subaccount *CAP AI CodeJam*. Navigate to Instances and Subscriptions and select SAP AI Launchpad from the Subscriptions.
+👉 Go to your BTP subaccount **CAP AI CodeJam**. Navigate to Instances and Subscriptions and select SAP AI Launchpad from the Subscriptions.
 
 ![BTP cockpit](assets/2024-07-17_14-43-29copy.png)
 
 ## Create a new resource group for your team
-👉 Make sure to create a new resource group for your team. DO NOT USE THE DEFAULT RESOURCE GROUP!
+SAP AI Core tenants use resource groups to isolate AI resources and workloads. Scenarios (e.g. **foundation-models**)
+and executables are shared across all resource groups.
+
+👉 Make sure to create a NEW resource group for your team. DO NOT USE THE DEFAULT RESOURCE GROUP!
 
 ![SAP AI Launchpad - Recourse Group 1/2](assets/2024-07-22_10-47-54.png)
 
@@ -24,8 +27,8 @@
 
 ![Scenarios 2/2](assets/2024-07-22_13-04-27.png)
 
-👉 Copy the name of the model you want to deploy the proxy for. In this CodeJam you will use gpt-4.
-After that, you will create a configuration.
+👉 Copy the name of the model you want to deploy the proxy for. In this CodeJam we will use gpt-35-turbo.
+After that we will create a configuration.
 
 ![Available models](assets/2024-07-22_13-04-40.png)
 
@@ -40,7 +43,7 @@ After that, you will create a configuration.
 👉 Paste the model name gpt-4 into the modelName field and click next.
 
 ```sh
-gpt-34
+gpt-35-turbo
 ```
 
 ![Create configuration 2/4](assets/2024-07-16_16-42-54.png)
@@ -76,7 +79,7 @@ Using the URL and the client id and the client secret from the SAP AI Core servi
 ![Create deployment 5/5](assets/2024-07-16_16-51-40.png)
 
 ## Deploy a proxy for an embedding model on SAP AI Core
-👉 To implement a retrieval augmented generation (RAG) use case you also need to deploy an embedding model. The embeddings for our text chunks will then be stored in a vector database (e.g. HANA Vector Store). To deploy the embedding model repeat the steps above using the model name: 
+👉 To implement a retrieval augmented generation (RAG) use case we also need to deploy an embedding model. The embeddings for our text chunks will then be stored in a vector database (e.g. HANA Vector Store). To deploy the embedding model repeat the steps above using the model name instead of **gpt-4**: 
 ```sh
 text-embedding-ada-002
 ```
@@ -96,4 +99,4 @@ If you finish earlier than your fellow participants, you might like to ponder th
 
 ---
 
-[Next exercise](../04-create-resource-group/README.md)
+[Next exercise](../03-deploy-llm/README.md)
