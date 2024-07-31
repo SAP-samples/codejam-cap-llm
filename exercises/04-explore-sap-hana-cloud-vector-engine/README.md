@@ -16,7 +16,8 @@ In this exercise, you will learn:
 ## What are Vector Embeddings
 
 > "Vector embeddings are mathematical representations used to encode objects into multi-dimensional vector space. These embeddings capture the relationships and similarities between objects. SAP HANA Cloud Vector Engine will facilitate the storage and analysis of complex and unstructured vector data(embeddings) into a format that can be seamlessly processed, compared, and utilized in building various intelligent data applications and adding more context in case of GenAI scenarios."
-- Vectorize your Data : SAP HANA Cloud's Vector Engine for Unified Data Excellence
+
+Source: Vectorize your Data : SAP HANA Cloud's Vector Engine for Unified Data Excellence
 
 ## How do I enable SAP HANA Cloud Vector Engine
 
