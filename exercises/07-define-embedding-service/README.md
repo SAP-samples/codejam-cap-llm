@@ -92,10 +92,4 @@ At this point you have learned what the embedding service is and how to define f
 
 ---
 
-## Questions
-
-If you finish earlier than your fellow participants, you might like to ponder these questions. There isn't always a single correct answer and there are no prizes - they're just to give you something else to think about.
-
----
-
 [Next exercise](../08-implement-embedding-service/README.md)

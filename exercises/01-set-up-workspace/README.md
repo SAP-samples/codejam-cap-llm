@@ -151,8 +151,4 @@ At this point you've got an environment in which to work through the rest of the
 
 ---
 
-## Questions
-
----
-
 [Next exercise](../02-explore-sap-hana-cloud-vector-engine/)
