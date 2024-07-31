@@ -23,13 +23,13 @@ Within a CF instance, you can create a _Space_. A _Space_ provides users access 
 
 Let's follow the steps to set up a CF runtime and create a development space within the sub-account.
 
-1. Go to your sub-account, and on the overview page, click on `Enable Cloud Foundry.`
+👉 Go to your sub-account, and on the overview page, click on `Enable Cloud Foundry.`
 
 ![enable cloud foundry](./assets/set-up-cf/enable-cf.png)
 
-2. Select the `standard` plan and click `create.`
+👉 Select the `standard` plan and click `create.`
 
-3. Click `Create Space` within your subaccount's `Cloud Foundry Environment` section.
+👉 Click `Create Space` within your subaccount's `Cloud Foundry Environment` section.
 
 ![enable cloud foundry](./assets/set-up-cf/create-space.png)
 
@@ -43,9 +43,9 @@ Finally, the service can be created via the `Instances and Subscriptions` screen
 
 How to enable and create a SAP HANA Cloud instance is described in the following tutorial:
 
-* ![Deploy SAP HANA Cloud](https://developers.sap.com/tutorials/hana-cloud-deploying.html)
-* ![Start Using SAP HANA Cloud Trial in SAP BTP Cockpit](https://developers.sap.com/tutorials/hana-cloud-mission-trial-2.html)
-* ![Provision an Instance of SAP HANA Cloud, SAP HANA Database](https://developers.sap.com/tutorials/hana-cloud-mission-trial-3.html)
+* [Deploy SAP HANA Cloud](https://developers.sap.com/tutorials/hana-cloud-deploying.html)
+* [Start Using SAP HANA Cloud Trial in SAP BTP Cockpit](https://developers.sap.com/tutorials/hana-cloud-mission-trial-2.html)
+* [Provision an Instance of SAP HANA Cloud, SAP HANA Database](https://developers.sap.com/tutorials/hana-cloud-mission-trial-3.html)
 
 Make sure you have the `SAP HANA Cloud` instance as well as the `SAP HANA Administration Tools` entitled and created in your subaccount. The tools will provide your subaccount with the correct role collection and administrative tools to manage your SAP HANA Cloud instance. If you use the `Set Up SAP HANA Cloud Administration Tools` booster, you get all the tools including the role collections set up automatically. If you want to enable the tools manually, you can add the `SAP HANA Cloud` entitlement using the `hana-cloud-tools` service plan. After you have entitled your subaccount, you can create an instance of the administration tools via the service marketplace. That will provide the necessary role collections to your subaccount. The role collections need to be assigned to your user manually.
 
@@ -74,17 +74,17 @@ You can find a detailed guide here:
 
 SAP AI Core is available through the Free Tier plan on BTP and can be simply enabled by assigning the correct entitlement and then going to the Service Marketplace to create an instance.
 
-1. Click `Entitlements` on the left-hand navigation within your subaccount.
+👉 Click `Entitlements` on the left-hand navigation within your subaccount.
 
-2. Click on `Edit` in the Entitlements screen.
+👉 Click on `Edit` in the Entitlements screen.
 
-3. Click on `Add Service Plans.`
+👉 Click on `Add Service Plans.`
 
-4. Search for `SAP AI Core` via the search field, click `SAP AI Core,` and check the box `extended` as a service plan.
+👉 Search for `SAP AI Core` via the search field, click `SAP AI Core,` and check the box `extended` as a service plan.
 
 ![add-aicore-extended-entitlement](./assets/set-up-aicore/1-set-up-aicore-entitlement.png)
 
-5. Click on `Add Service Plans.`
+👉 Click on `Add Service Plans.`
 
 > Alternatively, you can go to your global account and use the Booster for SAP AI Core. Be aware that the booster will check for an existing CF instance; if one exists, the booster won't work. The booster saves you the creation of an example for SAP AI Core so that you can skip the next steps.
 
@@ -92,13 +92,13 @@ SAP AI Core is available through the Free Tier plan on BTP and can be simply ena
 
 The entitlement is added to your account, which enables you to create a service instance of the SAP AI Core extended service plan.
 
-1. Click `Service Marketplace` on the left-hand navigation within your subaccount.
+👉 Click `Service Marketplace` on the left-hand navigation within your subaccount.
 
-2. Search for `SAP AI Core` via the search field, and select `SAP AI Core.`
+👉 Search for `SAP AI Core` via the search field, and select `SAP AI Core.`
 
-3. Click on `Create` in the appearing view.
+👉 Click on `Create` in the appearing view.
 
-4. In the pop-up window, enter a CLI-friendly name and click `Create.`
+👉 In the pop-up window, enter a CLI-friendly name and click `Create.`
 
 The service creation will take a second before it appears in the `Instances and Subscriptions` view.
 
@@ -106,17 +106,17 @@ The service creation will take a second before it appears in the `Instances and 
 
 An instance of SAP AI Launchpad is required to interact with and manage SAP AI Core. You can follow the same procedure: add the correct entitlement to the subaccount and create a service instance based on that.
 
-1. Click `Entitlements` on the left-hand navigation within your subaccount.
+👉 Click `Entitlements` on the left-hand navigation within your subaccount.
 
-2. Click on `Edit` in the Entitlements screen.
+👉 Click on `Edit` in the Entitlements screen.
 
-3. Click on `Add Service Plans.`
+👉 Click on `Add Service Plans.`
 
-4. Search for `SAP AI Launchpad` via the search field and select `SAP AI Launchpad.`
+👉 Search for `SAP AI Launchpad` via the search field and select `SAP AI Launchpad.`
 
 ![set-up-ailaunchpad-entitlement](./assets/set-up-ailaunchpad/2-set-up-ailaunchpad.png)
 
-5. Click on `Add Service Plans.`
+👉 Click on `Add Service Plans.`
 
 > Alternatively, you can go to your global account and use the Booster for SAP AI Launchpad. The booster saves you the creation of an instance for SAP AI Launchpad so you can skip the next steps.
 
@@ -124,11 +124,11 @@ An instance of SAP AI Launchpad is required to interact with and manage SAP AI C
 
 With the correct entitlement in place, you can use the Service Marketplace to create an instance of SAP AI Launchpad.
 
-1. Click `Service Marketplace` on the left-hand navigation within your subaccount.
+👉 Click `Service Marketplace` on the left-hand navigation within your subaccount.
 
-2. Search for `SAP AI Core` via the search field, and select `SAP AI Core.`
+👉 Search for `SAP AI Core` via the search field, and select `SAP AI Core.`
 
-3. Click on `Create` in the appearing view.
+👉 Click on `Create` in the appearing view.
 
 The service creation will take a second before it appears in the `Instances and Subscriptions` view.
 
@@ -136,31 +136,31 @@ The service creation will take a second before it appears in the `Instances and 
 
 In the last step, you have entitled your subaccount to use the SAP AI Launchpad service and created an instance. You will launch the SAP AI Launchpad UI and set it up for usage with SAP AI Core.
 
-1. Open the `Services & Subscriptions` view via the left-hand navigation within your subaccount.
+👉 Open the `Services & Subscriptions` view via the left-hand navigation within your subaccount.
 
-2. Click on the small icon next to the `SAP AI Launchpad` application to open it in a new window.
+👉 Click on the small icon next to the `SAP AI Launchpad` application to open it in a new window.
 
 ![set-up-ailaunchpad-open-app](./assets/set-up-ailaunchpad/3-set-up-ailaunchpad-open.png)
 
 As you can see, you see nothing. You must set up an AI API Connection to access an actual workspace. 
 
-3. Click on `Add`.
+👉 Click on `Add`.
 
 A new pop-up window will appear. You have to enter some connection details here. The form allows uploading a service key, so let's download it first.
 
-4. Return to the `Instances and Subscriptions` view and click on the service key of the `default_aicore` instance (name might vary).
+👉 Return to the `Instances and Subscriptions` view and click on the service key of the `default_aicore` instance (name might vary).
 
 ![set-up-ailaunchpad-sk](./assets/set-up-ailaunchpad/4-set-up-ailaunchpad-configure-sk.png)
 
-5. Download the service key.
+👉 Download the service key.
 
 ![set-up-ailaunchpad-download-sk](./assets/set-up-ailaunchpad/5-set-up-ailaunchpad-sk-download.png)
 
-6. Return to the `SAP AI Launchpad application and upload the service key to the configuration form.
+👉 Return to the `SAP AI Launchpad application and upload the service key to the configuration form.
 
 ![set-up-ailaunchpad-configure](./assets/set-up-ailaunchpad/6-set-up-ailaunchpad-sk-config.png)
 
-7. Click on `Create`.
+👉 Click on `Create`.
 
 ![set-up-ailaunchpad-configuration-done](./assets/set-up-ailaunchpad/7-set-up-ailaunchpad-configured.png)
 
@@ -174,12 +174,12 @@ A destination can be configured on different levels within BTP, but for this use
 
 A quota must be assigned to the subaccount before enablement for the Destination Service. A quota can be created via the Entitlements section.
 
-1. Click `Entitlements` on the left-hand navigation within your subaccount.
+👉 Click `Entitlements` on the left-hand navigation within your subaccount.
 
-2. Click on `Edit` in the Entitlements screen.
+👉 Click on `Edit` in the Entitlements screen.
 
-3. Click on `Add Service Plans.`
+👉 Click on `Add Service Plans.`
 
-4. Search for `Destination Service` via the search field and click `Add Service Plans.` This service is free to use.
+👉 Search for `Destination Service` via the search field and click `Add Service Plans.` This service is free to use.
 
 ![add-destination-service-plan](./assets/set-up-destination/2-set-up-destination-service-add-service-plan.png)
