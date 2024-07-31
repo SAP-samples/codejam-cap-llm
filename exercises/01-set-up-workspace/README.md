@@ -24,7 +24,7 @@ Choosing the "Full Stack Cloud Application" brings in some predefined extensions
 
 #### Clone this repository
 
-👉 Once the Dev Space is started and you're in it, use the "Clone from Git" option in the "Get Started" screen that appears, to clone this repository, following the subsequent prompts to open the cloned repository; specify `https://github.com/SAP-samples/cap-llm-codejam` as the URL.
+👉 Once the Dev Space is started and you're in it, use the "Clone from Git" option in the "Get Started" screen that appears, to clone this repository, following the subsequent prompts to open the cloned repository; specify `https://github.com/SAP-samples/codejam-cap-llm` as the URL.
 
 ![Cloning the repo](assets/clone-the-codejam-repository.png)
 
@@ -37,8 +37,8 @@ _Follow the "Primary environment" section above if you want to use a Dev Space i
 👉 At a command prompt on your local machine, clone this repository into a directory of your choice, and then open VS Code, pointing to that newly cloned repository's directory:
 
 ```bash
-git clone https://github.com/SAP-samples/cap-service-integration-codejam
-code cap-service-integration-codejam
+git clone https://github.com/SAP-samples/codejam-cap-llm
+code codejam-cap-llm
 ```
 
 Once VS Code has started, and opened the directory, it should notice the [dev container configuration file](../../.devcontainer/devcontainer.json) (in the [.devcontainer/](../../.devcontainer/) directory) and ask you if you want to reopen everything in a container, as shown in the screenshot. Confirm that you want to, by selecting the default answer "Reopen in Container".
@@ -53,7 +53,7 @@ At this stage, once VS Code has reopened, you need to do one more thing, so that
 
 ```shell
 mkdir -p $HOME/projects/ \
-  && ln -s /workspaces/cap-service-integration-codejam/ $HOME/projects/
+  && ln -s /workspaces/codejam-cap-llm/ $HOME/projects/
 ```
 
 > If the `projects/` directory already exists, for some reason, then the `mkdir` command would normally fail and emit a message; this would also mean that the subsequent `ln` command would not run (as they're connected via `&&`). So you can use the `-p` option to tell `mkdir` not to complain.
@@ -63,17 +63,16 @@ You can make sure that everything is OK by checking that you can see the directo
 ```shell
 $ find -L $HOME/projects -maxdepth 2 -type d
 /home/node/projects
-/home/node/projects/cap-service-integration-codejam
-/home/node/projects/cap-service-integration-codejam/.devcontainer
-/home/node/projects/cap-service-integration-codejam/.git
-/home/node/projects/cap-service-integration-codejam/.github
-/home/node/projects/cap-service-integration-codejam/.reuse
-/home/node/projects/cap-service-integration-codejam/.vscode
-/home/node/projects/cap-service-integration-codejam/LICENSES
-/home/node/projects/cap-service-integration-codejam/assets
-/home/node/projects/cap-service-integration-codejam/exercises
-/home/node/projects/cap-service-integration-codejam/incidents
-/home/node/projects/cap-service-integration-codejam/scripts
+/home/node/projects/codejam-cap-llm
+/home/node/projects/codejam-cap-llm/.devcontainer
+/home/node/projects/codejam-cap-llm/.git
+/home/node/projects/codejam-cap-llm/.github
+/home/node/projects/codejam-cap-llm/.reuse
+/home/node/projects/codejam-cap-llm/.vscode
+/home/node/projects/codejam-cap-llm/LICENSES
+/home/node/projects/codejam-cap-llm/assets
+/home/node/projects/codejam-cap-llm/exercises
+/home/node/projects/codejam-cap-llm/project
 ```
 
 Now you should be all set. You are ready to explore service integration with CAP in your dev container.
@@ -108,12 +107,12 @@ home: /managed-content/globals/pnpm/5/.pnpm/@sap+cds@7.6.1_express@4.18.2/node_m
 
 ## Install the NPM package dependencies
 
-We'll be working mostly within the `project/cap-ai-helper` directory of this repo, which contains a starter CAP project with code being already written to provide UI and some of the service functionalities to make the CodeJam experience more accessible. In there, the `package.json` file contains runtime and design time dependencies.
+We'll be working mostly within the `project/cap-documentation-ai-helper` directory of this repo, which contains a starter CAP project with code being already written to provide UI and some of the service functionalities to make the CodeJam experience more accessible. In there, the `package.json` file contains runtime and design time dependencies.
 
-👉 Make sure you're in the `project/cap-ai-helper` directory (where `package.json` lives):
+👉 Make sure you're in the `project/cap-documentation-ai-helper` directory (where `package.json` lives):
 
 ```bash
-cd $HOME/projects/cap-llm-codejam/project/cap-ai-helper/
+cd $HOME/projects/cap-llm-codejam/project/cap-documentation-ai-helper/
 ```
 
 👉 Now install the dependencies thus:
@@ -125,7 +124,7 @@ npm install
 You can double check what's installed, with `npm list`, which should show you something similar to this:
 
 ```text
-cap-ai-helper@1.0.0 /Users/d061070/Developer/GitHub/cap-ai-vector-engine-sample/application
+cap-documentation-ai-helper@1.0.0 /Users/Developer/GitHub/codejam-cap-llm/project/cap-documentation-ai-helper
 ├── @cap-js/sqlite@1.7.3
 ├── @sap-cloud-sdk/http-client@3.16.0
 ├── @sap/cds-dk@7.9.5
