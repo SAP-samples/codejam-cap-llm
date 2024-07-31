@@ -22,7 +22,7 @@ The destination for a typical SAP AI Core connection can be configured as follow
 
 
 | Property Name          | Value                   | Example                                                                |
-| ---------------------- |:-----------------------:| ---------------------------------------------------------------------: |
+| ---------------------- |:-----------------------:| ---------------------------------------------------------------------- |
 | Name                   | <free to choose>        | ai_core_dest                                                           |
 | Type                   | HTTP                    | -                                                                      |
 | Description            | <free to choose>        | my SAP AI Core Destination                                             |
