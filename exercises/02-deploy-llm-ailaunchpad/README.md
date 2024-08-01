@@ -4,7 +4,9 @@ SAP AI Launchpad is a multitenant SaaS application on SAP BTP. You can use SAP A
 capabilities via the Generative AI Hub and is available in the Cloud Foundry environment. To access Generative AI Hub you need the **extended plan** of the AI runtime SAP AI Core. You can also connect HANA as an AI runtime or the SAP AI Services, to work with HANA Predictive Analysis Library (PAL) or the SAP AI Service Data Attribute Recommendation.
 
 ## Open SAP AI Launchpad
-👉 Go to your BTP subaccount **CAP AI CodeJam**. Navigate to Instances and Subscriptions and select SAP AI Launchpad from Subscriptions to open SAP AI Launchpad.
+👉 Go to your BTP subaccount **CAP AI CodeJam**. 
+
+👉 Navigate to Instances and Subscriptions and select SAP AI Launchpad from Subscriptions to open SAP AI Launchpad.
 
 ![BTP cockpit](assets/2024-07-17_14-43-29copy.png)
 
@@ -12,11 +14,17 @@ capabilities via the Generative AI Hub and is available in the Cloud Foundry env
 SAP AI Core tenants use resource groups to isolate AI resources and workloads. Scenarios (e.g. **foundation-models**)
 and executables (that is a template to train a model or create a deployment) are shared across all resource groups.
 
-👉 Make sure to create a NEW resource group for your team. DO NOT USE THE DEFAULT RESOURCE GROUP! Open the **SAP AI Core Administration** tab and select **Resource Groups**. Create a new resource group with your team's name.
+👉 Make sure to create a NEW resource group for your team. DO NOT USE THE DEFAULT RESOURCE GROUP! 
+
+👉 Open the **SAP AI Core Administration** tab and select **Resource Groups**. 
+
+👉 Create a new resource group with your team's name.
 
 ![SAP AI Launchpad - Recourse Group 1/2](assets/2024-07-31_12-03-53.png)
 
 👉 Go back to Workspaces and select your resource group and make sure it is selected. It should show up at the top next to SAP AI Launchpad.
+
+☝️ You will need the name of your resource group in [Exercise 09-create-connection-configuration](../09-create-connection-configuration/README.md).
 
 ![SAP AI Launchpad - Recourse Group 2/2](assets/2024-07-31_12-05-01.png)
 
@@ -80,6 +88,8 @@ Once the deployment is running you will receive a URL to query the model. Refres
 
 Using the URL, the client id and the client secret from the SAP AI Core service key, you could now already query the model using any programming language or any API platform.
 
+☝️ You will need the deployment ID of both models in [Exercise 09-create-connection-configuration](../09-create-connection-configuration/README.md).
+
 ![Create deployment 5/5](assets/2024-07-16_16-51-40.png)
 
 ## Deploy a proxy for an embedding model on SAP AI Core
@@ -93,6 +103,7 @@ At this point, you will have learned how to create your own resource group, whic
 
 ## Further reading
 
+* [SAP AI Launchpad - Help Portal (Documentation)](https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/what-is-sap-ai-launchpad)
 * [SAP AI Core Terminology](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/terminology)
 * [Available Models in the Generative AI Hub](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/models-and-scenarios-in-generative-ai-hub)
 
