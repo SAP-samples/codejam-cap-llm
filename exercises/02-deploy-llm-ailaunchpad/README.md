@@ -1,5 +1,8 @@
 # Exercise 02 - Use SAP AI Launchpad to deploy a Large Language Model with Generative AI Hub on SAP AI Core
 
+SAP AI Launchpad is a multitenant SaaS application on SAP BTP. You can use SAP AI Launchpad to manage AI use cases across different AI runtimes. SAP AI Launchpad also provides generative AI
+capabilities via the Generative AI Hub and is available in the Cloud Foundry environment. To access Generative AI Hub you need the **extended plan** of the AI runtime SAP AI Core. You can also connect HANA as an AI runtime or the SAP AI Services, to work with HANA Predictive Analysis Library (PAL) or the SAP AI Service Data Attribute Recommendation.
+
 ## Open SAP AI Launchpad
 👉 Go to your BTP subaccount **CAP AI CodeJam**. Navigate to Instances and Subscriptions and select SAP AI Launchpad from Subscriptions to open SAP AI Launchpad.
 
@@ -86,7 +89,7 @@ text-embedding-ada-002
 ```
 ## Summary
 
-At this point ...
+At this point, you will have learned how to create your own resource group, which models are available via Generative AI Hub and deploy LLMs in SAP AI Launchpad.
 
 ## Further reading
 
@@ -95,10 +98,4 @@ At this point ...
 
 ---
 
-## Questions
-
-If you finish earlier than your fellow participants, you might like to ponder these questions. There isn't always a single correct answer and there are no prizes - they're just to give you something else to think about.
-
----
-
-[Next exercise](../03-deploy-llm/README.md)
+[Next exercise](../03-explore-genai-hub/README.md)
