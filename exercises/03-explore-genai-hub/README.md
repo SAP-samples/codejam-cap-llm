@@ -22,17 +22,17 @@ In the **Chat Context** tab right under **Context History** you can set the numb
 👉 Try out different prompt engineering techniques following these examples:
 
 1. Zero shot:
-   ```sh
+   ```
     The capital of the U.S. is:
     ``` 
 2. Few shot:
-    ```sh
+    ```
     Germany - Berlin
     France - Paris
     U.S. - 
     ```
 3. Chain of thought:
-    ```sh
+    ```
     1. What is the most important city of a country?
     2. In which country was the Internet originally developed?
     3. What is the >fill in the word from step 1< of the country >fill in the word from step 2<.
@@ -50,7 +50,7 @@ The **Prompt Editor** is useful if you want to store a prompt and the response t
 👉 If you now head over to **Prompt Management** you will find your previously saved prompt there. To run the prompt again click **Open in Prompt Editor**. You can also select other saved prompts by clicking on **Select**.
 
 1. Chain of thought prompt - customer support:
-    ```sh
+    ```
     You are working at a big tech company and you are part of the support team.
     You are tasked with sorting the incoming support requests into: German, English or Spanish.
     

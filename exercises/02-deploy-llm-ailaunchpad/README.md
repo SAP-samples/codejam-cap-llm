@@ -46,7 +46,7 @@ After that we will create a configuration.
 
 👉 Paste the model name gpt-35-turbo into the modelName field and click next.
 
-```sh
+```
 gpt-35-turbo
 ```
 
@@ -84,7 +84,7 @@ Using the URL, the client id and the client secret from the SAP AI Core service 
 
 ## Deploy a proxy for an embedding model on SAP AI Core
 👉 To implement a retrieval augmented generation (RAG) use case we also need to deploy an embedding model. The embeddings for our text chunks will then be stored in a vector database (e.g. HANA Vector Store). To deploy the embedding model repeat the steps above using the model name **text-embedding-ada-002** instead of **gpt-4**: 
-```sh
+```
 text-embedding-ada-002
 ```
 ## Summary
