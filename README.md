@@ -32,6 +32,22 @@ Use this [Give feedback](https://github.com/SAP-samples/codejam-cap-llm/issues/n
 
 Thank you!
 
+## Other CodeJams
+
+### CodeJam repositories
+
+* [Service integration with SAP Cloud Application Programming Model](https://github.com/SAP-samples/cap-service-integration-codejam)
+* [CodeJam - Getting Started with Machine Learning using SAP HANA and Python](https://github.com/SAP-samples/hana-ml-py-codejam)
+* [Hands-on with the btp CLI and APIs](https://github.com/SAP-samples/cloud-btp-cli-api-codejam)
+* [CodeJam - Combine SAP Cloud Application Programming Model with SAP HANA Cloud to Create Full-Stack Applications](https://github.com/SAP-samples/cap-hana-exercises-codejam)
+* [All CodeJams in one list](https://github.com/orgs/SAP-samples/repositories?language=&q=Codejam&sort=&type=all)
+
+### CodeJam Community
+
+* [SAP CodeJam Events](https://community.sap.com/t5/sap-codejam/eb-p/codejam-events)
+* [SAP CodeJam Community](https://community.sap.com/t5/sap-codejam/gh-p/code-jam)
+* [SAP CodeJam Discussions](https://community.sap.com/t5/sap-codejam-discussions/bd-p/code-jamforum-board)
+
 ## Acknowledgements
 
 The exercise content in this repository is based on a sample repository created by the CAP team.
