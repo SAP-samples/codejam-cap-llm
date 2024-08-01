@@ -121,11 +121,11 @@ The function handler is fully implemented, and you can start the application loc
 
 👉 Call the `getRagResponse()` function via the API URL `http://localhost:4004/odata/v4/capdocumentation/getRagResponse()`
 
-![Insert Image]()
+![01-implement-cap-doc-helper-service-get-rag-response](./assets/01-implement-cap-doc-helper-service-get-rag-response.png)
 
 👉 Take a look in the terminal to observe what the call does in detail.
 
-![Insert Image]()
+![02-implement-cap-doc-helper-service-get-rag-cli](./assets/02-implement-cap-doc-helper-service-get-rag-cli.png)
 
 👉 Check the response to see if the chat model returns any hallucinations.
 
@@ -220,9 +220,8 @@ Observe your terminal to see what the function call does in detail.
 ## Summary
 
 You have completed all exercises for this CodeJam. Congratulations! You have built your first CAP application utilizing the CAP-LLM-Plugin and the power of SAP generative AI Hub to expose AI capabilities to your consumers.
-There is much more to explore, and your journey has just begun.
 
-If you are done earlier than the rest or you want to challenge yourself, there is an optional exercise containing a task to implement an additional service.
+There is much more to explore, and your journey has just begun.
 
 ## Further Reading
 
@@ -233,6 +232,3 @@ If you are done earlier than the rest or you want to challenge yourself, there i
 * [CAP-LLM-Plugin samples](https://github.com/SAP-samples/cap-llm-plugin-samples/tree/main)
 
 ---
-
-[Optional Challenge](../12-challenge/README.md)
-
