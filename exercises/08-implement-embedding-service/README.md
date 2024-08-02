@@ -6,7 +6,7 @@ In this exercise you will learn:
 
 * How to implement a service definition using Node.js.
 * How to process text for the creation of vector embeddings using an embedding model.
-* How to use the CAP-LLM-Plugin to create vector embeddings using the SAP generative AI Hub.
+* How to use the CAP-LLM-Plugin to create vector embeddings using the Generative AI Hub.
 
 ## Implement the embedding service
 
@@ -110,7 +110,7 @@ Now think about what methods are necessary to implement:
 
 * A method responsible for loading the context information document. The document is of type PDF. You will call that method `loadPDF(fromFilePath)`.
 * A method responsible for chunking the context information document. The method expects a document. You will call that method `chunk(pdf)`.
-* A method responsible for using the CAP-LLM-Plugin to establish a connection to the SAP generative AI hub and the embedding model. The CAP-LLM-Plugin call not only establishes a backend connection but also constructs the HTTP request and sends it to the embedding model using the destination configuration. You will call that method `retrieveEmbeddings(forChunks)`.
+* A method responsible for using the CAP-LLM-Plugin to establish a connection to the Generative AI Hub and the embedding model. The CAP-LLM-Plugin call not only establishes a backend connection but also constructs the HTTP request and sends it to the embedding model using the destination configuration. You will call that method `retrieveEmbeddings(forChunks)`.
 * A method to convert the vector embedding data for storage in the HANA database. You will call the method `array2VectorBuffer`.
 * A method to handle the OData function call. Its sole purpose is to call the helper methods and store the results in the HANA database. The method is being called `storeEmbeddings()`.
 
@@ -255,7 +255,7 @@ function array2VectorBuffer(data) {
 
 ### Implement the retrieveEmbeddings(forChunks) method
 
-If you remember the presentation in the beginning, the Advocate gave you an overview of the available APIs provided by the CAP-LLM plugin. One of those API methods is for retrieving the vector embeddings for a given text chunk. If the `vectorPlugin.getEmbedding()` call gets executed, the plugin looks up the connection configuration, constructs the HTTP request, and sends that via the destination to the SAP generative AI Hub. The request is being forwarded from SAP to the partner embedding model for creating the vector embeddings.
+If you remember the presentation in the beginning, the Advocate gave you an overview of the available APIs provided by the CAP-LLM plugin. One of those API methods is for retrieving the vector embeddings for a given text chunk. If the `vectorPlugin.getEmbedding()` call gets executed, the plugin looks up the connection configuration, constructs the HTTP request, and sends that via the destination to the Generative AI Hub. The request is being forwarded from SAP to the partner embedding model for creating the vector embeddings.
 
 The plugin requires additional configuration to determine what destination to use and what embedding model to connect to. You will create this configuration in the next exercise.
 
@@ -357,7 +357,7 @@ throw error
 
 👉 Save the file.
 
-At this point, the `storeEmbeddings` would run into an error if executed because the CAP-LLM-Plugin does not yet know what destination it should use for connecting against SAP generative AI Hub. In the next exercise, you will adapt the `cdsrc-private.json` to include CAP-LLM-Plugin specific configuration.
+At this point, the `storeEmbeddings` would run into an error if executed because the CAP-LLM-Plugin does not yet know what destination it should use for connecting against Generative AI Hub. In the next exercise, you will adapt the `cdsrc-private.json` to include CAP-LLM-Plugin specific configuration.
 
 ## Summary
 

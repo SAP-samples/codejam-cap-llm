@@ -42,7 +42,7 @@ Using the `excluding` keyword, the embedding field is excluded from the response
     function deleteEmbeddings() returns String;
 ```
 
-The `storeEmbeddings()` function will utilize third-party npm packages to load the PDF, extract the information, and chunk it. The CAP-LLM-Plugin creates and sends a request to the embeddings model through SAP generative AI Hub using the previously defined destination and finally stores the result in the database using CDS queries.
+The `storeEmbeddings()` function will utilize third-party npm packages to load the PDF, extract the information, and chunk it. The CAP-LLM-Plugin creates and sends a request to the embeddings model through Generative AI Hub using the previously defined destination and finally stores the result in the database using CDS queries.
 
 You will implement that in the next exercise. You're getting closer to seeing the first fruits of our hard work 😊🧑‍💻.
 

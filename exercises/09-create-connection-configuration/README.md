@@ -4,9 +4,9 @@ The CAP-LLM-Plugin uses a set of configurations to have all required information
 
 * What kind of embedding model to use.
 * What kind of chat model to use.
-* What resource group the deployment model is in.
+* What resource group the embedding model is in.
 * What resource group the chat model is in.
-* What destination to use for connecting to SAP generative AI Hub.
+* What destination to use for connecting to Generative AI Hub.
 
 Because you could have multiple destinations configured in your CAP application you have to explicitly tell the CAP-LLM-Plugin what destination to use. The complete configuration for the destination, as well as the CAP-LLM-Plugin, can be done in the `.cdsrc-private.json` file.
 
@@ -14,7 +14,7 @@ In this exercise you will learn:
 
 * How to create a destination configuration.
 * How to create the CAP-LLM-Plugin configuration.
-* Where to find the required information in SAP generative AI Hub.
+* Where to find the required information in Generative AI Hub.
 
 ## Create the destination configuration
 
@@ -124,51 +124,20 @@ What do you need:
 * `Embedding Model Id`
 * `API Version`
 
-### Lookup and configure the resource group name
+Make sure that your configuration looks something like this:
 
-👉 Open your web browser.
-
-👉 Go to the [SAP BTP - Instances and Subscriptions](https://emea.cockpit.btp.cloud.sap/cockpit/#/globalaccount/275320f9-4c26-4622-8728-b6f5196075f5/subaccount/6088766d-dcc4-4e56-972f-652baad796be/service-instances) view.
-
-👉 Click on the little icon right next to the `SAP AI Launchpad` application instance.
-
-![create-connection-configuration-btp](./assets/01-create-connection-configuration-btp.png)
-
-That will launch the SAP AI Launchpad in a separate tab within your browser.
-
-👉 Open the SAP AI Launchpad.
-
-![create-connection-configuration-launchpad](./assets/02-create-connection-configuration-launchpad.png)
-
-👉 Through the sidebar navigate to `SAP AI Core Administration`.
-
-👉 Click on `Resource Groups` and copy the name.
-
-![create-connection-configuration-resource-group](./assets/03-create-connection-configuration-resource-group.png)
-
-👉 In BAS or your local VSCode instance open the `.cdsrc-private.json` file and add the resource group name to the:
-
-* `CHAT_MODEL_RESOURCE_GROUP` and 
-* `EMBEDDING_MODEL_RESOURCE_GROUP`
-
-👉 Save the file.
-
-### Lookup and configure the deployment Id
-
-👉 Open SAP AI Launchpad.
-
-👉 Through the sidebar navigate to `ML Operations`.
-
-👉 Click on `Deployments`.
-
-You can see two different deployments. One for the embedding model and one for the chat model. Both of these have an identifier.
-
-👉 Copy the identifiers of both models and replace the placeholder within the URLs of
-
-* `CHAT_MODEL_DEPLOYMENT_URL` and
-* `EMBEDDING_MODEL_DEPLOYMENT_UR`.
-
-👉 Save the file.
+```JSON
+"GENERATIVE_AI_HUB": {
+  "CHAT_MODEL_DESTINATION_NAME": "AICoreAzureOpenAIDestination",
+  "CHAT_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/d62bd9433f94cc13",
+  "CHAT_MODEL_RESOURCE_GROUP": "default",
+  "CHAT_MODEL_API_VERSION": "2023-05-15",
+  "EMBEDDING_MODEL_DESTINATION_NAME": "AICoreAzureOpenAIDestination",
+  "EMBEDDING_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/dfca437277b3cea0",
+  "EMBEDDING_MODEL_RESOURCE_GROUP": "default",
+  "EMBEDDING_MODEL_API_VERSION": "2023-05-15"
+}
+```
 
 ## Test the storeEmbeddings() OData function
 

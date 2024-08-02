@@ -113,7 +113,7 @@ this.on('getRagResponse', async () => {
 
 ## Test the getRagResponse() OData function
 
-The function handler is fully implemented, and you can start the application locally using the actual connections to SAP generative AI Hub and SAP HANA Cloud to test a RAG response call. You should have vector embeddings in the database that will be used by the CAP-LLM-Plugin. If you tried out the `deleteEmbeddings()` call, create new vector embeddings using the `storeEmbeddings()` call.
+The function handler is fully implemented, and you can start the application locally using the actual connections to Generative AI Hub and SAP HANA Cloud to test a RAG response call. You should have vector embeddings in the database that will be used by the CAP-LLM-Plugin. If you tried out the `deleteEmbeddings()` call, create new vector embeddings using the `storeEmbeddings()` call.
 
 👉 Start the CAP application using `cds watch --profile hybrid`.
 
@@ -219,7 +219,7 @@ Observe your terminal to see what the function call does in detail.
 
 ## Summary
 
-You have completed all exercises for this CodeJam. Congratulations! You have built your first CAP application utilizing the CAP-LLM-Plugin and the power of SAP generative AI Hub to expose AI capabilities to your consumers.
+You have completed all exercises for this CodeJam. Congratulations! You have built your first CAP application utilizing the CAP-LLM-Plugin and the power of Generative AI Hub to expose AI capabilities to your consumers.
 
 There is much more to explore, and your journey has just begun.
 

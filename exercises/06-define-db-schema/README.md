@@ -14,11 +14,13 @@ The `package.json` file includes all Node.js project-specific configurations lik
 
 👉 Open the `package.json` file.
 
-👉 Exermine the dependencies. Notice that there is a dependency for `Langchain` and the `CAP-LLM-Plugin`.
+👉 Examine the dependencies. Notice that there is a dependency for `Langchain` and the `CAP-LLM-Plugin`.
 
 ![define-db-schema-package-json](./assets/01-define-db-schema-package-json.png)
 
-👉 Exermine the listed scripts.
+LangChain is the leading library for generative AI development and compatible with SAP’s Generative AI Hub Python SDK and the CAP-LLM-Plugin. Langchain is available in Python as well as in JavaScript.
+
+👉 Examine the listed scripts.
 
 ![define-db-schema-package-json](./assets/02-define-db-schema-package-json-scripts.png)
 
@@ -70,8 +72,8 @@ entity DocumentChunk: managed {
 The entity defines three fields:
 
 * `text_chunk`      : Stores the individual-created text chunks.
-* `metadata_column`: Stores the path to the information document. The document is a PDF that includes business contextual information for creating vector embeddings.
-* `embedding`       : Stores the encoded vector embeddings.
+* `metadata_column`: Stores the path to the information document. The document is a PDF that includes business contextual information.
+* `embedding`       : Stores the encoded vector embeddings created by an embedding model of your choice.
 
 👉 Save the file.
 

@@ -1,6 +1,6 @@
 # Exercise 10 - Define the CAP documentation helper service
 
-With the embedding service, you learned how to expose AI capabilities from SAP generative AI Hub to the outside world. Other applications can consume the service. You will create another service to expose further capabilities of SAP generative AI Hub via an OData API. This service retrieves a RAG response and executes a similarity search.
+With the embedding service, you learned how to expose AI capabilities from Generative AI Hub to the outside world. Other applications can consume the service. You will create another service to expose further capabilities of Generative AI Hub via an OData API. This service retrieves a RAG response and executes a similarity search.
 
 Because you have created a service before, this exercise will be challenging because you will create the service by yourself. The solution is at the end of the exercise.
 

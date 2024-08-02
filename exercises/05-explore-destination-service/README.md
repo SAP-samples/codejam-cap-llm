@@ -14,7 +14,7 @@ Our destination for this CodeJam is already pre-configured because all workshop 
 
 ## Understand how a destination for SAP AI Core is being configured
 
-Your CAP application will use a destination on SAP BTP to connect to the SAP generative AI Hub instance. You'll be able to explore what information is configured in the destination and how you bind your CAP application to that destination for the CAP-LLM-Plugin to send HTTP requests against SAP generative AI Hub.
+Your CAP application will use a destination on SAP BTP to connect to the Generative AI Hub instance. You'll be able to explore what information is configured in the destination and how you bind your CAP application to that destination for the CAP-LLM-Plugin to send HTTP requests against Generative AI Hub.
 
 Let's start by exploring the pre-configured destination on SAP BTP. You can find a quick look at the destination configuration below:
 
@@ -29,8 +29,8 @@ You should configure the destination for a typical SAP AI Core connection like t
 | URL                    | <AI_API_URL>            | https://api.ai.prod.us-east-1.aws.ml.hana.ondemand.com                 |
 | Proxy Type             | Internet                | -                                                                      |
 | Authentication         | OAuth2ClientCredentials | -                                                                      |
-| Client ID              | <clientid>              | sb-e478287-ba9e-4223-98f5-c5579332rf55!b294456aicore@s345              |
-| Client Secret          | <clientsecret>          | 49884e42q-45x6-154-54566545644564bvf56456465$46546TMKWn=               |
+| Client ID              | <clientid>              | -                                                                      |
+| Client Secret          | <clientsecret>          | -                                                                      |
 | Token Service URL Type | Dedicated               | -                                                                      |
 | Token Service URL      | <url>                   | https://cap-ai-codejam-op5zdddw2.authentication.us10.hana.ondemand.com |
 
@@ -118,7 +118,7 @@ With the service key, the binding created, and the binding configuration in plac
 
 ## Summary
 
-At this point, you have learned more about the destination service, how to configure a destination for connecting to SAP generative AI Hub, and how to bind to the destination service instance using the cds CLI.
+At this point, you have learned more about the destination service, how to configure a destination for connecting to Generative AI Hub, and how to bind to the destination service instance using the cds CLI.
 
 ## Further reading
 
