@@ -1,6 +1,6 @@
 # Exercise 03 - Explore Generative AI Hub in SAP AI Launchpad
 
-In order to leverage large language models (LLMs) or foundation models in your applications you can use Generative AI Hub on SAP AI Core. Like most other LLM applications Generative AI Hub is pay-per-use. Generative AI Hub offers all major models on the market and will offer in total 22 foundation models until Q4. You can switch between them and compare results and pick the model for your use case that works best. 
+In order to leverage large language models (LLMs) or foundation models in your applications you can use Generative AI Hub on SAP AI Core. Like most other LLM applications Generative AI Hub is pay-per-use. Generative AI Hub offers all major models on the market and will offer in total 22 foundation models until Q4. You can switch between them and compare results and pick the model for your use case that works best. SAP has strict data privacy contracts with LLM providers to ensure that your data is safe.
 
 You can access your deployed models either using the Python SDK, the cap-llm-plugin, any programming language or API platform OR you can use the user interface in SAP AI Launchpad. We offer the **Chat** interface or the **Prompt Editor** where you can also save prompts and responses or prompt templates. At SAP, every employee can access the SAP AI Launchpad and query all of the available models.
 
@@ -22,17 +22,17 @@ In the **Chat Context** tab right under **Context History** you can set the numb
 👉 Try out different prompt engineering techniques following these examples:
 
 1. Zero shot:
-   ```sh
+   ```
     The capital of the U.S. is:
     ``` 
 2. Few shot:
-    ```sh
+    ```
     Germany - Berlin
     France - Paris
     U.S. - 
     ```
 3. Chain of thought:
-    ```sh
+    ```
     1. What is the most important city of a country?
     2. In which country was the Internet originally developed?
     3. What is the >fill in the word from step 1< of the country >fill in the word from step 2<.
@@ -50,7 +50,7 @@ The **Prompt Editor** is useful if you want to store a prompt and the response t
 👉 If you now head over to **Prompt Management** you will find your previously saved prompt there. To run the prompt again click **Open in Prompt Editor**. You can also select other saved prompts by clicking on **Select**.
 
 1. Chain of thought prompt - customer support:
-    ```sh
+    ```
     You are working at a big tech company and you are part of the support team.
     You are tasked with sorting the incoming support requests into: German, English or Spanish.
     
@@ -83,6 +83,7 @@ At this point, you will know how to use the user interface of Generative AI Hub 
 
 ## Further reading
 
+* [Generative AI Hub on SAP AI Core - Help Portal (Documentation)](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/generative-ai-hub-in-sap-ai-core-7db524ee75e74bf8b50c167951fe34a5)
 * [This](https://www.promptingguide.ai/) is a good recourse if you want to know more about prompt engineering.
 * [This](https://developers.sap.com/tutorials/ai-core-generative-ai.html) is a good tutorial on how to prompt LLMs with Generative AI Hub.
 
