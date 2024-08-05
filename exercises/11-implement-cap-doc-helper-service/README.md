@@ -35,7 +35,7 @@ const cds = require('@sap/cds')
 const tableName = 'SAP_CODEJAM_DOCUMENTCHUNK'
 const embeddingColumn = 'EMBEDDING'
 const contentColumn = 'TEXT_CHUNK'
-const userQuery = Explain to me what CAP is.' //You can change this.
+const userQuery = 'Explain to me what CAP is.' //You can change this.
 const instructions = 'Return the result in json format.' //You can change this.
 ```
 
