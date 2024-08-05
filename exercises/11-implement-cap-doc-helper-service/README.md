@@ -24,7 +24,7 @@ You will implement properties in a new file storing the required information by 
 
 👉 Open BAS or your local VSCode instance.
 
-👉 Create a new file in the `srv` folder and name it `cap-documentation-service.js`.
+👉 Open the `cap-documentation-service.js` file under the `srv` folder.
 
 👉 Open the file.
 

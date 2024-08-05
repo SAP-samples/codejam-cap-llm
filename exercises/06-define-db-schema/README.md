@@ -41,7 +41,7 @@ For this project, the schema has exactly one entity; `DocumentChunk`.
 
 The `DocumentChunk` entity contains the text chunks and embeddings for the provided context information. In the next exercise [07 - Define the Embedding Service](../07-define-embedding-service/README.md), you will define a service for the chunking of a PDF document, the [CAP_Documentation_V8.pdf](../../project/cap-documentation-ai-helper/db/data/CAP_Documentation_V8.pdf), and retrieving vector embeddings for the individual chunks. The chunks and vector embeddings will be saved in the `DocumentChunk` entity.
 
-👉 Create a new file under the `db` folder and name it `schema.cds`.
+👉 Open the `schema.cds` file under the `db` folder.
 
 👉 In the file define a namespace `namespace sap.codejam`:
 
