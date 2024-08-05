@@ -4,11 +4,10 @@ SAP BTP can route requests to different services provided by BTP, your applicati
 
 In the following exercise, you will learn:
 
-* How do you configure such a destination on BTP? You will learn.
-* How do you bind your CAP application against that destination?
+* How do you configure such a destination on BTP.
+* How do you bind your CAP application against that destination.
 
 Destinations can be configured on different levels within BTP, but for this use case, they are created within the Destination Service for the provided subaccount.
-
 
 Our destination for this CodeJam is already pre-configured because all workshop attendees use it. Nevertheless, the [SAP BTP set up guide](../../btp-setup-guide.md) provides instructions on entitling your BTP account to use and configure a new destination within the destination service.
 
@@ -16,7 +15,7 @@ Our destination for this CodeJam is already pre-configured because all workshop 
 
 Your CAP application will use a destination on SAP BTP to connect to the Generative AI Hub instance. You'll be able to explore what information is configured in the destination and how you bind your CAP application to that destination for the CAP-LLM-Plugin to send HTTP requests against Generative AI Hub.
 
-Let's start by exploring the pre-configured destination on SAP BTP. You can find a quick look at the destination configuration below:
+Let's start by exploring the pre-configured destination on SAP BTP. You can find a quick look from the destination configuration below:
 
 You should configure the destination for a typical SAP AI Core connection like this: 
 
@@ -32,7 +31,7 @@ You should configure the destination for a typical SAP AI Core connection like t
 | Client ID              | <clientid>              | -                                                                      |
 | Client Secret          | <clientsecret>          | -                                                                      |
 | Token Service URL Type | Dedicated               | -                                                                      |
-| Token Service URL      | <url>                   | https://cap-ai-codejam-op5zdddw2.authentication.us10.hana.ondemand.com |
+| Token Service URL      | <url>/oauth/token       | https://cap-ai-codejam-op5zdddw2.authentication.us10.hana.ondemand.com/oauth/token |
 
 Feel free to explore the destination on SAP BTP yourself:
 

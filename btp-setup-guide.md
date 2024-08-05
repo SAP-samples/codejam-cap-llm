@@ -62,6 +62,14 @@ If you're interested in a CodeJam covering CAP application development for SAP H
 
 * [GitHub: cap-hana-exercises-codejam](https://github.com/SAP-samples/cap-hana-exercises-codejam/tree/main)
 
+## Enable and create an instance of SAP HANA Schemas & HDI Containers
+
+To deploy database artifacts to the SAP HANA Cloud instance you need an HDI container. The HDI Container is an isolated container for deploying, operating and developing with database artifacts. The needed instance can be created through the Service Marketplace.
+
+![set-up-hana-schemas-services](./assets/set-up-hana/set-up-hana-schemas-services.png)
+
+Make sure to select the service plan `hdi-shared`, when creating the instance. You will bind the CAP application to that instance in a later exercise.
+
 ## Enable and create an instance of SAP Business Application Studio
 
 The SAP Business Application Studio is an IDE based on Visual Studio coded available on and through BTP. It can be created and entitled like any other service on BTP. A considerable benefit of a local Visual Studio installment is that you can use it from any modern browser, and the environment is set up for development.
@@ -183,3 +191,7 @@ A quota must be assigned to the subaccount before enablement for the Destination
 👉 Search for `Destination Service` via the search field and click `Add Service Plans.` This service is free to use.
 
 ![add-destination-service-plan](./assets/set-up-destination/2-set-up-destination-service-add-service-plan.png)
+
+## Create a new destination within the destination service
+
+If you open the destination service instance, you can create a new destination in there. The destination details for the Generative AI Hub and how to set the destination up, can be found in [Exercise 05 - Learn how to use the destination service on SAP BTP to provide connection details for SAP AI Cores](./exercises/05-explore-destination-service/README.md)

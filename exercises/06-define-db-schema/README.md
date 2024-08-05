@@ -144,7 +144,7 @@ From the response, you can extract the schema name and the table name. You will 
 👉 Enter the following command to list the table information:
 
 ```bash
-hana-cli inspectTable DD850AA94A7F450CAE98C1F07176A16E SAP_CODEJAM_DOCUMENTCHUNK
+hana-cli inspectTable <Your-schema-name> SAP_CODEJAM_DOCUMENTCHUNK
 ```
 
 ![define-db-schema-inspect-table](./assets/06-define-db-schema-inspect-table.png)

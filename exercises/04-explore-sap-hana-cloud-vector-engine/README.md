@@ -64,11 +64,12 @@ The profile `hybrid` relates to the hybrid testing scenario, which allows you to
   }
 ```
 
-## Bind local service to SAP HANA instance for hybrid testing
+## Bind local service to SAP HANA Schemas & HDI Containers instance for hybrid testing
 
 At this point, your CAP application knows that you want to use an SAP HANA database for persistence, but it doesn't know what database instance you want to use and has no connection. You need to bind your application to the SAP HANA Cloud instance configured on SAP BTP. When you bind your application, an HDI container instance gets spun up for your application's data, and a service key is issued to authenticate against that instance.
 
-The CDS CLI can bind your application to the SAP HANA Cloud instance.
+The CDS CLI can bind your application to the SAP HANA Schemas & HDI Containers instance.
+
 👉 Open the project in SAP Business Application Studio (BAS) or VSCode.
 
 👉 Open a new terminal if not already open.

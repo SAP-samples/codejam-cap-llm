@@ -30,15 +30,7 @@
     "requires": {
       "db": {
         "kind": "hana"
-      },
-      "auth": "dummy",
-      "destinations": true,
-      "[hybrid]": {
-        "db": "hana"
       }
-    },
-    "hana": {
-      "deploy-format": "hdbtable"
     }
   }
 }
