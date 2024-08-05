@@ -10,7 +10,7 @@ In this exercise you will learn:
 
 You can create an OData service using CDS to expose entities, provide functions, secure APIs, and much more. You will find detailed reading material in the [Further Reading]() section.
 
-👉 Create a new file in the `srv` folder and name it `embedding-storage.cds`.
+👉 Open the `embedding-storage.cds` file under the `srv` folder.
 
 👉 In that file add a reference to the database schema:
 
