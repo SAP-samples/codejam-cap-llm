@@ -1,4 +1,4 @@
-# 08 - Implement the embedding service
+# Exercise 08 - Implement the embedding service
 
 The embedding service has a service definition that allows CAP to produce an OData service API for the `DocumentChunk` entity and two exposed functions `storeEmbeddings()` and `deleteEmbeddings()`. In this exercise, you will learn how to implement both of these functions by using libraries like [langchain](https://www.npmjs.com/package/@langchain/core) and the [CAP-LLM-Plugin](https://www.npmjs.com/package/cap-llm-plugin).
 

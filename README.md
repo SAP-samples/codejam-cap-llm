@@ -22,6 +22,19 @@ The prerequisites are detailed in a separate [prerequisites](prerequisites.md) f
 
 These are the exercises, each in their directory, sometimes with supporting files and scripts. We will work through the exercises in the order shown here. From a session flow perspective, we are taking the "coordinated" approach:
 
+* [Exercise 01 - Set up your workspace](./exercises/01-set-up-workspace/README.md)
+* [Exercise 02 - Use SAP AI Launchpad to deploy a Large Language Model with Generative AI Hub on SAP AI Core](./exercises/02-deploy-llm-ailaunchpad/README.md)
+* [Exercise 03 - Explore Generative AI Hub in SAP AI Launchpad](./exercises/03-explore-genai-hub/README.md)
+* [Exercise 04 - Explore the SAP HANA Cloud Vector Engine](./exercises/04-explore-sap-hana-cloud-vector-engine/README.md)
+* [Exercise 05 - Learn how to use the destination service on SAP BTP to provide connection details for SAP AI Core](./exercises/05-explore-destination-service/README.md)
+* [Exercise 06 - Create the database schema for the CAP application](./exercises/06-define-db-schema/README.md)
+* [Exercise 07 - Define the embeddings service](./exercises/07-define-embedding-service/README.md)
+* [Exercise 08 - Implement the embedding service](./exercises/08-implement-embedding-service/README.md)
+* [Exercise 09 - Create the CAP-LLM-Plugin connection configuration](./exercises/09-create-connection-configuration/README.md)
+* [Exercise 10 - Define the CAP documentation helper service](./exercises/10-define-cap-doc-helper-service/README.md)
+* [Exercise 11 - Implement the CAP documentation helper service](./exercises/11-implement-cap-doc-helper-service/README.md)
+
+
 The instructor will start you on the first exercise, and that's the only one you should do. You should only proceed to the next exercise once the instructor tells you to.
 
 ## Feedback
