@@ -24,7 +24,7 @@ Choosing the "Full Stack Cloud Application" brings in some predefined extensions
 
 #### Clone this repository
 
-👉 If the Dev Space is started and you're in it, use the "Clone from Git" option in the "Get Started" screen that appears to clone this repository. Follow the subsequent prompts to open the cloned repository; specify `https://github.com/SAP-samples/codejam-cap-llm` as the URL.
+👉 If the Dev Space is started and you're in it, use the "Clone from Git" option in the "Get Started" screen that appears to clone this repository. Follow the subsequent prompts to open the cloned repository; specify `https://github.com/SAP-samples/codejam-cap-llm.git` as the URL.
 
 ![Cloning the repo](assets/clone-the-codejam-repository.png)
 
