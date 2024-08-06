@@ -59,11 +59,11 @@ If you observe closely, the destination configuration points to the destination 
     "CHAT_MODEL_DESTINATION_NAME": "AICoreAzureOpenAIDestination",
     "CHAT_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/<Your-Deployment-ID>",
     "CHAT_MODEL_RESOURCE_GROUP": "<Your-Resource-Group>",
-    "CHAT_MODEL_API_VERSION": "<API-Version>",
+    "CHAT_MODEL_API_VERSION": "2023-05-15",
     "EMBEDDING_MODEL_DESTINATION_NAME": "AICoreAzureOpenAIDestination",
     "EMBEDDING_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/<Your-Deployment-ID>",
     "EMBEDDING_MODEL_RESOURCE_GROUP": "<Your-Resource-Group>",
-    "EMBEDDING_MODEL_API_VERSION": "<API-Version>"
+    "EMBEDDING_MODEL_API_VERSION": "2023-05-15"
 }
 ```
 
@@ -96,11 +96,11 @@ The complete `.cdsrc-private.json` should look like this now:
         "CHAT_MODEL_DESTINATION_NAME": "AICoreAzureOpenAIDestination",
         "CHAT_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/<Your-Deployment-ID>",
         "CHAT_MODEL_RESOURCE_GROUP": "<Your-Resource-Group>",
-        "CHAT_MODEL_API_VERSION": "<API-Version>",
+        "CHAT_MODEL_API_VERSION": "2023-05-15",
         "EMBEDDING_MODEL_DESTINATION_NAME": "AICoreAzureOpenAIDestination",
         "EMBEDDING_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/<Your-Deployment-ID>",
         "EMBEDDING_MODEL_RESOURCE_GROUP": "<Your-Resource-Group>",
-        "EMBEDDING_MODEL_API_VERSION": "<API-Version>"
+        "EMBEDDING_MODEL_API_VERSION": "2023-05-15"
     },
     "AICoreAzureOpenAIDestination": {
       "kind": "rest",

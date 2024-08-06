@@ -8,7 +8,7 @@ In this exercise you will learn:
 
 ## Create the embeddings service CDS definition
 
-You can create an OData service using CDS to expose entities, provide functions, secure APIs, and much more. You will find detailed reading material in the [Further Reading]() section.
+You can create an OData service using CDS to expose entities, provide functions, secure APIs, and much more. You will find detailed reading material in the Further Reading section.
 
 👉 Open the `embedding-storage.cds` file under the `srv` folder.
 
@@ -29,8 +29,7 @@ service EmbeddingStorageService { }
 👉 Within the curly brackets add a projection on the `DocumentChunk` entity to expose it via OData. Add the following lines of code:
 
 ```cds
-entity DocumentChunk as projection on db.DocumentChunk
-                            excluding { embedding };
+entity DocumentChunk as projection on db.DocumentChunk excluding { embedding };
 ```
 
 Using the `excluding` keyword, the embedding field is excluded from the response.
@@ -40,6 +39,20 @@ Using the `excluding` keyword, the embedding field is excluded from the response
 ```cds
     function storeEmbeddings() returns String;
     function deleteEmbeddings() returns String;
+```
+
+Your schema definition should look like that now:
+
+```cds
+using { sap.codejam as db } from '../db/schema';
+
+service EmbeddingStorageService {
+    
+    entity DocumentChunk as projection on db.DocumentChunk excluding { embedding };
+
+    function storeEmbeddings() returns String;
+    function deleteEmbeddings() returns String;
+}
 ```
 
 The `storeEmbeddings()` function will utilize third-party npm packages to load the PDF, extract the information, and chunk it. The CAP-LLM-Plugin creates and sends a request to the embeddings model through Generative AI Hub using the previously defined destination and finally stores the result in the database using CDS queries.

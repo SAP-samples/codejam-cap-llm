@@ -119,11 +119,17 @@ Great! The database is initialized, and the table with all necessary fields is c
 
 ## Examine the database table
 
-There are multiple ways of viewing your database artifacts on SAP HANA Cloud. One would be to use the **SAP HANA Database Explorer** and, of course, the CLI if you don't want to use the UI. If you are interested in using the ** SAP HANA Database Explorer **, you will find a tutorial in the [Further Reading]() section. You should use the CLI today because it is quicker. `#TheFutureIsTerminal`
+There are multiple ways of viewing your database artifacts on SAP HANA Cloud. One would be to use the **SAP HANA Database Explorer** and, of course, the CLI if you don't want to use the UI. If you are interested in using the ** SAP HANA Database Explorer **, you will find a tutorial in the Further Reading section. You should use the CLI today because it is quicker. `#TheFutureIsTerminal`
 
-The BAS instance, as well as the container image you run locally, have the [hana-cli](https://github.com/SAP-samples/hana-developer-cli-tool-example) installed.
+You have to install the [hana-cli](https://github.com/SAP-samples/hana-developer-cli-tool-example?tab=readme-ov-file#requirements--download-and-installation) first.
 
 👉 Open a new terminal or use an existing one.
+
+👉 Run the install command:
+
+```bash
+npm install -g hana-cli
+```
 
 👉 Enter the `hana-cli help` command to get a list of all available commands:
 

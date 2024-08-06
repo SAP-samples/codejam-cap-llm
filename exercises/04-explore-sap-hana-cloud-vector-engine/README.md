@@ -19,7 +19,7 @@ In this exercise, you will learn:
 
 Source: Vectorize your Data: SAP HANA Cloud's Vector Engine for Unified Data Excellence
 
-## How do I enable SAP HANA Cloud Vector Engine
+## How do you enable SAP HANA Cloud Vector Engine
 
 The SAP HANA Cloud vector engine comes bundled with the SAP HANA Cloud instance on the SAP Business Technology Platform. Within your subaccount on SAP BTP, you or the global account admin can assign entitlements to enable the SAP HANA Cloud service plan.
 Vector embeddings are just one of the supported data types for SAP HANA. They can be used for SQL queries and HANA operations.
@@ -51,15 +51,7 @@ The profile `hybrid` relates to the hybrid testing scenario, which allows you to
     "requires": {
       "db": {
         "kind": "hana"
-      },
-      "auth": "dummy",
-      "destinations": true,
-      "[hybrid]": {
-        "db": "hana"
       }
-    },
-    "hana": {
-      "deploy-format": "hdbtable"
     }
   }
 ```

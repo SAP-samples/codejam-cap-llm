@@ -49,7 +49,7 @@ When called, the `getRagResponse` method reaches out to the SAP gen AI Hub and a
 
 ```JavaScript
 module.exports = function() {
-    // function handlers go here
+    // Implementation goes here
 }
 ```
 
@@ -142,7 +142,7 @@ You will implement the function handler responsible for executing the similarity
 ```JavaScript
 this.on('executeSimilaritySearch', async () => {
     try {
-    // implementation goes here
+    // Implementation goes here
     } catch (error) {
         console.log('Error while executing similarity search:', error)
         throw error;

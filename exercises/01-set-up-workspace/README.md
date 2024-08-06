@@ -150,4 +150,4 @@ At this point, you have an environment in which to work through the rest of the 
 
 ---
 
-[Next exercise](../02-explore-sap-hana-cloud-vector-engine/)
+[Next exercise](../02-deploy-llm-ailaunchpad/README.md)

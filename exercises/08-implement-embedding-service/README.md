@@ -44,7 +44,7 @@ This code gives you instances for the above-described packages and defines the f
 
 ```JavaScript
 module.exports = function() {
-
+  // Implementation goes here
 }
 ```
 
@@ -60,7 +60,7 @@ You will implement the function handler within the block of the function export.
 
 ```JavaScript
 this.on ('deleteEmbeddings', async (req) => {
-// ...
+  // Implementation goes here
 })
 ```
 
@@ -119,7 +119,9 @@ Now think about what methods are necessary to implement:
 👉 Add the following method declaration, right below the function export `module.exports = function() { ... }`:
 
 ```JavaScript
-async function loadPDF(fromFilePath) { }
+async function loadPDF(fromFilePath) { 
+  // Implementation goes here
+}
 ```
 
 👉 In the block of the method, initialize a `PDFLoader(filePath)` and subsequently call `load()` on the object:
@@ -150,7 +152,9 @@ async function loadPDF(fromFilePath) {
 👉 Add the following method declaration, right below the `loadPDF(fromFilePath)` method:
 
 ```JavaScript
-async function chunk(pdf) { }
+async function chunk(pdf) { 
+  // Implementation goes here
+}
 ```
 
 Initialize a `RecursiveCharacterTextSplitter` object from the Langchain package. The initializer expects the chunking configuration, which decides how the text splitter executes the chunking.
@@ -167,7 +171,7 @@ const splitter = new RecursiveCharacterTextSplitter({
 
 The splitter uses punctuation to separate the chunks. In that case, the chunk size is set to 500.
 
-👉 Execute the chunking by calling the `splitter.splitDocuments(document)` method:
+👉 Execute the chunking by calling the `splitter.splitDocuments(document)` method right below the splitter initialization:
 
 ```JavaScript
 const textChunks = await splitter.splitDocuments(pdf)
@@ -203,7 +207,9 @@ You implement a helper method to convert the vector embeddings data to a format 
 👉 Add the following method declaration, right below the `chunk(pdf)` method:
 
 ```JavaScript
-function array2VectorBuffer(data) { }
+function array2VectorBuffer(data) { 
+  // Implementation goes here
+}
 ```
 
 👉 Add properties to the method used for calculating the buffer size:
@@ -262,7 +268,9 @@ The plugin requires additional configuration to determine what destination to us
 👉 Add the following method declaration, right below the `array2VectorBuffer(data)` method:
 
 ```JavaScript
-async function retrieveEmbeddings(forChunks) { }
+async function retrieveEmbeddings(forChunks) { 
+  // Implementation goes here
+}
 ```
 
 👉 In the method's block add the connection to the CAP-LLM-Plugin:
@@ -309,9 +317,9 @@ You have implemented all required helper methods and created the text chunk entr
 ```JavaScript
 this.on('storeEmbeddings', async (req) => {
     try {
-
+      // Implementation goes here
     } catch (error) {
-
+      // Error handling goes here
     }
 })
 ```
