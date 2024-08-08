@@ -25,7 +25,7 @@ Let's take a look at the used packages:
 
 👉 Open SAP Business Application Studio or your local VSCode instance.
 
-👉 Open the `embedding-storage.js` file under the `srv` folder.
+👉 Open the `embedding-storage.js` file under the `srv` directory.
 
 👉 Open the file and add the following properties to it:
 

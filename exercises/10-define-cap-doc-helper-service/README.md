@@ -11,7 +11,7 @@ For this exercise, build an OData service definition `CAPDocumentationService` i
 
 Both functions return a `String`.
 
-Create the CDS service definition in a new file under the `srv` folder. After creating the service definition, test the service's availability using the respective cds command; please don't hesitate to let me know. If you need help, refer to [Exercise 07 - Define the embedding service](../07-define-embedding-service/README.md)
+Create the CDS service definition in a new file under the `srv` directory. After creating the service definition, test the service's availability using the respective cds command; please don't hesitate to let me know. If you need help, refer to [Exercise 07 - Define the embedding service](../07-define-embedding-service/README.md)
 
 ## Solution
 

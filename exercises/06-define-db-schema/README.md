@@ -1,6 +1,6 @@
 # Exercise 06 - Create the database schema for the CAP application
 
-The repository you have cloned provides a skeleton project in the project folder. The skeleton project contains an already-set-up CAP application with the fully configured package.json and supporting files for the following exercises.
+The repository you have cloned provides a skeleton project in the project directory. The skeleton project contains an already-set-up CAP application with the fully configured package.json and supporting files for the following exercises.
 
 In this exercise you will learn:
 
@@ -41,7 +41,7 @@ For this project, the schema has exactly one entity; `DocumentChunk`.
 
 The `DocumentChunk` entity contains the text chunks and embeddings for the provided context information. In the next exercise [07 - Define the Embedding Service](../07-define-embedding-service/README.md), you will define a service for the chunking of a PDF document, the [CAP_Documentation_V8.pdf](../../project/cap-documentation-ai-helper/db/data/CAP_Documentation_V8.pdf), and retrieving vector embeddings for the individual chunks. The chunks and vector embeddings will be saved in the `DocumentChunk` entity.
 
-👉 Open the `schema.cds` file under the `db` folder.
+👉 Open the `schema.cds` file under the `db` directory.
 
 👉 In the file define a namespace `namespace sap.codejam`:
 
