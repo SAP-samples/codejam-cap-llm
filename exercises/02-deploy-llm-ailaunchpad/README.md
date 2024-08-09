@@ -6,7 +6,7 @@ capabilities via the Generative AI Hub and is available in the Cloud Foundry env
 ## Open SAP AI Launchpad
 👉 Go to your BTP subaccount **CAP AI CodeJam**. 
 
-👉 Navigate to **Instances and Subscriptions** and select **SAP AI Launchpad** from Subscriptions to open SAP AI Launchpad.
+👉 Navigate to `Instances and Subscriptions` and select `SAP AI Launchpad` from Subscriptions to open SAP AI Launchpad.
 
 ![BTP cockpit](assets/BTP_cockpit.png)
 
