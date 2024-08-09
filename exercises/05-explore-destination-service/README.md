@@ -37,9 +37,9 @@ Feel free to explore the destination on SAP BTP yourself:
 
 👉 Go to the [CodeJam subaccount on SAP BTP](https://emea.cockpit.btp.cloud.sap/cockpit/#/globalaccount/275320f9-4c26-4622-8728-b6f5196075f5/subaccount/6088766d-dcc4-4e56-972f-652baad796be/)
 
-👉 Open the **Instances & Subscriptions** page through the sidebar navigation.
+👉 Open the <b>Instances & Subscriptions</b> page through the sidebar navigation.
 
-👉 Under the section **Instances**, you can find the `cap-ai-codejam-dev` Destination Service instance. Click on the instance link.
+👉 Under the section <b>Instances</b>, you can find the `cap-ai-codejam-dev` Destination Service instance. Click on the instance link.
 
 ![destination-service-codejam-instance](../05-explore-destination-service/assets/01-destination-service-codejam-instance.png)
 
@@ -51,7 +51,7 @@ Feel free to explore the destination on SAP BTP yourself:
 
 As you can see, the configuration mirrors the information from the table above. PLEASE do not change the destination's configuration or click on **Edit** because this will delete the authentication information from the destination and ruin the experience for the other attendees. Let us know if you already clicked it so we can fix it 😉.
 
-After setting up the destination, you can check the connection to see if you have done everything correctly. You can safely ignore an odd `404` in the `Connection successful` message.
+After setting up the destination, you can check the connection to see if you have done everything correctly. You can safely ignore an odd <b>404</b> in the <b>Connection successful</b> message.
 
 As you can see above, you need the `AI API URL` pointing to your SAP AI Core instance's endpoint. The authentication defines `OAuth2ClientCredentials`; The client ID, client secret, and token service URL are in the service key for the SAP AI Core instance.
 
