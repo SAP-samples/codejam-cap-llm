@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../../assets/style.css">
+
 # Exercise 01 - Set up your workspace
 
 At the end of this exercise, you'll have an environment to work in for the duration of this CodeJam, and your environment of choice will load the contents of this repository.
@@ -14,7 +16,7 @@ _Follow the "Alternative environment" subsection below if you want to use VS Cod
 
 #### Create a Dev Space
 
-👉 Via your subscription to the SAP Business Application Studio, create a new Dev Space, choosing the "Full Stack Cloud Application" type, make sure to select "SAP HANA Tools," and then make sure it's started up:
+👉 Via your subscription to the SAP Business Application Studio, create a new Dev Space, choosing the <highlight>"Full Stack Cloud Application"</highlight> type, make sure to select **"SAP HANA Tools,"** and then make sure it's started up:
 
 ![Setting_up_a_dev_space](assets/create-full-stack-cloud-application-dev-space.png)
 
