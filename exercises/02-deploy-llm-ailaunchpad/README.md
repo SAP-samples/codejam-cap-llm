@@ -45,7 +45,7 @@ With Generative AI Hub on SAP AI Core you have access to all major large languag
 
 👉 **Copy** the name of the model you want to deploy the proxy for. 
 
-For CodeJam you will use `gpt-35-turbo`.
+For this CodeJam you will use `gpt-35-turbo`.
 After that you will create a configuration.
 
 👉 Click on `Configurations`.
@@ -84,7 +84,7 @@ gpt-35-turbo
 
 ![Create deployment 1/5](assets/deployments.png)
 
-👉 For the duration select **Standard**. 
+👉 For the duration select `Standard`. 
 
 You can also select `Custom` to have the deployment available for a limited time. 
 
@@ -107,7 +107,7 @@ Using the `URL`, the `client id` and the `client secret` from the SAP AI Core se
 ![Create deployment 5/5](assets/deployments_5.png)
 
 ## Deploy a proxy for an embedding model on SAP AI Core
-👉 To implement a retrieval augmented generation (RAG) use case we also need to deploy an embedding model. The embeddings for our text chunks will then be stored in a vector database (e.g. HANA Vector Store). To deploy the embedding model repeat the steps above using the model name `text-embedding-ada-002` instead of `gpt-35-turbo`: 
+👉 To implement a retrieval augmented generation (RAG) use case we also need to deploy an embedding model. The embeddings for our text chunks will then be stored in a vector database (e.g. [SAP HANA Cloud Vector Engine](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine-guide/sap-hana-cloud-sap-hana-database-vector-engine-guide)). To deploy the embedding model repeat the steps above using the model name `text-embedding-ada-002` instead of `gpt-35-turbo`: 
 ```
 text-embedding-ada-002
 ```

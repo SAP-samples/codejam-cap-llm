@@ -2,7 +2,7 @@
 
 In order to leverage large language models (LLMs) or foundation models in your applications you can use Generative AI Hub on SAP AI Core. Like most other LLM applications Generative AI Hub is pay-per-use. You can switch between them and compare results and pick the model for your use case that works best. SAP has strict data privacy contracts with LLM providers to ensure that your data is safe.
 
-You can access your deployed models either using the Python SDK, the cap-llm-plugin, any programming language or API platform OR you can use the user interface in SAP AI Launchpad. We offer the *Chat* interface or the *Prompt Editor* where you can also save prompts and the model's responses. At SAP, every employee can access an SAP AI Launchpad and query all of the available models.
+You can access your deployed models either using the Python SDK, the cap-llm-plugin, any programming language or API platform OR you can use the user interface in SAP AI Launchpad. We offer the `Chat` interface or the `Prompt Editor` where you can also save prompts and the model's responses. At SAP, every employee can access an SAP AI Launchpad and query all of the available models.
 
 ## Use the Chat in Generative AI Hub
 
@@ -48,7 +48,7 @@ In the `Chat Context` tab right under `Context History` you can set the number o
     3. What is the >fill in the word from step 1< of the country >fill in the word from step 2<.
     ```
 
-👉 Try to add something funny to the **System Message** like "always respond like a pirate" and try the prompts again. You can also ask it to speak more technical like a developer or rather shiny like Marketing.
+👉 Try to add something funny to the `System Message` like "always respond like a pirate" and try the prompts again. You can also ask it to speak more technical like a developer or rather shiny like Marketing.
 
 ## Use the Prompt Editor in Generative AI Hub
 The `Prompt Editor` is useful if you want to store a prompt and the response to come back to it later or compare prompts. Often you can identify tasks that an LLM can help you with on a regular basis. In that case you cn also save different versions of the prompt that works well and you do not need to write the prompt again every time. The parameters you were able to set in the `Chat` you can also set here. You can also see the number of tokens your prompt used below the response.
