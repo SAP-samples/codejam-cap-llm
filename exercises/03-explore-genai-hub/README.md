@@ -10,11 +10,17 @@ You can access your deployed models either using the Python SDK, the cap-llm-plu
 
 👉 Click `Configure` and have a look at the available fields. 
 
-Under *Selected Model* you will find all the deployed models. If there is no deployment this will be empty and you will not be able to chat. If you have more than one large language model deployed you will be able to select which one you want to use here. 
+Under `Selected Model` you will find all the deployed models. If there is no deployment this will be empty and you will not be able to chat. If you have more than one large language model deployed you will be able to select which one you want to use here. 
 
-The parameter *Frequency Penalty* allows you to penalize words that appear too frequently in the text, leading to the model not sounding too robotic. Similarly the higher the *Presence Penalty*, the more likely the model will talk about new topics, as you penalize words that have appeared in the text so far. With *Max Tokens* you can set the size of the input and output of the model. Where tokens are not words but rather 4-5 characters long. With the *Temperature* parameter you can set how creative the model should sound so flexible the model is allowed to be in selecting the next token in the sequence.
+The parameter `Frequency Penalty` allows you to penalize words that appear too frequently in the text, leading to the model not sounding too robotic. 
 
-👉 Increase **Max Tokens** to the maximum amount by pulling the slide bar all the way to the right.
+Similarly the higher the `Presence Penalty`, the more likely the model will talk about new topics, as you penalize words that have appeared in the text so far. 
+
+With `Max Tokens` you can set the size of the input and output of the model. Where tokens are not words but rather 4-5 characters long. 
+
+With the `Temperature` parameter you can set how creative the model should sound so flexible the model is allowed to be in selecting the next token in the sequence.
+
+👉 Increase `Max Tokens` to the maximum amount by pulling the slide bar all the way to the right.
 
 ![Chat 1/2](assets/chat.png)
 
@@ -45,9 +51,9 @@ In the `Chat Context` tab right under `Context History` you can set the number o
 👉 Try to add something funny to the **System Message** like "always respond like a pirate" and try the prompts again. You can also ask it to speak more technical like a developer or rather shiny like Marketing.
 
 ## Use the Prompt Editor in Generative AI Hub
-The *Prompt Editor* is useful if you want to store a prompt and the response to come back to it later or compare prompts. Often you can identify tasks that an LLM can help you with on a regular basis. In that case you cn also save different versions of the prompt that works well and you do not need to write the prompt again every time. The parameters you were able to set in the *Chat* you can also set here. You can also see the number of tokens your prompt used below the response.
+The `Prompt Editor` is useful if you want to store a prompt and the response to come back to it later or compare prompts. Often you can identify tasks that an LLM can help you with on a regular basis. In that case you cn also save different versions of the prompt that works well and you do not need to write the prompt again every time. The parameters you were able to set in the `Chat` you can also set here. You can also see the number of tokens your prompt used below the response.
 
-👉 Go over to **Prompt Editor**, select a model and set **Max Tokens** to the maximum again
+👉 Go over to `Prompt Editor`, select a model and set `Max Tokens` to the maximum again
 
 👉 Paste the example below and click **Run** to try out the example below. 
 
