@@ -12,7 +12,7 @@ Follow one of the two subsections here, as appropriate: either for a [primary en
 
 ### Primary environment: A Dev Space in the SAP Business Application Studio
 
-_Follow the <html><b>Alternative environment</b></html> subsection below if you want to use VS Code and a container image._
+_Follow the <b>Alternative environment</b> subsection below if you want to use VS Code and a container image._
 
 #### Create a Dev Space
 
