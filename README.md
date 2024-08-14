@@ -14,6 +14,8 @@ During this event, you'll become acquainted with the theory behind genAI and SAP
 
 While working through the exercises, you'll become comfortable creating CDS-based service definitions and integrating them into the SAP Business Technology Platform (BTP) and SAP AI Core Foundation Models.
 
+![end2end-solution-diagram](../assets/architecture/End2End_Vector_Embedding_Solution_Diagram.png)
+
 ## Session prerequisites
 
 Certain prerequisites must be sorted out before the day of the CodeJam in order to get the most from this CodeJam and work through the exercises.
