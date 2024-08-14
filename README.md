@@ -1,5 +1,7 @@
 # Expose capabilities of SAP AI Core with the SAP Cloud Application Programming Model
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cap-ai-vector-engine-sample)](https://api.reuse.software/info/github.com/SAP-samples/codejam-cap-llm)
+
 ## Description
 
 This repository contains the material for the "Expose SAP AI Core capabilities with the SAP Cloud Application Programming Model" CodeJam, which the SAP Developer Advocates brought to you.
