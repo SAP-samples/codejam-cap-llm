@@ -113,10 +113,6 @@ We'll work primarily within the `project/cap-documentation-ai-helper` directory 
 
 👉 Make sure you're in the `project/cap-documentation-ai-helper` directory (where `package.json` lives):
 
-```bash
-cd $HOME/projects/cap-llm-codejam/project/cap-documentation-ai-helper/
-```
-
 👉 Now install the dependencies thus:
 
 ```bash
