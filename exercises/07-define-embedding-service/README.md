@@ -63,7 +63,7 @@ You will implement that in the next exercise. You're getting closer to seeing th
 
 ## Inspect your service
 
-You can run `cds watch --profile hybrid` or `npm run hana` to run the service locally and establish a connection to SAP HANA Cloud.
+You can run `cds watch --profile hybrid` or `npm run watch` to run the service locally and establish a connection to SAP HANA Cloud.
 
 👉 Open a new terminal or use an existing one
 

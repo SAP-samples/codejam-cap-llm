@@ -5,7 +5,7 @@ The repository you have cloned provides a skeleton project in the project direct
 In this exercise you will learn:
 
 * How to explore the package.json and it's contents.
-* How to define the database schema for the HANA database, and you will.
+* How to define the database schema for the HANA database.
 * How to build and deploy the schema to your HDI container.
 
 ## Explore the package.json file and its contents
