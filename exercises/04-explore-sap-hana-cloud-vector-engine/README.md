@@ -74,7 +74,7 @@ The CDS CLI can bind your application to the SAP HANA Schemas & HDI Containers i
 cf login -a https://api.cf.us10.hana.ondemand.com
 ```
 
-👉 Create a binding for your CAP application:
+👉 Create a binding for your CAP application (replace the placeholder with a meaningful name):
 
 ```bash
 cds bind -2 cap-ai-codejam-hdb:<Your-service-key-name>

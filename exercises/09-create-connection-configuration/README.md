@@ -22,26 +22,26 @@ In this exercise you will learn:
 
 👉 Open the `.cdsrc-private.json` file.
 
-👉 Insert the destination configuration into the JSON. Make sure it is defined in the `requires` object right after the closing bracket of the `hybrid` object array.
+👉 Insert the destination configuration into the JSON. Make sure it is defined in the `hybrid` object array.
 
 ```JSON
 {
   "requires": {
     "[hybrid]": {
       "db": {
-        ...
+        //...
       },
       "destinations": {
-        ...
-      }
-    },
-    "AICoreAzureOpenAIDestination": {
-      "kind": "rest",
-      "credentials": {
-        "destination": "codejam-ai-dest",
-        "requestTimeout": "300000"
-      }
-    },
+        //...
+      },
+      "AICoreAzureOpenAIDestination": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "codejam-ai-dest",
+          "requestTimeout": "300000"
+        }
+      },
+    }
   }
 }
 ```
@@ -57,12 +57,12 @@ If you observe closely, the destination configuration points to the destination 
 ```JSON
 "GENERATIVE_AI_HUB": {
     "CHAT_MODEL_DESTINATION_NAME": "AICoreAzureOpenAIDestination",
-    "CHAT_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/<Your-Deployment-ID>",
-    "CHAT_MODEL_RESOURCE_GROUP": "<Your-Resource-Group>",
+    "CHAT_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/<your-deployment-id>",
+    "CHAT_MODEL_RESOURCE_GROUP": "<your-resource-group>",
     "CHAT_MODEL_API_VERSION": "2023-05-15",
     "EMBEDDING_MODEL_DESTINATION_NAME": "AICoreAzureOpenAIDestination",
-    "EMBEDDING_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/<Your-Deployment-ID>",
-    "EMBEDDING_MODEL_RESOURCE_GROUP": "<Your-Resource-Group>",
+    "EMBEDDING_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/<your-deployment-id>",
+    "EMBEDDING_MODEL_RESOURCE_GROUP": "<your-resource-group>",
     "EMBEDDING_MODEL_API_VERSION": "2023-05-15"
 }
 ```
@@ -75,38 +75,50 @@ The complete `.cdsrc-private.json` should look like this now:
     "[hybrid]": {
       "db": {
         "binding": {
-          // ...
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.us10.hana.ondemand.com",
+          "org": "<org-name>",
+          "space": "<space-name>",
+          "instance": "cap-ai-codejam-hdb",
+          "key": "<your-service-key>",
+          "resolved": false
         },
-        "kind": "hana",
+        "kind": "hana-cloud",
         "vcap": {
           "name": "db"
         }
       },
       "destinations": {
         "binding": {
-          // ...
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.us10.hana.ondemand.com",
+          "org": "<org-name>",
+          "space": "<space-name>",
+          "instance": "cap-ai-codejam-dev",
+          "key": "<your-service-key>",
+          "resolved": false
         },
         "kind": "destinations",
         "vcap": {
           "name": "destinations"
         }
-      }
-    },
-    "GENERATIVE_AI_HUB": {
+      },
+      "AICoreAzureOpenAIDestination": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "codejam-ai-dest",
+          "requestTimeout": "300000"
+        }
+      },
+      "GENERATIVE_AI_HUB": {
         "CHAT_MODEL_DESTINATION_NAME": "AICoreAzureOpenAIDestination",
-        "CHAT_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/<Your-Deployment-ID>",
-        "CHAT_MODEL_RESOURCE_GROUP": "<Your-Resource-Group>",
+        "CHAT_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/<your-deployment-id>",
+        "CHAT_MODEL_RESOURCE_GROUP": "<your-resource-group>",
         "CHAT_MODEL_API_VERSION": "2023-05-15",
         "EMBEDDING_MODEL_DESTINATION_NAME": "AICoreAzureOpenAIDestination",
-        "EMBEDDING_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/<Your-Deployment-ID>",
-        "EMBEDDING_MODEL_RESOURCE_GROUP": "<Your-Resource-Group>",
+        "EMBEDDING_MODEL_DEPLOYMENT_URL": "/v2/inference/deployments/<your-deployment-id>",
+        "EMBEDDING_MODEL_RESOURCE_GROUP": "<your-resource-group>",
         "EMBEDDING_MODEL_API_VERSION": "2023-05-15"
-    },
-    "AICoreAzureOpenAIDestination": {
-      "kind": "rest",
-      "credentials": {
-        "destination": "codejam-ai-dest",
-        "requestTimeout": "300000"
       }
     }
   }
