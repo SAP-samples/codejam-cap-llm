@@ -35,7 +35,7 @@ You should configure the destination for a typical SAP AI Core connection like t
 
 Feel free to explore the destination on SAP BTP yourself:
 
-👉 Go to the [CodeJam subaccount on SAP BTP](https://emea.cockpit.btp.cloud.sap/cockpit/#/globalaccount/275320f9-4c26-4622-8728-b6f5196075f5/subaccount/6088766d-dcc4-4e56-972f-652baad796be/)
+👉 Go to the [CodeJam subaccount on SAP BTP]()
 
 👉 Open the <b>Instances & Subscriptions</b> page through the sidebar navigation.
 
