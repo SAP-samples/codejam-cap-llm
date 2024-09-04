@@ -30,8 +30,8 @@
   "cds": {
     "requires": {
       "[hybrid]": {
-            "db":"hana"
-      }      
+        "db": "hana"
+      }
     }
   }
 }

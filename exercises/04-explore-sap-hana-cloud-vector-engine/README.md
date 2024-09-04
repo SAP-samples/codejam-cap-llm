@@ -34,7 +34,7 @@ You must configure your CAP project for SAP HANA deployment. You can do this by 
 
 👉 Open a new terminal if not already open.
 
-👉 Execute the `cds add hana --profile hybrid` command:
+👉 Execute the `cds add hana --for hybrid` command:
 
 ```bash
 cds add hana --for hybrid
@@ -51,9 +51,9 @@ The profile `hybrid` relates to the hybrid testing scenario, which allows you to
 ```JSON
 "cds": {
     "requires": {
-      "db": {
-        "kind": "hana"
-      }
+      "[hybrid]": {
+            "db":"hana"
+      }      
     }
   }
 ```
