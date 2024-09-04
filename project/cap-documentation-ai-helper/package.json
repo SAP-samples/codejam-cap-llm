@@ -26,5 +26,12 @@
     "start": "cds-serve",
     "watch": "cds watch --profile hybrid --livereload false",
     "sqlite": "cds watch --profile sqlite --livereload false"
+  },
+  "cds": {
+    "requires": {
+      "[hybrid]": {
+            "db":"hana"
+      }      
+    }
   }
 }
