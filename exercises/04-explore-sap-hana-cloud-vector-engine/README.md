@@ -57,6 +57,19 @@ The profile `hybrid` relates to the hybrid testing scenario, which allows you to
     }
   }
 ```
+## Create your HDI container for HANA deployment
+
+```bash
+cf create-service hana hdi-shared <your hdi-container name>
+```
+
+The creation of the hdi container takes some time. You can check the proccess via the following command:
+
+```bash
+cf services
+```
+
+If the service creation is completed you can go to the next step to create the binding.
 
 ## Bind local service to SAP HANA Schemas & HDI Containers instance for hybrid testing
 
@@ -77,10 +90,8 @@ cf login -a https://api.cf.us10.hana.ondemand.com
 👉 Create a binding for your CAP application (replace the placeholder with a meaningful name):
 
 ```bash
-cds bind -2 cap-ai-codejam-hdb:<Your-service-key-name>
+cds bind -2 <your-hdi-container-name>:<your-service-key-name>
 ```
-
-You can find the binding as a service key on the `cap-ai-codejam-hdb` instance on SAP BTP and in the `.cdsrc-private.json` file.
 
 ![explore-sap-hana-cloud-vector-engine-binding-config](./assets/02-explore-sap-hana-cloud-vector-engine-binding-config.png)
 
