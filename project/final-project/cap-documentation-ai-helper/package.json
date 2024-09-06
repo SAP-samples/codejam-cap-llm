@@ -22,7 +22,6 @@
   "scripts": {
     "build": "cds build",
     "build_sqlite": "cds deploy --profile sqlite",
-    "hana": "cds deploy --to hana:cap-ai-codejam-hdb --auto-undeploy",
     "start": "cds-serve",
     "watch": "cds watch --profile hybrid --livereload false",
     "sqlite": "cds watch --profile sqlite --livereload false"
