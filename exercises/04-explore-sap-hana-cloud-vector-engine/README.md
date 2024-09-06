@@ -59,11 +59,15 @@ The profile `hybrid` relates to the hybrid testing scenario, which allows you to
 ```
 ## Create your HDI container for HANA deployment
 
+For this Codejam each of you will create their own HDI container.
+
+Use the Cloud Foundry CLI to create your HDI container (replace the placeholder with a meaningful name):
+
 ```bash
 cf create-service hana hdi-shared <your hdi-container name>
 ```
 
-The creation of the hdi container takes some time. You can check the proccess via the following command:
+The creation of the HDI container takes some time. You can check the proccess via the following command:
 
 ```bash
 cf services
