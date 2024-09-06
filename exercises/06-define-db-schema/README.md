@@ -100,7 +100,7 @@ cf login
 👉 If you want to manually build and deploy the artifacts, call the `cds deploy --to hana:<hdi-instance>` command:
 
 ```bash
-cds deploy --to hana:cap-ai-codejam-hdb --auto-undeploy
+cds deploy --to hana:<your-hdi-container-name> --auto-undeploy
 ```
 
 The `--auto-undeploy` argument causes the database to adjust to the new runtime definition of your database artifacts.
