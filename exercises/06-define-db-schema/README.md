@@ -97,19 +97,13 @@ If the reply from the CLI tells you to log in again simply enter `cf login`. Thi
 cf login
 ```
 
-👉 If you want to manually build and deploy the artifacts, call the `cds deploy --to hana:<hdi-instance>` command:
+👉 If you want to manually build and deploy the artifacts, call the `cds deploy --to hana:<hdi-instance>` command (Use the HDI container name from Exercise 04):
 
 ```bash
 cds deploy --to hana:<your-hdi-container-name> --auto-undeploy
 ```
 
 The `--auto-undeploy` argument causes the database to adjust to the new runtime definition of your database artifacts.
-
-You can also use the provided script:
-
-```bash
-npm run hana
-```
 
 You will see a big terminal output listing the different steps of the building and deployment process.
 
