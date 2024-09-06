@@ -41,6 +41,8 @@ These are the exercises, each in their directory, sometimes with supporting file
 
 The instructor will start you on the first exercise, and that's the only one you should do. You should only proceed to the next exercise once the instructor tells you to.
 
+For the Surge event you will use this [BTP subaccount](https://emea.cockpit.btp.cloud.sap/cockpit/#/globalaccount/dfe5a086-f733-4955-8025-542e118e3e69/subaccount/8d188125-e96e-4e02-96d2-28e4b8606f06/subaccountoverview)
+
 ## Feedback
 
 If you can spare a couple of minutes at the end of the session, please provide feedback to help us improve next time.
