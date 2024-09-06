@@ -79,6 +79,8 @@ You can see that your CAP service is creating and establishing a connection to y
 
 👉 Inspect your service by opening `http://localhost:4004` in your web browser.
 
+> If you are using SAP Business Application Studio you can not directly call `localhost` because BAS is doing a URL rewrite to `port` instead of `localhost`. Command + click the `localhost:4004` shown in the terminal after executing the `cds watch` command.
+
 ![define-embedding-service-localhost](./assets/02-define-embedding-service-localhost.png)
 
 You will get a UI out of the box. It allows you to inspect your OData service, get the API documentation, and call the different endpoints.
