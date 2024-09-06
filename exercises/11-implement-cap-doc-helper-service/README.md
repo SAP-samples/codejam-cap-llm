@@ -3,19 +3,19 @@
 Implementing the CAP documentation helper service follows the same principle as the embedding storage service. You are using the `module.exports = function() { }` to expose the function handlers.
 
 You must implement the function handlers for:
-
 * `getRagResponse()` and
-* `executeSimilaritySearc
+* `executeSimilaritySearch()`
+
 Both methods require information on:
 * The time: The table name is the name of the `SAP_CODEJAM_DOCUMENTCHUNK` table.
-* The embedding column                      : The embedding column is defined in the database schema. `EMBEDDING`.
-* The content column                        : The content column is defined in the database schema. `TEXT_CHUNK`.
-* A defined user query                      : The query is usually transmitted through a UI or API parameter. For this CodeJam, it is hard coded.
+* The embedding column: The embedding column is defined in the database schema. `EMBEDDING`.
+* The content column: The content column is defined in the database schema. `TEXT_CHUNK`.
+* A defined user query: The query is usually transmitted through a UI or API parameter. For this CodeJam, it is hard coded.
 * (Optional) instructions for the chat model: A chat model can receive instructions on answering the user query. You could tell it to respond by speaking like a pirate *Arrr* 🏴‍☠️.
 
 In this exercise, you will learn the following:
 
-* How to retrieve an RAG response using the CAP-LLM-Plugin?
+* How to retrieve an RAG response using the CAP-LLM-Plugin.
 * How to execute a similarity search using the CAP-LLM-Plugin.
 
 ## Define the needed properties
