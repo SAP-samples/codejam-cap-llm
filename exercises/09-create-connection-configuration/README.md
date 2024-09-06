@@ -40,7 +40,7 @@ In this exercise you will learn:
           "destination": "codejam-ai-dest",
           "requestTimeout": "300000"
         }
-      },
+      }
     }
   }
 }
