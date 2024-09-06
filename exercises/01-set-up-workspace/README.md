@@ -49,35 +49,15 @@ Once VS Code has started and opened the directory, it should notice the [dev con
 
 ![The dialog prompting you to "Reopen in Container"](assets/reopen-in-container.png)
 
-At this stage, once VS Code has reopened, you need to do one more thing: both primary and alternative environments are aligned (and so that the instructions in this CodeJam content don't need to differ between them). When you use the <b>git clone</b> facility in a Dev Space, the repo is cloned into a directory called `projects/`, which itself lives in your home directory; in other words, it gets cloned to `/home/user/projects/<the-repo>.` The equivalent repo in a VS Code dev container will be in `/workspaces/<the-repo>`. So, let's align the repo location in your VS Code dev container environment to the Dev Space one.
+## Navigate to the project folder
 
-👉 Create a `projects/` directory in your dev container user's home directory, and then create a symbolic link to the repo in there:
+To work through the exercises make sure you are in the project folder. To do so, use the terminal to change directory into `codejam-cap-llm/project/cap-documentation-ai-helper/`.
 
-```shell
-mkdir -p $HOME/projects/ \
-  && ln -s /workspaces/codejam-cap-llm/ $HOME/projects/
+From the root of the Codejam repository change directory:
+
+```bash
+cd project/cap-documentation-ai-helper 
 ```
-
-> If the `projects/` directory already exists, for some reason, then the `mkdir` command would usually fail and emit a message; this would also mean that the subsequent `ln` command would not run (as they're connected via `&&`). So you can use the `-p` option to tell `mkdir` not to complain.
-
-Ensure that everything is OK by checking that you can see the directories inside the repo via this new `projects/` directory in your dev container user's home directory. Here's an example of what you might expect to see:
-
-```shell
-$ find -L $HOME/projects -maxdepth 2 -type d
-/home/node/projects
-/home/node/projects/codejam-cap-llm
-/home/node/projects/codejam-cap-llm/.devcontainer
-/home/node/projects/codejam-cap-llm/.git
-/home/node/projects/codejam-cap-llm/.github
-/home/node/projects/codejam-cap-llm/.reuse
-/home/node/projects/codejam-cap-llm/.vscode
-/home/node/projects/codejam-cap-llm/LICENSES
-/home/node/projects/codejam-cap-llm/assets
-/home/node/projects/codejam-cap-llm/exercises
-/home/node/projects/codejam-cap-llm/project
-```
-
-Now, you should be all set. You are ready to explore service integration with CAP in your dev container.
 
 ## Check the installation of the CDS development kit
 
