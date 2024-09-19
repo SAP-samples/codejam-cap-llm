@@ -59,21 +59,25 @@ The profile `hybrid` relates to the hybrid testing scenario, which allows you to
 ```
 ## Create your HDI container for HANA deployment
 
-For this Codejam each of you will create their own HDI container.
+For this CodeJam each of you will create their own HDI container.
 
-Use the Cloud Foundry CLI to create your HDI container (replace the placeholder with a meaningful name):
+Use the Cloud Foundry CLI to create your HDI container **(replace the placeholder with a meaningful name)**:
 
 ```bash
 cf create-service hana hdi-shared <your hdi-container name>
 ```
 
-The creation of the HDI container takes some time. You can check the proccess via the following command:
+The creation of the HDI container takes some time. You can check the process via the following command:
 
 ```bash
 cf services
 ```
 
+![explore-sap-hana-cloud-vector-engine-create-hdi-instance](./assets/02-explore-sap-hana-cloud-vector-engine-create-hdi-instance.png)
+
 If the service creation is completed you can go to the next step to create the binding.
+
+![explore-sap-hana-cloud-vector-engine-create-hdi-instance](./assets/04-explore-sap-hana-cloud-vector-engine-create-hdi-instance.png)
 
 ## Bind local service to SAP HANA Schemas & HDI Containers instance for hybrid testing
 
@@ -91,7 +95,7 @@ The CDS CLI can bind your application to the SAP HANA Schemas & HDI Containers i
 cf login -a https://api.cf.us10.hana.ondemand.com
 ```
 
-👉 Create a binding for your CAP application (replace the placeholder with a meaningful name):
+👉 Create a binding for your CAP application **(replace the placeholder with a meaningful name)**:
 
 ```bash
 cds bind -2 <your-hdi-container-name>:<your-service-key-name>
