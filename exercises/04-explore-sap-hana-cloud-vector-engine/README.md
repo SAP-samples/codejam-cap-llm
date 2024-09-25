@@ -73,11 +73,11 @@ The creation of the HDI container takes some time. You can check the process via
 cf services
 ```
 
-![explore-sap-hana-cloud-vector-engine-create-hdi-instance](./assets/02-explore-sap-hana-cloud-vector-engine-create-hdi-instance.png)
+![explore-sap-hana-cloud-vector-engine-create-hdi-instance](./assets/04-explore-sap-hana-cloud-vector-engine-create-hdi-instance.png)
 
 If the service creation is completed you can go to the next step to create the binding.
 
-![explore-sap-hana-cloud-vector-engine-create-hdi-instance](./assets/04-explore-sap-hana-cloud-vector-engine-create-hdi-instance.png)
+![explore-sap-hana-cloud-vector-engine-create-hdi-instance](./assets/03-explore-sap-hana-cloud-vector-engine-create-hdi-instance-done.png)
 
 ## Bind local service to SAP HANA Schemas & HDI Containers instance for hybrid testing
 
