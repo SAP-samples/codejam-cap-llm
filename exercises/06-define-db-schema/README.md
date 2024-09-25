@@ -22,11 +22,8 @@ LangChain is the leading library for generative AI development and compatible wi
 
 👉 Examine the listed scripts.
 
-![define-db-schema-package-json](./assets/02-define-db-schema-package-json-scripts.png)
-
 * `build`       : Runs the `cds build` command to build the CAP project.
 * `build_sqlite`: Builds the CAP application for usage on a SQLite database.
-* `hana`        : Deploys the database artifacts to your HDI container and un-deploys any delta to your current configuration in case artifacts are already deployed. Make sure to replace the instance name with your specific HDI instance.
 * `start`       : Starts the CAP application.
 * `watch`       : Deploys your changes specific to your service to localhost using the hybrid profile establishing a connection to your real HDI container instance.
 * `sqlite`      : Deploys your changes specific to your service to localhost using the hybrid profile establishing a connection to a real SQLite database.
