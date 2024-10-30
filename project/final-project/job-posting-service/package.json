@@ -1,0 +1,41 @@
+{
+  "name": "cap-ai-vector-engine-example",
+  "version": "1.0.0",
+  "description": "A CAP & AI Example using the CAP LLM Plugin.",
+  "repository": "https://github.tools.sap/D061070/cap-ai-vector-engine-example.git",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@sap-cloud-sdk/http-client": "^3.14.0",
+    "@sap/cds": "^7.6.3",
+    "@sap/cds-hana": "^2",
+    "@sap-ai-sdk/orchestration": "1.0.0",
+    "@sap-ai-sdk/langchain": "1.2.0",
+    "@langchain/community": "0.3.11",
+    "dotenv": "16.4.5",
+    "pdf-parse": "^1.1.1",
+    "cors": "^2.8.5",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "1.7.3",
+    "@sap/cds-dk": "8.0.2",
+    "@sap-cloud-sdk/eslint-config": "3.21.0",
+    "eslint": "8.57.1"
+  },
+  "scripts": {
+    "build": "cds build",
+    "build_sqlite": "cds deploy --profile sqlite",
+    "start": "cds-serve",
+    "watch": "cds watch --profile hybrid --livereload false",
+    "sqlite": "cds watch --profile sqlite --livereload false"
+  },
+  "cds": {
+    "requires": {
+      "[hybrid]": {
+            "db":"hana"
+      }      
+    }
+  }
+}
