@@ -6,6 +6,8 @@
 
 This repository contains the material for the "Expose SAP AI Core capabilities with the SAP Cloud Application Programming Model" CodeJam, which the SAP Developer Advocates brought to you.
 
+> NOTE: The state of the sample code in this repository is currently using the CAP-LLM-Plugin, we are working on updating this to the SAP Cloud SDK for AI. 
+
 ## Overview
 
 This CodeJam introduces attendees to aspects of exposing generative artificial intelligence (genAI) capabilities to execute tasks in a business context.
