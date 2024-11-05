@@ -96,7 +96,7 @@ We'll work primarily within the `project/cap-documentation-ai-helper` directory 
 👉 Now install the dependencies thus:
 
 ```bash
-npm install
+npm ci
 ```
 
 You can double-check what's installed with `npm list`, which should show you something similar to this:
