@@ -440,9 +440,20 @@ This will add HTTP calls to create, update and delete entities for your OData en
 
 👉 Open the newly created `JobPostingsService.http` file.
 
-👉 Add the following lines of code to be able to call the different OData functions:
+👉 Add the following lines of code to the end of the file:
 
+```bash
+### Create a Job Posting using the chat model
+GET {{server}}/odata/v4/job-posting-service/orchestrateJobPostingCreation(user_query='Create a Job Posting for a JavaScript Developer')
+Content-Type: application/json
+{{auth}}
 ```
+
+## Experiment with the orchestration service filters
+
+You spend a lot of time implementing the code to get the orchestration service up and running. You have understood how the API works and how you can integrate it into a CAP application service.
+
+At this point, I would encourage you to go back to the service implementation and play around with the different content filter options on the orchestration service. See how the filter level changes make the chat model respond differently. This will give you a better understanding on how you can utilize content filters to make sure that your AI services behave ethical.
 
 ## Summary
 
@@ -455,6 +466,3 @@ At this point the chat model is not taking your company specific information int
 - [Query Language (CQL)](https://cap.cloud.sap/docs/cds/cql)
 - [@sap-ai-sdk/orchestration - Documentation](https://github.com/SAP/ai-sdk-js/blob/main/packages/orchestration/README.md)
 - [CAP - Actions & Functions](https://cap.cloud.sap/docs/guides/providing-services#actions-functions)
-
----
-```

@@ -14,20 +14,20 @@ To establish connection from your CAP application to each of the AI relevant ser
 
 - For production, the SDK recommends to create a binding between your application and the SAP AI Core service instance. The binding is more secure as it is not exposing the authentication details in clear text.
 
-For this Codejam you will use the first approach by providing the needed configuration details via the `.env` file. The file is pre-populated with the correct data for you. The authentication details are only valid during the duration of this Codejam and will be invalidated right after.
+For this Codejam you will use the first approach by providing the needed configuration details via the `.env` file. You can find the details for the configuration in the service key for the SAP AI Core instance. The authentication details are only valid during the duration of this Codejam and will be invalidated right after.
 
 ## Inspect the .env file
 
-To get an idea of how such a configuration looks like, go ahead and open the [.env](../../project/job-posting-service/.env)
+👉 Go ahead and open the [.env](../../project/job-posting-service/.env)
 
 You can see that the `AICORE_SERVICE_KEY` is a JSON object that contains four necessary fields:
 
 - **clientid**: The client ID for the OAuth authentication flow, Client Credentials.
 - **clientsecret**: The client secret for the OAuth authentication flow, Client Credentials.
-- **url**: The OAuth authentication URL.
-- **serviceurls**: The SAP AI Core service URLs.
+- **url**: The OAuth authentication URL. You need to add `/oauth/token` add the end of the URL to direct to the OAuth token server.
+- **serviceurls**:**AI_API_URL**: The SAP AI Core service URLs.
 
-You can close the file and proceed with the exercises.
+👉 Fill in the information needed using the service key.
 
 ## Summary
 

@@ -62,6 +62,20 @@ The profile `hybrid` relates to the hybrid testing scenario, which allows you to
 
 For this CodeJam each of you will create their own HDI container.
 
+👉 Open a terminal or use an existing one.
+
+👉 Log into SAP BTP using the Cloud Foundry CLI:
+
+```bash
+cf login -a https://api.cf.us10.hana.ondemand.com
+```
+
+Or if you want to use the SSO login option:
+
+```bash
+cf login -a https://api.cf.us10.hana.ondemand.com --sso
+```
+
 Use the Cloud Foundry CLI to create your HDI container **(replace the placeholder with a meaningful name)**:
 
 ```bash
@@ -89,12 +103,6 @@ The CDS CLI can bind your application to the SAP HANA Schemas & HDI Containers i
 👉 Open the project in SAP Business Application Studio (BAS) or VSCode.
 
 👉 Open a new terminal if not already open.
-
-👉 Log into the provided Cloud Foundry instance and authenticate using the provided credentials:
-
-```bash
-cf login -a https://api.cf.us10.hana.ondemand.com
-```
 
 👉 Create a binding for your CAP application **(replace the placeholder with a meaningful name)**:
 

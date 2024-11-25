@@ -88,3 +88,9 @@ Content-Type: application/json
 DELETE {{server}}/odata/v4/job-posting-servie/JobPostings/24090550-5f0a-40a1-901f-108a241c6d0c
 Content-Type: application/json
 {{auth}}
+
+
+### Create a Job Posting using the chat model
+GET {{server}}/odata/v4/job-posting-service/orchestrateJobPostingCreation(user_query='Create a Job Posting for a JavaScript Developer')
+Content-Type: application/json
+{{auth}}

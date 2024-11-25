@@ -98,7 +98,7 @@ cf target
 
 ![define-db-schema-check-cf-login](./assets/03-define-db-schema-check-cf-login.png)
 
-If the reply from the CLI tells you to log in again simply enter `cf login`. This time you don't have to specify the API endpoint because it is stored from the previous login.
+If the reply from the CLI tells you to log in again simply enter `cf login`.
 
 ```bash
 cf login
