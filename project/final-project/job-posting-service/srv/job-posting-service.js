@@ -4,10 +4,19 @@ import * as DBUtils from './helper/db-utils.js';
 const wrongInputError = 'Required input parameters not supplied';
 
 export default function () {
+  this.on('executeJobPostingRAG', async req => {
+    const user_query = req.data.user_query;
+    validateInputParameter(user_query);
+
+    let entry = await DBUtils.createJobPosting(
+      await AIHelper.executeRAG(user_query)
+    );
+    await DBUtils.insertJobPosting(entry);
+  });
+
   this.on('createJobPosting', async req => {
     const user_query = req.data.user_query;
     validateInputParameter(user_query);
-    console.log(user_query);
     let entry = await DBUtils.createJobPosting(
       await AIHelper.orchestrateJobPostingCreation(user_query)
     );

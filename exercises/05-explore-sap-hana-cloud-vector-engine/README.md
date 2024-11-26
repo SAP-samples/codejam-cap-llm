@@ -62,7 +62,7 @@ The profile `hybrid` relates to the hybrid testing scenario, which allows you to
 
 For this CodeJam each of you will create their own HDI container.
 
-👉 Open a terminal or use an existing one.
+👉 Open a new terminal if not already open.
 
 👉 Log into SAP BTP using the Cloud Foundry CLI:
 

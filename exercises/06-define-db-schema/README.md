@@ -88,7 +88,7 @@ The entity defines three fields:
 
 Because you created a binding to our HDI container in exercise 02 you have all configurations in place to deploy HANA database artifacts to the instance. To do so you need to build the artifacts first enter the `cds deploy` command.
 
-👉 Open a terminal or use an existing one.
+👉 Open a new terminal if not already open.
 
 👉 Make sure that you are still connected to the Cloud Foundry instance by checking the connection details:
 
@@ -122,7 +122,7 @@ Great! The database is initialized, and the table with all necessary fields is c
 
 ## Examine the database table
 
-There are multiple ways of viewing your database artifacts on SAP HANA Cloud. One would be to use the **SAP HANA Database Explorer** and, of course, the CLI if you don't want to use the UI. If you are interested in using the ** SAP HANA Database Explorer **, you will find a tutorial in the Further Reading section. You should use the CLI today because it is quicker. `#TheFutureIsTerminal`
+There are multiple ways of viewing your database artifacts on SAP HANA Cloud. One would be to use the **SAP HANA Database Explorer** and, of course, the CLI if you don't want to use the UI. If you are interested in using the **SAP HANA Database Explorer**, you will find a tutorial in the Further Reading section. You should use the CLI today because it is quicker. `#TheFutureIsTerminal`
 
 You have to install the [hana-cli](https://github.com/SAP-samples/hana-developer-cli-tool-example?tab=readme-ov-file#requirements--download-and-installation) first.
 
@@ -153,12 +153,14 @@ From the response, you can extract the schema name and the table name. You will 
 👉 Enter the following command to list the table information:
 
 ```bash
-hana-cli inspectTable <Your-schema-name> SAP_CODEJAM_DOCUMENTCHUNK
+hana-cli inspectTable <Your-schema-name> SAP_CODEJAM_DOCUMENTCHUNKS
 ```
 
 ![define-db-schema-inspect-table](./assets/06-define-db-schema-inspect-table.png)
 
 You can see all created fields as defined in the [schema.cds](../../project/cap-documentation-ai-helper/db/schema.cds). Notice that it also has all the fields from the `managed` feature from the `cds.common` package.
+
+👉 Go ahead and try inspecting the job postings table.
 
 ## Summary
 

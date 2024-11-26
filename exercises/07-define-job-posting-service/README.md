@@ -55,6 +55,22 @@ function createJobPosting(user_query : String) returns String;
 
 This function takes a `user_query` parameter which represents the user's input to the chat model. The function returns a String that is simply a error or success message.
 
+👉 Below the `createJobPosting` function, add another function `executeJobPostingRAG`:
+
+```CDS
+function executeJobPostingRAG(user_query: String) returns String;
+```
+
+This function will execute a RAG flow to create a Job Posting. With the SAP Cloud SDK for AI you get different levels of abstractions on how you want to use SAP's AI capabilities.
+
+You can use the orchestration service, which you will do in exercise 10, to have a given workflow on how to work with a chat and embedding model. It allows you to define aspects of a complete interaction flow with the different models in a more managed (orchestrated) way. 
+
+If you have the need to go one level down and access different features Langchain is providing, you can use the langchain package by the SAP Cloud SDK for AI. This package is basically wrapping the Langchain APIs and adds additional features to it, helping you to more easily connect and interact with SAP's AI solutions. This is really handy as you don't have to implement the interface towards SAP yourself but still have the capabilities of Langchain right at your fingertips.
+
+It is important that you try out both ways to understand how a basic RAG flow can look like.
+
+Now, let's add additional functions to make it possible to delete job postings.
+
 👉 Right below the last function definition add the `deleteJobPosting` and `deleteJobPostings` functions:
 
 ```CDS
