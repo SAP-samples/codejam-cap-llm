@@ -1,5 +1,7 @@
 # Exercise 08 - Implement the Job Posting Service
 
+This exercise will help you understand how a typical RAG flow looks like and you will implement that using the SAP Cloud SDK for AI's langchain package. You will write a lot of code in this exercise, you will also get introduced to quite some AI specific logic so please reach out to the instructor in case of any questions. Always remember if it is interesting to you, it is most likely interesting to the other attendees. We want to make sure that you will fully understand how you can write amazing AI experiences for your users.
+
 In this exercise, you will learn the following:
 
 - How to implement OData function handlers.
