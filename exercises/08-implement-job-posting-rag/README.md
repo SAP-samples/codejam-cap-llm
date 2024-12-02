@@ -1,6 +1,8 @@
 # Exercise 08 - Implement the Job Posting Service
 
-This exercise will help you understand how a typical RAG flow looks like and you will implement that using the SAP Cloud SDK for AI's langchain package. You will write a lot of code in this exercise, you will also get introduced to quite some AI specific logic so please reach out to the instructor in case of any questions. Always remember if it is interesting to you, it is most likely interesting to the other attendees. We want to make sure that you will fully understand how you can write amazing AI experiences for your users.
+This exercise will help you understand how a typical RAG flow looks like and you will implement that using the SAP Cloud SDK for AI's langchain package. To achieve a more clean code structure, you will implement most of the business logic in separate files achieving separation of concerns. The separation will be treated lightly so you will only create two separate files, one for handling all AI relevant tasks, and one for handling all database related tasks. The project provides you with the two files that are currently empty: `AIHelper` and `DBUtils`.
+
+You will implement the function handlers, and you will call logic from within the `AIHelper` and the `DBUtils`. You will jump back and forth between these files to implement the needed business logic.
 
 In this exercise, you will learn the following:
 
