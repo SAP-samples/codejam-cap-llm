@@ -37,4 +37,4 @@ In the next exercise you will start implementing the actual CAP service by defin
 
 ---
 
-[Next exercise](../05-define-db-schema/README.md)
+[Next exercise](../05-explore-sap-hana-cloud-vector-engine/README.md)

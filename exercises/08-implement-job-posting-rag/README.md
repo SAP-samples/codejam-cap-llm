@@ -517,3 +517,7 @@ In this exercise you have implemented the job posting service and it's OData fun
 - [CAP - Actions & Functions](https://cap.cloud.sap/docs/guides/providing-services#actions-functions)
 - [SAP HANA Cloud Vector Engine: Quick FAQ Reference](https://community.sap.com/t5/technology-blogs-by-sap/sap-hana-cloud-vector-engine-quick-faq-reference/ba-p/13675212)
 - [Cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity)
+
+---
+
+[Next exercise](../09-understand-and-deploy-orchestration-model/README.md)

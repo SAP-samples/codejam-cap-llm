@@ -132,4 +132,4 @@ At this point, you have learned what the SAP HANA Cloud vector engine is, how ve
 
 ---
 
-[Next exercise](../05-explore-destination-service/README.md)
+[Next exercise](../06-define-db-schema/README.md)
