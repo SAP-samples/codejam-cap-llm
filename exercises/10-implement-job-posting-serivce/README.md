@@ -1,19 +1,14 @@
 # Exercise 10 - Implement the Job Posting Service
 
-The implementation for creating and deleting job postings handles a lot of different tasks like creating an orchestration client, connecting to SAP AI Core, talking to a chat model, inserting or deleting entries to the HANA database. All of that code should be implemented clean and easy to read. To achieve a more clean code structure, you will implement most of the business logic in separate files achieving separation of concerns. The separation will be treated lightly so you will only create two separate files, one for handling all AI relevant tasks, and one for handling all database related tasks. The project provides you with the two files that are currently empty: `AIHelper` and `DBUtils`.
-
-You will implement the function handlers, and you will call logic from within the `AIHelper` and the `DBUtils`. You will jump back and forth between these files to implement the needed business logic.
+In the last exercise you have created a deployment for orchestration allowing you to create an orchestration workflow. This workflow can be created with the SAP Cloud SDK for AI including templating, data masking, and content filtering. One thing which is not possible at the moment is grounding. Grounding describes the process of retrieval augmented generation or RAG. Grounding allows you to create vector embeddings for a given contextual document or information source and also get the correct embedding for a given user query making it easy to communicate with the chat model without having to do all of that manually. If you remember, you've done these steps in [exercise 08](../08-implement-job-posting-rag/README.md). SAP is currently working on releasing the grounding functionality within the orchestration service on SAP generative AI Hub and as API within the SAP Cloud SDK for AI. Until this feature is there, you will combine what you have learned about embeddings with the orchestration capabilities you will learn in this exercise.
 
 In this exercise, you will learn the following:
 
-- How to implement OData function handlers.
 - How to use the SAP Cloud SDK for AI orchestration API.
-- How to insert entries into the HANA database.
-- How to delete entries from a table within the HANA database.
 
 ## Implement the OData function handler code stubs
 
-In exercise 08, you have implemented the RAG flow using the Langchain package of the SAP Cloud SDK for AI. You have implemented the needed function handler for the OData function to execute the RAG flow. You will do the same now for the rest of the defined OData functions.
+In exercise 08, you have implemented the RAG flow using the Langchain package of the SAP Cloud SDK for AI. You have implemented the needed function handler for the OData function to execute the RAG flow. You will do the same for the rest of the defined OData functions.
 
 👉 In the function export of the [job-posting-service.js](../../project/job-posting-service/srv/job-posting-service.js) add the following function handlers:
 
@@ -238,3 +233,7 @@ At this point the chat model is not taking your company specific information int
 - [Query Language (CQL)](https://cap.cloud.sap/docs/cds/cql)
 - [@sap-ai-sdk/orchestration - Documentation](https://github.com/SAP/ai-sdk-js/blob/main/packages/orchestration/README.md)
 - [CAP - Actions & Functions](https://cap.cloud.sap/docs/guides/providing-services#actions-functions)
+
+---
+
+[Next exercise](../12-data-masking-and-anonymization/README.md)
