@@ -1,4 +1,4 @@
-# Exercise 10 - Implement the Job Posting Service
+# Exercise 11 - Implement the Job Posting Service
 
 In the last exercise you have created a deployment for orchestration allowing you to create an orchestration workflow. This workflow can be created with the SAP Cloud SDK for AI including templating, data masking, and content filtering. One thing which is not possible at the moment is grounding. Grounding describes the process of retrieval augmented generation or RAG. Grounding allows you to create vector embeddings for a given contextual document or information source and also get the correct embedding for a given user query making it easy to communicate with the chat model without having to do all of that manually. If you remember, you've done these steps in [exercise 08](../08-implement-job-posting-rag/README.md). SAP is currently working on releasing the grounding functionality within the orchestration service on SAP generative AI Hub and as API within the SAP Cloud SDK for AI. Until this feature is there, you will combine what you have learned about embeddings with the orchestration capabilities you will learn in this exercise.
 

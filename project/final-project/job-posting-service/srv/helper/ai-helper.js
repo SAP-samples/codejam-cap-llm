@@ -15,6 +15,8 @@ const { DocumentSplits } = cds.entities;
 const chatModelName = 'gpt-4o-mini';
 const embeddingModelName = 'text-embedding-ada-002';
 
+async function createVectorEmbedding() {}
+
 async function executeRAG(user_query) {
   try {
     const embeddingClient = new AzureOpenAiEmbeddingClient({
@@ -74,26 +76,41 @@ async function orchestrateJobPostingCreation(user_query) {
 
     // let text_chunk = splits[0].text_chunks;
     // Utilize the additional information provided in this context: ${text_chunk}. \n
-    const orchestrationClient = new OrchestrationClient({
-      llm: {
-        model_name: chatModelName,
-        model_params: { max_tokens: 1000 }
-      },
-      templating: {
-        template: [
-          {
-            role: 'user',
-            content: `You are an assistant for creating Job Postings. 
+
+    const filter = buildAzureContentFilter({ Hate: 2, Violence: 4 });
+    const orchestrationClient = new OrchestrationClient(
+      {
+        llm: {
+          model_name: chatModelName,
+          model_params: { max_tokens: 1000, temperature: 0.1 }
+        },
+        templating: {
+          template: [
+            {
+              role: 'user',
+              content: `You are an assistant for creating Job Postings. 
           Use the user query to generate a fitting Job Posting. 
           
           ${user_query}`
-          }
-        ]
+            }
+          ]
+        },
+        filtering: {
+          input: filter,
+          output: filter
+        },
+        masking: {
+          masking_providers: [
+            {
+              type: 'sap_data_privacy_integration',
+              method: 'pseudonymization',
+              entities: [{ type: 'profile-email' }, { type: 'profile-person' }]
+            }
+          ]
+        }
       },
-      filtering: {
-        input: buildAzureContentFilter({ SelfHarm: 6 })
-      }
-    });
+      { resourceGroup: '<your-resource-group>' }
+    );
     const response = await orchestrationClient.chatCompletion();
     return [user_query, response.getContent()];
   } catch (error) {
@@ -105,52 +122,4 @@ async function orchestrateJobPostingCreation(user_query) {
   }
 }
 
-async function createJobPostingUsingComplex(user_query) {
-  try {
-    const embeddingClient = new AzureOpenAiEmbeddingClient({
-      modelName: embeddingModelName,
-      maxRetries: 0
-    });
-
-    let embedding = await embeddingClient.embedQuery(user_query);
-
-    let splits = await SELECT.from(DocumentSplits)
-      .orderBy`cosine_similarity(embedding, to_real_vector(${embedding})) DESC`;
-
-    let text_chunk = splits[0].text_chunks;
-
-    const message = {
-      role: 'user',
-      content: [
-        {
-          type: 'text',
-          text: `You are an assistant for creating Job Postings. 
-          Use the user query to generate a fitting Job Posting. 
-          Utilize the additional information provided in this context: ${text_chunk}. \n
-          ${user_query}`
-        }
-      ],
-      context: text_chunk
-    };
-
-    const chatClient = new AzureOpenAiChatClient({
-      modelName: chatModelName,
-      maxRetries: 3
-    });
-
-    let ragResponse = await chatClient.invoke([message]);
-
-    return [user_query, ragResponse.content];
-  } catch (error) {
-    console.log(
-      `Error while executing RAG. \n Error: ${JSON.stringify(error.response)}`
-    );
-    throw error;
-  }
-}
-
-export {
-  executeRAG,
-  orchestrateJobPostingCreation,
-  createJobPostingUsingComplex
-};
+export { createVectorEmbedding, executeRAG, orchestrateJobPostingCreation };

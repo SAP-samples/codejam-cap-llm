@@ -1,8 +1,6 @@
-# Exercise 08 - Implement the Job Posting Service
+# Exercise 09 - Implement the Job Posting Service
 
-This exercise will help you understand how a typical RAG flow looks like and you will implement that using the SAP Cloud SDK for AI's langchain package. To achieve a more clean code structure, you will implement most of the business logic in separate files achieving separation of concerns. The separation will be treated lightly so you will only create two separate files, one for handling all AI relevant tasks, and one for handling all database related tasks. The project provides you with the two files that are currently empty: `AIHelper` and `DBUtils`.
-
-You will implement the function handlers, and you will call logic from within the `AIHelper` and the `DBUtils`. You will jump back and forth between these files to implement the needed business logic.
+This exercise will help you understand how a typical RAG flow looks like and you will implement that using the SAP Cloud SDK for AI's langchain package.
 
 In this exercise, you will learn the following:
 
@@ -12,19 +10,9 @@ In this exercise, you will learn the following:
 
 ## Implement the OData function handler for the RAG execution
 
-The SDK uses ES6 for module loading which means that you need to export the function implementations differently compared to what you are used to using CAP. For this Codejam, you can simply use the `export default function()` approach.
+👉 Open the [job-posting-service.js](../../project/job-posting-service/srv/job-posting-service.js) file.
 
-👉 Open the `job-posting-service.js` file.
-
-👉 Add the following code block to the file:
-
-```JavaScript
-export default function () {
-  // implementation goes here ...
-}
-```
-
-👉 In the code block add the following function handlers:
+👉 In the `export function` code block, right below the embedding code, add the following function handlers:
 
 ```JavaScript
 this.on('executeJobPostingRAG', async req => {
@@ -146,11 +134,11 @@ this.on('executeJobPostingRAG', async req => {
 
 ### Implement the RAG flow in the AIHelper
 
-👉 Open the [AIHelper](../../project/job-posting-service/srv/AIHelper.js) file.
+👉 Open the [AIHelper](../../project/job-posting-service/srv/helper/ai-helper.js) file.
 
-Within the file you need to import the orchestration client and the content filter from the `@sap-ai-sdk/langchain` package.
+Within the file you need to import the chat client from the `@sap-ai-sdk/langchain` package.
 
-👉 Add the following lines of code to the top of the file:
+👉 Add the `AzureOpenAIChatClient` to the import statement:
 
 ```JavaScript
 import {
@@ -159,26 +147,13 @@ import {
 } from '@sap-ai-sdk/langchain';
 ```
 
-👉 Right below the import statement add the following constant containing the chat model and embedding model's name:
+👉 Right below the import statement add the following constant containing the chat model's name:
 
 ```JavaScript
 const chatModelName = 'gpt-4o-mini';
-const embeddingModelName = 'text-embedding-ada-002';
 ```
 
-You define the chat model and embedding model's name in a constant because you will use the name again at a later point. This gives you a single point of truth in case you want to change the chat model in the future.
-
-👉 To use CDS methods import CDS:
-
-```JavaScript
-import cds from '@sap/cds';
-```
-
-👉 To have access to the Document Splits table, add the `DocumentSplits` constant:
-
-```JavaScript
-const { DocumentSplits } = cds.entities;
-```
+You define the chat model's name in a constant because you will use the name again at a later point. This gives you a single point of truth in case you want to change the chat model in the future.
 
 👉 Add the `executeRAG` method you have also called in the `job-posting-service.js` OData function handler:
 
