@@ -236,4 +236,4 @@ At this point the chat model is not taking your company specific information int
 
 ---
 
-[Next exercise](../12-data-masking-and-anonymization/README.md)
+[Next exercise](../11-data-masking-and-anonymization/README.md)
