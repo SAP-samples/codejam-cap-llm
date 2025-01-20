@@ -1,6 +1,6 @@
 import cds from '@sap/cds';
 const { INSERT, DELETE } = cds.ql;
-const { JobPostings } = cds.entities;
+const { JobPostings, DocumentSplits } = cds.entities;
 
 /**
  * Create the object entry for the DB insert for the Job Posting.

@@ -1,6 +1,7 @@
 import {
   OrchestrationClient,
-  buildAzureContentFilter
+  buildAzureContentFilter,
+  buildDocumentGroundingConfig
 } from '@sap-ai-sdk/orchestration';
 
 import {
@@ -8,14 +9,46 @@ import {
   AzureOpenAiChatClient
 } from '@sap-ai-sdk/langchain';
 
-import cds from '@sap/cds';
+import { VectorApi } from '@sap-ai-sdk/document-grounding';
 
+import TextLoader from 'langchain/document_loaders/fs/text';
+import RecursiveCharacterTextSplitter from 'langchain/text_splitter';
+import path from 'path';
+
+import cds from '@sap/cds';
 const { DocumentSplits } = cds.entities;
+const { SELECT } = cds.ql;
 
 const chatModelName = 'gpt-4o-mini';
-const embeddingModelName = 'text-embedding-ada-002';
+const embeddingModelName = 'text-embedding-ada-002-v2';
 
-async function createVectorEmbedding() {}
+async function createVectorEmbedding() {
+  try {
+    const loader = new TextLoader(path.resolve('db/data/demo_grounding.txt'));
+    const document = await loader.load();
+
+    const splitter = new RecursiveCharacterTextSplitter({
+      chunkSize: 500,
+      chunkOverlap: 0,
+      addStartIndex: true
+    });
+
+    const documentSplits = await splitter.splitDocuments(document);
+
+    const embeddingClient = new AzureOpenAiEmbeddingClient({
+      modelName: embeddingModelName,
+      maxRetries: 0
+    });
+
+    const embeddings = await embeddingClient.embedDocuments(documentSplits);
+
+    return [embeddings, documentSplits, loader.path];
+  } catch (error) {
+    console.log(`Error while generating embeddings.
+      Error: ${JSON.stringify(error.response)}`);
+    throw error;
+  }
+}
 
 async function executeRAG(user_query) {
   try {
@@ -63,20 +96,9 @@ async function executeRAG(user_query) {
 }
 
 async function orchestrateJobPostingCreation(user_query) {
+  const document = await createDocument();
+
   try {
-    // const embeddingClient = new AzureOpenAiEmbeddingClient({
-    //   modelName: embeddingModelName,
-    //   maxRetries: 0
-    // });
-
-    // let embedding = await embeddingClient.embedQuery(user_query);
-
-    // let splits = await SELECT.from(DocumentSplits)
-    //   .orderBy`cosine_similarity(embedding, to_real_vector(${embedding})) DESC`;
-
-    // let text_chunk = splits[0].text_chunks;
-    // Utilize the additional information provided in this context: ${text_chunk}. \n
-
     const filter = buildAzureContentFilter({ Hate: 2, Violence: 4 });
     const orchestrationClient = new OrchestrationClient(
       {
@@ -88,13 +110,15 @@ async function orchestrateJobPostingCreation(user_query) {
           template: [
             {
               role: 'user',
-              content: `You are an assistant for creating Job Postings. 
-          Use the user query to generate a fitting Job Posting. 
-          
-          ${user_query}`
+              content:
+                'You are an assistant for creating Job Postings. UserQuestion: {{?user_query}} Context: {{?document}}'
             }
           ]
         },
+        grounding: buildDocumentGroundingConfig({
+          input_params: [user_query],
+          output_param: document
+        }),
         filtering: {
           input: filter,
           output: filter
@@ -120,6 +144,48 @@ async function orchestrateJobPostingCreation(user_query) {
     );
     throw error;
   }
+}
+
+async function createDocument() {
+  const loader = new TextLoader(path.resolve('db/data/demo_grounding.txt'));
+  const document = await loader.load();
+
+  const response = await VectorApi.createCollection(
+    {
+      title: 'cap-ai-codejam-<Your-Initials>',
+      embeddingConfig: {
+        modelName: 'text-embedding-ada-002-v2'
+      },
+      metadata: []
+    },
+    {
+      'AI-Resource-Group': 'default'
+    }
+  ).executeRaw();
+
+  const collectionId = response.headers.location.split('/').at(-2);
+
+  const documentResponse = await VectorApi.createDocuments(
+    collectionId,
+    {
+      documents: [
+        {
+          metadata: [],
+          chunks: [
+            {
+              content: `${document}`,
+              metadata: []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      'AI-Resource-Group': 'default'
+    }
+  ).execute();
+
+  return documentResponse.documents[0];
 }
 
 export { createVectorEmbedding, executeRAG, orchestrateJobPostingCreation };
