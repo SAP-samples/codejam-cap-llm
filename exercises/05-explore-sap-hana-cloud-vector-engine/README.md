@@ -42,7 +42,7 @@ cds add hana --for hybrid
 
 ![explore-sap-hana-cloud-vector-engine-add-hana](./assets/01-explore-sap-hana-cloud-vector-engine-add-hana.png)
 
-The profile `hybrid` relates to the hybrid testing scenario, which allows you to run your CAP service on localhost but use a real connection to a running SAP HANA Cloud instance. You will utilize this feature in a later exercise.
+The profile `hybrid` relates to the hybrid testing scenario, which allows you to run your CAP service on localhost but use a real connection to a running SAP HANA Cloud instance. You will utilize this feature in a later exercise. This is not a requirement. You could execute `cds add hana` to have the `production` scenario by default.
 
 👉 Open the `package.json` file in your project.
 

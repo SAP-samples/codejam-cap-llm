@@ -62,8 +62,6 @@ After that you will create a configuration.
 
 👉 Click on <b>Configurations</b>.
 
-![Available models](assets/scenarios_3.png)
-
 👉 <b>Create</b> a new configuration.
 
 ![Configurations](assets/configurations.png)

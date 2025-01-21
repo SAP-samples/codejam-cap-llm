@@ -85,7 +85,7 @@ export function createEmbeddingEntries([embeddings, splits, metadata]) {
 
 /**
  * Insert the Vector Embedding entries to the HANA DB.
- * @param {[byte]} embeddingEntries - The created and converted vector embeddings.
+ * @param {[any]} embeddingEntries - The created and converted vector embeddings.
  * @param {string} scenario - The demo scenario flag.
  * @returns {string} - The success message.
  */

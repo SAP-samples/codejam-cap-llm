@@ -39,9 +39,9 @@ In addition, the `package.json` allows you to define run scripts a sort of alias
 
 Within a CAP application, you can define a database schema that can be built into HANA database artifacts. The artifacts can be deployed to a bound HDI container, which will cause the creation of the database tables, relationships, views, and any other HANA database artifacts.
 
-For this project, the schema has two entities; `DocumentChunk` and `JobPostings`.
+For this project, the schema has two entities; `DocumentChunks` and `JobPostings`.
 
-The `DocumentChunk` entity contains the text chunks, embeddings for the provided context information and relevant metadata. In the next exercise [07 - Define the Job Posting Service](../07-define-job-posting-service/README.md), you will define a service for creating and deleting job postings. You will use a chat model to create job postings for specific job specifications and later use an embedding model to create vector embeddings providing additional business contextual information to the chat model. This information can then be used to generate an accurate job posting utilizing internal company specific information.
+The `DocumentChunks` entity contains the text chunks, embeddings for the provided context information and relevant metadata. In the next exercise [07 - Define the Job Posting Service](../07-define-job-posting-service/README.md), you will define a service for creating and deleting job postings. You will use a chat model to create job postings for specific job specifications and later use an embedding model to create vector embeddings providing additional business contextual information to the chat model. This information can then be used to generate an accurate job posting utilizing internal company specific information.
 
 👉 Open the `schema.cds` file under the `db` directory.
 
@@ -64,10 +64,24 @@ using {
 
 The entity should be managed, meaning it will utilize `cuid` to autogenerate a UUID, time stamps for creation and mutation.
 
-👉 Lastly, add the definition for the `DocumentChunk` entity. The entity is using the `managed` and `cuid` feature from the `cds.common` package.
+👉 Add an entity to store job postings in the database. You will utilize this entity in a later exercise by using AI to generate job postings and store them in the corresponding table.
 
 ```cds
-entity DocumentChunk : cuid, managed {
+entity JobPostings : cuid, managed {
+    user_query   : String;
+    rag_response : String;
+}
+```
+
+The entity defines two fields:
+
+- `user_query`: Stores the incoming user query.
+- `rag_response` : Stores the response from the chat model.
+
+👉 Lastly, add the definition for the `s` entity. The entity is using the `managed` and `cuid` feature from the `cds.common` package.
+
+```cds
+entity DocumentChunks : cuid, managed {
     metadata    : LargeString;
     text_chunks : LargeString;
     embedding   : Vector(1536);
@@ -81,8 +95,6 @@ The entity defines three fields:
 - `embedding` : Stores the encoded vector embeddings created by an embedding model.
 
 👉 Save the file.
-
-##
 
 ## Build and deploy the schema to your HDI container
 
@@ -104,7 +116,13 @@ If the reply from the CLI tells you to log in again simply enter `cf login`.
 cf login
 ```
 
-👉 If you want to build and deploy the artifacts, call the `cds deploy --to hana:<hdi-instance>` command **(Use the HDI container name from Exercise 05)**.
+👉 Build the project first by calling the `cds build --production` command.
+
+```bash
+cds build --production
+```
+
+👉 Tp deploy the build db artifacts in the `.gen` folder, call the `cds deploy --to hana:<hdi-instance>` command **(Use the HDI container name from Exercise 05)**.
 
 > In case you forgot your HDI container name, you can simply call `cf services` to get a list of all available service instances including your HDI container.
 
@@ -174,4 +192,4 @@ At this point, you have learned how to define a database schema using CDS, how t
 
 ---
 
-[Next exercise](../07-define-job-posting-service/README.md)
+[Next exercise](../07-create-vector-embeddings/README.md)

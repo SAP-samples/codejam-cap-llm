@@ -139,7 +139,7 @@ import {
 👉 Right below the import statement add the following constant containing the embedding model's name:
 
 ```JavaScript
-const embeddingModelName = 'text-embedding-ada-002';
+const embeddingModelName = 'text-embedding-ada-002-v2';
 ```
 
 You define the embedding model's name in a constant because you will use the name again at a later point. This gives you a single point of truth in case you want to change the chat model in the future.
@@ -156,8 +156,176 @@ import cds from '@sap/cds';
 const { DocumentSplits } = cds.entities;
 ```
 
+To create vector embeddings, you need to read the contextual information file which in your case is a text document.
 
+👉 Import a text loader from lanchain to read the needed document from file:
 
-## Implement the storing of vector embeddings
+```JavaScript
+import TextLoader from 'langchain/document_loaders/fs/text';
+```
+
+👉 Import the path tool to make definition of the file path easier:
+
+```JavaScript
+import path from 'path';
+```
+
+👉 Import a text splitter for splitting up the text document into meaningful chunks for the embedding model to process into vector embeddings:
+
+```JavaScript
+import RecursiveCharacterTextSplitter from 'langchain/text_splitter';
+```
+
+You have all the APIs imported to read a text file, split it into meaningful chunks and send it to the embedding model. You will implement the `createVectorEmbedding()` function now.
+
+👉 Add the following asyncrounos function `createVectorEmbedding()`:
+
+```JavaScript
+async function createVectorEmbedding() {
+  try {
+    // implementation goes here
+  } catch (error) {
+    console.log(`Error while generating embeddings.
+      Error: ${JSON.stringify(error.response)}`);
+    throw error;
+  }
+}
+```
+
+👉 Within the try block implement the loading of the text document:
+
+```JavaScript
+const loader = new TextLoader(path.resolve('db/data/demo_grounding.txt'));
+const document = await loader.load();
+```
+
+The code is using Langchain's text loader to load the `demo_grounding.txt` file.
+
+With the file at hand you will define the text splitter and use it to split up the text within the text document into the specified sizes. The size of a text chunk is defined in characters using the specified text splitter. To find a working chunk size is not easy, it takes experience as well as testing. In case the size is set to high or to low, the embeddings might not be as usable as you want them to be. You can soften the result and make them more appliable to also set a chunk overlap.
+
+👉 Right below the document loading call, add the initialization of the `RecursiveCharacterTextSplitter`:
+
+```JavaScript
+const splitter = new RecursiveCharacterTextSplitter({
+      chunkSize: 500,
+      chunkOverlap: 0,
+      addStartIndex: true
+});
+```
+
+👉 Call the `splitDocuments()` call with the loaded document:
+
+```JavaScript
+const documentSplits = await splitter.splitDocuments(document);
+```
+
+You need a way to feed the document splits to the embedding model. If you remember, you've deployed an embedding model to SAP AI Launchpad. You will use this model to create the vector embeddings. SAP has provided you with the SAP Cloud SDK for AI that allows you to utilize Langchain APIs that has been enhanced with SAP functionality like connectivity to SAP AI Launchpad. You will create an `AzureOpenAiEmbeddingClient`instance which can automatically connect to SAP AI Launchpad using a service binding or the `.env` file.
+
+👉 Create the embedding client by adding the following code:
+
+```JavaScript
+const embeddingClient = new AzureOpenAiEmbeddingClient({
+      modelName: embeddingModelName,
+      maxRetries: 0
+});
+```
+
+👉 Call the embedding client to embedd the document splits:
+
+```JavaScript
+const embeddings = await embeddingClient.embedDocuments(documentSplits);
+```
+
+👉 Finally, return the embeddings, the document splits and the path. These values will be stored in the database in the `DocumentSplits` table. Add the following code:
+
+```JavaScript
+return [embeddings, documentSplits, loader.path];
+```
+
+## Implement the creation of vector embedding entries
+
+You are about to implement the storing of the generated vector embeddings to the SAP HANA Cloud vector engine.
+
+👉 Open the [db-utils.js](../../project/job-posting-service/srv/helper/db-utils.js) file.
+
+👉 Add the following import statement to the top of the file:
+
+```JavaScript
+import cds from '@sap/cds';
+```
+
+👉 Add the following line of code to make SQL insert and delete querying available to you:
+
+```JavaScript
+const { INSERT, DELETE } = cds.ql;
+```
+
+👉 Add the following line of code to make the database entities available to you:
+
+```JavaScript
+const { JobPostings, DocumentSplits } = cds.entities;
+```
+
+To make your code easier to read, you will seperate the functionality of creating the embedding entries and the insertion to the database. You will utilize the `DocumentSplits` entity you have defined above to create the JSON object for database insertion.
+
+👉 Define the `createEmbeddingEntries()` function:
+
+```JavaScript
+export function createEmbeddingEntries([embeddings, splits, metadata]) {
+  // implementation goes here
+}
+```
+
+👉 Within the function, define an array holding the different embedding entries:
+
+```JavaScript
+let embeddingEntries = [];
+```
+
+👉 Iterate over the embeddings and create a JSON object for each embedding in the list. Right below the previous line of code add the following:
+
+```JavaScript
+for (const [index, embedding] of embeddings.entries()) {
+  const embeddingEntry = {
+    metadata: metadata,
+    text_chunks: splits[index].pageContent,
+    embedding: embedding
+  };
+  embeddingEntries.push(embeddingEntry);
+}
+```
+
+👉 Finally, return the embedding entry list:
+
+```JavaScript
+return embeddingEntries;
+```
+
+## Implement the insertion of the vector embedding entries
+
+The insertion into the database is simple. You use the CAP CQL syntax to insert all entries to the `DocumentSplits` table.
+
+👉 Create the function `insertEmbeddings()` first:
+
+```JavaScript
+export async function insertEmbeddings(embeddingEntries) {
+  try {
+    // implementation goes here
+  } catch (error) {
+    console.log(
+      `Error while storing the vector embeddings to SAP HANA Cloud: ${error.toString()}`
+    );
+    throw error;
+  }
+}
+```
+
+👉 Create the code the database insertion within the try block:
+
+```JavaScript
+await INSERT.into(DocumentSplits).entries(embeddingEntries);
+
+return `Embeddings inserted successfully to table.`;
+```
 
 ## Create some vector embeddings
