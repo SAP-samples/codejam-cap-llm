@@ -1,10 +1,10 @@
 {
   "name": "cap-ai-vector-engine-example",
   "version": "1.0.0",
-  "description": "A CAP & AI Example using the CAP LLM Plugin.",
-  "repository": "https://github.tools.sap/D061070/cap-ai-vector-engine-example.git",
+  "description": "A SAP Cloud Application Programming Model & AI example using the SAP Cloud SDK for AI.",
+  "repository": "https://github.com/SAP-samples/codejam-cap-llm.git",
   "license": "UNLICENSED",
-  "private": true,
+  "private": false,
   "type": "module",
   "dependencies": {
     "@sap-cloud-sdk/http-client": "^3.14.0",
