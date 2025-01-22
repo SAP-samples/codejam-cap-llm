@@ -283,7 +283,7 @@ const vectorPlugin = await cds.connect.to('cap-llm-plugin')
 👉 Implement an array for storing the text chunk entries that will subsequently inserted into the database:
 
 ```JavaScript
-let textChunkEntries = []
+const textChunkEntries = []
 ```
 
 👉 Iterate over the passed-in chunks, call the `getEmbedding()` method to retrieve the vector embeddings for each chunk, and create the database entry:
