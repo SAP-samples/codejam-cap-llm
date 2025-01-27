@@ -108,9 +108,10 @@ this.on('deleteVectorEmbeddings', async req => {
 👉 In the `createVectorEmbeddings()` function, implement the following lines of code calling the creation of the vector embeddings from the `AIHelper` and the storing in the database for the result from this call.
 
 ```JavaScript
-await DBUtils.insertVectorEmbedding(await AIHelper.createVectorEmbedding());
+const embeddings = await AIHelper.createVectorEmbeddings();
+const embeddingEntries = await DBUtils.createEmbeddingEntries(embeddings);
+await DBUtils.insertVectorEmbedding(embeddingEntries);
 return 'Vector embeddings created and stored in database';
-
 ```
 
 Your function should look like this now:
@@ -139,10 +140,16 @@ import {
 👉 Right below the import statement add the following constant containing the embedding model's name:
 
 ```JavaScript
-const embeddingModelName = 'text-embedding-ada-002-v2';
+const embeddingModelName = 'text-embedding-ada-002';
 ```
 
 You define the embedding model's name in a constant because you will use the name again at a later point. This gives you a single point of truth in case you want to change the chat model in the future.
+
+👉 Do the same for the resource group:
+
+```JavaScript
+const resourceGroup = '<your-resource-group>';
+```
 
 👉 To use CDS methods import CDS:
 
@@ -150,10 +157,10 @@ You define the embedding model's name in a constant because you will use the nam
 import cds from '@sap/cds';
 ```
 
-👉 To have access to the Document Splits table, add the `DocumentSplits` constant:
+👉 To have access to the Document Splits table, add the `DocumentChunks` constant:
 
 ```JavaScript
-const { DocumentSplits } = cds.entities;
+const { DocumentChunks } = cds.entities;
 ```
 
 To create vector embeddings, you need to read the contextual information file which in your case is a text document.
@@ -173,7 +180,7 @@ import path from 'path';
 👉 Import a text splitter for splitting up the text document into meaningful chunks for the embedding model to process into vector embeddings:
 
 ```JavaScript
-import RecursiveCharacterTextSplitter from 'langchain/text_splitter';
+import RecursiveCharacterTextSplitter from '@langchain/textsplitters';
 ```
 
 You have all the APIs imported to read a text file, split it into meaningful chunks and send it to the embedding model. You will implement the `createVectorEmbedding()` function now.
@@ -181,7 +188,7 @@ You have all the APIs imported to read a text file, split it into meaningful chu
 👉 Add the following asyncrounos function `createVectorEmbedding()`:
 
 ```JavaScript
-async function createVectorEmbedding() {
+async function createVectorEmbeddings() {
   try {
     // implementation goes here
   } catch (error) {
@@ -207,7 +214,7 @@ With the file at hand you will define the text splitter and use it to split up t
 
 ```JavaScript
 const splitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 500,
+      chunkSize: 70,
       chunkOverlap: 0,
       addStartIndex: true
 });
@@ -216,7 +223,18 @@ const splitter = new RecursiveCharacterTextSplitter({
 👉 Call the `splitDocuments()` call with the loaded document:
 
 ```JavaScript
-const documentSplits = await splitter.splitDocuments(document);
+const splitDocuments = await splitter.splitDocuments(document);
+```
+
+The objects you get back from the text splitter are JSON objects holding values behind the key `pageContent`. This value are the text chunks. You need to extract these values to pass them to the embedding client.
+
+👉 Implement a simple array loop to extract the values:
+
+```JavaScript
+const textSplits = [];
+for (const chunk of splitDocuments) {
+  textSplits.push(chunk.pageContent);
+}
 ```
 
 You need a way to feed the document splits to the embedding model. If you remember, you've deployed an embedding model to SAP AI Launchpad. You will use this model to create the vector embeddings. SAP has provided you with the SAP Cloud SDK for AI that allows you to utilize Langchain APIs that has been enhanced with SAP functionality like connectivity to SAP AI Launchpad. You will create an `AzureOpenAiEmbeddingClient`instance which can automatically connect to SAP AI Launchpad using a service binding or the `.env` file.
@@ -226,7 +244,8 @@ You need a way to feed the document splits to the embedding model. If you rememb
 ```JavaScript
 const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
-      maxRetries: 0
+      maxRetries: 0,
+      resourceGroup: '<your-resource-group>'
 });
 ```
 
@@ -239,7 +258,7 @@ const embeddings = await embeddingClient.embedDocuments(documentSplits);
 👉 Finally, return the embeddings, the document splits and the path. These values will be stored in the database in the `DocumentSplits` table. Add the following code:
 
 ```JavaScript
-return [embeddings, documentSplits, loader.path];
+return [embeddings, splitDocuments];
 ```
 
 ## Implement the creation of vector embedding entries
@@ -263,15 +282,15 @@ const { INSERT, DELETE } = cds.ql;
 👉 Add the following line of code to make the database entities available to you:
 
 ```JavaScript
-const { JobPostings, DocumentSplits } = cds.entities;
+const { JobPostings, DocumentChunks } = cds.entities;
 ```
 
-To make your code easier to read, you will seperate the functionality of creating the embedding entries and the insertion to the database. You will utilize the `DocumentSplits` entity you have defined above to create the JSON object for database insertion.
+To make your code easier to read, you will seperate the functionality of creating the embedding entries and the insertion to the database. You will utilize the `DocumentChunks` entity you have defined above to create the JSON object for database insertion.
 
 👉 Define the `createEmbeddingEntries()` function:
 
 ```JavaScript
-export function createEmbeddingEntries([embeddings, splits, metadata]) {
+export function createEmbeddingEntries([embeddings, splitDocuments]) {
   // implementation goes here
 }
 ```
@@ -286,13 +305,34 @@ let embeddingEntries = [];
 
 ```JavaScript
 for (const [index, embedding] of embeddings.entries()) {
-  const embeddingEntry = {
-    metadata: metadata,
-    text_chunks: splits[index].pageContent,
-    embedding: embedding
-  };
-  embeddingEntries.push(embeddingEntry);
-}
+    const embeddingEntry = {
+      metadata: splitDocuments[index].metadata.source,
+      text_chunk: splitDocuments[index].pageContent,
+      embedding: array2VectorBuffer(embedding)
+    };
+    embeddingEntries.push(embeddingEntry);
+  }
+```
+
+As you might have noticed, you are calling a conversion function to convert the embeddings to a vector buffer for database insertion. This function needs to be implemented next. 
+
+👉 Below the `insertVectorEmbeddings` function implement the following:
+
+```JavaScript
+// Helper method to convert embeddings to buffer for insertion
+let array2VectorBuffer = data => {
+  const sizeFloat = 4;
+  const sizeDimensions = 4;
+  const bufferSize = data.length * sizeFloat + sizeDimensions;
+
+  const buffer = Buffer.allocUnsafe(bufferSize);
+  // write size into buffer
+  buffer.writeUInt32LE(data.length, 0);
+  data.forEach((value, index) => {
+    buffer.writeFloatLE(value, index * sizeFloat + sizeDimensions);
+  });
+  return buffer;
+};
 ```
 
 👉 Finally, return the embedding entry list:
@@ -303,12 +343,12 @@ return embeddingEntries;
 
 ## Implement the insertion of the vector embedding entries
 
-The insertion into the database is simple. You use the CAP CQL syntax to insert all entries to the `DocumentSplits` table.
+The insertion into the database is simple. You use the CAP CQL syntax to insert all entries to the `DocumentChunks` table.
 
-👉 Create the function `insertEmbeddings()` first:
+👉 Create the function `insertVectorEmbeddings` first:
 
 ```JavaScript
-export async function insertEmbeddings(embeddingEntries) {
+export async function insertVectorEmbeddings(embeddingEntries) {
   try {
     // implementation goes here
   } catch (error) {
@@ -323,9 +363,10 @@ export async function insertEmbeddings(embeddingEntries) {
 👉 Create the code the database insertion within the try block:
 
 ```JavaScript
-await INSERT.into(DocumentSplits).entries(embeddingEntries);
+await INSERT.into(DocumentChunks).entries(embeddingEntries);
 
 return `Embeddings inserted successfully to table.`;
 ```
 
 ## Create some vector embeddings
+

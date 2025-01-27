@@ -88,7 +88,8 @@ Within the file you need to import the orchestration client and the content filt
 ```JavaScript
 import {
   OrchestrationClient,
-  buildAzureContentFilter
+  buildAzureContentFilter,
+  buildDocumentGroundingConfig
 } from '@sap-ai-sdk/orchestration';
 ```
 

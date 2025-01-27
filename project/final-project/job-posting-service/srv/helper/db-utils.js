@@ -1,6 +1,6 @@
 import cds from '@sap/cds';
 const { INSERT, DELETE } = cds.ql;
-const { JobPostings, DocumentSplits } = cds.entities;
+const { JobPostings, DocumentChunks } = cds.entities;
 
 /**
  * Create the object entry for the DB insert for the Job Posting.
@@ -67,19 +67,18 @@ export async function deleteJobPostings() {
 /**
  * Create the object entry for the DB insert for all vector embeddings.
  * @param {[string]} embeddings - vector embeddings.
- * @returns {[DocumentSplits]} - The DB entry object array containing DocumentSplits.
+ * @returns {[DocumentChunks]} - The DB entry object array containing DocumentSplits.
  */
-export function createEmbeddingEntries([embeddings, splits, metadata]) {
+export function createEmbeddingEntries([embeddings, splitDocuments]) {
   let embeddingEntries = [];
   for (const [index, embedding] of embeddings.entries()) {
     const embeddingEntry = {
-      metadata: metadata,
-      text_chunks: splits[index].pageContent,
-      embedding: embedding
+      metadata: splitDocuments[index].metadata.source,
+      text_chunk: splitDocuments[index].pageContent,
+      embedding: array2VectorBuffer(embedding)
     };
     embeddingEntries.push(embeddingEntry);
   }
-
   return embeddingEntries;
 }
 
@@ -89,9 +88,9 @@ export function createEmbeddingEntries([embeddings, splits, metadata]) {
  * @param {string} scenario - The demo scenario flag.
  * @returns {string} - The success message.
  */
-export async function insertEmbeddings(embeddingEntries) {
+export async function insertVectorEmbeddings(embeddingEntries) {
   try {
-    await INSERT.into(DocumentSplits).entries(embeddingEntries);
+    await INSERT.into(DocumentChunks).entries(embeddingEntries);
 
     return `Embeddings inserted successfully to table.`;
   } catch (error) {
@@ -101,3 +100,18 @@ export async function insertEmbeddings(embeddingEntries) {
     throw error;
   }
 }
+
+// Helper method to convert embeddings to buffer for insertion
+let array2VectorBuffer = data => {
+  const sizeFloat = 4;
+  const sizeDimensions = 4;
+  const bufferSize = data.length * sizeFloat + sizeDimensions;
+
+  const buffer = Buffer.allocUnsafe(bufferSize);
+  // write size into buffer
+  buffer.writeUInt32LE(data.length, 0);
+  data.forEach((value, index) => {
+    buffer.writeFloatLE(value, index * sizeFloat + sizeDimensions);
+  });
+  return buffer;
+};

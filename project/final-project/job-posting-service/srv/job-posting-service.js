@@ -5,7 +5,9 @@ const wrongInputError = 'Required input parameters not supplied';
 
 export default function () {
   this.on('createVectorEmbeddings', async () => {
-    await DBUtils.insertVectorEmbedding(await AIHelper.createVectorEmbedding());
+    const embeddings = await AIHelper.createVectorEmbeddings();
+    const embeddingEntries = await DBUtils.createEmbeddingEntries(embeddings);
+    await DBUtils.insertVectorEmbedding(embeddingEntries);
     return 'Vector embeddings created and stored in database';
   });
 

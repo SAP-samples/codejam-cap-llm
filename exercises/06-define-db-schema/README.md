@@ -83,7 +83,7 @@ The entity defines two fields:
 ```cds
 entity DocumentChunks : cuid, managed {
     metadata    : LargeString;
-    text_chunks : LargeString;
+    text_chunk : LargeString;
     embedding   : Vector(1536);
 }
 ```
@@ -91,7 +91,7 @@ entity DocumentChunks : cuid, managed {
 The entity defines three fields:
 
 - `metadata`: Stores the path to the information document. The document is a PDF that includes business contextual information.
-- `text_chunks` : Stores the individual-created text chunks.
+- `text_chunk` : Stores the individual-created text chunks.
 - `embedding` : Stores the encoded vector embeddings created by an embedding model.
 
 👉 Save the file.

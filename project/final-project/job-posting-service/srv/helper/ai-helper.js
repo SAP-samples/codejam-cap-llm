@@ -11,38 +11,43 @@ import {
 
 import { VectorApi } from '@sap-ai-sdk/document-grounding';
 
-import TextLoader from 'langchain/document_loaders/fs/text';
-import RecursiveCharacterTextSplitter from 'langchain/text_splitter';
+import { TextLoader } from 'langchain/document_loaders/fs/text';
+import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
 import path from 'path';
 
-import cds from '@sap/cds';
-const { DocumentSplits } = cds.entities;
+const { DocumentChunks } = cds.entities;
 const { SELECT } = cds.ql;
 
 const chatModelName = 'gpt-4o-mini';
-const embeddingModelName = 'text-embedding-ada-002-v2';
+const embeddingModelName = 'text-embedding-ada-002';
+const resourceGroup = '<Your-Resource-Group>';
 
-async function createVectorEmbedding() {
+async function createVectorEmbeddings() {
   try {
     const loader = new TextLoader(path.resolve('db/data/demo_grounding.txt'));
     const document = await loader.load();
 
     const splitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 500,
+      chunkSize: 70,
       chunkOverlap: 0,
       addStartIndex: true
     });
 
-    const documentSplits = await splitter.splitDocuments(document);
+    const splitDocuments = await splitter.splitDocuments(document);
+
+    const textSplits = [];
+    for (const chunk of splitDocuments) {
+      textSplits.push(chunk.pageContent);
+    }
 
     const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
-      maxRetries: 0
+      maxRetries: 0,
+      resourceGroup: 'codejam-test'
     });
+    const embeddings = await embeddingClient.embedDocuments(textSplits);
 
-    const embeddings = await embeddingClient.embedDocuments(documentSplits);
-
-    return [embeddings, documentSplits, loader.path];
+    return [embeddings, splitDocuments];
   } catch (error) {
     console.log(`Error while generating embeddings.
       Error: ${JSON.stringify(error.response)}`);
@@ -54,7 +59,8 @@ async function executeRAG(user_query) {
   try {
     const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
-      maxRetries: 0
+      maxRetries: 0,
+      resourceGroup: 'codejam-test'
     });
 
     let embedding = await embeddingClient.embedQuery(user_query);
@@ -82,7 +88,8 @@ async function executeRAG(user_query) {
 
     const chatClient = new AzureOpenAiChatClient({
       modelName: chatModelName,
-      maxRetries: 0
+      maxRetries: 0,
+      resourceGroup: 'codejam-test'
     });
 
     let ragResponse = await chatClient.invoke([message]);
@@ -133,7 +140,7 @@ async function orchestrateJobPostingCreation(user_query) {
           ]
         }
       },
-      { resourceGroup: '<your-resource-group>' }
+      { resourceGroup: 'codejam-test' }
     );
     const response = await orchestrationClient.chatCompletion();
     return [user_query, response.getContent()];
@@ -188,4 +195,4 @@ async function createDocument() {
   return documentResponse.documents[0];
 }
 
-export { createVectorEmbedding, executeRAG, orchestrateJobPostingCreation };
+export { createVectorEmbeddings, executeRAG, orchestrateJobPostingCreation };

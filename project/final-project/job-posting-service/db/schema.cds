@@ -6,9 +6,9 @@ using {
 } from '@sap/cds/common';
 
 entity DocumentChunks : cuid, managed {
-    metadata    : LargeString;
-    text_chunks : LargeString;
-    embedding   : Vector(1536);
+    metadata   : LargeString;
+    text_chunk : LargeString;
+    embedding  : Vector(1536);
 }
 
 entity JobPostings : cuid, managed {

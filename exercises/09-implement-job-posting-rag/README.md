@@ -175,7 +175,8 @@ Within the `try` block, you will add the complete logic for the RAG flow. You wi
 ```JavaScript
 const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
-      maxRetries: 0
+      maxRetries: 0,
+      resourceGroup: '<your-resource-group>'
     });
 ```
 
@@ -230,7 +231,8 @@ A typical message to a chat model requires a couple of information. First of all
 ```JavaScript
 const chatClient = new AzureOpenAiChatClient({
       modelName: chatModelName,
-      maxRetries: 0
+      maxRetries: 0,
+      resourceGroup: '<your-resource-group>'
     });
 ```
 
@@ -255,7 +257,8 @@ async function executeRAG(user_query) {
   try {
     const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
-      maxRetries: 0
+      maxRetries: 0,
+      resourceGroup: '<your-resource-group>'
     });
 
     let embedding = await embeddingClient.embedQuery(user_query);
@@ -284,7 +287,8 @@ async function executeRAG(user_query) {
 
     const chatClient = new AzureOpenAiChatClient({
       modelName: chatModelName,
-      maxRetries: 0
+      maxRetries: 0,
+      resourceGroup: '<your-resource-group>'
     });
 
     let ragResponse = await chatClient.invoke([message]);
