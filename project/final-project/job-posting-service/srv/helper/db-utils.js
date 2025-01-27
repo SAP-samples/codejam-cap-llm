@@ -115,3 +115,18 @@ let array2VectorBuffer = data => {
   });
   return buffer;
 };
+
+/**
+ * Delete all vector embeddings from the DocumentChunks table.
+ * @returns {string} - The success message.
+ */
+export async function deleteDocumentChunks() {
+  try {
+    await DELETE.from(DocumentChunks);
+    return 'Successfully deleted Document Chunks!';
+  } catch (error) {
+    console.log(
+      `Error while deleting Document Chunks: \n ${JSON.stringify(error.response)}`
+    );
+  }
+}

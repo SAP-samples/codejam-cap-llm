@@ -122,7 +122,7 @@ cf login
 cds build --production
 ```
 
-👉 Tp deploy the build db artifacts in the `.gen` folder, call the `cds deploy --to hana:<hdi-instance>` command **(Use the HDI container name from Exercise 05)**.
+👉 To deploy the build db artifacts in the `.gen` folder, call the `cds deploy --to hana:<hdi-instance>` command **(Use the HDI container name from Exercise 05)**.
 
 > In case you forgot your HDI container name, you can simply call `cf services` to get a list of all available service instances including your HDI container.
 

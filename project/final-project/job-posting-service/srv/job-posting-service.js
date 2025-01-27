@@ -7,7 +7,7 @@ export default function () {
   this.on('createVectorEmbeddings', async () => {
     const embeddings = await AIHelper.createVectorEmbeddings();
     const embeddingEntries = await DBUtils.createEmbeddingEntries(embeddings);
-    await DBUtils.insertVectorEmbedding(embeddingEntries);
+    await DBUtils.insertVectorEmbeddings(embeddingEntries);
     return 'Vector embeddings created and stored in database';
   });
 

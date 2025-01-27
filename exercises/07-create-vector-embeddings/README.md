@@ -110,7 +110,7 @@ this.on('deleteVectorEmbeddings', async req => {
 ```JavaScript
 const embeddings = await AIHelper.createVectorEmbeddings();
 const embeddingEntries = await DBUtils.createEmbeddingEntries(embeddings);
-await DBUtils.insertVectorEmbedding(embeddingEntries);
+await DBUtils.insertVectorEmbeddings(embeddingEntries);
 return 'Vector embeddings created and stored in database';
 ```
 
@@ -118,7 +118,7 @@ Your function should look like this now:
 
 ```JavaScript
 this.on('createVectorEmbeddings', async () => {
-  await DBUtils.insertVectorEmbedding(await AIHelper.createVectorEmbedding());
+  await DBUtils.insertVectorEmbeddings(await AIHelper.createVectorEmbedding());
   return 'Vector embeddings created and stored in database';
 });
 ```
@@ -368,5 +368,84 @@ await INSERT.into(DocumentChunks).entries(embeddingEntries);
 return `Embeddings inserted successfully to table.`;
 ```
 
+## Implement the deletion for the vector embeddings
+
+You can create and insert vector embeddings, last step is to make it possible to delete vector embeddings.
+
+👉 Right below the `insertVectorEmbeddings` function handler add the following code:
+
+```JavaScript
+export async function deleteDocumentChunks() {
+  try {
+    // implementation goes here
+  } catch (error) {
+    console.log(
+      `Error while deleting Document Chunks: \n ${JSON.stringify(error.response)}`
+    );
+  }
+```
+
+👉 Within the `try` block add the following code:
+
+```JavaScript
+await DELETE.from(DocumentChunks);
+return 'Successfully deleted Document Chunks!';
+```
+
 ## Create some vector embeddings
 
+At this point you have achieved a lot! You have defined and implemented not only the OData CAP service but also the database insertion and deletion. One thing you haven't done yet is test the code.
+
+You will do this now!
+
+👉 Open a new terminal if not already open.
+
+👉 Make sure that you are still connected to the Cloud Foundry instance by checking the connection details:
+
+```bash
+cf target
+```
+
+If the reply from the CLI tells you to log in again simply enter `cf login`.
+
+```bash
+cf login
+```
+
+👉 Build the project first by calling the `cds build --production` command.
+
+```bash
+cds build --production
+```
+
+Now, you will utilize the `cds watch --profile hybrid` command to run the project on localhost while establishing a real and live connection to the database. This is a way to speed up local development by working around the need of deployment to BTP.
+
+👉 From the CLI run:
+
+```Bash
+cds watch --profile hybrid
+```
+
+Look at the console output! You can tell that it is running your project on localhost but also using the `cdsrc-private.json` to look up the binding to your HDI container within the SAP HANA Cloud instance. This look up is being used to establish a connection to the database.
+
+👉 Open the localhost in a browser or use the prompt in Business Application Studio to directly open landing page.
+
+![01_localhost.png](./assets/01_localhost.png)
+
+From there you could access the database tables but you will see they are currently empty.
+
+You can use the URL to call your OData function handler for creating the vector embeddings.
+
+👉 Call the following URL: `http://localhost:4004/odata/v4/job-posting/createVectorEmbeddings()`
+
+👉 Take a look at the console output. You can tell that the connection to AI Core has been established.
+
+![02_ai_core_connection.png](./assets/02_ai_core_connection.png)
+
+👉 Take a look at your browser window. You can see the success message you have implemented.
+
+![03_success.png](./assets/03_success.png)
+
+Congratulations! The call went through and apparently the vector embeddings were stored in the database. Wouldn't it be nice to have a certain way for checking the entries in the table?! 
+
+Remember the exercise where you used the `hana-cli` to do exactly that. Try on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 06](../../exercises/06-define-db-schema/README.md) and check on the instructions.
