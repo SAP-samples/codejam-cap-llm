@@ -446,6 +446,18 @@ You can use the URL to call your OData function handler for creating the vector 
 
 ![03_success.png](./assets/03_success.png)
 
+## Summary
+
 Congratulations! The call went through and apparently the vector embeddings were stored in the database. Wouldn't it be nice to have a certain way for checking the entries in the table?! 
 
-Remember the exercise where you used the `hana-cli` to do exactly that. Try on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 06](../../exercises/06-define-db-schema/README.md) and check on the instructions.
+Remember the exercise where you used the `hana-cli` to do exactly that. Try this step on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 06](../../exercises/06-define-db-schema/README.md) and check on the instructions.
+
+## Further reading
+
+- [SAP Cloud SDK for AI](https://github.com/SAP/ai-sdk-js)
+- [SAP Cloud Application Programming Model - Documentation](https://cap.cloud.sap/docs/)
+- [CAP & Vector Embeddings](https://cap.cloud.sap/docs/guides/databases-hana#vector-embeddings)
+
+---
+
+[Next exercise](../08-define-job-posting-service/README.md)

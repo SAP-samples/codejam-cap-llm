@@ -21,13 +21,13 @@ Like any other deployment in SAP AI Launchpad, the orchestration model needs a c
 
 👉 Open the SAP AI Launchpad via [SAP AI Launchpad - CAP AI Codejam](https://cap-ai-codejam-op6zhda1.ai-launchpad.prod.us-east-1.aws.apps.ml.hana.ondemand.com/aic/index.html#/workspaces&/a/detail/TwoColumnsMidExpanded/?workspace=cap-ai-codejam&resourceGroup=default)
 
-👉 Make sure that you are set for your resource group under the <b>Workspaces screen</b>.
+👉 Make sure that you are set for your resource group under the **Workspaces screen**.
 
-👉 Navigate to <b>ML Operations</b>.
+👉 Navigate to **ML Operations**.
 
-👉 Open the <b>Configurations</b> screen.
+👉 Open the **Configurations** screen.
 
-👉 Click on <b>Create</b> to create a new configuration.
+👉 Click on **Create** to create a new configuration.
 
 ![01-configuration_main_screen](./assets/01_configuration_main.png)
 
@@ -37,29 +37,29 @@ A new configuration creation workflow opens. In there give the configuration a n
 - **Version:** 0.0.1
 - **Executable:** orchestration
 
-👉 Click on <b>Next</b>.
+👉 Click on **Next**.
 
 ![02-configuration_creation](./assets/02_configuration_create.png)
 
-👉 Go through the workflow without changing anything until you reach the <b>Review</b> step. Click on <b>Create</b>.
+👉 Go through the workflow without changing anything until you reach the **Review** step. Click on **Create**.
 
 ## Create an orchestration deployment
 
-The configuration is now being created. After the successful creation of the configuration, you will see the configuration details. You can see the <b>Create Deployment</b> button on the top-right corner.
+The configuration is now being created. After the successful creation of the configuration, you will see the configuration details. You can see the **Create Deployment** button on the top-right corner.
 
-👉 Click the <b>Create Deployment</b> button to start the workflow.
+👉 Click the **Create Deployment** button to start the workflow.
 
 ![03-deployment-creation](./assets/03_deployment_create.png)
 
-👉 Click through the workflow until you reach the <b>Review</b> step and create the deployment.
+👉 Click through the workflow until you reach the **Review** step and create the deployment.
 
 ![04-deployment-creation-review](./assets/04_deployment_review_create.png)
 
 ## Review your deployment
 
-You can review your orchestration deployment in the <b>Deployments</b> screen.
+You can review your orchestration deployment in the **Deployments** screen.
 
-👉 Navigate to the <b>Deployments</b> screen.
+👉 Navigate to the **Deployments** screen.
 
 ![05-deployment-details-navigation](./assets/05_deployment_details.png)
 

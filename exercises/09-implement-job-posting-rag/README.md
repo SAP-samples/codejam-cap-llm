@@ -116,6 +116,7 @@ The last step is to insert the database entry into the database (Step 8).
 
 ```JavaScript
 await DBUtils.insertJobPosting(entry);
+return 'Job posting created and stored in database';
 ```
 
 Your method should look like this now:
@@ -129,6 +130,7 @@ this.on('executeJobPostingRAG', async req => {
         await AIHelper.executeRAG(user_query)
     );
     await DBUtils.insertJobPosting(entry);
+    return 'Job posting created and stored in database';
 });
 ```
 
@@ -191,7 +193,7 @@ let embedding = await embeddingClient.embedQuery(user_query);
 👉 Execute the cosine similarity using a `SELECT` statement and ordering the result using the cosine similarity for the given vector of the user query:
 
 ```JavaScript
-let splits = await SELECT.from(DocumentSplits)
+let splits = await SELECT.from(DocumentChunks)
       .orderBy`cosine_similarity(embedding, to_real_vector(${embedding})) DESC`;
 ```
 
@@ -216,8 +218,7 @@ const message = {
             You are receiving a user query to create a job posting for new hires.
             Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
             Consider all the input before responding.
-            context: ${text_chunk}` +
-            user_query
+            context: ${text_chunk}` + user_query
         }
       ],
       context: text_chunk
@@ -278,8 +279,7 @@ async function executeRAG(user_query) {
             You are receiving a user query to create a job posting for new hires.
             Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
             Consider all the input before responding.
-            context: ${text_chunk}` +
-            user_query
+            context: ${text_chunk}` + user_query
         }
       ],
       context: text_chunk
@@ -319,15 +319,7 @@ entity JobPostings : cuid, managed {
 
 You need to create an object containing a String for the user query and a String for the response of the chat model.
 
-👉 Open the [db-utils.js](../../project/job-posting-service/srv/db-utils.js) file and add the following lines of code to specify an import for CDS, for the CQL insert and delete, and finally for a reference to the `JobPostings` entity:
-
-```JavaScript
-import cds from '@sap/cds';
-const { INSERT, DELETE } = cds.ql;
-const { JobPostings } = cds.entities;
-```
-
-👉 Right below the previous lines of code, add a new method for creating a job posting entry object:
+👉 Open the [db-utils.js](../../project/job-posting-service/srv/db-utils.js) file and add the following lines of code to define the creation of a Job Posting database entry. Add the lines of code right below the existing code for the embedding insertion and deletion:
 
 ```JavaScript
 export function createJobPosting([userQuery, ragResponse]) {
@@ -460,31 +452,60 @@ export async function deleteJobPostings() {
 ## Try out your API
 
 Wow! You did a great job so far and you have implemented a lot of code doing a lot of things.
-What you need to do now is play around with your API. CAP has a really nice way of providing the capability of testing HTTP calls to your API - the `HTTP` feature through the testing framework.
+What you need to do now is play around with your API.
 
-Within your project folder you can execute the `cds add http` command to create a `.http` file allowing you to send different HTTP calls.
+You will utilize the `cds watch --profile hybrid` command again to run your service locally and test the different calls in your browser via localhost.
 
-👉 Open a new terminal or use an existing one.
+The interesting part is that the chat model is using the previously created vector embeddings to answer the user's requests. That being said, try out different prompts and see how the model behaves. It should include the information you have provided through the vector embeddings.
 
-👉 Make sure you are in the root of the project folder.
+👉 Open a new terminal if not already open.
 
-👉 Execute the following command:
+👉 Make sure that you are still connected to the Cloud Foundry instance by checking the connection details:
 
 ```bash
-cds add http
+cf target
 ```
 
-This will add HTTP calls to create, update and delete entities for your OData entities. Last thing you want to add are the calls to your OData functions.
-
-👉 Open the newly created `JobPostingsService.http` file.
-
-👉 Add the following lines of code to the end of the file:
+If the reply from the CLI tells you to log in again simply enter `cf login`.
 
 ```bash
-### Create a Job Posting using the chat model
-GET {{server}}/odata/v4/job-posting-service/executeRAG(user_query='Create a Job Posting for a JavaScript Developer')
-Content-Type: application/json
-{{auth}}
+cf login
+```
+
+👉 Build the project first by calling the `cds build --production` command.
+
+```bash
+cds build --production
+```
+
+👉 From the CLI run:
+
+```Bash
+cds watch --profile hybrid
+```
+
+You can use the different API endpoints now:
+
+**Create a Job Posting**
+
+You can change the user query to whatever you want.
+
+```Bash
+http://localhost:4004/odata/v4/job-posting/executeJobPostingRAG(user_query='Createa%20Job%20Posting%20for%20a%20Senior%20Developer')
+```
+
+**Delete Job Postings**
+
+```Bash
+http://localhost:4004/odata/v4/job-posting/deleteJobPostings()
+```
+
+**Delete a specific Job Posting**
+
+The specific job posting ID can be found in the Job Postings table in case you have created a job posting.
+
+```Bash
+http://localhost:4004/odata/v4/job-posting/deleteJobPosting(id='<specify-job-posting-id>')
 ```
 
 ## Summary
@@ -501,4 +522,4 @@ In this exercise you have implemented the job posting service and it's OData fun
 
 ---
 
-[Next exercise](../09-understand-and-deploy-orchestration-model/README.md)
+[Next exercise](../10-understand-and-deploy-orchestration-model/README.md)

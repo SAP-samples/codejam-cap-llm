@@ -65,7 +65,7 @@ async function executeRAG(user_query) {
 
     let embedding = await embeddingClient.embedQuery(user_query);
 
-    let splits = await SELECT.from(DocumentSplits)
+    let splits = await SELECT.from(DocumentChunks)
       .orderBy`cosine_similarity(embedding, to_real_vector(${embedding})) DESC`;
 
     let text_chunk = splits[0].text_chunks;
@@ -159,14 +159,14 @@ async function createDocument() {
 
   const response = await VectorApi.createCollection(
     {
-      title: 'cap-ai-codejam-<Your-Initials>',
+      title: 'cap-ai-codejam-kr',
       embeddingConfig: {
-        modelName: 'text-embedding-ada-002-v2'
+        modelName: 'text-embedding-ada-002'
       },
       metadata: []
     },
     {
-      'AI-Resource-Group': 'default'
+      'AI-Resource-Group': 'codejam-test'
     }
   ).executeRaw();
 
@@ -188,7 +188,7 @@ async function createDocument() {
       ]
     },
     {
-      'AI-Resource-Group': 'default'
+      'AI-Resource-Group': 'codejam-test'
     }
   ).execute();
 
