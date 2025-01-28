@@ -1,14 +1,15 @@
 # Exercise 11 - Implement the Job Posting Service
 
-In the last exercise you have created a deployment for orchestration allowing you to create an orchestration workflow. This workflow can be created with the SAP Cloud SDK for AI including templating, data masking, and content filtering. One thing which is not possible at the moment is grounding. Grounding describes the process of retrieval augmented generation or RAG. Grounding allows you to create vector embeddings for a given contextual document or information source and also get the correct embedding for a given user query making it easy to communicate with the chat model without having to do all of that manually. If you remember, you've done these steps in [exercise 08](../08-implement-job-posting-rag/README.md). SAP is currently working on releasing the grounding functionality within the orchestration service on SAP generative AI Hub and as API within the SAP Cloud SDK for AI. Until this feature is there, you will combine what you have learned about embeddings with the orchestration capabilities you will learn in this exercise.
+In the last exercise you have created a deployment for orchestration allowing you to create an orchestration workflow. This workflow can be created with the SAP Cloud SDK for AI including templating, data masking, and content filtering. One thing which is not possible at the moment is grounding. Grounding describes the process of retrieval augmented generation or RAG. Grounding allows you to create vector embeddings for a given contextual document or information source and also get the correct embedding for a given user query making it easy to communicate with the chat model without having to do all of that manually. If you remember, you've done these steps in [Exercise 09](../09-implement-job-posting-rag/README.md).
 
 In this exercise, you will learn the following:
 
 - How to use the SAP Cloud SDK for AI orchestration API.
+- How to use the Document Grounding API to create vector embeddings within the orchestration flow.
 
 ## Implement the OData function handler code stubs
 
-In exercise 08, you have implemented the RAG flow using the Langchain package of the SAP Cloud SDK for AI. You have implemented the needed function handler for the OData function to execute the RAG flow. You will do the same for the rest of the defined OData functions.
+In [Exercise 09](../09-implement-job-posting-rag/README.md), you have implemented the RAG flow using the Langchain package of the SAP Cloud SDK for AI. If you remember you wrote a lot of code to create vector embeddings, store them in the database and build the complete RAG flow from scratch. You will now add one more function handler implementing the Orchestration API, Orchestration Service and the Grounding API to do all of that for you.
 
 👉 In the function export of the [job-posting-service.js](../../project/job-posting-service/srv/job-posting-service.js) add the following function handlers:
 
@@ -19,11 +20,9 @@ this.on('createJobPosting', async req => {
 
 ```
 
-These three function handlers are handling the OData function definitions from the [job-posting-service.cds](../../project/job-posting-service/srv/job-posting-service.cds). You might notice that `createJobPosting` and `deleteJobPosting` get passed in a request parameter. This is necessary to retrieve the user query in the case for creating a job posting and an ID in case of deleting a job posting.
-
 ## Implement the job posting creation
 
-With the input validation in place, you can go ahead and implement the creation of a job posting. Before you do that, think about what should happen.
+Think about what we did in the last exercises and recap what needs to be done:
 
 1. A user inputs a query describing what kind of job posting should be created.
 2. Your OData service takes the input and passes it through to the orchestration client.
@@ -34,16 +33,12 @@ With the input validation in place, you can go ahead and implement the creation 
 7. The response gets passed to the `DBUtils` to create a new database entry.
 8. The entry then gets inserted into the database with the help of CQL.
 
-To be fair, this seems like a lot but no worries it is actually not that bad. Let's go through it step-by-step.
-
 👉 Within the `createJobPosting` function handler retrieve the user query from the request and pass it to the input validation method you've implemented before:
 
 ```JavaScript
 const user_query = req.data.user_query;
 validateInputParameter(user_query);
 ```
-
-You will call methods you haven't implemented yet, but no worries this will happen in the next step (Step 1).
 
 👉 Right below the input validation within the `createJobPosting` method, call the following code:
 
@@ -108,7 +103,98 @@ async function orchestrateJobPostingCreation(user_query) {
   }
 ```
 
-👉 In the `try` block, create a new orchestration client passing in the required LLM, the template, and the filter:
+👉 In the `try` block, call a document creation function responsible for the embedding part:
+
+```JavaScript
+const document = await createDocument();
+```
+
+👉 Outside the function `orchestrateJobPostingCreation`, create a new function `createDocument`:
+
+```JavaScript
+async function createDocument() {
+  // implementation goes here
+}
+
+```
+
+The implementation of `createDocument` is using the Document Grounding API to create multiple things:
+
+- A new document collection on AI Core.
+- A new document including the vector embeddings on AI Core and SAP HANA Cloud vector engine.
+
+An important distinction from using the Document Grounding Service compared to creating your own vector embeddings with the embedding client is that the Document Grounding Service is providing you with a HANA database and your own HDI container within it. That means you don't need your own SAP HANA Cloud instance which saves you not only money but also administration and operation time.
+
+The API is creating a tenant and an HDI container for you and stores the created vector embeddings in the corresponding vector engine.
+
+Let's take a look on how this is can be implemented.
+
+👉 Within the `createDocument` function load the contextual text document from file:
+
+```JavaScript
+const loader = new TextLoader(path.resolve('db/data/demo_grounding.txt'));
+const document = await loader.load();
+```
+
+👉 Right below, implement the call for creating a new collection. Make sure to replace the placeholder for the resource group with your name otherwise it won't be able to resolve the correct resource group:
+
+```JavaScript
+const response = await VectorApi.createCollection(
+  {
+    title: 'cap-ai-codejam-kr',
+    embeddingConfig: {
+      modelName: embeddingModelName
+    },
+    metadata: []
+  },
+  {
+    'AI-Resource-Group': '<Your-Resource-Group>'
+  }
+).executeRaw();
+
+```
+
+This defines the configuration for the API to properly create a collection for you. As you can see, you are defining the embedding model you want to use.
+
+Next, you need the collection ID so you can create the documents and store them in that collection.
+
+👉 Implement the following line of code to retrieve the collection ID:
+
+```JavaScript
+const collectionId = response.headers.location.split('/').at(-2);
+```
+
+👉 Implement the creation of the document right below the previous line of code:
+
+```JavaScript
+const documentResponse = await VectorApi.createDocuments(
+  collectionId,
+  {
+    documents: [
+      {
+        metadata: [],
+        chunks: [
+          {
+            content: `${document}`,
+            metadata: []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    'AI-Resource-Group': 'codejam-test'
+  }
+).execute();
+
+return documentResponse.documents[0];
+```
+
+This API call uses the collection ID to lookup your collection and than takes the loaded document and stores it in the collection.
+
+Now back to the `orchestrateJobPostingCreation`.
+
+👉 In the `orchestrateJobPostingCreation` function, in the try block, create a new orchestration client passing in the required LLM, the template, and the filter:
 
 ```JavaScript
 const orchestrationClient = new OrchestrationClient({
@@ -184,37 +270,7 @@ cds watch --profile hybrid
 You can observe the console output if you call your service endpoint:
 
 ```bash
-http://localhost:4004/odata/v4/job-posting-servie/createJobPosting(user_query='Create a job posting for a Software Developer.')
-```
-
-## Try out your API
-
-Wow! You did a great job so far and you have implemented a lot of code doing a lot of things.
-What you need to do now is play around with your API. CAP has a really nice way of providing the capability of testing HTTP calls to your API - the `HTTP` feature through the testing framework.
-
-Within your project folder you can execute the `cds add http` command to create a `.http` file allowing you to send different HTTP calls.
-
-👉 Open a new terminal or use an existing one.
-
-👉 Make sure you are in the root of the project folder.
-
-👉 Execute the following command:
-
-```bash
-cds add http
-```
-
-This will add HTTP calls to create, update and delete entities for your OData entities. Last thing you want to add are the calls to your OData functions.
-
-👉 Open the newly created `JobPostingsService.http` file.
-
-👉 Add the following lines of code to the end of the file:
-
-```bash
-### Create a Job Posting using the chat model
-GET {{server}}/odata/v4/job-posting-service/orchestrateJobPostingCreation(user_query='Create a Job Posting for a JavaScript Developer')
-Content-Type: application/json
-{{auth}}
+http://localhost:4004/odata/v4/job-posting-servie/createJobPosting(user_query='Create a job posting for a Senior Software Developer.')
 ```
 
 ## Experiment with the orchestration service filters
@@ -231,10 +287,9 @@ At this point the chat model is not taking your company specific information int
 
 ## Further Reading
 
-- [Query Language (CQL)](https://cap.cloud.sap/docs/cds/cql)
 - [@sap-ai-sdk/orchestration - Documentation](https://github.com/SAP/ai-sdk-js/blob/main/packages/orchestration/README.md)
-- [CAP - Actions & Functions](https://cap.cloud.sap/docs/guides/providing-services#actions-functions)
+- [Document Grounding - Documentation](https://github.com/SAP/ai-sdk-js/tree/main/packages/document-grounding)
 
 ---
 
-[Next exercise](../11-data-masking-and-anonymization/README.md)
+[Next exercise](../12-data-masking-and-anonymization/README.md)
