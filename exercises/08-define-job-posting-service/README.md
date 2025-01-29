@@ -52,4 +52,4 @@ In the next exercise, you will implement the business logic, the function handle
 
 ---
 
-[Next exercise](../09-implement-job-posting-rag/README.md)
+[Next exercise](../09-understand-and-deploy-orchestration-model/README.md)

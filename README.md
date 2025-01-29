@@ -30,13 +30,13 @@ These are the exercises, each in their directory, sometimes with supporting file
 - [Exercise 02 - Use SAP AI Launchpad to deploy a Large Language Model with Generative AI Hub on SAP AI Core](./exercises/02-deploy-llm-ailaunchpad/README.md)
 - [Exercise 03 - Explore Generative AI Hub in SAP AI Launchpad](./exercises/03-explore-genai-hub/README.md)
 - [Exercise 04 - Create the SAP AI Core connection configuration](./exercises/04-create-connection-configuration/README.md)
-- [Exercise 05 - Create the database schema for the CAP application](./exercises/05-define-db-schema/README.md)
-- [Exercise 06 - Define the Job Posting Service](./exercises/06-define-job-posting-service/README.md)
-- [Exercise 07 - Implement the Job Posting Service](./exercises/07-implement-job-posting-serivce/README.md)
-- [Exercise 08 - Explore the SAP HANA Cloud Vector Engine](./exercises/08-explore-sap-hana-cloud-vector-engine/README.md)
-- [Exercise 09 - Define the Embedding Service](./exercises/09-define-embedding-service/README.md)
-- [Exercise 10 - Implement the Embedding Service](./exercises/10-implement-embedding-service/README.md)
-- [Exercise 11 - Implement the Langchain Approach](./exercises/11-implement-langchain-approach/README.md)
+- [Exercise 05 - Explore the SAP HANA Cloud Vector Engine](./exercises/05-explore-sap-hana-cloud-vector-engine/README.md)
+- [Exercise 06 - Create the database schema for the CAP application](./exercises/06-define-db-schema/README.md)
+- [Exercise 07 - Create vector embeddings using an embedding model](./exercises/07-create-vector-embeddings/README.md)
+- [Exercise 08 - Define the Job Posting Service](./exercises/08-define-job-posting-service/README.md)
+- [Exercise 09 - Understand and deploy the orchestration model](./exercises/09-understand-and-deploy-orchestration-model/README.md)
+- [Exercise 10 - Implement the Job Posting Service](./exercises/10-implement-job-posting-serivce/README.md)
+- [Exercise 11 - Understand data masking, what is anonymization and pseudonymization](./exercises/11-data-masking-and-anonymization/README.md)
 
 The instructor will start you on the first exercise, and that's the only one you should do. You should only proceed to the next exercise once the instructor tells you to.
 

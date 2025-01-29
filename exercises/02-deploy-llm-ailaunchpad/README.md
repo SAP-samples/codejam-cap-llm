@@ -11,16 +11,16 @@ capabilities via the Generative AI Hub and is available in the Cloud Foundry env
 
 ![BTP cockpit](assets/BTP_cockpit.png)
 
-## Create a new resource group for your team
+## Create a new resource group
 
 SAP AI Core tenants use resource groups to isolate AI resources and workloads. Scenarios (e.g. `foundation-models`)
 and executables (a template for training a model or creation of a deployment) are shared across all resource groups.
 
-> Make sure to create a **NEW** resource group for your team.</br> DO NOT USE THE DEFAULT RESOURCE GROUP!
+> Make sure to create a **NEW** resource group. **DO NOT USE THE DEFAULT RESOURCE GROUP!**
 
 👉 Open the **SAP AI Core Administration** tab and select **Resource Groups**.
 
-👉 **Create** a new resource group with your team's name.
+👉 **Create** a new resource group with your initials.
 
 ![SAP AI Launchpad - Resource Group 1/2](assets/resource_group.png)
 

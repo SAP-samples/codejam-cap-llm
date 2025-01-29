@@ -1,4 +1,4 @@
-# Exercise 11 - Implement the Job Posting Service
+# Exercise 10 - Implement the Job Posting Service
 
 In the last exercise you have created a deployment for orchestration allowing you to create an orchestration workflow. This workflow can be created with the SAP Cloud SDK for AI including templating, data masking, and content filtering. One thing which is not possible at the moment is grounding. Grounding describes the process of retrieval augmented generation or RAG. Grounding allows you to create vector embeddings for a given contextual document or information source and also get the correct embedding for a given user query making it easy to communicate with the chat model without having to do all of that manually. If you remember, you've done these steps in [Exercise 09](../09-implement-job-posting-rag/README.md).
 
@@ -377,4 +377,4 @@ In this exercise you have implemented the job posting service and it's OData fun
 
 ---
 
-[Next exercise](../12-data-masking-and-anonymization/README.md)
+[Next exercise](../11-data-masking-and-anonymization/README.md)

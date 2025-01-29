@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="../../assets/style.css">
-
 # Exercise 03 - Explore Generative AI Hub in SAP AI Launchpad
 
 In order to leverage large language models (LLMs) or foundation models in your applications you can use Generative AI Hub on SAP AI Core. Like most other LLM applications Generative AI Hub is pay-per-use. You can switch between them and compare results and pick the model for your use case that works best. SAP has strict data privacy contracts with LLM providers to ensure that your data is safe.

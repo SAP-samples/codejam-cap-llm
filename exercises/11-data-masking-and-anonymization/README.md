@@ -1,4 +1,4 @@
-# Exercise 12 - Understand data masking, what is anonymization and pseudonymization
+# Exercise 11 - Understand data masking, what is anonymization and pseudonymization
 
 In the past exercises you have learned a lot about the interaction with an embedding and chat model. You have learned what vector embeddings are, what a vector engine is, how retrieval augmented generation means and how it works. You have learned and worked with content filtering to ensure that no harmful or ill content gets send or retrieved to or from a chat model.
 
@@ -132,7 +132,6 @@ async function orchestrateJobPostingCreation(user_query) {
 ```
 
 That is all you need to do. The pseudonymization gets applied each and every time the orchestration client gets initialized and called. I would encourage you to play around with the masking for a bit to familiarize yourself with it's capabilities.
-
 More information about the data masking using the orchestration client can be found in the further reading section.
 
 ## Summary
