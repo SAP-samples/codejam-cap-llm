@@ -15,17 +15,6 @@ export default function () {
     return await DBUtils.deleteVectorEmbeddings();
   });
 
-  this.on('executeJobPostingRAG', async req => {
-    const user_query = req.data.user_query;
-    validateInputParameter(user_query);
-
-    let entry = await DBUtils.createJobPosting(
-      await AIHelper.executeRAG(user_query)
-    );
-    await DBUtils.insertJobPosting(entry);
-    return 'Job posting created and stored in database';
-  });
-
   this.on('createJobPosting', async req => {
     const user_query = req.data.user_query;
     validateInputParameter(user_query);

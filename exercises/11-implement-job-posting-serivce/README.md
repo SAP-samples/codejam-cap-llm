@@ -18,20 +18,78 @@ this.on('createJobPosting', async req => {
     // implementation goes here ...
  });
 
+ this.on('deleteJobPosting', async req => {
+    // implementation goes here ...
+ });
+
+this.on('deleteJobPostings', async () => {
+    // implementation goes here ...
+ });
+
+```
+
+## Implement input parameter validation
+
+For both, the creation of a job posting and the deletion of a specific job posting, the API requires input parameters for the user query or the job id. These values need to be checked if they are `undefined` or `empty` to prevent runtime errors. You will implement a simple method checking these values and in case of an unwanted value throw an error.
+
+👉 Below the closing curly bracket of the function export add the following method declaration:
+
+```JavaScript
+function validateInputParameter(parameter) {
+    // implementation goes here
+}
+```
+
+Now, you will implement a check for `undefined` and a check for an empty String.
+
+👉 In the method add the following lines of code:
+
+```JavaScript
+if (typeof parameter === 'undefined') {
+    throw new Error(wrongInputError);
+}
+
+function isEmpty(input) {
+    return input.trim() === '';
+}
+
+if (isEmpty(parameter)) {
+    throw new Error(wrongInputError);
+}
+```
+
+Your method should look like this now:
+
+```JavaScript
+function validateInputParameter(parameter) {
+  if (typeof parameter === 'undefined') {
+    throw new Error(wrongInputError);
+  }
+
+  function isEmpty(input) {
+    return input.trim() === '';
+  }
+
+  if (isEmpty(parameter)) {
+    throw new Error(wrongInputError);
+  }
+}
 ```
 
 ## Implement the job posting creation
 
-Think about what we did in the last exercises and recap what needs to be done:
+With the input validation in place, you can go ahead and implement the RAG flow. Before you do that, think about what should happen.
 
 1. A user inputs a query describing what kind of job posting should be created.
-2. Your OData service takes the input and passes it through to the orchestration client.
-3. The orchestration client establishes connection to a specific chat model, for this Codejam you will use the `gpt-4o-mini`.
-4. Together with the query, the orchestration client pushes a template giving extra context, to the chat model.
-5. To make sure, there is nothing inappropriate passed to the chat model a input filter is being applied.
+2. Your OData service takes the input and passes it through to the OData function handler for the RAG execution.
+3. The user query needs to be sent to an embedding client to get a vector for that user query. This is required to execute the similarity search on the already embedded vector embeddings in the SAP HANA Cloud vector engine. You will use the cosine similarity algorithm.
+4. A chat client establishes connection to a specific chat model, for this Codejam you will use the `gpt-4o-mini`.
+5. The vector of the user query together with the query, gets send to the chat model using a template giving extra context, to the chat model.
 6. The chat model processes the request and returns a response to your client.
 7. The response gets passed to the `DBUtils` to create a new database entry.
 8. The entry then gets inserted into the database with the help of CQL.
+
+To be fair, this seems like a lot but no worries it is actually not that bad. Let's go through it step-by-step.
 
 👉 Within the `createJobPosting` function handler retrieve the user query from the request and pass it to the input validation method you've implemented before:
 
@@ -56,6 +114,7 @@ The last step is to insert the database entry into the database (Step 8).
 
 ```JavaScript
 await DBUtils.insertJobPosting(entry);
+return 'Job posting created and stored in database';
 ```
 
 Your method should look like this now:
@@ -83,12 +142,19 @@ Within the file you need to import the orchestration client and the content filt
 ```JavaScript
 import {
   OrchestrationClient,
-  buildAzureContentFilter,
-  buildDocumentGroundingConfig
+  buildAzureContentFilter
 } from '@sap-ai-sdk/orchestration';
 ```
 
-👉 Below the `executeRAG`, add the `orchestrateJobPostingCreation` method you have also called in the `job-posting-service.js`:
+👉 Right below the import statement add the following constants containing the chat and embedding model's name:
+
+```JavaScript
+const chatModelName = 'gpt-4o-mini';
+```
+
+You define the chat model's name in a constant because you will use the name again at a later point. This gives you a single point of truth in case you want to change the chat model in the future.
+
+👉 Below the `createVectorEmbeddings` function handler, add the `orchestrateJobPostingCreation` function you have called in the `job-posting-service.js`:
 
 ```JavaScript
 async function orchestrateJobPostingCreation(user_query) {
@@ -103,125 +169,75 @@ async function orchestrateJobPostingCreation(user_query) {
   }
 ```
 
-👉 In the `try` block, call a document creation function responsible for the embedding part:
+Within the `try` block, you will add the complete logic for the RAG flow. You will start by implementing the creation of the vector embedding for the given user query. This is necessary for the similarity search using the cosine similarity algorithm.
+
+👉 Initialize an embedding client for the `text-embedding-ada-002` model:
 
 ```JavaScript
-const document = await createDocument();
+const embeddingClient = new AzureOpenAiEmbeddingClient({
+      modelName: embeddingModelName,
+      maxRetries: 0,
+      resourceGroup: '<your-resource-group>'
+    });
 ```
 
-👉 Outside the function `orchestrateJobPostingCreation`, create a new function `createDocument`:
+Embedding the user query will allow for the creation of a vector embedding. The vector embedding can then be used to calculate the closest distance to existing contextual vector embeddings in the SAP HANA Cloud vector engine. The result of this is that you will receive the contextual vector embedding with the highest relevance to the user query. This embedding can then be send to the chat model as contextual information to answer the user query.
+
+👉 Embedd the user query with the embedding client:
 
 ```JavaScript
-async function createDocument() {
-  // implementation goes here
-}
-
+let embedding = await embeddingClient.embedQuery(user_query);
 ```
 
-The implementation of `createDocument` is using the Document Grounding API to create multiple things:
-
-- A new document collection on AI Core.
-- A new document including the vector embeddings on AI Core and SAP HANA Cloud vector engine.
-
-An important distinction from using the Document Grounding Service compared to creating your own vector embeddings with the embedding client is that the Document Grounding Service is providing you with a HANA database and your own HDI container within it. That means you don't need your own SAP HANA Cloud instance which saves you not only money but also administration and operation time.
-
-The API is creating a tenant and an HDI container for you and stores the created vector embeddings in the corresponding vector engine.
-
-Let's take a look on how this is can be implemented.
-
-👉 Within the `createDocument` function load the contextual text document from file:
+👉 Execute the cosine similarity using a `SELECT` statement and ordering the result using the cosine similarity for the given vector of the user query:
 
 ```JavaScript
-const loader = new TextLoader(path.resolve('db/data/demo_grounding.txt'));
-const document = await loader.load();
+let splits = await SELECT.from(DocumentChunks)
+      .orderBy`cosine_similarity(embedding, to_real_vector(${embedding})) DESC`;
 ```
 
-👉 Right below, implement the call for creating a new collection. Make sure to replace the placeholder for the resource group with your name otherwise it won't be able to resolve the correct resource group:
+👉 Extract the first result from the list `splits`:
 
 ```JavaScript
-const response = await VectorApi.createCollection(
-  {
-    title: 'cap-ai-codejam-kr',
-    embeddingConfig: {
-      modelName: embeddingModelName
-    },
-    metadata: []
-  },
-  {
-    'AI-Resource-Group': '<Your-Resource-Group>'
-  }
-).executeRaw();
-
+let text_chunk = splits[0].text_chunks;
 ```
 
-This defines the configuration for the API to properly create a collection for you. As you can see, you are defining the embedding model you want to use.
+You have all relevant information at hand to construct the template which is getting send to the chat model via the orchestration client.
 
-Next, you need the collection ID so you can create the documents and store them in that collection.
-
-👉 Implement the following line of code to retrieve the collection ID:
+👉 Now, create a new orchestration client passing in the required LLM, the template, and the filter:
 
 ```JavaScript
-const collectionId = response.headers.location.split('/').at(-2);
-```
-
-👉 Implement the creation of the document right below the previous line of code:
-
-```JavaScript
-const documentResponse = await VectorApi.createDocuments(
-  collectionId,
-  {
-    documents: [
+const filter = buildAzureContentFilter({ Hate: 4, Violence: 4 });
+const orchestrationClient = new OrchestrationClient(
       {
-        metadata: [],
-        chunks: [
-          {
-            content: `${document}`,
-            metadata: []
-          }
-        ]
-      }
-    ]
-  },
-  {
-    'AI-Resource-Group': 'codejam-test'
-  }
-).execute();
-
-return documentResponse.documents[0];
-```
-
-This API call uses the collection ID to lookup your collection and than takes the loaded document and stores it in the collection.
-
-Now back to the `orchestrateJobPostingCreation`.
-
-👉 In the `orchestrateJobPostingCreation` function, in the try block, create a new orchestration client passing in the required LLM, the template, and the filter:
-
-```JavaScript
-const orchestrationClient = new OrchestrationClient({
-    llm: {
-    model_name: chatModelName,
-    model_params: { max_tokens: 1000 }
-    },
-    templating: {
-    template: [
-        {
-            role: 'user',
-            content: `You are an assistant for creating Job Postings.
-            Use the user query to generate a fitting Job Posting. \n
-            ${user_query}`
-        }
-    ]
-    },
+        llm: {
+          model_name: chatModelName,
+          model_params: { max_tokens: 1000, temperature: 0.1 }
+        },
+        templating: {
+          template: [
+            {
+              role: 'user',
+              content:
+                ` You are an assistant for HR recruiter and manager.
+            You are receiving a user query to create a job posting for new hires.
+            Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
+            The contact details for the recruiter are: Jane Doe, E-Mail: jane.doe@company.com .
+            Consider all the input before responding.
+            context: ${text_chunk}` + user_query
+            }
+          ]
+        },
         filtering: {
-        input: buildAzureContentFilter({
-            SelfHarm: 6,
-            Hate: 6,
-            Sexual: 6,
-            Violance: 6
-         })
-    }
-});
+          input: filter,
+          output: filter
+        }
+      },
+      { resourceGroup: 'codejam-test' }
+    );
 ```
+
+A typical message to a chat model requires a couple of information. First of all, you need to specify if you are sending a user message or a system message. In your case, you are constructing a user message and you enhance the user message with additional contextual information and instructions. You add the user query to the instructions for the model to give a better response. To the user, this additional information is hidden so they can focus on their request.
 
 The client is defined to connect to the `gpt-4o-mini` using a template describing what you want the chat model to do including the user query. Finally you define strict rules for the content filter. The service is not tolerating any inappropriate or discriminating language which is of utmost importance!
 
@@ -229,12 +245,82 @@ The client is defined to connect to the `gpt-4o-mini` using a template describin
 
 ```JavaScript
 const response = await orchestrationClient.chatCompletion();
+console.log(
+  `Successfully executed chat completion. ${response.getContent()}`
+);
 ```
 
 👉 Finally, return the user query, and the chat model response.
 
 ```JavaScript
 return [user_query, response.getContent()];
+```
+
+👉 Lastly, add the `orchestrateJobPostingCreation` to the function export:
+
+```JavaScript
+export { createVectorEmbeddings, orchestrateJobPostingCreation };
+```
+
+The complete implementation should look like this now:
+
+```JavaScript
+async function orchestrateJobPostingCreation(user_query) {
+  try {
+    const embeddingClient = new AzureOpenAiEmbeddingClient({
+      modelName: embeddingModelName,
+      maxRetries: 0,
+      resourceGroup: resourceGroup
+    });
+
+    let embedding = await embeddingClient.embedQuery(user_query);
+    let splits = await SELECT.from(DocumentChunks)
+      .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
+
+    let text_chunk = splits[0].text_chunks;
+
+    const filter = buildAzureContentFilter({ Hate: 4, Violence: 4 });
+    const orchestrationClient = new OrchestrationClient(
+      {
+        llm: {
+          model_name: chatModelName,
+          model_params: { max_tokens: 1000, temperature: 0.1 }
+        },
+        templating: {
+          template: [
+            {
+              role: 'user',
+              content:
+                ` You are an assistant for HR recruiter and manager.
+            You are receiving a user query to create a job posting for new hires.
+            Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
+            The contact details for the recruiter are: Jane Doe, E-Mail: jane.doe@company.com .
+            Consider all the input before responding.
+            context: ${text_chunk}` + user_query
+            }
+          ]
+        },
+        filtering: {
+          input: filter,
+          output: filter
+        }
+      },
+      { resourceGroup: resourceGroup }
+    );
+
+    const response = await orchestrationClient.chatCompletion();
+    console.log(
+      `Successfully executed chat completion. ${response.getContent()}`
+    );
+    return [user_query, response.getContent()];
+  } catch (error) {
+    console.log(
+      `Error while generating Job Posting.
+      Error: ${error.response}`
+    );
+    throw error;
+  }
+}
 ```
 
 If you want to try out the code you can do that by using the `cds watch` command. This command allows you to run your CAP application locally and test it live.
@@ -279,16 +365,15 @@ You spend a lot of time implementing the code to get the orchestration service u
 
 At this point, I would encourage you to go back to the service implementation and play around with the different content filter options on the orchestration service. See how the filter level changes make the chat model respond differently. This will give you a better understanding on how you can utilize content filters to make sure that your AI services behave ethical.
 
+For example, you can send a user query asking the model to create a Job Posting which should include words like `stupid`. The filter should block the request.
+
 ## Summary
 
-In this exercise you have implemented the job posting service and it's OData function handlers. You have utilized the SAP Cloud SDK for AI to connect to SAP AI Core via the orchestration service. You have connected to the orchestration deployment to ask a chat model to create a job posting for you.
-
-At this point the chat model is not taking your company specific information into account. You need to change this to get proper job postings generated where the chat model knows about very specific information like pay ranges, job level, and other contextual information. To do so, you will utilize an Embedding model, vector embeddings and the SAP HANA Cloud Vector Engine.
+In this exercise you have implemented the job posting service and it's OData function handlers. You have utilized the SAP Cloud SDK for AI to connect to SAP AI Core via the orchestration service. You have connected to the orchestration deployment to ask a chat model to create a job posting for you using the previously created vector embeddings.
 
 ## Further Reading
 
 - [@sap-ai-sdk/orchestration - Documentation](https://github.com/SAP/ai-sdk-js/blob/main/packages/orchestration/README.md)
-- [Document Grounding - Documentation](https://github.com/SAP/ai-sdk-js/tree/main/packages/document-grounding)
 
 ---
 

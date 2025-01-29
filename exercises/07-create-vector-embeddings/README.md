@@ -261,6 +261,49 @@ const embeddings = await embeddingClient.embedDocuments(documentSplits);
 return [embeddings, splitDocuments];
 ```
 
+Your complete implementation should look like this now:
+
+```JavaScript
+async function createVectorEmbeddings() {
+  try {
+    const loader = new TextLoader(path.resolve('db/data/demo_grounding.txt'));
+    const document = await loader.load();
+
+    const splitter = new RecursiveCharacterTextSplitter({
+      chunkSize: 70,
+      chunkOverlap: 0,
+      addStartIndex: true
+    });
+
+    const splitDocuments = await splitter.splitDocuments(document);
+
+    const textSplits = [];
+    for (const chunk of splitDocuments) {
+      textSplits.push(chunk.pageContent);
+    }
+
+    const embeddingClient = new AzureOpenAiEmbeddingClient({
+      modelName: embeddingModelName,
+      maxRetries: 0,
+      resourceGroup: resourceGroup
+    });
+    const embeddings = await embeddingClient.embedDocuments(textSplits);
+
+    return [embeddings, splitDocuments];
+  } catch (error) {
+    console.log(`Error while generating embeddings.
+      Error: ${JSON.stringify(error.response)}`);
+    throw error;
+  }
+}
+```
+
+👉 Lastly, add the `createVectorEmbeddings` to the function export as last line to the `ai-helper.js` file:
+
+```JavaScript
+export { createVectorEmbeddings};
+```
+
 ## Implement the creation of vector embedding entries
 
 You are about to implement the storing of the generated vector embeddings to the SAP HANA Cloud vector engine.

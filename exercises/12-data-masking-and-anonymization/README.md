@@ -10,7 +10,6 @@ In this exercise, you will learn the following:
 
 - What anonymization and pseudonymization is.
 - How to use the SAP Cloud SDK for AI orchestration API to manage data privacy.
-- How to use the SAP AI Launchpad to manage an orchestration workflow in regards to data privacy.
 
 ## Data masking
 
@@ -38,10 +37,109 @@ You will apply pseudonymization for both approaches.
 
 ### Use the orchestration API of the SAP Cloud SDK for AI
 
+Using the orchestration API allows you to define data masking options within the initializer of the orchestration client. You will now define a masking provider, a piece of software responsible for performing the data masking, to your client initialization. The used masking provider for today is the SAP Data Privacy Integration, and you are going to use pseudonymization as data masking method.
 
+Because the prompt to the chat model includes the email address, first and last name of the recruiter you want to make sure that this information is not being sent to the chat model. You can define what entities you want to mask and you can look at the full list via the link in the further reading section of this exercise.
 
-### Use the SAP AI Launchpad visual orchestration workflow editor
+In the `orchestrateJobPostingCreation` function handler, within the orchestration client initialization add the masking defintion. Because this initializer expects that JSON format definition style you need to find the right spot to add the masking bit.
+
+👉 Right below the closing curly bracket of the `filtering` object add a comma and the masking definition:
+
+```JavaScript
+filtering: {
+          input: filter,
+          output: filter
+        },
+masking: {
+  masking_providers: [
+    {
+      type: 'sap_data_privacy_integration',
+      method: 'pseudonymization',
+      entities: [{ type: 'profile-email' }, { type: 'profile-person' }]
+    }
+  ]
+}
+```
+
+The implementation should look like this now:
+
+```JavaScript
+async function orchestrateJobPostingCreation(user_query) {
+  try {
+    const embeddingClient = new AzureOpenAiEmbeddingClient({
+      modelName: embeddingModelName,
+      maxRetries: 0,
+      resourceGroup: resourceGroup
+    });
+
+    let embedding = await embeddingClient.embedQuery(user_query);
+    let splits = await SELECT.from(DocumentChunks)
+      .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
+
+    let text_chunk = splits[0].text_chunks;
+
+    const filter = buildAzureContentFilter({ Hate: 4, Violence: 4 });
+    const orchestrationClient = new OrchestrationClient(
+      {
+        llm: {
+          model_name: chatModelName,
+          model_params: { max_tokens: 1000, temperature: 0.1 }
+        },
+        templating: {
+          template: [
+            {
+              role: 'user',
+              content:
+                ` You are an assistant for HR recruiter and manager.
+            You are receiving a user query to create a job posting for new hires.
+            Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
+            The contact details for the recruiter are: Jane Doe, E-Mail: jane.doe@company.com .
+            Consider all the input before responding.
+            context: ${text_chunk}` + user_query
+            }
+          ]
+        },
+        filtering: {
+          input: filter,
+          output: filter
+        },
+        masking: {
+          masking_providers: [
+            {
+              type: 'sap_data_privacy_integration',
+              method: 'pseudonymization',
+              entities: [{ type: 'profile-email' }, { type: 'profile-person' }]
+            }
+          ]
+        }
+      },
+      { resourceGroup: resourceGroup }
+    );
+
+    const response = await orchestrationClient.chatCompletion();
+    console.log(
+      `Successfully executed chat completion. ${response.getContent()}`
+    );
+    return [user_query, response.getContent()];
+  } catch (error) {
+    console.log(
+      `Error while generating Job Posting.
+      Error: ${error.response}`
+    );
+    throw error;
+  }
+}
+```
+
+That is all you need to do. The pseudonymization gets applied each and every time the orchestration client gets initialized and called. I would encourage you to play around with the masking for a bit to familiarize yourself with it's capabilities.
+
+More information about the data masking using the orchestration client can be found in the further reading section.
 
 ## Summary
 
 ## Further Reading
+
+- [Data Masking using Orchestration Client - Sample Code](https://github.com/SAP/ai-sdk-js/blob/f0d290f76b4abb813088f50bedf18a8a4e97187f/sample-code/src/orchestration.ts#L231)
+- [Data Masking - SAP Cloud SDK for AI](https://github.com/SAP/ai-sdk-js/blob/main/packages/orchestration/README.md#data-masking)
+- [Data Masking - SAP AI Launchpad documentation](https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/data-masking?locale=en-US&q=data+masking)
+- [Data Masking - Generative AI Hub documentation](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/data-masking?locale=en-US&q=data+masking)
