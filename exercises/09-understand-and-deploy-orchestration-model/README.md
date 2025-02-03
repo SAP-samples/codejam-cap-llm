@@ -74,6 +74,26 @@ You have learned about why such an orchestration workflow can be helpful to ease
 
 In the next exercise you will learn how to use the SAP Cloud SDK for AI to implement an orchestration workflow using the orchestration package of the SDK.
 
+### Questions for Discussion
+
+1. What are the key functions provided by the orchestration service?
+
+<details><summary>Answer</summary>
+The key functions provided by the orchestration service include:
+
+- **Templating**: Allows you to compose prompts with placeholders that are filled during inference to generate dynamic content.
+
+- **Content Filtering**: Restricts the type of content passed to and received from the generative AI model, ensuring the content meets political correctness and safety.
+
+- **Data Masking**: Masks data to anonymize or pseudonymize it before it enters a generative AI model, ensuring compliance with data privacy regulations like GDPR.
+</details>
+
+1. What is the responsibility of the user regarding content filtering and data masking in SAP AI Launchpad?
+
+<details><summary></summary>
+While SAP provides some global filtering on models to ensure safety, the user is responsible for further content filtering to ensure the appropriateness of the generated content. Additionally, data masking (anonymization or pseudonymization) is the developer's responsibility to ensure compliance with regulations such as GDPR or other data privacy laws. This can be done either directly in the SAP AI Launchpad or through the orchestration service API in the SAP Cloud SDK for AI.
+</details>
+
 ## Further Reading
 
 - [Orchestration](https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/orchestration)

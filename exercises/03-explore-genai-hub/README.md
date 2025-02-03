@@ -96,6 +96,27 @@ The **Prompt Editor** is useful if you want to store a prompt and the response t
 
 At this point, you will know how to use the user interface of Generative AI Hub in SAP AI Launchpad to query LLMs and store important prompts. You also know how to tweak the output of a large language model by applying prompt engineering techniques.
 
+### Questions for Discussion
+
+1. How can you configure and use the Chat feature in Generative AI Hub?
+<details><summary>Answer</summary>
+   To use the Chat feature in the Generative AI Hub, you first need to select a deployed model under Selected Model. You can then adjust parameters like Frequency Penalty to avoid repetition, Presence Penalty to encourage new topics, Max Tokens to control input/output size, and Temperature to control model creativity. You can also adjust the Chat Context to manage the history of the conversation and add a System Message to guide the model's behavior (e.g., make it speak like a pirate).
+   </details>
+
+1. What is Prompt Engineering, and what are some techniques to try in SAP AI Launchpad?
+<details><summary>Answer</summary>
+Prompt Engineering is the practice of crafting prompts in a way that guides the model to produce the desired responses. Some common techniques include:
+
+   - Zero shot: Asking a direct question without any examples (e.g., "The capital of the U.S. is:").
+   - Few shot: Providing a few examples before asking a question (e.g., "Germany - Berlin, France - Paris, U.S. -").
+   - Chain of thought: Structuring a series of steps for the model to follow (e.g., asking the model to identify important cities or countries in a structured format).
+</details>
+
+1. How can the Prompt Editor in SAP AI Launchpad help with storing and managing prompts?
+<details><summary>Answer</summary>
+The Prompt Editor allows you to save prompts and their responses for later use or comparison. It’s useful for tasks that require repeated use of the same prompt. You can save different versions of prompts, specify parameters like Max Tokens, and view the number of tokens used. For example, you can save a Chain of Thought prompt for customer support classification and reuse it in the future without retyping the prompt. Saved prompts can be managed under Prompt Management for easy access.
+</details>
+
 ## Further reading
 
 - [Generative AI Hub on SAP AI Core - Help Portal (Documentation)](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/generative-ai-hub-in-sap-ai-core-7db524ee75e74bf8b50c167951fe34a5)

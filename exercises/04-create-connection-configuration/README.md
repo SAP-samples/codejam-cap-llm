@@ -35,6 +35,22 @@ At this point you have set up your workspace, worked with SAP AI Launchpad by cr
 
 In the next exercise you will start implementing the actual CAP service by defining the database schema.
 
+### Questions for Discussion
+
+1. What is the SAP Cloud SDK for AI, and how does it help connect to SAP AI Core?
+<details><summary>Answer</summary>
+   The SAP Cloud SDK for AI enables seamless integration with SAP AI Core, SAP Generative AI Hub, and the Orchestration service. It is available for multiple programming languages such as Python, JavaScript, Java, and ABAP. In this exercise, you'll use the JavaScript version to connect a CAP OData service to SAP AI functionality. The SDK helps in establishing the connection by reading authentication details from a service key or environment variables.
+   </details>
+
+1. What are the two options for configuring the connection to SAP AI Core with the SAP Cloud SDK for AI?
+<details><summary>Answer</summary>
+
+There are two ways to configure the connection:
+
+  1. For local development/testing: You can use a Cloud Foundry service key stored in the `.env` file or set it as an environment variable. This allows the SDK to parse the service key and connect to SAP AI Core for local testing, assuming the relevant AI services are deployed.
+
+  2. For production: The SDK recommends creating a binding between your application and the SAP AI Core service instance. This method is more secure, as it does not expose sensitive authentication details in clear text.
+   </details>
 ---
 
 [Next exercise](../05-explore-sap-hana-cloud-vector-engine/README.md)

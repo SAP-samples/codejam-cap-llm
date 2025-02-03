@@ -357,7 +357,7 @@ for (const [index, embedding] of embeddings.entries()) {
   }
 ```
 
-As you might have noticed, you are calling a conversion function to convert the embeddings to a vector buffer for database insertion. This function needs to be implemented next. 
+As you might have noticed, you are calling a conversion function to convert the embeddings to a vector buffer for database insertion. This function needs to be implemented next.
 
 👉 Below the `insertVectorEmbeddings` function implement the following:
 
@@ -491,9 +491,34 @@ You can use the URL to call your OData function handler for creating the vector 
 
 ## Summary
 
-Congratulations! The call went through and apparently the vector embeddings were stored in the database. Wouldn't it be nice to have a certain way for checking the entries in the table?! 
+Congratulations! The call went through and apparently the vector embeddings were stored in the database. Wouldn't it be nice to have a certain way for checking the entries in the table?!
 
 Remember the exercise where you used the `hana-cli` to do exactly that. Try this step on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 06](../../exercises/06-define-db-schema/README.md) and check on the instructions.
+
+### Questions for Discussion
+
+1. How are vector embeddings created in the SAP HANA Cloud system?
+
+<details><summary>Answer</summary>
+Vector embeddings are created using an embedding model, which can either be pre-trained or trained by the user. The process typically involves the following steps:
+
+- Load the unstructured data (e.g., text).
+- Split the text into meaningful chunks.
+- Feed these chunks into the embedding model to generate numerical vectors (embeddings).
+- Store the embeddings in the SAP HANA Cloud vector engine for later use.
+
+</details>
+
+1. What are the two algorithms used to compare vector embeddings, and how do they differ?
+
+<details><summary>Answer</summary>
+The two algorithms used to compare vector embeddings are Euclidean Distance and Cosine Similarity.
+
+- **Euclidean Distance** measures the average linear distance between two vectors. The closer the vectors, the more similar they are.
+
+- **Cosine Similarity** calculates the cosine of the angle between two vectors, resulting in a value between -1 and 1. A cosine similarity of 1 indicates complete similarity, while -1 means complete dissimilarity, and 0 indicates no relationship. These algorithms differ in how they compute the "distance" or "similarity" between vectors, with cosine similarity being more sensitive to the direction of the vector rather than the magnitude.
+
+</details>
 
 ## Further reading
 

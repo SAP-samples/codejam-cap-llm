@@ -125,6 +125,31 @@ text-embedding-ada-002
 
 At this point, you will have learned how to create your own resource group, which models are available via Generative AI Hub and deploy LLMs in SAP AI Launchpad.
 
+### Questions for Discussion
+
+1. What is SAP AI Launchpad and what can it be used for?
+
+  <details><summary>Answer</summary>
+   SAP AI Launchpad is a multi-tenant SaaS application on SAP Business Technology Platform. It helps you manage AI use cases across different AI runtimes and provides generative AI capabilities via the SAP generative AI Hub.
+  </details>
+
+1. What is the purpose of creating a new resource group in SAP AI Launchpad, and how should it be done?
+
+  <details><summary>Answer</summary>
+  Creating a new resource group in SAP AI Launchpad helps isolate AI resources and workloads for better management.
+  </details>
+
+1. How do you deploy a proxy for a large language model (LLM) on SAP AI Core using SAP AI Launchpad?
+<details><summary>Answer</summary>
+To deploy a proxy for an LLM, you need to:
+
+  1. Open the ML Operations tab in SAP AI Launchpad.
+  2. Select the foundation-models scenario, and then choose the model executable (e.g., azure-openai).
+  3. Create a new configuration, specifying the model name (e.g., gpt-4o-mini).
+  4. After reviewing the configuration, click Create.
+  5. Then, click Create Deployment to deploy a proxy. Once the deployment status changes to RUNNING, you will receive a URL to query the model.
+</details>
+
 ## Further reading
 
 - [SAP AI Launchpad - Help Portal (Documentation)](https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/what-is-sap-ai-launchpad)

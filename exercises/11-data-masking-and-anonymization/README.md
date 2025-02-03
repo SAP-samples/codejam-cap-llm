@@ -136,6 +136,24 @@ More information about the data masking using the orchestration client can be fo
 
 ## Summary
 
+This exercise tought you how to apply data masking techniques, like anonymization and pseudonymization, to protect personal data in AI workflows. It emphasized on the importance of data privacy and compliance with regulations while ensuring that essential information can still be processed by AI systems. The exercise also highlighted how to implement these concepts using the SAP Cloud SDK for AI and SAP AI launchpad.
+
+### Questions for Discussion
+
+1. What is the difference between anonymization and pseudonymization?
+
+<details><summary>Answer</summary>
+Anonymization is the process of completely removing or altering sensitive data, making it irreversible and unlinkable to any individual. This ensures compliance with privacy regulations like GDPR. The downside is that the data becomes irreversible, and you cannot restore the original information.
+Pseudonymization, on the other hand, involves replacing identifiable information with artificial identifiers or pseudonyms. This allows you to map the pseudonyms back to the original data, ensuring that the information can still be restored if needed. However, pseudonymized data is still considered personal data and requires additional security measures.
+
+</details>
+
+1. How does the SAP Cloud SDK for AI orchestration API help with data masking?
+
+<details><summary>Answer</summary>
+The SAP Cloud SDK for AI orchestration API allows you to integrate data masking into your AI workflows by configuring the orchestration client to use a masking provider. In the exercise, pseudonymization is applied through the `sap_data_privacy_integration` masking provider, which replaces sensitive information like emails and names with pseudonyms before sending the data to the chat model. This ensures that personal data is not exposed to the model, while still allowing essential contextual information to be used.
+</details>
+
 ## Further Reading
 
 - [Data Masking using Orchestration Client - Sample Code](https://github.com/SAP/ai-sdk-js/blob/f0d290f76b4abb813088f50bedf18a8a4e97187f/sample-code/src/orchestration.ts#L231)

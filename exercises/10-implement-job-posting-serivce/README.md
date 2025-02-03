@@ -359,6 +359,12 @@ You can observe the console output if you call your service endpoint:
 http://localhost:4004/odata/v4/job-posting-servie/createJobPosting(user_query='Create a job posting for a Senior Software Developer.')
 ```
 
+## Check the database table for job postings
+
+Use the learned technics to inspect the entries in the Job Postings table.
+
+If you need a quick recap, go back to [Exercise 06](../../exercises/06-define-db-schema/README.md) and check on the instructions.
+
 ## Experiment with the orchestration service filters
 
 You spend a lot of time implementing the code to get the orchestration service up and running. You have understood how the API works and how you can integrate it into a CAP application service.
@@ -370,6 +376,14 @@ For example, you can send a user query asking the model to create a Job Posting 
 ## Summary
 
 In this exercise you have implemented the job posting service and it's OData function handlers. You have utilized the SAP Cloud SDK for AI to connect to SAP AI Core via the orchestration service. You have connected to the orchestration deployment to ask a chat model to create a job posting for you using the previously created vector embeddings.
+
+### Questions for Discussion
+
+1. What is the main purpose of the `orchestrateJobPostingCreation` function in the implementation?
+
+<details><summary>Answer</summary>
+The `orchestrateJobPostingCreation` function handles the RAG flow for creating job postings. It takes a user query, creates a vector embedding for it using the `text-embedding-ada-002` model, retrieves the most relevant context from the database using cosine similarity, and sends the user query along with the contextual information to a chat model (`gpt-4o-mini`). The response from the chat model is then returned and stored in the database as a new job posting.
+</details>
 
 ## Further Reading
 
