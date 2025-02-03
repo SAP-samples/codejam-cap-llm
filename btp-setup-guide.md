@@ -10,10 +10,10 @@ Nothing described in this guide needs to be done by you as a CodeJam participant
 
 If you want to learn more about BTP, regions, Free Tier, and the account structure of BTP, a list of additional resources is provided below:
 
-* [SAP Business Technology Platform](https://www.sap.com/products/technology-platform.html)
-* [Try and buy SAP Business Technology Platform](https://www.sap.com/products/technology-platform/pricing.html)
-* [Get started with SAP Business Technology Platform](https://help.sap.com/docs/btp/sap-business-technology-platform/sap-business-technology-platform)
-* [Regions](https://help.sap.com/docs/btp/sap-business-technology-platform/regions)
+- [SAP Business Technology Platform](https://www.sap.com/products/technology-platform.html)
+- [Try and buy SAP Business Technology Platform](https://www.sap.com/products/technology-platform/pricing.html)
+- [Get started with SAP Business Technology Platform](https://help.sap.com/docs/btp/sap-business-technology-platform/sap-business-technology-platform)
+- [Regions](https://help.sap.com/docs/btp/sap-business-technology-platform/regions)
 
 ## Enable SAP BTP, Cloud Foundry runtime, and create a development space
 
@@ -43,9 +43,9 @@ Finally, the service can be created via the `Instances and Subscriptions` screen
 
 How to enable and create a SAP HANA Cloud instance is described in the following tutorial:
 
-* [Deploy SAP HANA Cloud](https://developers.sap.com/tutorials/hana-cloud-deploying.html)
-* [Start Using SAP HANA Cloud Trial in SAP BTP Cockpit](https://developers.sap.com/tutorials/hana-cloud-mission-trial-2.html)
-* [Provision an Instance of SAP HANA Cloud, SAP HANA Database](https://developers.sap.com/tutorials/hana-cloud-mission-trial-3.html)
+- [Deploy SAP HANA Cloud](https://developers.sap.com/tutorials/hana-cloud-deploying.html)
+- [Start Using SAP HANA Cloud Trial in SAP BTP Cockpit](https://developers.sap.com/tutorials/hana-cloud-mission-trial-2.html)
+- [Provision an Instance of SAP HANA Cloud, SAP HANA Database](https://developers.sap.com/tutorials/hana-cloud-mission-trial-3.html)
 
 Make sure you have the `SAP HANA Cloud` instance as well as the `SAP HANA Administration Tools` entitled and created in your subaccount. The tools will provide your subaccount with the correct role collection and administrative tools to manage your SAP HANA Cloud instance. If you use the `Set Up SAP HANA Cloud Administration Tools` booster, you get all the tools including the role collections set up automatically. If you want to enable the tools manually, you can add the `SAP HANA Cloud` entitlement using the `hana-cloud-tools` service plan. After you have entitled your subaccount, you can create an instance of the administration tools via the service marketplace. That will provide the necessary role collections to your subaccount. The role collections need to be assigned to your user manually.
 
@@ -55,12 +55,12 @@ Now, that you have a SAP HANA Cloud instance up and running, you can utilize the
 
 For information, you can read up on the following resources:
 
-* [SAP HANA Cloud, SAP HANA Database Vector Engine Guide](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine-guide/introduction)
-* [SAP HANA Cloud, SAP HANA Database](https://help.sap.com/docs/hana-cloud-database)
+- [SAP HANA Cloud, SAP HANA Database Vector Engine Guide](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine-guide/introduction)
+- [SAP HANA Cloud, SAP HANA Database](https://help.sap.com/docs/hana-cloud-database)
 
 If you're interested in a CodeJam covering CAP application development for SAP HANA Cloud, you can visit the GitHub repository for that CodeJam.
 
-* [GitHub: cap-hana-exercises-codejam](https://github.com/SAP-samples/cap-hana-exercises-codejam/tree/main)
+- [GitHub: cap-hana-exercises-codejam](https://github.com/SAP-samples/cap-hana-exercises-codejam/tree/main)
 
 ## Enable and create an instance of SAP HANA Schemas & HDI Containers
 
@@ -76,7 +76,7 @@ The SAP Business Application Studio is an IDE based on Visual Studio coded avail
 
 You can find a detailed guide here:
 
-* [Set Up SAP Business Application Studio for Development](https://developers.sap.com/tutorials/appstudio-onboarding.html)
+- [Set Up SAP Business Application Studio for Development](https://developers.sap.com/tutorials/appstudio-onboarding.html)
 
 ## Enable and create an instance of SAP AI Core
 
@@ -150,7 +150,7 @@ In the last step, you have entitled your subaccount to use the SAP AI Launchpad 
 
 ![set-up-ailaunchpad-open-app](./assets/set-up-ailaunchpad/3-set-up-ailaunchpad-open.png)
 
-As you can see, you see nothing. You must set up an AI API Connection to access an actual workspace. 
+As you can see, you see nothing. You must set up an AI API Connection to access an actual workspace.
 
 👉 Click on `Add`.
 
@@ -173,25 +173,3 @@ A new pop-up window will appear. You have to enter some connection details here.
 ![set-up-ailaunchpad-configuration-done](./assets/set-up-ailaunchpad/7-set-up-ailaunchpad-configured.png)
 
 > In case the import of the service key fails, you have to manually enter the values of the service key into the configuration.
-
-## Enable the SAP BTP Destination Service
-
-BTP can route requests to different services provided by BTP, your own, and even on-premise systems. For that, it uses the Destination Service. A destination is a configuration file written in JSON with information about the target URL and authentication information. It is convenient because it allows for simple routing of requests towards a system without bothering about authentication against that system. The destination also specifies who can use the destination to make the whole end-to-end connection secure.
-
-A destination can be configured on different levels within BTP, but for this use case, destinations get created within the Destination Service for a given subaccount.
-
-A quota must be assigned to the subaccount before enablement for the Destination Service. A quota can be created via the Entitlements section.
-
-👉 Click `Entitlements` on the left-hand navigation within your subaccount.
-
-👉 Click on `Edit` in the Entitlements screen.
-
-👉 Click on `Add Service Plans.`
-
-👉 Search for `Destination Service` via the search field and click `Add Service Plans.` This service is free to use.
-
-![add-destination-service-plan](./assets/set-up-destination/2-set-up-destination-service-add-service-plan.png)
-
-## Create a new destination within the destination service
-
-If you open the destination service instance, you can create a new destination in there. The destination details for the Generative AI Hub and how to set the destination up, can be found in [Exercise 05 - Learn how to use the destination service on SAP BTP to provide connection details for SAP AI Cores](./exercises/05-explore-destination-service/README.md)
