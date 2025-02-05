@@ -26,7 +26,7 @@ Choosing the **Full Stack Cloud Application** brings in some predefined extensio
 
 ![Cloning the repo](assets/clone-the-codejam-repository.png)
 
-At this point, your Dev Space will restart.
+Once the repository is cloned to your Dev Space, the SAP Business Application Studio will reload to open a folder.
 
 ### Alternative environment: VS Code and a container image
 
@@ -49,13 +49,13 @@ Once VS Code has started and opened the directory, it should notice the [dev con
 
 To work through the exercises make sure you are in the project folder. To do so, use the terminal to change directory into `codejam-cap-llm/project/job-posting-service/`.
 
-From the root of the Codejam repository change directory:
+From the root of the CodeJam repository (`/home/user/projects/codejam-cap-llm`) change the directory:
 
 ```bash
 cd project/job-posting-service
 ```
 
-## Check the installation of the CDS development kit
+## Check the installation of the [CDS development kit](https://www.npmjs.com/package/@sap/cds-dk)
 
 _This and subsequent steps apply to both the primary and alternative environments._
 
@@ -85,7 +85,7 @@ home: /managed-content/globals/pnpm/5/.pnpm/@sap+cds@7.6.1_express@4.18.2/node_m
 
 ## Install the NPM package dependencies
 
-We'll work primarily within the `project/cap-documentation-ai-helper` directory of this repo, which contains a starter CAP project with code already written to provide UI and some of the service functionalities to make the CodeJam experience more accessible. The `package.json` file contains runtime and design time dependencies.
+You'll work primarily within the `project/cap-documentation-ai-helper` directory of this repo, which contains a starter CAP project with code already written to provide UI and some of the service functionalities to make the CodeJam experience more accessible. The `package.json` file contains runtime and design time dependencies.
 
 👉 Make sure you're in the `project/cap-documentation-ai-helper` directory (where `package.json` lives):
 
@@ -112,7 +112,7 @@ cap-documentation-ai-helper@1.0.0 /Users/Developer/GitHub/codejam-cap-llm/projec
 └── langchain@0.1.37
 ```
 
-No worries, we will talk about these dependencies later.
+No worries, you will talk about these dependencies later.
 
 ## Summary
 
