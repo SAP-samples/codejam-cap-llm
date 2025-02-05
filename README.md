@@ -40,7 +40,7 @@ These are the exercises, each in their directory, sometimes with supporting file
 
 The instructor will start you on the first exercise, and that's the only one you should do. You should only proceed to the next exercise once the instructor tells you to.
 
-The provided subaccount is only available for the duration of this CodeJam.
+For this CodeJam you are provided with a subaccount on SAP BTP. The subaccount is only available for the duration of this CodeJam.
 
 ## Feedback
 
