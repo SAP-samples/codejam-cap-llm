@@ -134,6 +134,8 @@ To configure your CAP application for SAP HANA deployment, you can run the comma
 cds add hana --for hybrid
 ```
 
+</details>
+
 4. What is the purpose of creating an HDI container for HANA deployment, and how do you do it?
 <details><summary>Answer</summary>
 An HDI (HANA Deployment Infrastructure) container is a secure storage container for database artifacts like tables and views in SAP HANA Cloud. Each CAP application can use its own HDI container to store and read data from the HANA databaase. To create an HDI container, you can use the Cloud Foundry CLI.
