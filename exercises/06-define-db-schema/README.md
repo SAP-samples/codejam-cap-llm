@@ -196,7 +196,7 @@ At this point, you have learned how to define a database schema using CDS, how t
 
    </details>
 
-1. What is the command to build and deploy the database schema to the HDI container, and what steps must you follow?
+2. What is the command to build and deploy the database schema to the HDI container, and what steps must you follow?
 
 <details><summary>Answer</summary>
    To build and deploy the database schema to the HDI container, follow these steps:
@@ -216,7 +216,7 @@ At this point, you have learned how to define a database schema using CDS, how t
    The `--auto-undeploy` flag ensures that the database is updated according to the new schema.
    </details>
 
-1. How can you inspect the deployed database tables in your HDI container using the CLI?
+3. How can you inspect the deployed database tables in your HDI container using the CLI?
 
 <details><summary>Answer</summary>
    You can inspect the deployed database tables using the hana-cli tool. After installing it, follow these steps:
