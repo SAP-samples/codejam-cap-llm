@@ -41,6 +41,7 @@ With Generative AI Hub on SAP AI Core, you have access to all major large langua
 👉 Go to **Scenarios**.
 
 👉 Select the **foundation-models** scenario.  
+
 Scenarios related to generative AI are the only pre-configured scenarios provided by SAP. For all other custom machine learning models you wish to train or deploy, you will need to create your own scenario.
 
 ![Scenarios 1/2](assets/scenarios.png)
@@ -82,11 +83,13 @@ For this CodeJam, you will use `gpt-4o-mini`. After that, you will create a conf
 ## Deploy a Proxy for a Large Language Model on SAP AI Core
 
 👉 Click on **Create Deployment** to create a deployment for that configuration.  
+
 This will not actually deploy the model but will deploy a proxy that will return a URL for you to use to query the LLM you specified in the configuration.
 
 ![Create deployment 1/5](assets/deployments.png)
 
 👉 For the duration, select **Standard**.  
+
 You can also select **Custom** to have the deployment available for a limited time.
 
 👉 Click **Review**.
