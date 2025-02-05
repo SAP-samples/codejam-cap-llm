@@ -20,8 +20,6 @@ _Follow the **Alternative environment** subsection below if you want to use VS C
 
 Choosing the **Full Stack Cloud Application** brings in some predefined extensions, as you can see from the screenshot, including a CDS Graphical Modeler and the CAP Tools. The **SAP HANA Tools**> will allow you to interact with, deploy, and observe the SAP HANA Cloud instance that you will be using for working with the SAP HANA Cloud Vector Engine.
 
-> Depending on your subscription access, you may need to stop using existing Dev Spaces to use this one.
-
 #### Clone this repository
 
 👉 If the Dev Space is started and you're in it, use the **Clone from Git** option in the **Get Started** screen that appears to clone this repository. Follow the subsequent prompts to open the cloned repository; specify `https://github.com/SAP-samples/codejam-cap-llm.git` as the URL.
@@ -49,12 +47,12 @@ Once VS Code has started and opened the directory, it should notice the [dev con
 
 ## Navigate to the project folder
 
-To work through the exercises make sure you are in the project folder. To do so, use the terminal to change directory into `codejam-cap-llm/project/cap-documentation-ai-helper/`.
+To work through the exercises make sure you are in the project folder. To do so, use the terminal to change directory into `codejam-cap-llm/project/job-posting-service/`.
 
 From the root of the Codejam repository change directory:
 
 ```bash
-cd project/cap-documentation-ai-helper 
+cd project/job-posting-service
 ```
 
 ## Check the installation of the CDS development kit
@@ -106,8 +104,10 @@ cap-documentation-ai-helper@1.0.0 /Users/Developer/GitHub/codejam-cap-llm/projec
 ├── @sap/cds-dk@7.9.5
 ├── @sap/cds-hana@2.0.0
 ├── @sap/cds@7.9.3
-├── cap-llm-plugin@1.3.3
-├── pdf-parse@1.1.1
+├── @sap-ai-sdk/langchain@1.6.0
+├── @sap-ai-sdk/orchestration@1.6.0
+├── @langchain/community@0.3.11
+├── @langchain/textsplitters@0.1.0
 ├── express@4.19.2
 └── langchain@0.1.37
 ```
