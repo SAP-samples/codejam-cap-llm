@@ -37,7 +37,7 @@ async function createVectorEmbeddings() {
     const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
       maxRetries: 0,
-      resourceGroup: 'codejam-test'
+      resourceGroup: resourceGroup
     });
     const embeddings = await embeddingClient.embedDocuments(textSplits);
 
@@ -54,12 +54,14 @@ async function orchestrateJobPostingCreation(user_query) {
     const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
       maxRetries: 0,
-      resourceGroup: 'codejam-test'
+      resourceGroup: resourceGroup
     });
 
     let embedding = await embeddingClient.embedQuery(user_query);
     let splits = await SELECT.from(DocumentChunks)
-      .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
+      .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(
+      embedding
+    )})) DESC`;
 
     let text_chunk = splits[0].text_chunks;
 

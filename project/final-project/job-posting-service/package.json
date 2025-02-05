@@ -17,8 +17,7 @@
     "cors": "^2.8.5",
     "dotenv": "16.4.5",
     "express": "^4",
-    "langchain": "^0.3.12",
-    "pdf-parse": "^1.1.1"
+    "langchain": "^0.3.12"
   },
   "devDependencies": {
     "@cap-js/sqlite": "1.7.3",
