@@ -18,7 +18,7 @@ While working through the exercises, you'll become comfortable creating CDS-base
 
 ## Session prerequisites
 
-Certain prerequisites must be sorted out before the day of the CodeJam in order to get the most from this CodeJam and work through the exercises.
+Certain prerequisites must be fulfilled before the day of the CodeJam in order to get the most from this CodeJam and be able to work through the exercises.
 
 The prerequisites are detailed in a separate [prerequisites](prerequisites.md) file. Please ensure you have everything ready before attending the CodeJam.
 
