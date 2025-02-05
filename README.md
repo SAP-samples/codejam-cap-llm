@@ -4,7 +4,7 @@
 
 ## Description
 
-This repository contains the material for the "Expose SAP AI Core capabilities with the SAP Cloud Application Programming Model" CodeJam, which the SAP Developer Advocates brought to you.
+This repository contains the material for the "Expose SAP AI Core capabilities with the SAP Cloud Application Programming Model" CodeJam.
 
 ## Overview
 
