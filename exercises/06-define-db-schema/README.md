@@ -14,7 +14,7 @@ The `package.json` file includes all Node.js project-specific configurations lik
 
 👉 Open the `package.json` file.
 
-👉 Examine the dependencies. Notice that there is a dependency for `"@sap-ai-sdk/orchestration": "1.0.0"` and the `"@sap-ai-sdk/langchain": "1.2.0"`.
+👉 Examine the dependencies. Notice that there is a dependency for `"@sap-ai-sdk/orchestration": "1.6.0"` and the `"@sap-ai-sdk/langchain": "1.6.0"`.
 
 ![define-db-schema-package-json](./assets/01-define-db-schema-package-json.png)
 
