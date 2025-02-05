@@ -1,15 +1,14 @@
 # Exercise 10 - Implement the Job Posting Service
 
-In the last exercise you have created a deployment for orchestration allowing you to create an orchestration workflow. This workflow can be created with the SAP Cloud SDK for AI including templating, data masking, and content filtering. One thing which is not possible at the moment is grounding. Grounding describes the process of retrieval augmented generation or RAG. Grounding allows you to create vector embeddings for a given contextual document or information source and also get the correct embedding for a given user query making it easy to communicate with the chat model without having to do all of that manually. If you remember, you've done these steps in [Exercise 09](../09-implement-job-posting-rag/README.md).
+In the last exercise, you created a deployment for orchestration, allowing you to create an orchestration workflow. This workflow can be created with the SAP Cloud SDK for AI including templating, data masking, document grounding and content filtering. Grounding describes the process of retrieval-augmented generation (RAG). Grounding allows you to create vector embeddings for a given contextual document or information source, and also get the correct embedding for a given user query making it easy to communicate with the chat model without having to do all of that manually. If you remember, you completed these steps in [Exercise 09](../09-implement-job-posting-rag/README.md).
 
 In this exercise, you will learn the following:
 
 - How to use the SAP Cloud SDK for AI orchestration API.
-- How to use the Document Grounding API to create vector embeddings within the orchestration flow.
 
 ## Implement the OData function handler code stubs
 
-In [Exercise 09](../09-implement-job-posting-rag/README.md), you have implemented the RAG flow using the Langchain package of the SAP Cloud SDK for AI. If you remember you wrote a lot of code to create vector embeddings, store them in the database and build the complete RAG flow from scratch. You will now add one more function handler implementing the Orchestration API, Orchestration Service and the Grounding API to do all of that for you.
+In [Exercise 09](../09-implement-job-posting-rag/README.md), you implemented the RAG flow using the Langchain package of the SAP Cloud SDK for AI. If you remember you wrote a lot of code to create vector embeddings, store them in the database and build the complete RAG flow from scratch. You will now add one more function handler that implements the Orchestration API, and the Orchestration Service to handle all of this for you.
 
 👉 In the function export of the [job-posting-service.js](../../project/job-posting-service/srv/job-posting-service.js) add the following function handlers:
 
@@ -83,13 +82,13 @@ With the input validation in place, you can go ahead and implement the RAG flow.
 1. A user inputs a query describing what kind of job posting should be created.
 2. Your OData service takes the input and passes it through to the OData function handler for the RAG execution.
 3. The user query needs to be sent to an embedding client to get a vector for that user query. This is required to execute the similarity search on the already embedded vector embeddings in the SAP HANA Cloud vector engine. You will use the cosine similarity algorithm.
-4. A chat client establishes connection to a specific chat model, for this Codejam you will use the `gpt-4o-mini`.
-5. The vector of the user query together with the query, gets send to the chat model using a template giving extra context, to the chat model.
+4. A chat client establishes a connection to a specific chat model; for this Codejam, you will use the `gpt-4o-mini`.
+5. The vector of the user query together with the query, is sent to the chat model using a template giving extra context, to the chat model.
 6. The chat model processes the request and returns a response to your client.
 7. The response gets passed to the `DBUtils` to create a new database entry.
-8. The entry then gets inserted into the database with the help of CQL.
+8. The entry is inserted into the database using CQL.
 
-To be fair, this seems like a lot but no worries it is actually not that bad. Let's go through it step-by-step.
+While this may sound complex, don't worry - it's not that bad. Let's go through it step-by-step.
 
 👉 Within the `createJobPosting` function handler retrieve the user query from the request and pass it to the input validation method you've implemented before:
 
@@ -106,7 +105,7 @@ let entry = await DBUtils.createJobPosting(
 );
 ```
 
-This code is calling the orchestration client for chat completion using the passed in user query (Steps 2 - 6). The result of this gets passed to the `DBUtils` to create a new database entry (Step 7).
+This code calls the orchestration client for chat completion using the passed-in user query (Steps 2 - 6). The result is passed to `DBUtils` to create a new database entry (Step 7).
 
 The last step is to insert the database entry into the database (Step 8).
 
@@ -117,7 +116,7 @@ await DBUtils.insertJobPosting(entry);
 return 'Job posting created and stored in database';
 ```
 
-Your method should look like this now:
+Your method should now look like this:
 
 ```JavaScript
 this.on('createJobPosting', async req => {
@@ -152,7 +151,7 @@ import {
 const chatModelName = 'gpt-4o-mini';
 ```
 
-You define the chat model's name in a constant because you will use the name again at a later point. This gives you a single point of truth in case you want to change the chat model in the future.
+You define the chat model's name as a constant because you'll use it later. This gives you a single point of truth in case you want to change the chat model in the future.
 
 👉 Below the `createVectorEmbeddings` function handler, add the `orchestrateJobPostingCreation` function you have called in the `job-posting-service.js`:
 
@@ -181,7 +180,7 @@ const embeddingClient = new AzureOpenAiEmbeddingClient({
     });
 ```
 
-Embedding the user query will allow for the creation of a vector embedding. The vector embedding can then be used to calculate the closest distance to existing contextual vector embeddings in the SAP HANA Cloud vector engine. The result of this is that you will receive the contextual vector embedding with the highest relevance to the user query. This embedding can then be send to the chat model as contextual information to answer the user query.
+Embedding the user query will allow for the creation of a vector embedding. The vector embedding can then be used to calculate the closest distance to existing contextual embeddings in the SAP HANA Cloud vector engine. The result of this is that you will receive the contextual vector embedding with the highest relevance to the user query. This embedding can then be send to the chat model as contextual information to answer the user query.
 
 👉 Embedd the user query with the embedding client:
 
@@ -204,7 +203,7 @@ let text_chunk = splits[0].text_chunks;
 
 You have all relevant information at hand to construct the template which is getting send to the chat model via the orchestration client.
 
-👉 Now, create a new orchestration client passing in the required LLM, the template, and the filter:
+👉 Now, create a new orchestration client, passing in the required LLM, template, and filter:
 
 ```JavaScript
 const filter = buildAzureContentFilter({ Hate: 4, Violence: 4 });
@@ -220,7 +219,7 @@ const orchestrationClient = new OrchestrationClient(
               role: 'user',
               content:
                 ` You are an assistant for HR recruiter and manager.
-            You are receiving a user query to create a job posting for new hires.
+            You receive a user query to create a job posting for new hires.
             Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
             The contact details for the recruiter are: Jane Doe, E-Mail: jane.doe@company.com .
             Consider all the input before responding.
@@ -375,7 +374,7 @@ For example, you can send a user query asking the model to create a Job Posting 
 
 ## Summary
 
-In this exercise you have implemented the job posting service and it's OData function handlers. You have utilized the SAP Cloud SDK for AI to connect to SAP AI Core via the orchestration service. You have connected to the orchestration deployment to ask a chat model to create a job posting for you using the previously created vector embeddings.
+In this exercise, you implemented the job posting service and it's OData function handlers. You have utilized the SAP Cloud SDK for AI to connect to SAP AI Core via the orchestration service. You have connected to the orchestration deployment to ask a chat model to create a job posting for you using the previously created vector embeddings.
 
 ### Questions for Discussion
 

@@ -14,7 +14,7 @@ _Follow the **Alternative environment** subsection below if you want to use VS C
 
 #### Create a Dev Space
 
-👉 Via your subscription to the SAP Business Application Studio, create a new Dev Space, choosing the **Full Stack Cloud Application** type, make sure to select **SAP HANA Tools**, and then make sure it's started up:
+👉 Via your subscription to the SAP Business Application Studio, create a new Dev Space, choosing the **Full Stack Cloud Application** type, ensure to select **SAP HANA Tools**, and then ensure it is started:
 
 ![Setting_up_a_dev_space](assets/create-full-stack-cloud-application-dev-space.png)
 
@@ -41,7 +41,7 @@ git clone https://github.com/SAP-samples/codejam-cap-llm
 code codejam-cap-llm
 ```
 
-Once VS Code has started and opened the directory, it should notice the [dev container configuration file](../../.devcontainer/devcontainer.json) (in the [.devcontainer/](../../.devcontainer/) directory) and ask you if you want to reopen everything in a container, as shown in the screenshot. Confirm that you wish to do so by selecting the default answer **Reopen in Container.**
+Once VS Code has started and opened the directory, it should notice the [dev container configuration file](../../.devcontainer/devcontainer.json) (in the [.devcontainer/](../../.devcontainer/) directory) and ask you if you want to reopen everything in a container, as shown in the screenshot. Confirm that you wish to do so by selecting the default answer, **Reopen in Container.**
 
 > If this doesn't happen, check that you have the Dev Containers extension in VS Code - see the [corresponding prerequisites section](../../prerequisites.md#alternative-environment-vs-code-with-a-dev-container) section for details. You might also need to explicitly request this action, by opening the Command Palette and selecting **Dev Containers: Reopen in container**.
 

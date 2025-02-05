@@ -1,8 +1,8 @@
 # Exercise 11 - Understand data masking, what is anonymization and pseudonymization
 
-In the past exercises you have learned a lot about the interaction with an embedding and chat model. You have learned what vector embeddings are, what a vector engine is, how retrieval augmented generation means and how it works. You have learned and worked with content filtering to ensure that no harmful or ill content gets send or retrieved to or from a chat model.
+In the past exercises, you have learned a lot about the interaction with an embedding and chat model. You have learned what vector embeddings are, what a vector engine is, how retrieval augmented generation means and how it works. You have learned and worked with content filtering to ensure that no harmful or ill content gets send or retrieved to or from a chat model.
 
-As of know you're sending data straight to the chat model without any regards for data privacy. You want to change this to enhance data privacy for you generative AI use case. Every business is responsible for safeguarding personal data to comply with regulations like the **General Data Protection Regulation (GDPR)** or **California Consumer Privacy Act (CCPA)**. For that reason it is important that you learn the mechanisms to protect personal data and ensure that only data needed by the LLM gets send to the LLM. 
+As of know, you're sending data straight to the chat model without regard for data privacy. You want to change this to enhance data privacy for you generative AI use case. Every business is responsible for safeguarding personal data to comply with regulations like the **General Data Protection Regulation (GDPR)** or **California Consumer Privacy Act (CCPA)**. For that reason, it is important that you learn the mechanisms to protect personal data and ensure that only data needed by the LLM is sent to the LLM.
 
 In this exercise you will learn the key differences between anonymization and pseudonymization and their key benefits and downsides. You will learn how to implement these concepts into your orchestration workflow via code and via the SAP AI Launchpad.
 
@@ -13,7 +13,7 @@ In this exercise, you will learn the following:
 
 ## Data masking
 
-Data masking describes the process of making defined sets of data unreadable to a human or machine. This process can be achieved via anonymization or pseudoanymization. In the following capitlas, you will learn what they are and how they differ.
+Data masking describes the process of making defined sets of data unreadable to a human or machine. This process can be achieved via anonymization or pseudoanymization. In the following sections, you will learn what they are and how they differ.
 
 ### Anonymization
 

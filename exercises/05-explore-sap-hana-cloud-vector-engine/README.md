@@ -1,19 +1,19 @@
 # Exercise 05 - Explore the SAP HANA Cloud Vector Engine
 
-The SAP HANA Cloud is the leading in-memory database on the market. It is also the go-to database for CAP applications. SAP has added the vector engine to the SAP HANA database. The vector engine provides the data foundation for a new set of natural and intuitive capabilities. For this CodeJam, you will use the vector engine to augment large language models with business context. You will use the vector engine for two things. The engine stores relevant business data as vector embeddings and, second, searches for similar and relevant vector embeddings based on the user's prompts. The corresponding text of these vector embeddings then get passed along to a defined LLM for accurate business answers using that contextual information.
+SAP HANA Cloud is the leading in-memory database on the market. It is also the go-to database for CAP applications. SAP has added the vector engine to the SAP HANA database. The vector engine provides a data foundation for a new set of natural and intuitive capabilities. For this CodeJam, you will use the vector engine to augment large language models with business context. You will use the vector engine for two things. The engine stores relevant business data as vector embeddings and, second, searches for similar and relevant vector embeddings based on the user's prompts. The corresponding text of these vector embeddings then gets passed along to a defined LLM for accurate business answers using that contextual information.
 
-The nature of a vector engine is to seamlessly work with generative AI applications. By providing the ability to store different types of data, such as text, images, or sound, in the form of vector embeddings, the vector engine can be used to pass data along together with Retrieval Augmented Generation (RAG) requests, natural language processing, image recognition, similarity searches, and recommendation systems.
+The nature of a vector engine is to seamlessly work with generative AI applications. By providing the ability to store different types of data, such as text, images, or sound, in the form of vector embeddings, the vector engine can be used to pass data along with Retrieval Augmented Generation (RAG) requests, natural language processing, image recognition, similarity searches, and recommendation systems.
 
 For this CodeJam, the SAP HANA Cloud instance has already been initialized and configured. For detailed instructions on how to set up SAP HANA Cloud on SAP BTP, you can follow the [SAP BTP Setup Guide](../../btp-setup-guide.md).
 
-In this exercise, you will learn:
+In this exercise, you will learn to:
 
 - What vector embeddings are.
 - How to enable the SAP HANA Cloud vector engine
 - How to configure your CAP application for SAP HANA deployment
 - How to bind your CAP application to a new HDI instance
 
-## What are Vector Embeddings
+## What Are Vector Embeddings
 
 > "Vector embeddings are mathematical representations used to encode objects into multi-dimensional vector space. These embeddings capture the relationships and similarities between objects. SAP HANA Cloud Vector Engine will facilitate the storage and analysis of complex and unstructured vector data(embeddings) into a format that can be seamlessly processed, compared, and utilized to build various intelligent data applications and add more context in case of GenAI scenarios."
 
@@ -26,7 +26,7 @@ Vector embeddings are just one of the supported data types for SAP HANA. They ca
 
 ## Configure the project for SAP HANA deployment
 
-You must configure your CAP project for SAP HANA deployment. You can do this by executing the `cds add hana` command. The command configures deployments for SAP HANA to use the `hdbtable` and `hdbview` formats. If you add the argument of `--profile hybrid` to the command, the configuration is added to a `[hybrid]` profile in your `package.json`.
+You need to configure your CAP project for SAP HANA deployment. You can do this by executing the `cds add hana` command. The command configures deployments for SAP HANA to use the `hdbtable` and `hdbview` formats. If you add the argument of `--profile hybrid` to the command, the configuration is added to a `[hybrid]` profile in your `package.json`.
 
 👉 Open the project in SAP Business Application Studio (BAS) or VSCode.
 
@@ -40,7 +40,7 @@ cds add hana --for hybrid
 
 ![explore-sap-hana-cloud-vector-engine-add-hana](./assets/01-explore-sap-hana-cloud-vector-engine-add-hana.png)
 
-The profile `hybrid` relates to the hybrid testing scenario, which allows you to run your CAP service on localhost but use a real connection to a running SAP HANA Cloud instance. You will utilize this feature in a later exercise. This is not a requirement. You could execute `cds add hana` to have the `production` scenario by default.
+The profile `hybrid` relates to the hybrid testing scenario, which allows you to run your CAP service on localhost but use a real connection to a running SAP HANA Cloud instance. You will utilize this feature in a later exercise. This is not a requirement. You could execute `cds add hana` to have the default `production` scenario.
 
 👉 Open the `package.json` file in your project.
 
@@ -80,7 +80,7 @@ Use the Cloud Foundry CLI to create your HDI container **(replace the placeholde
 cf create-service hana hdi-shared <your hdi-container name>
 ```
 
-The creation of the HDI container takes some time. You can check the process via the following command:
+Creating the HDI container takes some time. You can monitor the process using the following command:
 
 ```bash
 cf service <your hdi-container name>
@@ -88,15 +88,15 @@ cf service <your hdi-container name>
 
 ![explore-sap-hana-cloud-vector-engine-create-hdi-instance](./assets/04-explore-sap-hana-cloud-vector-engine-create-hdi-instance.png)
 
-If the service creation is completed you can go to the next step to create the binding.
+Once the service creation is complete, you can proceed to the next step.
 
 ![explore-sap-hana-cloud-vector-engine-create-hdi-instance](./assets/03-explore-sap-hana-cloud-vector-engine-create-hdi-instance-done.png)
 
 ## Bind local service to SAP HANA Schemas & HDI Containers instance for hybrid testing
 
-At this point, your CAP application knows that you want to use an SAP HANA database for persistence, but it doesn't know what database instance you want to use and has no connection. You need to bind your application to the SAP HANA Cloud instance configured on SAP BTP. When you bind your application, an HDI container instance gets spun up for your application's data, and a service key is issued to authenticate against that instance.
+At this point, your CAP application knows that you want to use an SAP HANA database for persistence, but it doesn't yet know which database instance to use and has no connection. You need to bind your application to the SAP HANA Cloud instance configured on SAP BTP. When you bind your application, an HDI container instance gets spun up for your application's data, and a service key is issued to authenticate against that instance.
 
-The CDS CLI can bind your application to the SAP HANA Schemas & HDI Containers instance.
+You can use the CDS CLI to bind your application to the SAP HANA Schemas & HDI Containers instance.
 
 👉 Open the project in SAP Business Application Studio (BAS) or VSCode.
 
@@ -141,7 +141,8 @@ An HDI (HANA Deployment Infrastructure) container is a secure storage container 
 ```bash
 cf create-service hana hdi-shared <your-hdi-container-name>
 ```
-Once the container is created, you can bind it to your CAP application to allow it to interact with the SAP HANA database.
+
+After the container is created, you can bind it to your CAP application to allow it to interact with the SAP HANA database.
 
 </details>
 ## Further reading

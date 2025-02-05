@@ -4,7 +4,7 @@ The repository you have cloned provides a skeleton project in the project direct
 
 In this exercise you will learn:
 
-- How to explore the package.json and it's contents.
+- How to explore the `package.json` and its contents.
 - How to define the database schema for the SAP HANA Cloud database.
 - How to build and deploy the schema to your HDI container.
 
@@ -18,7 +18,7 @@ The `package.json` file includes all Node.js project-specific configurations lik
 
 ![define-db-schema-package-json](./assets/01-define-db-schema-package-json.png)
 
-The SAP Cloud SDK for AI does provide four different packages for you to use depending on your use case.
+The SAP Cloud SDK for AI provides four different packages for you to use depending on your use case.
 
 - **[@sap-ai-sdk/orchestration](https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdkorchestration)**: The orchestration package incorporates generative AI orchestration capabilities into your AI activities in SAP AI Core and SAP AI Launchpad.
 - **[@sap-ai-sdk/langchain](https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdklangchain)**: The langchain package provides LangChain model clients, built on top of the foundation model clients of the SAP Cloud SDK for AI.
@@ -32,8 +32,8 @@ In addition, the `package.json` allows you to define run scripts a sort of alias
 - `build` : Runs the `cds build` command to build the CAP project.
 - `build_sqlite`: Builds the CAP application for usage on a SQLite database.
 - `start` : Starts the CAP application.
-- `watch` : Deploys your changes specific to your service to localhost using the hybrid profile establishing a connection to your real HDI container instance.
-- `sqlite` : Deploys your changes specific to your service to localhost using the hybrid profile establishing a connection to a real SQLite database.
+- `watch` : Deploys your changes specific to your service to localhost using the hybrid profile, establishing a connection to your real HDI container instance.
+- `sqlite` : Deploys your changes specific to your service to localhost using the hybrid profile, establishing a connection to a real SQLite database.
 
 ## Define the database schema
 
@@ -62,7 +62,7 @@ using {
 } from '@sap/cds/common';
 ```
 
-The entity should be managed, meaning it will utilize `cuid` to autogenerate a UUID, time stamps for creation and mutation.
+The entity should be managed, meaning it will utilize `cuid` to auto-generate a `UUID`, time stamps for creation and mutation.
 
 👉 Add an entity to store job postings in the database. You will utilize this entity in a later exercise by using AI to generate job postings and store them in the corresponding table.
 
@@ -78,7 +78,7 @@ The entity defines two fields:
 - `user_query`: Stores the incoming user query.
 - `rag_response` : Stores the response from the chat model.
 
-👉 Lastly, add the definition for the `s` entity. The entity is using the `managed` and `cuid` feature from the `cds.common` package.
+👉 Lastly, add the definition for the `s` entity. The entity is using the `managed` and `cuid` features from the `cds.common` package.
 
 ```cds
 entity DocumentChunks : cuid, managed {
@@ -132,7 +132,7 @@ cds deploy --to hana:<your-hdi-container-name> --auto-undeploy
 
 The `--auto-undeploy` argument causes the database to adjust to the new runtime definition of your database artifacts.
 
-You will see a big terminal output listing the different steps of the building and deployment process.
+You will see a large terminal output listing the different steps of the building and deployment process.
 
 ![define-db-schema-deployment](./assets/04-define-db-schema-deploy.png)
 
@@ -140,7 +140,7 @@ Great! The database is initialized, and the table with all necessary fields is c
 
 ## Examine the database table
 
-There are multiple ways of viewing your database artifacts on SAP HANA Cloud. One would be to use the **SAP HANA Database Explorer** and, of course, the CLI if you don't want to use the UI. If you are interested in using the **SAP HANA Database Explorer**, you will find a tutorial in the Further Reading section. You should use the CLI today because it is quicker. `#TheFutureIsTerminal`
+There are multiple ways of viewing your database artifacts on SAP HANA Cloud. One would be to use the **SAP HANA Database Explorer** and, of course, the CLI if you don't want to use the UI. If you are interested in using the **SAP HANA Database Explorer**, you will find a tutorial in the **Further Reading** section. You should use the CLI today because it is faster. `#TheFutureIsTerminal`
 
 You have to install the [hana-cli](https://github.com/SAP-samples/hana-developer-cli-tool-example?tab=readme-ov-file#requirements--download-and-installation) first.
 

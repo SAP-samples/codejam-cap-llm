@@ -1,6 +1,6 @@
 # Exercise 04 - Create the SAP AI Core connection configuration
 
-Using the SAP Cloud SDK for AI allows you to seamlessly connect to SAP AI Core, SAP Generative AI Hub, and the Orchestration service. The SDK is available for different programming languages like Python, JavaScript, Java and ABAP. In this Codejam you will use the JavaScript variant to complement a CAP OData service with AI functionality using the SAP Generative AI Hub and Orchestration service.
+Using the SAP Cloud SDK for AI allows you to seamlessly connect to SAP AI Core, SAP Generative AI Hub, and the Orchestration service. The SDK is available for different programming languages like Python, JavaScript, Java, and ABAP. In this Codejam you will use the JavaScript version to complement a CAP OData service with AI functionality using the SAP Generative AI Hub and Orchestration service.
 
 In this exercise you will learn:
 
@@ -8,13 +8,13 @@ In this exercise you will learn:
 
 ## Understand how the SAP Cloud SDK for AI establishes connection to SAP AI Core
 
-To establish connection from your CAP application to each of the AI relevant service instances within SAP BTP, a connection configuration needs to happen. With the SAP Cloud SDK for AI, you have two options to do so.
+To establish a connection from your CAP application to each of the AI relevant service instances within SAP BTP, a connection configuration needs to be made. With the SAP Cloud SDK for AI, you have two options to do so.
 
-- For testing and local development purposes you can configure a Cloud Foundry service key for SAP AI Core in the `.env` file or as environment variable. The SDK parses the service key from the environment variable to interact with the AI Core service. This setup enables local testing of clients such as orchestration and OpenAI, provided that deployments for orchestration and OpenAI exist in SAP BTP.
+- For testing and local development purposes, you can configure a Cloud Foundry service key for SAP AI Core, in the `.env` file or as environment variable. The SDK parses the service key from the environment variable to interact with the AI Core service. This setup enables local testing of clients such as Orchestration and OpenAI, provided that deployments for orchestration and OpenAI exist in SAP BTP.
 
-- For production, the SDK recommends to create a binding between your application and the SAP AI Core service instance. The binding is more secure as it is not exposing the authentication details in clear text.
+- For production, the SDK recommends creating a binding between your application and the SAP AI Core service instance. The binding is more secure as it is not exposing the authentication details in clear text.
 
-For this Codejam you will use the first approach by providing the needed configuration details via the `.env` file. You can find the details for the configuration in the service key for the SAP AI Core instance. The authentication details are only valid during the duration of this Codejam and will be invalidated right after.
+For this Codejam you will use the first approach by providing the needed configuration details via the `.env` file. You can find the details for the configuration in the service key for the SAP AI Core instance. The authentication details are only valid during the duration of this Codejam and will be invalidated immediately afterward.
 
 ## Inspect the .env file
 
@@ -24,7 +24,7 @@ You can see that the `AICORE_SERVICE_KEY` is a JSON object that contains four ne
 
 - **clientid**: The client ID for the OAuth authentication flow, Client Credentials.
 - **clientsecret**: The client secret for the OAuth authentication flow, Client Credentials.
-- **url**: The OAuth authentication URL. You need to add `/oauth/token` add the end of the URL to direct to the OAuth token server.
+- **url**: The OAuth authentication URL. You need to add `/oauth/token` at the end of the URL to direct to the OAuth token server.
 - **serviceurls**:**AI_API_URL**: The SAP AI Core service URLs.
 
 👉 Fill in the information needed using the service key.
