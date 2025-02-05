@@ -4,7 +4,7 @@
 
 ## Description
 
-This repository contains the material for the "Expose SAP AI Core capabilities with the SAP Cloud Application Programming Model" CodeJam, which the SAP Developer Advocates brought to you.
+This repository contains the material for the "Expose SAP AI Core capabilities with the SAP Cloud Application Programming Model" CodeJam.
 
 ## Overview
 
@@ -18,7 +18,7 @@ While working through the exercises, you'll become comfortable creating CDS-base
 
 ## Session prerequisites
 
-Certain prerequisites must be sorted out before the day of the CodeJam in order to get the most from this CodeJam and work through the exercises.
+Certain prerequisites must be fulfilled before the day of the CodeJam in order to get the most from this CodeJam and be able to work through the exercises.
 
 The prerequisites are detailed in a separate [prerequisites](prerequisites.md) file. Please ensure you have everything ready before attending the CodeJam.
 
@@ -40,7 +40,7 @@ These are the exercises, each in their directory, sometimes with supporting file
 
 The instructor will start you on the first exercise, and that's the only one you should do. You should only proceed to the next exercise once the instructor tells you to.
 
-The provided subaccount is only available for the duration of this CodeJam.
+For this CodeJam you are provided with a subaccount on SAP BTP. The subaccount is only available for the duration of this CodeJam.
 
 ## Feedback
 
