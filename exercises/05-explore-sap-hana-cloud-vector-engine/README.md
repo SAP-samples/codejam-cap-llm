@@ -6,7 +6,7 @@ The nature of a vector engine is to seamlessly work with generative AI applicati
 
 For this CodeJam, the SAP HANA Cloud instance has already been initialized and configured. For detailed instructions on how to set up SAP HANA Cloud on SAP BTP, you can follow the [SAP BTP Setup Guide](../../btp-setup-guide.md).
 
-In this exercise, you will learn to:
+In this exercise, you will learn:
 
 - What vector embeddings are.
 - How to enable the SAP HANA Cloud vector engine
@@ -17,7 +17,7 @@ In this exercise, you will learn to:
 
 > "Vector embeddings are mathematical representations used to encode objects into multi-dimensional vector space. These embeddings capture the relationships and similarities between objects. SAP HANA Cloud Vector Engine will facilitate the storage and analysis of complex and unstructured vector data(embeddings) into a format that can be seamlessly processed, compared, and utilized to build various intelligent data applications and add more context in case of GenAI scenarios."
 
-Source: Vectorize your Data: SAP HANA Cloud's Vector Engine for Unified Data Excellence
+> Source: Vectorize your Data: SAP HANA Cloud's Vector Engine for Unified Data Excellence
 
 ## How do you enable SAP HANA Cloud Vector Engine
 
@@ -121,12 +121,12 @@ At this point, you have learned what the SAP HANA Cloud vector engine is, how ve
    Vector embeddings are mathematical representations that encode objects into a multi-dimensional vector space. They capture relationships and similarities between different objects. The SAP HANA Cloud Vector Engine facilitates the storage, analysis, and comparison of complex and unstructured vector data (embeddings).
    </details>
 
-1. How can you enable the SAP HANA Cloud Vector Engine in your SAP BTP environment?
+2. How can you enable the SAP HANA Cloud Vector Engine in your SAP BTP environment?
 <details><summary>Answer</summary>
 The SAP HANA Cloud Vector Engine comes bundled with SAP HANA Cloud on the SAP Business Technology Platform.
 </details>
 
-1. How do you configure your CAP application for SAP HANA deployment?
+3. How do you configure your CAP application for SAP HANA deployment?
 <details><summary>Answer</summary>
 To configure your CAP application for SAP HANA deployment, you can run the command:
 
@@ -134,7 +134,9 @@ To configure your CAP application for SAP HANA deployment, you can run the comma
 cds add hana --for hybrid
 ```
 
-1. What is the purpose of creating an HDI container for HANA deployment, and how do you do it?
+</details>
+
+4. What is the purpose of creating an HDI container for HANA deployment, and how do you do it?
 <details><summary>Answer</summary>
 An HDI (HANA Deployment Infrastructure) container is a secure storage container for database artifacts like tables and views in SAP HANA Cloud. Each CAP application can use its own HDI container to store and read data from the HANA databaase. To create an HDI container, you can use the Cloud Foundry CLI.
 

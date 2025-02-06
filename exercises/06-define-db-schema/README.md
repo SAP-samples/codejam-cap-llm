@@ -14,7 +14,7 @@ The `package.json` file includes all Node.js project-specific configurations lik
 
 👉 Open the `package.json` file.
 
-👉 Examine the dependencies. Notice that there is a dependency for `"@sap-ai-sdk/orchestration": "1.0.0"` and the `"@sap-ai-sdk/langchain": "1.2.0"`.
+👉 Examine the dependencies. Notice that there is a dependency for `"@sap-ai-sdk/orchestration": "1.6.0"` and the `"@sap-ai-sdk/langchain": "1.6.0"`.
 
 ![define-db-schema-package-json](./assets/01-define-db-schema-package-json.png)
 
@@ -196,7 +196,7 @@ At this point, you have learned how to define a database schema using CDS, how t
 
    </details>
 
-1. What is the command to build and deploy the database schema to the HDI container, and what steps must you follow?
+2. What is the command to build and deploy the database schema to the HDI container, and what steps must you follow?
 
 <details><summary>Answer</summary>
    To build and deploy the database schema to the HDI container, follow these steps:
@@ -216,7 +216,7 @@ At this point, you have learned how to define a database schema using CDS, how t
    The `--auto-undeploy` flag ensures that the database is updated according to the new schema.
    </details>
 
-1. How can you inspect the deployed database tables in your HDI container using the CLI?
+3. How can you inspect the deployed database tables in your HDI container using the CLI?
 
 <details><summary>Answer</summary>
    You can inspect the deployed database tables using the hana-cli tool. After installing it, follow these steps:
