@@ -81,7 +81,11 @@ Node.js: v18.14.2
 home: /managed-content/globals/pnpm/5/.pnpm/@sap+cds@7.6.1_express@4.18.2/node_modules/@sap/cds
 ```
 
-> The CDS development kit is installed as part of any **Full Stack Cloud Application** type of Dev Space in the SAP Business Application Studio. For the alternative environment, a RUN command in the [Dockerfile](../../.devcontainer/Dockerfile) is installed into the dev container.
+> In case `cds` is not installed, run the following command from the Terminal:
+>
+```bash
+npm i @sap/cds-dk -g
+```
 
 ## Install the NPM package dependencies
 
