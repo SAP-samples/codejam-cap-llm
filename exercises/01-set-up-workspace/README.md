@@ -85,9 +85,9 @@ home: /managed-content/globals/pnpm/5/.pnpm/@sap+cds@7.6.1_express@4.18.2/node_m
 
 ## Install the NPM package dependencies
 
-We'll work primarily within the `project/cap-documentation-ai-helper` directory of this repo, which contains a starter CAP project with code already written to provide UI and some of the service functionalities to make the CodeJam experience more accessible. The `package.json` file contains runtime and design time dependencies.
+We'll work primarily within the `project/job-posting-service` directory of this repo, which contains a starter CAP project with code already written to provide UI and some of the service functionalities to make the CodeJam experience more accessible. The `package.json` file contains runtime and design time dependencies.
 
-👉 Make sure you're in the `project/cap-documentation-ai-helper` directory (where `package.json` lives):
+👉 Make sure you're in the `project/job-posting-service` directory (where `package.json` lives):
 
 👉 Now install the dependencies thus:
 
@@ -98,7 +98,7 @@ npm install
 You can double-check what's installed with `npm list`, which should show you something similar to this:
 
 ```text
-cap-documentation-ai-helper@1.0.0 /Users/Developer/GitHub/codejam-cap-llm/project/cap-documentation-ai-helper
+job-posting-service@1.0.0 /Users/Developer/GitHub/codejam-cap-llm/project/job-posting-service
 ├── @cap-js/sqlite@1.7.3
 ├── @sap-cloud-sdk/http-client@3.16.0
 ├── @sap/cds-dk@7.9.5
