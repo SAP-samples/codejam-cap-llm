@@ -14,7 +14,7 @@ _Follow the **Alternative environment** subsection below if you want to use VS C
 
 #### Create a Dev Space
 
-👉 Via this [link](https://cap-ai-codejam-op6zhda1.us10cf.applicationstudio.cloud.sap/) to the SAP Business Application Studio, create a new Dev Space, choosing the **Full Stack Cloud Application** type, ensure to select **SAP HANA Tools**, and then ensure it is started:
+👉 Via this [link](https://cap-ai-codejam-op6zhda1.us10cf.applicationstudio.cloud.sap/) to the SAP Business Application Studio, create a new Dev Space, choosing the **Full Stack Cloud Application** type, ensure to select **SAP HANA Tools**, and if **SAP HANA Database Explorer** gets selected as well this is not a problem:
 
 ![Setting_up_a_dev_space](assets/create-full-stack-cloud-application-dev-space.png)
 
