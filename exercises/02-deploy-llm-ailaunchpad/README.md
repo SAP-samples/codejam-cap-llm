@@ -4,7 +4,7 @@ SAP AI Launchpad is a multi-tenant SaaS application on SAP BTP. You can use SAP 
 
 ## Open SAP AI Launchpad
 
-👉 Go to your BTP subaccount **CAP AI CodeJam**.
+👉 Go to your BTP subaccount [**CAP AI CodeJam**](https://emea.cockpit.btp.cloud.sap/cockpit/#/globalaccount/275320f9-4c26-4622-8728-b6f5196075f5/subaccount/6088766d-dcc4-4e56-972f-652baad796be/service-instances).
 
 👉 Navigate to **Instances and Subscriptions** and select **SAP AI Launchpad** from Subscriptions to open SAP AI Launchpad.
 
