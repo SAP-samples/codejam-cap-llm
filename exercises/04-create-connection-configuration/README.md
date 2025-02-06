@@ -27,7 +27,13 @@ You can see that the `AICORE_SERVICE_KEY` is a JSON object that contains four ne
 - **url**: The OAuth authentication URL. You need to add `/oauth/token` at the end of the URL to direct to the OAuth token server.
 - **serviceurls**:**AI_API_URL**: The SAP AI Core service URLs.
 
-👉 Fill in the information needed using the service key.
+👉 Fill in the information needed using the service key. Alternatively, you can try the path of binding your application to the SAP AI Core instance:
+
+```bash
+cds bind -2 default_aicore
+```
+
+That will cause Cloud Foundry to create a new service key for the SAP AI Core instance on the BTP subaccount, and configure that service key within your project. This is basically the same thing as the `.env` approach with one major difference; It is referencing the service key rather than having it clear text in your configuration.
 
 ## Summary
 
