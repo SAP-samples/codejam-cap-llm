@@ -27,7 +27,27 @@ You can see that the `AICORE_SERVICE_KEY` is a JSON object that contains four ne
 - **url**: The OAuth authentication URL. You need to add `/oauth/token` at the end of the URL to direct to the OAuth token server.
 - **serviceurls**:**AI_API_URL**: The SAP AI Core service URLs.
 
-👉 Fill in the information needed using the service key. Alternatively, you can try the path of binding your application to the SAP AI Core instance:
+👉 Fill in the information needed using the service key.
+
+Alternatively, you can try the path of binding your application to the SAP AI Core instance.
+
+Before you execute the command below, make sure to open a new Terminal and run the Cloud Foundry login:
+
+👉 Open a new terminal if not already open.
+
+👉 Log into SAP BTP using the Cloud Foundry CLI:
+
+```bash
+cf login -a https://api.cf.us10.hana.ondemand.com
+```
+
+Or if you want to use the SSO login option:
+
+```bash
+cf login -a https://api.cf.us10.hana.ondemand.com --sso
+```
+
+👉 Now, run the binding command:
 
 ```bash
 cds bind -2 default_aicore
