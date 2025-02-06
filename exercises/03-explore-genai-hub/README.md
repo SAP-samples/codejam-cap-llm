@@ -2,7 +2,7 @@
 
 In order to leverage large language models (LLMs) or foundation models in your applications you can use the Generative AI Hub on SAP AI Core. Like most other LLM applications, Generative AI Hub is pay-per-use. You can switch between them and compare results and pick the model for your use case that works best. SAP has strict data privacy contracts with LLM providers to ensure that your data is safe.
 
-You can access your deployed models either using the Python SDK, the cap-llm-plugin, any programming language or API platform or you can use the user interface in SAP AI Launchpad. We offer the **Chat** interface or the **Prompt Editor** where you can also save prompts and the model's responses. At SAP, every employee can access an SAP AI Launchpad and query all of the available models.
+You can access your deployed models either using the Python SDK, the SAP Cloud SDK for AI, any programming language or API platform, or you can use the user interface in SAP AI Launchpad. We offer the **Chat** interface or the **Prompt Editor** where you can also save prompts and the model's responses. At SAP, every employee can access an SAP AI Launchpad and query all of the available models.
 
 ## Use the Chat in Generative AI Hub
 
