@@ -18,7 +18,7 @@ _Follow the **Alternative environment** subsection below if you want to use VS C
 
 ![Setting_up_a_dev_space](assets/create-full-stack-cloud-application-dev-space.png)
 
-Choosing the **Full Stack Cloud Application** brings in some predefined extensions, as you can see from the screenshot, including a CDS Graphical Modeler and the CAP Tools. The **SAP HANA Tools**> will allow you to interact with, deploy, and observe the SAP HANA Cloud instance that you will be using for working with the SAP HANA Cloud Vector Engine.
+Choosing the **Full Stack Cloud Application** brings in some predefined extensions, as you can see from the screenshot, including a CDS Graphical Modeler and the CAP Tools. The **SAP HANA Tools** will allow you to interact with, deploy, and observe the SAP HANA Cloud instance that you will be using for working with the SAP HANA Cloud Vector Engine.
 
 #### Clone this repository
 
