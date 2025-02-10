@@ -245,7 +245,7 @@ You need a way to feed the document splits to the embedding model. If you rememb
 const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
       maxRetries: 0,
-      resourceGroup: 'resourceGroup'
+      resourceGroup: resourceGroup
 });
 ```
 
@@ -357,6 +357,12 @@ for (const [index, embedding] of embeddings.entries()) {
   }
 ```
 
+👉 As last line of the `insertVectorEmbeddings` return the embedding entry list:
+
+```JavaScript
+return embeddingEntries;
+```
+
 As you might have noticed, you are calling a conversion function to convert the embeddings to a vector buffer for database insertion. This function needs to be implemented next.
 
 👉 Below the `insertVectorEmbeddings` function implement the following:
@@ -378,10 +384,21 @@ let array2VectorBuffer = data => {
 };
 ```
 
-👉 Finally, return the embedding entry list:
+The complete `insertVectorEmbeddings` function should look like this:
 
 ```JavaScript
-return embeddingEntries;
+export function createEmbeddingEntries([embeddings, splitDocuments]) {
+  let embeddingEntries = [];
+  for (const [index, embedding] of embeddings.entries()) {
+    const embeddingEntry = {
+      metadata: splitDocuments[index].metadata.source,
+      text_chunk: splitDocuments[index].pageContent,
+      embedding: array2VectorBuffer(embedding)
+    };
+    embeddingEntries.push(embeddingEntry);
+  }
+  return embeddingEntries;
+}
 ```
 
 ## Implement the insertion of the vector embedding entries
@@ -411,6 +428,23 @@ await INSERT.into(DocumentChunks).entries(embeddingEntries);
 return `Embeddings inserted successfully to table.`;
 ```
 
+The `insertVectorEmbeddings` should look like this now:
+
+```JavaScript
+export async function insertVectorEmbeddings(embeddingEntries) {
+  try {
+    await INSERT.into(DocumentChunks).entries(embeddingEntries);
+
+    return `Embeddings inserted successfully to table.`;
+  } catch (error) {
+    console.log(
+      `Error while storing the vector embeddings to SAP HANA Cloud: ${error.toString()}`
+    );
+    throw error;
+  }
+}
+```
+
 ## Implement the deletion for the vector embeddings
 
 You can create and insert vector embeddings, last step is to make it possible to delete vector embeddings.
@@ -433,6 +467,21 @@ export async function deleteDocumentChunks() {
 ```JavaScript
 await DELETE.from(DocumentChunks);
 return 'Successfully deleted Document Chunks!';
+```
+
+The `deleteDocumentChunks` should look like this now:
+
+```JavaScript
+export async function deleteDocumentChunks() {
+  try {
+    await DELETE.from(DocumentChunks);
+    return 'Successfully deleted Document Chunks!';
+  } catch (error) {
+    console.log(
+      `Error while deleting Document Chunks: \n ${JSON.stringify(error.response)}`
+    );
+  }
+}
 ```
 
 ## Create some vector embeddings
