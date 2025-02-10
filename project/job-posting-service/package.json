@@ -1,5 +1,5 @@
 {
-  "name": "cap-ai-vector-engine-example",
+  "name": "codejam-cap-llm",
   "version": "1.0.0",
   "description": "A SAP Cloud Application Programming Model & AI example using the SAP Cloud SDK for AI.",
   "repository": "https://github.com/SAP-samples/codejam-cap-llm.git",
@@ -7,18 +7,17 @@
   "private": false,
   "type": "module",
   "dependencies": {
-    "@langchain/community": "0.3.11",
+    "@langchain/community": "^0.3.29",
     "@langchain/textsplitters": "^0.1.0",
-    "@sap-ai-sdk/langchain": "1.6.0",
-    "@sap-ai-sdk/orchestration": "1.6.0",
-    "@sap-cloud-sdk/http-client": "^3.14.0",
-    "@sap/cds": "^7.6.3",
+    "@sap-ai-sdk/langchain": "1.7.0",
+    "@sap-ai-sdk/orchestration": "1.7.0",
+    "@sap-cloud-sdk/http-client": "^3",
+    "@sap/cds": "^8",
     "@sap/cds-hana": "^2",
     "cors": "^2.8.5",
     "dotenv": "16.4.5",
     "express": "^4",
-    "langchain": "^0.3.12",
-    "pdf-parse": "^1.1.1"
+    "langchain": "^0.3.15"
   },
   "devDependencies": {
     "@cap-js/sqlite": "1.7.3",
