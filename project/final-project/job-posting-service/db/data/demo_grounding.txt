@@ -8,3 +8,8 @@ Vacation Days: 30 Days
 Stock Program: Approved
 Hiring Bonus: 20 000 EUR
 
+Recruiter information: 
+Name: Jane Doe
+Email: jane.doe@company.com
+Phone: +4911111111111111
+
