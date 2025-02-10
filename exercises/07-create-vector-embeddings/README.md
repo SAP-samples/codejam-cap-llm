@@ -245,7 +245,7 @@ You need a way to feed the document splits to the embedding model. If you rememb
 const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
       maxRetries: 0,
-      resourceGroup: '<your-resource-group>'
+      resourceGroup: 'resourceGroup'
 });
 ```
 
