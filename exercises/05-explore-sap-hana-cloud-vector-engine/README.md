@@ -74,7 +74,7 @@ Or if you want to use the SSO login option:
 cf login -a https://api.cf.us10.hana.ondemand.com --sso
 ```
 
-Use the Cloud Foundry CLI to create your HDI container **(replace the placeholder with a meaningful name)**:
+Use the Cloud Foundry CLI to create your HDI container **(replace the placeholder with a meaningful name like using your initials, e.g. KR-HDI)**:
 
 ```bash
 cf create-service hana hdi-shared <your hdi-container name>
