@@ -24,6 +24,8 @@ SAP AI Core tenants use resource groups to isolate AI resources and workloads. S
 
 👉 Go back to **Workspaces**.
 
+> The creation of the Resource Group will take a minute to be created. Refresh the **Workspace** page until your Resource Group shows up.
+
 👉 Select your connection and your resource group.
 
 👉 Ensure it is selected. It should appear at the top next to SAP AI Launchpad.
