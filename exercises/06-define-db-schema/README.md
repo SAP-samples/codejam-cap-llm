@@ -16,8 +16,6 @@ The `package.json` file includes all Node.js project-specific configurations lik
 
 👉 Examine the dependencies. Notice that there is a dependency for `"@sap-ai-sdk/orchestration": "1.7.0"` and the `"@sap-ai-sdk/langchain": "1.7.0"`.
 
-![define-db-schema-package-json](./assets/01-define-db-schema-package-json.png)
-
 The SAP Cloud SDK for AI provides four different packages for you to use depending on your use case.
 
 - **[@sap-ai-sdk/orchestration](https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdkorchestration)**: The orchestration package incorporates generative AI orchestration capabilities into your AI activities in SAP AI Core and SAP AI Launchpad.
