@@ -85,6 +85,13 @@ The SDK uses ES6 for module loading which means that you need to export the func
 
 👉 Open the [job-posting-service.js](../../project/job-posting-service/srv/job-posting-service.js) file.
 
+👉 First, import the `AIHelper` and `DBUtils` files to have access to the functions within. You will implement the functions step-by-step throughout the exercises:
+
+```JavaScript
+import * as AIHelper from './helper/ai-helper.js';
+import * as DBUtils from './helper/db-utils.js';
+```
+
 👉 Add the following code block to the file:
 
 ```JavaScript
