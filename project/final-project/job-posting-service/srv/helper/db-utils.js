@@ -26,7 +26,9 @@ export async function insertJobPosting(jobPosting) {
     return 'Job Posting inserted successfully to table.';
   } catch (error) {
     console.log(
-      `Error while storing the Job Posting to SAP HANA Cloud. \n ${JSON.stringify(error.response)}`
+      `Error while storing the Job Posting to SAP HANA Cloud. \n ${JSON.stringify(
+        error.response
+      )}`
     );
     throw error;
   }
@@ -43,7 +45,9 @@ export async function deleteJobPosting(withID) {
     return `Successfully deleted Job Posting with ID: ${withID}`;
   } catch (error) {
     console.log(
-      `Error while deleting Job Posting with ID: ${withID} because: \n ${JSON.stringify(error.response)}`
+      `Error while deleting Job Posting with ID: ${withID} because: \n ${JSON.stringify(
+        error.response
+      )}`
     );
     throw error;
   }
@@ -120,13 +124,15 @@ let array2VectorBuffer = data => {
  * Delete all vector embeddings from the DocumentChunks table.
  * @returns {string} - The success message.
  */
-export async function deleteDocumentChunks() {
+export async function deleteVectorEmbeddings() {
   try {
     await DELETE.from(DocumentChunks);
     return 'Successfully deleted Document Chunks!';
   } catch (error) {
     console.log(
-      `Error while deleting Document Chunks: \n ${JSON.stringify(error.response)}`
+      `Error while deleting Document Chunks: \n ${JSON.stringify(
+        error.response
+      )}`
     );
   }
 }

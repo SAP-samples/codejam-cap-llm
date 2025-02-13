@@ -130,6 +130,20 @@ this.on('createVectorEmbeddings', async () => {
 });
 ```
 
+👉 Implement the `deleteVectorEmbeddings` next:
+
+```JavaScript
+return await DBUtils.deleteVectorEmbeddings();
+```
+
+The function should look like this now:
+
+```JavaScript
+this.on('deleteVectorEmbedding', async () => {
+  return await DBUtils.deleteVectorEmbeddings();
+});
+```
+
 This code won't execute as of now, because the corresponding functions are not defined nor implemented in the AIHelper and DBUtils. You will do this now.
 
 👉 Open the [ai-helper.js](../../project/job-posting-service/srv/helper/ai-helper.js).
@@ -459,7 +473,7 @@ You can create and insert vector embeddings, last step is to make it possible to
 👉 Right below the `insertVectorEmbeddings` function handler add the following code:
 
 ```JavaScript
-export async function deleteDocumentChunks() {
+export async function deleteVectorEmbeddings() {
   try {
     // implementation goes here
   } catch (error) {
@@ -476,10 +490,10 @@ await DELETE.from(DocumentChunks);
 return 'Successfully deleted Document Chunks!';
 ```
 
-The `deleteDocumentChunks` should look like this now:
+The `deleteVectorEmbeddings` should look like this now:
 
 ```JavaScript
-export async function deleteDocumentChunks() {
+export async function deleteVectorEmbeddings() {
   try {
     await DELETE.from(DocumentChunks);
     return 'Successfully deleted Document Chunks!';
