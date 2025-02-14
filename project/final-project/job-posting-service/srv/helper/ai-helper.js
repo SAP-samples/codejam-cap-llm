@@ -43,8 +43,10 @@ async function createVectorEmbeddings() {
 
     return [embeddings, splitDocuments];
   } catch (error) {
-    console.log(`Error while generating embeddings.
-      Error: ${JSON.stringify(error.response)}`);
+    console.log(
+      `Error while creating Vector Embeddings.
+      Error: ${error.response}`
+    );
     throw error;
   }
 }

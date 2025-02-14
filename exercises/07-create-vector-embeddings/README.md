@@ -172,24 +172,12 @@ You define the embedding model's name in a constant because you will use the nam
 const resourceGroup = '<your-resource-group>';
 ```
 
-👉 To use CDS methods import CDS:
-
-```JavaScript
-import cds from '@sap/cds';
-```
-
-👉 To have access to the Document Splits table, add the `DocumentChunks` constant:
-
-```JavaScript
-const { DocumentChunks } = cds.entities;
-```
-
 To create vector embeddings, you need to read the contextual information file which in your case is a text document.
 
 👉 Import a text loader from lanchain to read the needed document from file:
 
 ```JavaScript
-import TextLoader from 'langchain/document_loaders/fs/text';
+import { TextLoader } from 'langchain/document_loaders/fs/text';
 ```
 
 👉 Import the path tool to make definition of the file path easier:
@@ -201,7 +189,7 @@ import path from 'path';
 👉 Import a text splitter for splitting up the text document into meaningful chunks for the embedding model to process into vector embeddings:
 
 ```JavaScript
-import RecursiveCharacterTextSplitter from '@langchain/textsplitters';
+import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
 ```
 
 You have all the APIs imported to read a text file, split it into meaningful chunks and send it to the embedding model. You will implement the `createVectorEmbedding()` function now.
@@ -273,7 +261,7 @@ const embeddingClient = new AzureOpenAiEmbeddingClient({
 👉 Call the embedding client to embedd the document splits:
 
 ```JavaScript
-const embeddings = await embeddingClient.embedDocuments(documentSplits);
+const embeddings = await embeddingClient.embedDocuments(textSplits);
 ```
 
 👉 Finally, return the embeddings, the document splits and the path. These values will be stored in the database in the `DocumentSplits` table. Add the following code:
@@ -312,8 +300,10 @@ async function createVectorEmbeddings() {
 
     return [embeddings, splitDocuments];
   } catch (error) {
-    console.log(`Error while generating embeddings.
-      Error: ${JSON.stringify(error.response)}`);
+    console.log(
+      `Error while creating Vector Embeddings.
+      Error: ${error.response}`
+    );
     throw error;
   }
 }

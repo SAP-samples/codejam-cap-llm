@@ -145,7 +145,19 @@ import {
 } from '@sap-ai-sdk/orchestration';
 ```
 
-👉 Right below the import statement add the following constants containing the chat and embedding model's name:
+👉 To use CDS methods import CDS:
+
+```JavaScript
+import cds from '@sap/cds';
+```
+
+👉 To have access to the Document Splits table, add the `DocumentChunks` constant. You will need this entity later in the RAG flow:
+
+```JavaScript
+const { DocumentChunks } = cds.entities;
+```
+
+👉 Right below the `DocumentChunks` statement add the following constants containing the chat and embedding model's name:
 
 ```JavaScript
 const chatModelName = 'gpt-4o-mini';
