@@ -549,6 +549,12 @@ You can use the URL to call your OData function handler for creating the vector 
 
 ![03_success.png](./assets/03_success.png)
 
+👉 You can go back to the `localhost:4004` service landing page and click on the `DocumentChunks` entity to load all entries from the database table.
+
+![01_localhost.png](./assets/01_localhost.png)
+
+![04_localhost_document_chunks.png](./assets/04_localhost_document_chunks.png)
+
 ## Summary
 
 Congratulations! The call went through and apparently the vector embeddings were stored in the database. Wouldn't it be nice to have a certain way for checking the entries in the table?!
