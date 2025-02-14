@@ -32,6 +32,7 @@ Like any other deployment in SAP AI Launchpad, the orchestration model needs a c
 
 A new configuration creation workflow opens. In there give the configuration a name of your choice and fill in the following values:
 
+- **Configuration Name:** conf-<your-initials>-orchestration
 - **Scenario:** orchestration
 - **Version:** 0.0.1
 - **Executable:** orchestration

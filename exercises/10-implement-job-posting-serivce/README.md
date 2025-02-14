@@ -8,9 +8,11 @@ In this exercise, you will learn the following:
 
 ## Implement the OData function handler code stubs
 
-In [Exercise 09](../09-implement-job-posting-rag/README.md), you implemented the RAG flow using the Langchain package of the SAP Cloud SDK for AI. If you remember you wrote a lot of code to create vector embeddings, store them in the database and build the complete RAG flow from scratch. You will now add one more function handler that implements the Orchestration API, and the Orchestration Service to handle all of this for you.
+In [Exercise 07](../07-create-vector-embeddings/README.md), you implemented the code for creating and deleting vector embeddings out of a contextual document. You are not about to use the orchestration service to access these vector embeddings and execute a Retrival-Augmented generation workflow. 
 
-👉 In the function export of the [job-posting-service.js](../../project/job-posting-service/srv/job-posting-service.js) add the following function handlers:
+👉 Open the [job-posting-service.js](../../project/job-posting-service/srv/job-posting-service.js) file.
+
+👉 In the function export, add the following function handlers:
 
 ```JavaScript
 this.on('createJobPosting', async req => {
