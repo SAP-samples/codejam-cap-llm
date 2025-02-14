@@ -219,7 +219,7 @@ Within the `try` block, you will add the complete logic for the RAG flow. You wi
 const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
       maxRetries: 0,
-      resourceGroup: '<your-resource-group>'
+      resourceGroup: resourceGroup
     });
 ```
 
@@ -235,7 +235,7 @@ let embedding = await embeddingClient.embedQuery(user_query);
 
 ```JavaScript
 let splits = await SELECT.from(DocumentChunks)
-      .orderBy`cosine_similarity(embedding, to_real_vector(${embedding})) DESC`;
+      .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
 ```
 
 👉 Extract the first result from the list `splits`:
@@ -275,7 +275,7 @@ const orchestrationClient = new OrchestrationClient(
           output: filter
         }
       },
-      { resourceGroup: 'codejam-test' }
+      { resourceGroup: resourceGroup }
     );
 ```
 
@@ -509,7 +509,7 @@ cds watch --profile hybrid
 You can observe the console output if you call your service endpoint:
 
 ```bash
-http://localhost:4004/odata/v4/job-posting-servie/createJobPosting(user_query='Create a job posting for a Senior Software Developer.')
+/odata/v4/job-posting/createJobPosting(user_query='Create%20a%20job%20posting%20for%20a%20Senior%20Developer')
 ```
 
 ## Check the database table for job postings
@@ -518,7 +518,15 @@ Use the learned technics to inspect the entries in the Job Postings table.
 
 If you run the `cds watch` command, or if you still have the `localhost` open, you can click on the `Job Postings` entity to load all entries from the database and display them in a JSON format.
 
+You can also use the URL directly:
 
+```bash
+/odata/v4/job-posting/JobPostings
+```
+
+![01-job-posting-listings](./assets/01-job-posting-listings.png)
+
+Feel free to expirement with different queries to see what happens. As you can see in the screenshot, the second posting as `SAP` as the company name filled in. This is because the company name was provided in the query.
 
 ## Experiment with the orchestration service filters
 
@@ -528,7 +536,9 @@ At this point, I would encourage you to go back to the service implementation an
 
 For example, you can send a user query asking the model to create a Job Posting which should include words like `stupid`. The filter should block the request.
 
-It makes sense to look at the documentation for content filtering with the langchain package [SAP AI Core - Input filtering](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/input-filtering)
+
+
+It makes sense to look at the documentation for content filtering with the langchain package [Content Safety - Harm Categories](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/harm-categories?tabs=warning)
 
 ## Summary
 

@@ -46,10 +46,6 @@ In the `orchestrateJobPostingCreation` function handler, within the orchestratio
 👉 Right below the closing curly bracket of the `filtering` object add a comma and the masking definition:
 
 ```JavaScript
-filtering: {
-          input: filter,
-          output: filter
-        },
 masking: {
   masking_providers: [
     {
