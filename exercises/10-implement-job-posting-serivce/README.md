@@ -12,7 +12,7 @@ In [Exercise 07](../07-create-vector-embeddings/README.md), you implemented the 
 
 👉 Open the [job-posting-service.js](../../project/job-posting-service/srv/job-posting-service.js) file.
 
-👉 In the function export, add the following function handlers:
+👉 In the function export, right below the `deleteVectorEmbeddings`, add the following function handlers:
 
 ```JavaScript
 this.on('createJobPosting', async req => {
@@ -27,6 +27,35 @@ this.on('deleteJobPostings', async () => {
     // implementation goes here ...
  });
 
+```
+
+Your function export block should look like this now:
+
+```JavaScript
+export default function () {
+    this.on('createVectorEmbeddings', async req => {
+      const embeddings = await AIHelper.createVectorEmbeddings();
+      const embeddingEntries = await DBUtils.createEmbeddingEntries(embeddings);
+      await DBUtils.insertVectorEmbeddings(embeddingEntries);
+      return 'Vector embeddings created and stored in database';
+    });
+      
+    this.on('deleteVectorEmbeddings', async req => {
+      return await DBUtils.deleteVectorEmbeddings();
+    });
+    
+    this.on('createJobPosting', async req => {
+      // implementation goes here ...
+    });
+  
+    this.on('deleteJobPosting', async req => {
+      // implementation goes here ...
+    });
+  
+    this.on('deleteJobPostings', async () => {
+      // implementation goes here ...
+    });
+}
 ```
 
 ## Implement input parameter validation
@@ -85,7 +114,7 @@ With the input validation in place, you can go ahead and implement the RAG flow.
 2. Your OData service takes the input and passes it through to the OData function handler for the RAG execution.
 3. The user query needs to be sent to an embedding client to get a vector for that user query. This is required to execute the similarity search on the already embedded vector embeddings in the SAP HANA Cloud vector engine. You will use the cosine similarity algorithm.
 4. A chat client establishes a connection to a specific chat model; for this Codejam, you will use the `gpt-4o-mini`.
-5. The vector of the user query together with the query, is sent to the chat model using a template giving extra context, to the chat model.
+5. The vector of the user query together with the textual user query, is sent to the chat model using a template giving extra context.
 6. The chat model processes the request and returns a response to your client.
 7. The response gets passed to the `DBUtils` to create a new database entry.
 8. The entry is inserted into the database using CQL.
@@ -176,7 +205,7 @@ async function orchestrateJobPostingCreation(user_query) {
   } catch (error) {
     console.log(
       `Error while generating Job Posting.
-      Error: ${JSON.stringify(error.response.data)}`
+      Error: ${error.response}`
     );
     throw error;
   }
@@ -336,6 +365,117 @@ async function orchestrateJobPostingCreation(user_query) {
 }
 ```
 
+As you might have noticed, you added a content filter to the orchestration client. This helps you to prevent hateful speech, violant speech and other innapropriate input but also output from the model. This allows you to granuarily define how content should be filtered and to what degree such language should be allowed.
+
+### Implement insertion and deletion of Job Postings
+
+The orchestration RAG flow is implemented but you still have some work to do. You must implement the database functions:
+
+- `createJobPosting`
+- `insertJobPosting`
+- `deleteJobPosting`
+- `deleteJobPostings`
+
+👉 Open the [db-utils.js](../../project/job-posting-service/srv/helper/db-utils.js) file.
+
+👉 Right below the `deleteVectorEmbeddings` function implementation add the `createJobPosting` function:
+
+```JavaScript
+export function createJobPosting([userQuery, ragResponse]) {
+ // implementation goes here...
+}
+```
+
+The arguments for this function are the user query and the RAG response from the chat model.
+
+👉 Within the function implement the entity initialization:
+
+```JavaScript
+const entry = {
+  user_query: userQuery,
+  rag_response: ragResponse
+};
+```
+
+Your function should look like this now:
+
+```JavaScript
+export function createJobPosting([userQuery, ragResponse]) {
+  const entry = {
+    user_query: userQuery,
+    rag_response: ragResponse
+  };
+  return entry;
+}
+```
+
+👉 Right below the `createJobPosting` function implementation add the `insertJobPosting` function:
+
+```JavaScript
+export async function insertJobPosting(jobPosting) {
+  try {
+    // implementation goes here...
+  } catch (error) {
+    console.log(
+      `Error while storing the Job Posting to SAP HANA Cloud. \n Error: ${error.response}`
+    );
+    throw error;
+  }
+}
+```
+
+👉 Within the `try` block add the implementation for the database insertion:
+
+```JavaScript
+await INSERT.into(JobPostings).entries(jobPosting);
+return 'Job Posting inserted successfully to table.';
+```
+
+The implementation should look like this now:
+
+```JavaScript
+export async function insertJobPosting(jobPosting) {
+  try {
+    await INSERT.into(JobPostings).entries(jobPosting);
+    return 'Job Posting inserted successfully to table.';
+  } catch (error) {
+    console.log(
+      `Error while storing the Job Posting to SAP HANA Cloud. \n Error: ${error.response}`
+    );
+    throw error;
+  }
+}
+```
+
+Lastly, implement the functions for deleting job postings by job posting ID and deleting all job postings.
+
+```JavaScript
+export async function deleteJobPosting(withID) {
+  try {
+    await DELETE.from(JobPostings).where(JobPostings.id == withID);
+    return `Successfully deleted Job Posting with ID: ${withID}`;
+  } catch (error) {
+    console.log(
+      `Error while deleting Job Posting with ID: ${withID} because: \n Error: ${error.response}`
+    );
+    throw error;
+  }
+}
+
+export async function deleteJobPostings() {
+  try {
+    await DELETE.from(JobPostings);
+    return 'Successfully deleted Job Postings!';
+  } catch (error) {
+    console.log(
+      `Error while deleting Job Postings: \n Error: ${error.response}`
+    );
+  }
+}
+```
+
+## Try out your new API
+
 If you want to try out the code you can do that by using the `cds watch` command. This command allows you to run your CAP application locally and test it live.
 
 👉 Go ahead and open a new terminal or use your existing one.
@@ -376,7 +516,9 @@ http://localhost:4004/odata/v4/job-posting-servie/createJobPosting(user_query='C
 
 Use the learned technics to inspect the entries in the Job Postings table.
 
-If you need a quick recap, go back to [Exercise 06](../../exercises/06-define-db-schema/README.md) and check on the instructions.
+If you run the `cds watch` command, or if you still have the `localhost` open, you can click on the `Job Postings` entity to load all entries from the database and display them in a JSON format.
+
+
 
 ## Experiment with the orchestration service filters
 
@@ -385,6 +527,8 @@ You spend a lot of time implementing the code to get the orchestration service u
 At this point, I would encourage you to go back to the service implementation and play around with the different content filter options on the orchestration service. See how the filter level changes make the chat model respond differently. This will give you a better understanding on how you can utilize content filters to make sure that your AI services behave ethical.
 
 For example, you can send a user query asking the model to create a Job Posting which should include words like `stupid`. The filter should block the request.
+
+It makes sense to look at the documentation for content filtering with the langchain package [SAP AI Core - Input filtering](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/input-filtering)
 
 ## Summary
 

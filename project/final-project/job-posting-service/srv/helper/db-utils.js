@@ -26,9 +26,7 @@ export async function insertJobPosting(jobPosting) {
     return 'Job Posting inserted successfully to table.';
   } catch (error) {
     console.log(
-      `Error while storing the Job Posting to SAP HANA Cloud. \n ${JSON.stringify(
-        error.response
-      )}`
+      `Error while storing the Job Posting to SAP HANA Cloud. \n Error: ${error.response}`
     );
     throw error;
   }
@@ -45,9 +43,7 @@ export async function deleteJobPosting(withID) {
     return `Successfully deleted Job Posting with ID: ${withID}`;
   } catch (error) {
     console.log(
-      `Error while deleting Job Posting with ID: ${withID} because: \n ${JSON.stringify(
-        error.response
-      )}`
+      `Error while deleting Job Posting with ID: ${withID} because: \n Error: ${error.response}`
     );
     throw error;
   }
@@ -63,7 +59,7 @@ export async function deleteJobPostings() {
     return 'Successfully deleted Job Postings!';
   } catch (error) {
     console.log(
-      `Error while deleting Job Postings: \n ${JSON.stringify(error.response)}`
+      `Error while deleting Job Postings: \n Error: ${error.response}`
     );
   }
 }
