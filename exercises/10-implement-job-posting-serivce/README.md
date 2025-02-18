@@ -249,7 +249,12 @@ You have all relevant information at hand to construct the template which is get
 👉 Now, create a new orchestration client, passing in the required LLM, template, and filter:
 
 ```JavaScript
-const filter = buildAzureContentFilter({ Hate: 4, Violence: 4 });
+const filter = buildAzureContentFilter({
+      Hate: 6,
+      Violence: 6,
+      Sexual: 6,
+      SelfHarm: 6
+    });
 const orchestrationClient = new OrchestrationClient(
       {
         llm: {
@@ -321,7 +326,12 @@ async function orchestrateJobPostingCreation(user_query) {
 
     let text_chunk = splits[0].text_chunks;
 
-    const filter = buildAzureContentFilter({ Hate: 4, Violence: 4 });
+    const filter = buildAzureContentFilter({
+      Hate: 6,
+      Violence: 6,
+      Sexual: 6,
+      SelfHarm: 6
+    });
     const orchestrationClient = new OrchestrationClient(
       {
         llm: {

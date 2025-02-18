@@ -67,7 +67,13 @@ async function orchestrateJobPostingCreation(user_query) {
 
     let text_chunk = splits[0].text_chunks;
 
-    const filter = buildAzureContentFilter({ Hate: 4, Violence: 4 });
+    const filter = buildAzureContentFilter({
+      Hate: 6,
+      Violence: 6,
+      Sexual: 6,
+      SelfHarm: 6
+    });
+
     const orchestrationClient = new OrchestrationClient(
       {
         llm: {
@@ -96,13 +102,13 @@ async function orchestrateJobPostingCreation(user_query) {
           masking_providers: [
             {
               type: 'sap_data_privacy_integration',
-              method: 'pseudonymization',
+              method: 'anonymization',
               entities: [{ type: 'profile-email' }, { type: 'profile-person' }]
             }
           ]
         }
       },
-      { resourceGroup: 'codejam-test' }
+      { resourceGroup: resourceGroup }
     );
 
     const response = await orchestrationClient.chatCompletion();
