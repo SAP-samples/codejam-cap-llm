@@ -33,11 +33,11 @@ In both cases, pseudonymization or anonymization it is always good to have legal
 
 To apply data masking to your orchestration workflow you can use the orchestration API of the SAP Cloud SDK for AI configuring the needed meassurements within the orchestration client. If you want to manage data masking on a more central place in case you are re-using this configurations for multiple projects or you want to have this maintained outside of code to ease continuase updates of your workflow the SAP AI Launchpad allows you to configure data masking in the orchestration workflow editor.
 
-You will apply pseudonymization for both approaches.
+You will apply anonymization for both approaches in the beginning and change that to pseudonymization to see the difference.
 
 ### Use the orchestration API of the SAP Cloud SDK for AI
 
-Using the orchestration API allows you to define data masking options within the initializer of the orchestration client. You will now define a masking provider, a piece of software responsible for performing the data masking, to your client initialization. The used masking provider for today is the SAP Data Privacy Integration, and you are going to use pseudonymization as data masking method.
+Using the orchestration API allows you to define data masking options within the initializer of the orchestration client. You will now define a masking provider, a piece of software responsible for performing the data masking, to your client initialization. The used masking provider for today is the SAP Data Privacy Integration, and you are going to use anonymization and pseudonymization as data masking method.
 
 Because the prompt to the chat model includes the email address, first and last name of the recruiter you want to make sure that this information is not being sent to the chat model. You can define what entities you want to mask and you can look at the full list via the link in the further reading section of this exercise.
 
@@ -50,7 +50,7 @@ masking: {
   masking_providers: [
     {
       type: 'sap_data_privacy_integration',
-      method: 'pseudonymization',
+      method: 'anonymization',
       entities: [{ type: 'profile-email' }, { type: 'profile-person' }]
     }
   ]
@@ -103,7 +103,7 @@ async function orchestrateJobPostingCreation(user_query) {
           masking_providers: [
             {
               type: 'sap_data_privacy_integration',
-              method: 'pseudonymization',
+              method: 'anonymization',
               entities: [{ type: 'profile-email' }, { type: 'profile-person' }]
             }
           ]
@@ -129,6 +129,8 @@ async function orchestrateJobPostingCreation(user_query) {
 
 That is all you need to do. The pseudonymization gets applied each and every time the orchestration client gets initialized and called. I would encourage you to play around with the masking for a bit to familiarize yourself with it's capabilities.
 More information about the data masking using the orchestration client can be found in the further reading section.
+
+Look at the result! You can see that both name and email address are anonymized in the response of the LLM. If you change the `anonymization` method to `pseudonymization` you can see that the name and email won't get send to the LLM but in the response of the LLM both values are filled in.
 
 ## Summary
 
