@@ -26,7 +26,7 @@ Choosing the **Full Stack Cloud Application** brings in some predefined extensio
 
 ![Cloning the repo](assets/clone-the-codejam-repository.png)
 
-At this point, your Dev Space will restart.
+Your Dev Space will reload after the repository is cloned.
 
 ### Alternative environment: VS Code and a container image
 
@@ -49,7 +49,7 @@ Once VS Code has started and opened the directory, it should notice the [dev con
 
 To work through the exercises make sure you are in the project folder. To do so, use the terminal to change directory into `codejam-cap-llm/project/job-posting-service/`.
 
-From the root of the Codejam repository change directory:
+From the root of the CodeJam repository `/home/user/projects/codejam-cap-llm` change the directory:
 
 ```bash
 cd project/job-posting-service
@@ -89,7 +89,7 @@ npm i @sap/cds-dk -g
 
 ## Install the NPM package dependencies
 
-We'll work primarily within the `project/job-posting-service` directory of this repo, which contains a starter CAP project with code already written to provide UI and some of the service functionalities to make the CodeJam experience more accessible. The `package.json` file contains runtime and design time dependencies.
+You'll work primarily within the `project/job-posting-service` directory of this repo, which contains a starter CAP project with code already written to provide UI and some of the service functionalities to make the CodeJam experience more accessible. The `package.json` file contains runtime and design-time dependencies.
 
 👉 Make sure you're in the `project/job-posting-service` directory (where `package.json` lives):
 
@@ -120,7 +120,7 @@ No worries, we will talk about these dependencies later.
 
 ## Summary
 
-At this point, you have an environment in which to work through the rest of the exercises in this CodeJam, the repository contents, and the CDS development kit installed and ready to use.
+At this point, you have an environment set up to work through the remaining exercises in this CodeJam, along with the repository contents and the CDS development kit installed and ready for use.
 
 ## Further reading
 
