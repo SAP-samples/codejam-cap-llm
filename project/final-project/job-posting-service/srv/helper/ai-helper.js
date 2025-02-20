@@ -13,7 +13,7 @@ const { DocumentChunks } = cds.entities;
 const { SELECT } = cds.ql;
 
 const chatModelName = 'gpt-4o-mini';
-const embeddingModelName = 'text-embedding-ada-002';
+const embeddingModelName = 'text-embedding-3-small';
 const resourceGroup = '<Your-Resource-Group>';
 
 async function createVectorEmbeddings() {

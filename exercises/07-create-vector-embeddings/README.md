@@ -161,7 +161,7 @@ import {
 👉 Right below the import statement add the following constant containing the embedding model's name:
 
 ```JavaScript
-const embeddingModelName = 'text-embedding-ada-002';
+const embeddingModelName = 'text-embedding-3-small';
 ```
 
 You define the embedding model's name in a constant because you will use the name again at a later point. This gives you a single point of truth in case you want to change the chat model in the future.

@@ -213,7 +213,7 @@ async function orchestrateJobPostingCreation(user_query) {
 
 Within the `try` block, you will add the complete logic for the RAG flow. You will start by implementing the creation of the vector embedding for the given user query. This is necessary for the similarity search using the cosine similarity algorithm.
 
-👉 Initialize an embedding client for the `text-embedding-ada-002` model:
+👉 Initialize an embedding client for the `text-embedding-3-small` model:
 
 ```JavaScript
 const embeddingClient = new AzureOpenAiEmbeddingClient({
@@ -559,7 +559,7 @@ In this exercise, you implemented the job posting service and it's OData functio
 1. What is the main purpose of the `orchestrateJobPostingCreation` function in the implementation?
 
 <details><summary>Answer</summary>
-The `orchestrateJobPostingCreation` function handles the RAG flow for creating job postings. It takes a user query, creates a vector embedding for it using the `text-embedding-ada-002` model, retrieves the most relevant context from the database using cosine similarity, and sends the user query along with the contextual information to a chat model (`gpt-4o-mini`). The response from the chat model is then returned and stored in the database as a new job posting.
+The `orchestrateJobPostingCreation` function handles the RAG flow for creating job postings. It takes a user query, creates a vector embedding for it using the `text-embedding-3-small` model, retrieves the most relevant context from the database using cosine similarity, and sends the user query along with the contextual information to a chat model (`gpt-4o-mini`). The response from the chat model is then returned and stored in the database as a new job posting.
 </details>
 
 ## Further Reading
