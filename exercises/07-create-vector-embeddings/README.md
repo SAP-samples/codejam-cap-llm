@@ -125,9 +125,11 @@ Your function should look like this now:
 
 ```JavaScript
 this.on('createVectorEmbeddings', async () => {
-  await DBUtils.insertVectorEmbeddings(await AIHelper.createVectorEmbedding());
-  return 'Vector embeddings created and stored in database';
-});
+    const embeddings = await AIHelper.createVectorEmbeddings();
+    const embeddingEntries = await DBUtils.createEmbeddingEntries(embeddings);
+    await DBUtils.insertVectorEmbeddings(embeddingEntries);
+    return 'Vector embeddings created and stored in database';
+  });
 ```
 
 👉 Implement the `deleteVectorEmbeddings` next:
@@ -201,8 +203,10 @@ async function createVectorEmbeddings() {
   try {
     // implementation goes here...
   } catch (error) {
-    console.log(`Error while generating embeddings.
-      Error: ${JSON.stringify(error.response)}`);
+     console.log(
+      `Error while creating Vector Embeddings.
+      Error: ${error.response}`
+    );
     throw error;
   }
 }
