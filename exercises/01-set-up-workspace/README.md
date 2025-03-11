@@ -4,13 +4,11 @@ At the end of this exercise, you'll have an environment to work in for the durat
 
 ## Set up the environment and clone this repository
 
-To prepare the building blocks for this CodeJam, you'll need to clone this CodeJam repository and make its contents available in the workspace you chose in the [prerequisites](../../prerequisites.md). Your workspace will either be a Dev Space in the SAP Business Application Studio (the "primary environment") or VS Code with a dev container (the "alternative environment").
+To prepare the building blocks for this CodeJam, you'll need to clone this CodeJam repository and make its contents available in the workspace you chose. Your workspace will be a Dev Space in the SAP Business Application Studio or alternatively you can use VS Code with a dev container. Our recommendation for this workshop is to go with the SAP Business Application Studio approach.
 
 Follow one of the two subsections here, as appropriate: either for a [primary environment](#primary-environment-a-dev-space-in-the-sap-business-application-studio) or for an [alternative environment](#alternative-environment-vs-code-and-a-container-image).
 
 ### Primary environment: A Dev Space in the SAP Business Application Studio
-
-_Follow the **Alternative environment** subsection below if you want to use VS Code and a container image._
 
 #### Create a Dev Space
 
@@ -49,11 +47,21 @@ Once VS Code has started and opened the directory, it should notice the [dev con
 
 To work through the exercises make sure you are in the project folder. To do so, use the terminal to change directory into `codejam-cap-llm/project/job-posting-service/`.
 
-From the root of the CodeJam repository `/home/user/projects/codejam-cap-llm` change the directory:
+👉 From the root of the CodeJam repository `/home/user/projects/codejam-cap-llm` change the directory:
 
 ```bash
 cd project/job-posting-service
 ```
+
+The SAP Business Application Studio will add a dependency to the `package.json` which you are not going to use in this workshop. This dependency needs to be removed.
+
+👉 Open the `package.json`.
+
+👉 Find the `@cap-js/hana` dependency and remove it.
+
+👉 Save the file.
+
+There are two SAP HANA CDS adapter packages out there, one is the `@cap-js/hana` and the other is the `@sap/cds-hana`. The first one is just a newer unified database model package.
 
 ## Check the installation of the CDS development kit
 
