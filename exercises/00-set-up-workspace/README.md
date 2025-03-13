@@ -1,4 +1,4 @@
-# Exercise 01 - Set up your workspace
+# Exercise 00 - Set up your workspace
 
 At the end of this exercise, you'll have an environment to work in for the duration of this CodeJam, and your environment of choice will load the contents of this repository.
 
@@ -139,4 +139,4 @@ At this point, you have an environment set up to work through the remaining exer
 
 ---
 
-[Next exercise](../02-deploy-llm-ailaunchpad/README.md)
+[Next exercise](../01-deploy-llm-ailaunchpad/README.md)

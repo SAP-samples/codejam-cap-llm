@@ -1,4 +1,4 @@
-# Exercise 07 - Create vector embeddings using an embedding model
+# Exercise 06 - Create vector embeddings using an embedding model
 
 In this exercise you will get a quick introduction to vector embeddings and you will learn:
 
@@ -563,7 +563,7 @@ You can use the URL to call your OData function handler for creating the vector 
 
 Congratulations! The call went through and apparently the vector embeddings were stored in the database. Wouldn't it be nice to have a certain way for checking the entries in the table?!
 
-Remember the exercise where you used the `hana-cli` to do exactly that. Try this step on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 06](../../exercises/06-define-db-schema/README.md) and check on the instructions.
+Remember the exercise where you used the `hana-cli` to do exactly that. Try this step on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 05](../../exercises/05-define-db-schema/README.md) and check on the instructions.
 
 ### Questions for Discussion
 
@@ -598,4 +598,4 @@ The two algorithms used to compare vector embeddings are Euclidean Distance and 
 
 ---
 
-[Next exercise](../08-define-job-posting-service/README.md)
+[Next exercise](../07-define-job-posting-service/README.md)

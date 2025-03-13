@@ -1,4 +1,4 @@
-# Exercise 02 - Use SAP AI Launchpad to Deploy a Large Language Model with Generative AI Hub on SAP AI Core
+# Exercise 01 - Use SAP AI Launchpad to Deploy a Large Language Model with Generative AI Hub on SAP AI Core
 
 SAP AI Launchpad is a multi-tenant SaaS application on SAP BTP. You can use SAP AI Launchpad to manage AI use cases across different AI runtimes. SAP AI Launchpad also provides generative AI capabilities via the Generative AI Hub and is available in the Cloud Foundry environment. You can also connect HANA as an AI runtime or use SAP AI Services to work with the HANA Predictive Analysis Library (PAL) or the SAP AI Service Data Attribute Recommendation.
 
@@ -30,7 +30,7 @@ SAP AI Core tenants use resource groups to isolate AI resources and workloads. S
 
 👉 Ensure it is selected. It should appear at the top next to SAP AI Launchpad.
 
-> You will need the name of your resource group in [Exercise 09-create-connection-configuration](../09-create-connection-configuration/README.md).
+> You will need the name of your resource group in [Exercise 03-create-connection-configuration](../03-create-connection-configuration/README.md).
 
 ![SAP AI Launchpad - Resource Group 2/2](assets/resource_group_2.png)
 
@@ -153,4 +153,4 @@ To deploy a proxy for an LLM, you need to:
 
 ---
 
-[Next exercise](../03-explore-genai-hub/README.md)
+[Next exercise](../02-explore-genai-hub/README.md)

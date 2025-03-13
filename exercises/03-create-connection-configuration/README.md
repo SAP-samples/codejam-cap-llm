@@ -1,4 +1,4 @@
-# Exercise 04 - Create the SAP AI Core connection configuration
+# Exercise 03 - Create the SAP AI Core connection configuration
 
 Using the SAP Cloud SDK for AI allows you to seamlessly connect to SAP AI Core, SAP Generative AI Hub, and the Orchestration service. The SDK is available for different programming languages like Python, JavaScript, Java, and ABAP. In this Codejam you will use the JavaScript version to complement a CAP OData service with AI functionality using the SAP Generative AI Hub and Orchestration service.
 
@@ -85,4 +85,4 @@ There are two ways to configure the connection:
    </details>
 ---
 
-[Next exercise](../05-explore-sap-hana-cloud-vector-engine/README.md)
+[Next exercise](../04-explore-sap-hana-cloud-vector-engine/README.md)

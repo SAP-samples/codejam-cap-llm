@@ -1,6 +1,6 @@
-# Exercise 10 - Implement the Job Posting Service
+# Exercise 09 - Implement the Job Posting Service
 
-In the last exercise, you created a deployment for orchestration, allowing you to create an orchestration workflow. This workflow can be created with the SAP Cloud SDK for AI including templating, data masking, document grounding and content filtering. Grounding describes the process of retrieval-augmented generation (RAG). Grounding allows you to create vector embeddings for a given contextual document or information source, and also get the correct embedding for a given user query making it easy to communicate with the chat model without having to do all of that manually. If you remember, you completed these steps in [Exercise 09](../09-implement-job-posting-rag/README.md).
+In the last exercise, you created a deployment for orchestration, allowing you to create an orchestration workflow. This workflow can be created with the SAP Cloud SDK for AI including templating, data masking, document grounding and content filtering. Grounding describes the process of retrieval-augmented generation (RAG). Grounding allows you to create vector embeddings for a given contextual document or information source, and also get the correct embedding for a given user query making it easy to communicate with the chat model without having to do all of that manually.
 
 In this exercise, you will learn the following:
 
@@ -8,7 +8,7 @@ In this exercise, you will learn the following:
 
 ## Implement the OData function handler code stubs
 
-In [Exercise 07](../07-create-vector-embeddings/README.md), you implemented the code for creating and deleting vector embeddings out of a contextual document. You are not about to use the orchestration service to access these vector embeddings and execute a Retrival-Augmented generation workflow. 
+In [Exercise 06](../06-create-vector-embeddings/README.md), you implemented the code for creating and deleting vector embeddings out of a contextual document. You are not about to use the orchestration service to access these vector embeddings and execute a Retrival-Augmented generation workflow. 
 
 👉 Open the [job-posting-service.js](../../project/job-posting-service/srv/job-posting-service.js) file.
 
@@ -568,4 +568,4 @@ The `orchestrateJobPostingCreation` function handles the RAG flow for creating j
 
 ---
 
-[Next exercise](../11-data-masking-and-anonymization/README.md)
+[Next exercise](../09-data-masking-and-anonymization/README.md)

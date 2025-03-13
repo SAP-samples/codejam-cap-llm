@@ -1,4 +1,4 @@
-# Exercise 05 - Explore the SAP HANA Cloud Vector Engine
+# Exercise 04 - Explore the SAP HANA Cloud Vector Engine
 
 SAP HANA Cloud is the leading in-memory database on the market. It is also the go-to database for CAP applications. SAP has added the vector engine to the SAP HANA database. The vector engine provides a data foundation for a new set of natural and intuitive capabilities. For this CodeJam, you will use the vector engine to augment large language models with business context. You will use the vector engine for two things. The engine stores relevant business data as vector embeddings and, second, searches for similar and relevant vector embeddings based on the user's prompts. The corresponding text of these vector embeddings then gets passed along to a defined LLM for accurate business answers using that contextual information.
 
@@ -163,4 +163,4 @@ After the container is created, you can bind it to your CAP application to allow
 
 ---
 
-[Next exercise](../06-define-db-schema/README.md)
+[Next exercise](../05-define-db-schema/README.md)

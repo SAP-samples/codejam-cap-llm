@@ -1,4 +1,4 @@
-# Exercise 06 - Create the database schema for the CAP application
+# Exercise 05 - Create the database schema for the CAP application
 
 The repository you have cloned provides a skeleton project in the project directory (../../project/job-posting-service/). The skeleton project contains an already-set-up CAP application with the fully configured [package.json](../../project/job-posting-service/package.json) and supporting files for the following exercises.
 
@@ -96,7 +96,7 @@ The entity defines three fields:
 
 ## Build and deploy the schema to your HDI container
 
-Because you created a binding to our HDI container in exercise 02 you have all configurations in place to deploy HANA database artifacts to the instance. To do so you need to build the artifacts first enter the `cds deploy` command.
+Because you created a binding to our HDI container, you have all configurations in place to deploy HANA database artifacts to the instance. To do so you need to build the artifacts first enter the `cds deploy` command.
 
 👉 Open a new terminal if not already open.
 
@@ -120,7 +120,7 @@ cf login
 cds build --production
 ```
 
-👉 To deploy the build db artifacts in the `.gen` folder, call the `cds deploy --to hana:<hdi-instance>` command **(Use the HDI container name from Exercise 05)**.
+👉 To deploy the build db artifacts in the `.gen` folder, call the `cds deploy --to hana:<hdi-instance>` command **(Use the HDI container name from Exercise 04)**.
 
 > In case you forgot your HDI container name, you can simply call `cf services` to get a list of all available service instances including your HDI container.
 
@@ -242,4 +242,4 @@ At this point, you have learned how to define a database schema using CDS, how t
 
 ---
 
-[Next exercise](../07-create-vector-embeddings/README.md)
+[Next exercise](../06-create-vector-embeddings/README.md)
