@@ -41,6 +41,8 @@ Using the orchestration API allows you to define data masking options within the
 
 Because the prompt to the chat model includes the email address, first and last name of the recruiter you want to make sure that this information is not being sent to the chat model. You can define what entities you want to mask and you can look at the full list via the link in the further reading section of this exercise.
 
+To perform the masking, you use so called masking providers. SAP is offering it's own data masking provider with the name of SAP Data Privacy Integration. This is a reuse service on SAP Business Technology Platform. This service can be utilized using the SAP Cloud SDK for AI as masking provider.
+
 In the `orchestrateJobPostingCreation` function handler, within the orchestration client initialization add the masking defintion. Because this initializer expects that JSON format definition style you need to find the right spot to add the masking bit.
 
 👉 Right below the closing curly bracket of the `filtering` object add a comma and the masking definition:
@@ -128,6 +130,7 @@ async function orchestrateJobPostingCreation(user_query) {
 ```
 
 That is all you need to do. The pseudonymization gets applied each and every time the orchestration client gets initialized and called. I would encourage you to play around with the masking for a bit to familiarize yourself with it's capabilities.
+
 More information about the data masking using the orchestration client can be found in the further reading section.
 
 Look at the result! You can see that both name and email address are anonymized in the response of the LLM. If you change the `anonymization` method to `pseudonymization` you can see that the name and email won't get send to the LLM but in the response of the LLM both values are filled in.

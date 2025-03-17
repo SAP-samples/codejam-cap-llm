@@ -112,7 +112,12 @@ Using the `URL`, `client id`, and `client secret` from the SAP AI Core service k
 
 👉 To implement a retrieval-augmented generation (RAG) use case, we also need to deploy an embedding model. The embeddings for our text chunks will then be stored in a vector database (e.g., [SAP HANA Cloud Vector Engine](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine-guide/sap-hana-cloud-sap-hana-database-vector-engine-guide)).
 
-To deploy the embedding model, repeat the steps above using the model name `text-embedding-3-small` instead of `gpt-4o-mini`:
+To deploy the embedding model, create another configuration and proxy deployment using the model name `text-embedding-3-small` instead of `gpt-4o-mini`. This will create an embedding model proxy within generative AI Hub.
+
+Follow the steps from the previous chapters of this exercise:
+
+- **Create a Configuration to Deploy a Proxy for a Large Language Model on SAP AI Core**
+- **Deploy a Proxy for an Embedding Model on SAP AI Core**
 
 ## Summary
 

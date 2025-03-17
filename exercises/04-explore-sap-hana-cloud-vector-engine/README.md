@@ -9,7 +9,7 @@ For this CodeJam, the SAP HANA Cloud instance has already been initialized and c
 In this exercise, you will learn:
 
 - What vector embeddings are.
-- How to enable the SAP HANA Cloud vector engine
+- How to enable the SAP HANA Cloud Vector Engine
 - How to configure your CAP application for SAP HANA deployment
 - How to bind your CAP application to a new HDI instance
 
@@ -112,7 +112,7 @@ cds bind -2 <your-hdi-container-name>:<your-service-key-name>
 
 ## Summary
 
-At this point, you have learned what the SAP HANA Cloud vector engine is, how vector embeddings work, how to get your project ready for SAP HANA deployment, and how to bind your application to an HDI container instance. In the following exercises, you will evolve your project into a fully functioning CAP AI service application utilizing SAP HANA Cloud vector engine, Generative AI Hub, embedding, and chat LLMs.
+At this point, you have learned what the SAP HANA Cloud Vector Engine is, how vector embeddings work, how to get your project ready for SAP HANA deployment, and how to bind your application to an HDI container instance. In the following exercises, you will evolve your project into a fully functioning CAP AI service application utilizing SAP HANA Cloud Vector Engine, Generative AI Hub, embedding, and chat LLMs.
 
 ### Questions for Discussion
 

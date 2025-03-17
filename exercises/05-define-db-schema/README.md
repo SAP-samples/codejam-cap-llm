@@ -60,7 +60,7 @@ using {
 } from '@sap/cds/common';
 ```
 
-The entity should be managed, meaning it will utilize `cuid` to auto-generate a `UUID`, time stamps for creation and mutation.
+The entity should be managed, meaning it will utilize `cuid` to auto-generate a `UUID`, create time stamps for creation and mutation of the table entries including auditing.
 
 👉 Add an entity to store job postings in the database. You will utilize this entity in a later exercise by using AI to generate job postings and store them in the corresponding table.
 
@@ -76,7 +76,7 @@ The entity defines two fields:
 - `user_query`: Stores the incoming user query.
 - `rag_response` : Stores the response from the chat model.
 
-👉 Lastly, add the definition for the `s` entity. The entity is using the `managed` and `cuid` features from the `cds.common` package.
+👉 Lastly, add the definition for the `DocumentChunks` entity. The entity is using the `managed` and `cuid` features from the `cds.common` package.
 
 ```cds
 entity DocumentChunks : cuid, managed {
@@ -93,6 +93,29 @@ The entity defines three fields:
 - `embedding` : Stores the encoded vector embeddings created by an embedding model.
 
 👉 Save the file.
+
+The complete `schema.cds` should look like this now:
+
+```cds
+namespace sap.codejam;
+
+using {
+    cuid,
+    managed
+} from '@sap/cds/common';
+
+entity DocumentChunks : cuid, managed {
+    metadata   : LargeString;
+    text_chunk : LargeString;
+    embedding  : Vector(1536);
+}
+
+entity JobPostings : cuid, managed {
+    user_query   : String;
+    rag_response : String;
+}
+
+```
 
 ## Build and deploy the schema to your HDI container
 
@@ -149,6 +172,8 @@ You have to install the [hana-cli](https://github.com/SAP-samples/hana-developer
 ```bash
 npm install -g hana-cli
 ```
+
+> Note that you install the HANA CLI globally here. You can always install the CLI for the project only and remmove the `-g` argument. If you want to use the HANA CLI in multiple projects it makes sense to install it globally.
 
 👉 Enter the `hana-cli help` command to get a list of all available commands:
 

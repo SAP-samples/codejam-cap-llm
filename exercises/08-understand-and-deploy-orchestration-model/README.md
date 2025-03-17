@@ -1,6 +1,6 @@
 # Exercise 08 - Understand and deploy the orchestration model
 
-The orchestration service pf SAP AI Launchpad provides you with an orchestration model you can deploy and use with the SAP Cloud SDK for AI. Orchestration in the sence of AI is the combination of content generation via an LLM with a set of functions that are often required. Such functions can be templating, content filtering and data masking. In the previous exercises you have implemented a complete RAG flow using an embedding, and chat model connecting to them using a respective client. Using the orchestration service, you will use an orchestration client to establish connection to complete the RAG flow. The orchestration client allows you to add the aforementioned functions in an intuitive matter.
+The orchestration service pf SAP AI Launchpad provides you with an orchestration model you can deploy and use with the SAP Cloud SDK for AI. Orchestration in the sense of AI is the combination of content generation via an LLM with a set of functions that are often required. Such functions can be templating, content filtering and data masking. In the previous exercises you have implemented a complete RAG flow using an embedding, and chat model connecting to them using a respective client. Using the orchestration service, you will use an orchestration client to establish connection to complete the RAG flow. The orchestration client allows you to add the aforementioned functions in an intuitive matter.
 
 **Templating:** Allows you to compose a prompt with placeholders that are filled during inference.
 **Content Filtering:** Allows you to restrict the type of content that is passed to and received from the generative AI model. This can also be done in the SAP AI Launchpad directly.
@@ -50,6 +50,8 @@ The configuration is now being created. After the successful creation of the con
 👉 Click the **Create Deployment** button to start the workflow.
 
 ![03-deployment-creation](./assets/03_deployment_create.png)
+
+👉 Make sure to select the `Orchestration` scenario and click next.
 
 👉 Click through the workflow until you reach the **Review** step and create the deployment.
 

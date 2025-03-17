@@ -4,7 +4,7 @@ In this exercise you will get a quick introduction to vector embeddings and you 
 
 - What vector embeddings are.
 - How to create them.
-- How to store them in the SAP HANA Cloud vector engine.
+- How to store them in the SAP HANA Cloud Vector Engine.
 
 ## What is a vector embedding?
 
@@ -14,7 +14,7 @@ To perform this transformation an embedding model can be used. These embedding m
 
 Using an embedding model to create vector embeddings, a numerical representation of real-world unstructured data, can help provide contextual information to an AI model that, based on that numerical data, can provide a proper answer to a user's question.
 
-This is what you will do in the following exercises. You will use unstructured data, transform it into many vector embeddings, storing them in the SAP HANA Cloud vector engine. These vector embeddings than get compared to a vector embedding containing the user's questions using a mathematical algorithm. This comparison should return a vector embedding most similar to the numerical representation of the user's query. The resulting vector embedding's real-world data can now be used to provide contextual information to a chat model to retrieve a fitting answer to the user's query.
+This is what you will do in the following exercises. You will use unstructured data, transform it into many vector embeddings, storing them in the SAP HANA Cloud Vector Engine. These vector embeddings than get compared to a vector embedding containing the user's questions using a mathematical algorithm. This comparison should return a vector embedding most similar to the numerical representation of the user's query. The resulting vector embedding's real-world data can now be used to provide contextual information to a chat model to retrieve a fitting answer to the user's query.
 
 You can use two different algorithms for creating a comparison between vector embeddings:
 
@@ -73,6 +73,24 @@ Great! You got both entities projected in the OData service. Now, you implement 
 ```CDS
 function createVectorEmbeddings()                   returns String;
 function deleteVectorEmbeddings()                   returns String;
+```
+
+The `job-posting-service.cds` should look like this now:
+
+```CDS
+using {sap.codejam as db} from '../db/schema';
+
+service JobPostingService {
+    entity DocumentChunks as
+        projection on db.DocumentChunks
+        excluding {
+            embedding
+        };
+
+    entity JobPostings    as projection on db.JobPostings;
+    function createVectorEmbeddings()              returns String;
+    function deleteVectorEmbeddings()              returns String;
+}
 ```
 
 ## Implement the creation of vector embeddings
@@ -146,6 +164,26 @@ this.on('deleteVectorEmbedding', async () => {
 });
 ```
 
+The `job-posting-service.js` should look like this now:
+
+```JavaScript
+import * as AIHelper from './helper/ai-helper.js';
+import * as DBUtils from './helper/db-utils.js';
+
+export default function () {
+  this.on('createVectorEmbeddings', async () => {
+    const embeddings = await AIHelper.createVectorEmbeddings();
+    const embeddingEntries = await DBUtils.createEmbeddingEntries(embeddings);
+    await DBUtils.insertVectorEmbeddings(embeddingEntries);
+    return 'Vector embeddings created and stored in database';
+  });
+
+  this.on('deleteVectorEmbedding', async () => {
+    return await DBUtils.deleteVectorEmbeddings();
+  });
+}
+```
+
 This code won't execute as of now, because the corresponding functions are not defined nor implemented in the AIHelper and DBUtils. You will do this now.
 
 👉 Open the [ai-helper.js](../../project/job-posting-service/srv/helper/ai-helper.js).
@@ -182,16 +220,16 @@ To create vector embeddings, you need to read the contextual information file wh
 import { TextLoader } from 'langchain/document_loaders/fs/text';
 ```
 
-👉 Import the path tool to make definition of the file path easier:
-
-```JavaScript
-import path from 'path';
-```
-
 👉 Import a text splitter for splitting up the text document into meaningful chunks for the embedding model to process into vector embeddings:
 
 ```JavaScript
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
+```
+
+👉 Import the path tool to make definition of the file path easier:
+
+```JavaScript
+import path from 'path';
 ```
 
 You have all the APIs imported to read a text file, split it into meaningful chunks and send it to the embedding model. You will implement the `createVectorEmbedding()` function now.
@@ -319,9 +357,61 @@ async function createVectorEmbeddings() {
 export { createVectorEmbeddings};
 ```
 
+Your `ai-helper.js` should look like this now:
+
+```JavaScript
+import {
+  AzureOpenAiEmbeddingClient,
+} from '@sap-ai-sdk/langchain';
+
+const embeddingModelName = 'text-embedding-3-small';
+const resourceGroup = '<your-resource-group>';
+
+import { TextLoader } from 'langchain/document_loaders/fs/text';
+import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
+import path from 'path';
+
+async function createVectorEmbeddings() {
+  try {
+    const loader = new TextLoader(path.resolve('db/data/demo_grounding.txt'));
+    const document = await loader.load();
+
+    const splitter = new RecursiveCharacterTextSplitter({
+      chunkSize: 70,
+      chunkOverlap: 0,
+      addStartIndex: true
+    });
+
+    const splitDocuments = await splitter.splitDocuments(document);
+
+    const textSplits = [];
+    for (const chunk of splitDocuments) {
+      textSplits.push(chunk.pageContent);
+    }
+
+    const embeddingClient = new AzureOpenAiEmbeddingClient({
+      modelName: embeddingModelName,
+      maxRetries: 0,
+      resourceGroup: resourceGroup
+    });
+    const embeddings = await embeddingClient.embedDocuments(textSplits);
+
+    return [embeddings, splitDocuments];
+  } catch (error) {
+    console.log(
+      `Error while creating Vector Embeddings.
+      Error: ${error.response}`
+    );
+    throw error;
+  }
+}
+
+export { createVectorEmbeddings};
+```
+
 ## Implement the creation of vector embedding entries
 
-You are about to implement the storing of the generated vector embeddings to the SAP HANA Cloud vector engine.
+You are about to implement the storing of the generated vector embeddings to the SAP HANA Cloud Vector Engine.
 
 👉 Open the [db-utils.js](../../project/job-posting-service/srv/helper/db-utils.js) file.
 
@@ -499,6 +589,68 @@ export async function deleteVectorEmbeddings() {
 }
 ```
 
+The `db-utils.js` should look like this now:
+
+```JavaScript
+import cds from '@sap/cds';
+const { INSERT, DELETE } = cds.ql;
+const { JobPostings, DocumentChunks } = cds.entities;
+
+export function createEmbeddingEntries([embeddings, splitDocuments]) {
+  let embeddingEntries = [];
+  for (const [index, embedding] of embeddings.entries()) {
+    const embeddingEntry = {
+      metadata: splitDocuments[index].metadata.source,
+      text_chunk: splitDocuments[index].pageContent,
+      embedding: array2VectorBuffer(embedding)
+    };
+    embeddingEntries.push(embeddingEntry);
+  }
+  return embeddingEntries;
+}
+
+export async function insertVectorEmbeddings(embeddingEntries) {
+  try {
+    await INSERT.into(DocumentChunks).entries(embeddingEntries);
+
+    return `Embeddings inserted successfully to table.`;
+  } catch (error) {
+    console.log(
+      `Error while storing the vector embeddings to SAP HANA Cloud: ${error.toString()}`
+    );
+    throw error;
+  }
+}
+
+// Helper method to convert embeddings to buffer for insertion
+let array2VectorBuffer = data => {
+  const sizeFloat = 4;
+  const sizeDimensions = 4;
+  const bufferSize = data.length * sizeFloat + sizeDimensions;
+
+  const buffer = Buffer.allocUnsafe(bufferSize);
+  // write size into buffer
+  buffer.writeUInt32LE(data.length, 0);
+  data.forEach((value, index) => {
+    buffer.writeFloatLE(value, index * sizeFloat + sizeDimensions);
+  });
+  return buffer;
+};
+
+export async function deleteVectorEmbeddings() {
+  try {
+    await DELETE.from(DocumentChunks);
+    return 'Successfully deleted Document Chunks!';
+  } catch (error) {
+    console.log(
+      `Error while deleting Document Chunks: \n ${JSON.stringify(
+        error.response
+      )}`
+    );
+  }
+}
+```
+
 ## Create some vector embeddings
 
 At this point you have achieved a lot! You have defined and implemented not only the OData CAP service but also the database insertion and deletion. One thing you haven't done yet is test the code.
@@ -575,7 +727,7 @@ Vector embeddings are created using an embedding model, which can either be pre-
 - Load the unstructured data (e.g., text).
 - Split the text into meaningful chunks.
 - Feed these chunks into the embedding model to generate numerical vectors (embeddings).
-- Store the embeddings in the SAP HANA Cloud vector engine for later use.
+- Store the embeddings in the SAP HANA Cloud Vector Engine for later use.
 
 </details>
 

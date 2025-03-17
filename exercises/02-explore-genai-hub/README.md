@@ -16,7 +16,7 @@ The parameter **Frequency Penalty** allows you to penalize words that appear too
 
 Similarly, the higher the **Presence Penalty**, the more likely the model will talk about new topics, as you penalize words that have appeared in the text so far.
 
-With **Max Tokens**, you can set the size of the input and output of the model. Where tokens are not words but rather 4-5 characters long.
+With **Max Tokens**, you can set the size of the input and output of the model. Where tokens are not words but rather 4-5 characters long in regards of this model. Each and every model can define their tokenization technique for itself. There is no set standard for tokenization so be advised if you use LLMs outside of this workshop.
 
 With the **Temperature** parameter you can set how creative the model should sound so flexible the model is allowed to be in selecting the next token in the sequence.
 

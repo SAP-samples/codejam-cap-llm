@@ -9,6 +9,7 @@ import { TextLoader } from 'langchain/document_loaders/fs/text';
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
 import path from 'path';
 
+import cds from '@sap/cds';
 const { DocumentChunks } = cds.entities;
 const { SELECT } = cds.ql;
 

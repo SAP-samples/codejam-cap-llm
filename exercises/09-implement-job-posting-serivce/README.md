@@ -112,7 +112,7 @@ With the input validation in place, you can go ahead and implement the RAG flow.
 
 1. A user inputs a query describing what kind of job posting should be created.
 2. Your OData service takes the input and passes it through to the OData function handler for the RAG execution.
-3. The user query needs to be sent to an embedding client to get a vector for that user query. This is required to execute the similarity search on the already embedded vector embeddings in the SAP HANA Cloud vector engine. You will use the cosine similarity algorithm.
+3. The user query needs to be sent to an embedding client to get a vector for that user query. This is required to execute the similarity search on the already embedded vector embeddings in the SAP HANA Cloud Vector Engine. You will use the cosine similarity algorithm.
 4. A chat client establishes a connection to a specific chat model; for this Codejam, you will use the `gpt-4o-mini`.
 5. The vector of the user query together with the textual user query, is sent to the chat model using a template giving extra context.
 6. The chat model processes the request and returns a response to your client.
@@ -237,6 +237,8 @@ let embedding = await embeddingClient.embedQuery(user_query);
 let splits = await SELECT.from(DocumentChunks)
       .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
 ```
+
+The `cosine_similarity` call in the SQL statement is not default SQL. This is an added function by the HANA Cloud Vector Engine.
 
 👉 Extract the first result from the list `splits`:
 
