@@ -159,7 +159,7 @@ return await DBUtils.deleteVectorEmbeddings();
 The function should look like this now:
 
 ```JavaScript
-this.on('deleteVectorEmbedding', async () => {
+this.on('deleteVectorEmbeddings', async () => {
   return await DBUtils.deleteVectorEmbeddings();
 });
 ```
@@ -178,7 +178,7 @@ export default function () {
     return 'Vector embeddings created and stored in database';
   });
 
-  this.on('deleteVectorEmbedding', async () => {
+  this.on('deleteVectorEmbeddings', async () => {
     return await DBUtils.deleteVectorEmbeddings();
   });
 }

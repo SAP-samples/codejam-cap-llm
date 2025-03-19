@@ -11,7 +11,7 @@ export default function () {
     return 'Vector embeddings created and stored in database';
   });
 
-  this.on('deleteVectorEmbedding', async () => {
+  this.on('deleteVectorEmbeddings', async () => {
     return await DBUtils.deleteVectorEmbeddings();
   });
 
