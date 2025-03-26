@@ -17,15 +17,18 @@ In [Exercise 06](../06-create-vector-embeddings/README.md), you implemented the 
 ```JavaScript
 this.on('createJobPosting', async req => {
     // implementation goes here ...
- });
+});
 
- this.on('deleteJobPosting', async req => {
-    // implementation goes here ...
- });
+this.on('deleteJobPosting', async req => {
+    const id = req.data.id;
+    validateInputParameter(id);
 
+    return await DBUtils.deleteJobPosting(id);
+});
+  
 this.on('deleteJobPostings', async () => {
-    // implementation goes here ...
- });
+    return await DBUtils.deleteJobPostings();
+});
 
 ```
 
