@@ -515,8 +515,6 @@ npm install
 cf target
 ```
 
-![define-db-schema-check-cf-login](../06-define-db-schema/assets/03-define-db-schema-check-cf-login.png)
-
 If the reply from the CLI tells you to log in again simply enter `cf login`. This time you don't have to specify the API endpoint because it is stored from the previous login.
 
 ```bash
@@ -532,7 +530,7 @@ cds watch --profile hybrid
 You can observe the console output if you call your service endpoint:
 
 ```bash
-/odata/v4/job-posting/createJobPosting(user_query='Create%20a%20job%20posting%20for%20a%20Senior%20Developer')
+/odata/v4/job-posting/createJobPosting(user_query='Create a job posting for a Senior Developer for the company AwesomeTech inc')
 ```
 
 ## Check the database table for job postings
