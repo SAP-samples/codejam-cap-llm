@@ -14,28 +14,9 @@ To establish a connection from your CAP application to each of the AI relevant s
 
 - For production, the SDK recommends creating a binding between your application and the SAP AI Core service instance. The binding is more secure as it is not exposing the authentication details in clear text.
 
-For this Codejam you will use the first approach by providing the needed configuration details via the `.env` file. You can find the details for the configuration in the service key for the SAP AI Core instance. The authentication details are only valid during the duration of this CodeJam and will be invalidated immediately afterward.
+For this Codejam you will use the binding approach. If you are interested in the `.env` file approach, you can find the details for the configuration in the service key for the SAP AI Core instance. The authentication details are only valid during the duration of this CodeJam and will be invalidated immediately afterward.
 
-## Inspect the .env file
-
-👉 Go ahead and open the [.env](../../project/job-posting-service/.env)
-
-You can see that the `AICORE_SERVICE_KEY` is a JSON object that contains four necessary fields:
-
-- **clientid**: The client ID for the OAuth authentication flow, Client Credentials.
-- **clientsecret**: The client secret for the OAuth authentication flow, Client Credentials.
-- **url**: The OAuth authentication URL. You need to add `/oauth/token` at the end of the URL to direct to the OAuth token server.
-- **serviceurls**:**AI_API_URL**: The SAP AI Core service URLs.
-
-👉 Fill in the information needed using the service key of the AI Core instance.
-
-![06-aicore-sk-nav](./assets/06-aicore-sk-nav.png)
-
-👉 Click on the service key to display the details:
-
-![07-aicore-sk-details](./assets/07-aicore-sk-details.png)
-
-Alternatively, you can try the path of binding your application to the AI Core instance. If you go this route, you need to delete the `.env` file first.
+## Create a binding to the AI Core instance
 
 Before you execute the command below, make sure to open a new Terminal and run the Cloud Foundry login:
 
@@ -61,7 +42,7 @@ cf login -a https://api.cf.us10.hana.ondemand.com --sso
 cds bind -2 default_aicore
 ```
 
-That will cause Cloud Foundry to create a new service key for the SAP AI Core instance on the BTP subaccount, and configure that service key within your project. This is basically the same thing as the `.env` approach with one major difference; It is referencing the service key rather than having it clear text in your configuration.
+That will cause Cloud Foundry to create a new service key for the SAP AI Core instance on the BTP subaccount, and configure that service key within your project. This is basically the same thing as the `.env` approach with one major difference; It is creating and referencing a new service, rather than having the AI Core instance's major service key in clear text in your configuration.
 
 ## Summary
 
