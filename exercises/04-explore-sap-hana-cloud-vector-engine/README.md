@@ -82,6 +82,8 @@ For this CodeJam each of you will create their own HDI container.
 
 👉 Log into SAP BTP using the Cloud Foundry CLI:
 
+> NOTE: If you are part of the SAP Surge event use the `https://api.cf.eu10.hana.ondemand.com` endpoint instead of the one listed below.
+
 ```bash
 cf login -a https://api.cf.us10.hana.ondemand.com
 ```
