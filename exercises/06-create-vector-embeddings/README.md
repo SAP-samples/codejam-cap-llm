@@ -468,6 +468,23 @@ for (const [index, embedding] of embeddings.entries()) {
 return embeddingEntries;
 ```
 
+Your function implementation should look like this now:
+
+```JavaScript
+export function createEmbeddingEntries([embeddings, splitDocuments]) {
+    let embeddingEntries = [];
+    for (const [index, embedding] of embeddings.entries()) {
+        const embeddingEntry = {
+          metadata: splitDocuments[index].metadata.source,
+          text_chunk: splitDocuments[index].pageContent,
+          embedding: array2VectorBuffer(embedding)
+        };
+        embeddingEntries.push(embeddingEntry);
+      }
+    return embeddingEntries;
+}
+```
+
 As you might have noticed, you are calling a conversion function to convert the embeddings to a vector buffer for database insertion. This function needs to be implemented next.
 
 👉 Below the `insertVectorEmbeddings` function implement the following:
@@ -487,23 +504,6 @@ let array2VectorBuffer = data => {
   });
   return buffer;
 };
-```
-
-The complete `insertVectorEmbeddings` function should look like this:
-
-```JavaScript
-export function createEmbeddingEntries([embeddings, splitDocuments]) {
-  let embeddingEntries = [];
-  for (const [index, embedding] of embeddings.entries()) {
-    const embeddingEntry = {
-      metadata: splitDocuments[index].metadata.source,
-      text_chunk: splitDocuments[index].pageContent,
-      embedding: array2VectorBuffer(embedding)
-    };
-    embeddingEntries.push(embeddingEntry);
-  }
-  return embeddingEntries;
-}
 ```
 
 ## Implement the insertion of the vector embedding entries
