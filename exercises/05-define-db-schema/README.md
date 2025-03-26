@@ -152,6 +152,7 @@ cds deploy --to hana:<your-hdi-container-name> --auto-undeploy
 ```
 
 The `--auto-undeploy` argument causes the database to adjust to the new runtime definition of your database artifacts.
+Be aware that the command will create another service key for deployment to the HDI container. This is okay as you are using the binding for connection to the HDI container from within the CAP application.
 
 You will see a large terminal output listing the different steps of the building and deployment process.
 
