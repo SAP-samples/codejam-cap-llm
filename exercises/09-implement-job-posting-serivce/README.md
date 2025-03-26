@@ -298,6 +298,8 @@ A typical message to a chat model requires a couple of information. First of all
 
 The client is defined to connect to the `gpt-4o-mini` using a template describing what you want the chat model to do including the user query. Finally you define strict rules for the content filter. The service is not tolerating any inappropriate or discriminating language which is of utmost importance! Take a look at the official documentation to understand content filters and learn more about levels of severity: [Azure AI Content Filtering](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new).
 
+This helps you to prevent hateful speech, violant speech and other innapropriate input but also output from the model. This allows you to granuarily define how content should be filtered and to what degree such language should be allowed.
+
 If the user query successfully runs through the content filter, the response will be **200**, in case the content filter catches a user query you should receive a **400**. When you are testing your service, you can change the filter values to see how it applies to different user query inputs.
 
 👉 Below the initialization of the orchestration client call the client's chat completion method:
@@ -386,8 +388,6 @@ async function orchestrateJobPostingCreation(user_query) {
   }
 }
 ```
-
-As you might have noticed, you added a content filter to the orchestration client. This helps you to prevent hateful speech, violant speech and other innapropriate input but also output from the model. This allows you to granuarily define how content should be filtered and to what degree such language should be allowed.
 
 ### Implement insertion and deletion of Job Postings
 
