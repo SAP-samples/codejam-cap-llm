@@ -570,4 +570,4 @@ The `orchestrateJobPostingCreation` function handles the RAG flow for creating j
 
 ---
 
-[Next exercise](../09-data-masking-and-anonymization/README.md)
+[Next exercise](../10-data-masking-and-anonymization/README.md)
