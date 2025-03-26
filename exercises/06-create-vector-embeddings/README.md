@@ -677,6 +677,12 @@ cf login
 cds build --production
 ```
 
+Deploy the database schema delta to your HDI container again. This will ensure that the service will adjust according to your new service definition. CAP is auto-resolving names for tables out of the service and schema context. Because you have defined the service just now, you need to do a delta deployment:
+
+```bash
+cds deploy --to hana:<your-hdi-container-name> --auto-undeploy
+```
+
 Now, you will utilize the `cds watch --profile hybrid` command to run the project on localhost while establishing a real and live connection to the database. This is a way to speed up local development by working around the need of deployment to BTP.
 
 👉 From the CLI run:
