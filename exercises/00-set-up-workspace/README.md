@@ -53,24 +53,6 @@ To work through the exercises make sure you are in the project folder. To do so,
 cd project/job-posting-service
 ```
 
-The SAP Business Application Studio will add a dependency to the `package.json` which you are not going to use in this workshop. This dependency needs to be removed.
-
-👉 Open the `package.json`.
-
-👉 Find the `@cap-js/hana` dependency and remove it.
-
-👉 For this project, remove the following block from the `cds section` of the `packaege.json`:
-
-```JSON
-"sql": {
-  "native_hana_associations": false
-},
-```
-
-👉 Save the file.
-
-There are two SAP HANA CDS adapter packages out there, one is the `@cap-js/hana` and the other is the `@sap/cds-hana`. The first one is just a newer unified database model package.
-
 ## Check the installation of the CDS development kit
 
 _This and subsequent steps apply to both the primary and alternative environments._
