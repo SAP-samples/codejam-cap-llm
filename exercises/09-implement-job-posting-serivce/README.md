@@ -151,7 +151,7 @@ The last step is to insert the database entry into the database (Step 8).
 
 ```JavaScript
 await DBUtils.insertJobPosting(entry);
-return `Job posting created and stored in database: ${jobPosting}`;
+return 'Job posting created and stored in database.';
 ```
 
 Your method should now look like this:
@@ -163,7 +163,7 @@ this.on('createJobPosting', async req => {
     let jobPosting = await AIHelper.orchestrateJobPostingCreation(user_query)
     let entry = await DBUtils.createJobPosting(jobPosting);
     await DBUtils.insertJobPosting(entry);
-    return `Job posting created and stored in database: ${jobPosting}`;
+    return 'Job posting created and stored in database.';
 });
 ```
 
