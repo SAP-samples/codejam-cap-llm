@@ -43,6 +43,8 @@ Before you execute the command below, make sure to open a new Terminal and run t
 
 👉 Log into SAP BTP using the Cloud Foundry CLI:
 
+> NOTE: If you are part of the SAP Surge event use the `https://api.cf.eu10.hana.ondemand.com` endpoint instead of the one listed below.
+
 ```bash
 cf login -a https://api.cf.us10.hana.ondemand.com
 ```
