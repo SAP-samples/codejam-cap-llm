@@ -527,10 +527,16 @@ cf login
 cds watch --profile hybrid
 ```
 
-You can observe the console output if you call your service endpoint:
+You can observe the console output if you call your service endpoint. Add the following URL path to your base URL:
 
-```bash
+```text
 /odata/v4/job-posting/createJobPosting(user_query='Create a job posting for a Senior Developer for the company AwesomeTech inc')
+```
+
+The full URL should look something like this (depending on if you run it via BAS or locally):
+
+```text
+https://port4004-workspaces-ws-l2nzh.eu10.applicationstudio.cloud.sap/odata/v4/job-posting/createJobPosting(user_query='Create%20a%20job%20posting%20for%20a%20Senior%20Developer%20for%20the%20company%20AwesomeTech%20inc')
 ```
 
 ## Check the database table for job postings
