@@ -49,11 +49,14 @@ export default function () {
     });
   
     this.on('deleteJobPosting', async req => {
-      // implementation goes here ...
+        const id = req.data.id;
+        validateInputParameter(id);
+
+        return await DBUtils.deleteJobPosting(id);
     });
   
     this.on('deleteJobPostings', async () => {
-      // implementation goes here ...
+      return await DBUtils.deleteJobPostings();
     });
 }
 ```
@@ -65,6 +68,8 @@ For both, the creation of a job posting and the deletion of a specific job posti
 👉 Below the closing curly bracket of the function export add the following method declaration:
 
 ```JavaScript
+const wrongInputError = 'Required input parameters not supplied';
+
 function validateInputParameter(parameter) {
     // implementation goes here
 }
@@ -131,9 +136,8 @@ validateInputParameter(user_query);
 👉 Right below the input validation within the `createJobPosting` method, call the following code:
 
 ```JavaScript
-let entry = await DBUtils.createJobPosting(
-    await AIHelper.orchestrateJobPostingCreation(user_query)
-);
+let jobPosting = await AIHelper.orchestrateJobPostingCreation(user_query)
+let entry = await DBUtils.createJobPosting(jobPosting);
 ```
 
 This code calls the orchestration client for chat completion using the passed-in user query (Steps 2 - 6). The result is passed to `DBUtils` to create a new database entry (Step 7).
@@ -144,7 +148,7 @@ The last step is to insert the database entry into the database (Step 8).
 
 ```JavaScript
 await DBUtils.insertJobPosting(entry);
-return 'Job posting created and stored in database';
+return `Job posting created and stored in database: ${jobPosting}`;
 ```
 
 Your method should now look like this:
@@ -153,11 +157,10 @@ Your method should now look like this:
 this.on('createJobPosting', async req => {
     const user_query = req.data.user_query;
     validateInputParameter(user_query);
-
-    let entry = await DBUtils.createJobPosting(
-        await AIHelper.orchestrateJobPostingCreation(user_query)
-    );
+    let jobPosting = await AIHelper.orchestrateJobPostingCreation(user_query)
+    let entry = await DBUtils.createJobPosting(jobPosting);
     await DBUtils.insertJobPosting(entry);
+    return `Job posting created and stored in database: ${jobPosting}`;
 });
 ```
 
@@ -176,13 +179,13 @@ import {
 } from '@sap-ai-sdk/orchestration';
 ```
 
-👉 To use CDS methods import CDS:
+👉 To use CDS methods import CDS by adding the following line of code directly below the import statement:
 
 ```JavaScript
 import cds from '@sap/cds';
 ```
 
-👉 To have access to the Document Splits table, add the `DocumentChunks` constant. You will need this entity later in the RAG flow:
+👉 To have access to the Document Splits table, add a `DocumentChunks` constant. You will need this entity later in the RAG flow:
 
 ```JavaScript
 const { DocumentChunks } = cds.entities;
@@ -201,14 +204,15 @@ You define the chat model's name as a constant because you'll use it later. This
 ```JavaScript
 async function orchestrateJobPostingCreation(user_query) {
   try {
-    // implementation goes here
-  } catch (error) {
+      // implementation goes here
+    } catch (error) {
     console.log(
       `Error while generating Job Posting.
       Error: ${error.response}`
     );
     throw error;
   }
+}
 ```
 
 Within the `try` block, you will add the complete logic for the RAG flow. You will start by implementing the creation of the vector embedding for the given user query. This is necessary for the similarity search using the cosine similarity algorithm.
@@ -217,10 +221,10 @@ Within the `try` block, you will add the complete logic for the RAG flow. You wi
 
 ```JavaScript
 const embeddingClient = new AzureOpenAiEmbeddingClient({
-      modelName: embeddingModelName,
-      maxRetries: 0,
-      resourceGroup: resourceGroup
-    });
+    modelName: embeddingModelName,
+    maxRetries: 0,
+    resourceGroup: resourceGroup
+});
 ```
 
 Embedding the user query will allow for the creation of a vector embedding. The vector embedding can then be used to calculate the closest distance to existing contextual embeddings in the SAP HANA Cloud vector engine. The result of this is that you will receive the contextual vector embedding with the highest relevance to the user query. This embedding can then be send to the chat model as contextual information to answer the user query.
@@ -257,6 +261,7 @@ const filter = buildAzureContentFilter({
       Sexual: 6,
       SelfHarm: 6
     });
+
 const orchestrationClient = new OrchestrationClient(
       {
         llm: {
@@ -283,12 +288,14 @@ const orchestrationClient = new OrchestrationClient(
         }
       },
       { resourceGroup: resourceGroup }
-    );
+);
 ```
 
 A typical message to a chat model requires a couple of information. First of all, you need to specify if you are sending a user message or a system message. In your case, you are constructing a user message and you enhance the user message with additional contextual information and instructions. You add the user query to the instructions for the model to give a better response. To the user, this additional information is hidden so they can focus on their request.
 
-The client is defined to connect to the `gpt-4o-mini` using a template describing what you want the chat model to do including the user query. Finally you define strict rules for the content filter. The service is not tolerating any inappropriate or discriminating language which is of utmost importance!
+The client is defined to connect to the `gpt-4o-mini` using a template describing what you want the chat model to do including the user query. Finally you define strict rules for the content filter. The service is not tolerating any inappropriate or discriminating language which is of utmost importance! Take a look at the official documentation to understand content filters and learn more about levels of severity: [Azure AI Content Filtering](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new).
+
+If the user query successfully runs through the content filter, the response will be **200**, in case the content filter catches a user query you should receive a **400**. When you are testing your service, you can change the filter values to see how it applies to different user query inputs.
 
 👉 Below the initialization of the orchestration client call the client's chat completion method:
 
@@ -407,6 +414,7 @@ const entry = {
   user_query: userQuery,
   rag_response: ragResponse
 };
+return entry;
 ```
 
 Your function should look like this now:
