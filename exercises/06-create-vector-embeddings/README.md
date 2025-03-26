@@ -721,7 +721,9 @@ You can use the URL to call your OData function handler for creating the vector 
 
 Congratulations! The call went through and apparently the vector embeddings were stored in the database. Wouldn't it be nice to have a certain way for checking the entries in the table?!
 
-Remember the exercise where you used the `hana-cli` to do exactly that. Try this step on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 05](../../exercises/05-define-db-schema/README.md) and check on the instructions.
+To inspect the database entries without the actual embeddings, you can use the running CAP service to call the `DocumentChunks` entity.
+If you want to inspect the actual embeddings use the `hana-cli` tool to do so.
+Try this step on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 05](../../exercises/05-define-db-schema/README.md) and check on the instructions.
 
 ### Questions for Discussion
 
