@@ -6,7 +6,7 @@ You can access your deployed models either using the Python SDK, the SAP Cloud S
 
 ## Use the Chat in Generative AI Hub
 
-👉 Open the **Generative AI Hub** tab and select **Chat**.
+👉 Open the [Generative AI Hub](https://cap-ai-codejam-op6zhda1.ai-launchpad.prod.us-east-1.aws.ai-prod.cloud.sap/aic/index.html) tab and select **Chat**.
 
 👉 Click **Configure** and have a look at the available fields.
 
