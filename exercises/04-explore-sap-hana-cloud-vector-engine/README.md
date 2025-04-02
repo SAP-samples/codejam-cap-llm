@@ -28,9 +28,9 @@ Vector embeddings are just one of the supported data types for SAP HANA. They ca
 
 You need to configure your CAP project for SAP HANA deployment. You can do this by executing the `cds add hana` command. The command configures deployments for SAP HANA to use the `hdbtable` and `hdbview` formats. If you add the argument of `--profile hybrid` to the command, the configuration is added to a `[hybrid]` profile in your `package.json`.
 
-👉 Open the project in SAP Business Application Studio (BAS) or VSCode.
+👉 Open a new terminal if **not already** open.
 
-👉 Open a new terminal if not already open.
+👉 Make sure you are in the root of the CAP project before continuing: **/codejam-cap-llm/project/job-posting-service**.
 
 👉 Execute the `cds add hana --for hybrid` command:
 
@@ -77,22 +77,6 @@ There are two SAP HANA CDS adapter packages out there, one is the `@cap-js/hana`
 ## Create your HDI container for HANA deployment
 
 For this CodeJam each of you will create their own HDI container.
-
-👉 Open a new terminal if not already open.
-
-👉 Log into SAP BTP using the Cloud Foundry CLI:
-
-> NOTE: If you are part of the SAP Surge event use the `https://api.cf.eu10.hana.ondemand.com` endpoint instead of the one listed below.
-
-```bash
-cf login -a https://api.cf.us10.hana.ondemand.com
-```
-
-Or if you want to use the SSO login option:
-
-```bash
-cf login -a https://api.cf.us10.hana.ondemand.com --sso
-```
 
 Use the Cloud Foundry CLI to create your HDI container **(replace the placeholder with a meaningful name like using your initials, e.g. KR-HDI)**:
 
