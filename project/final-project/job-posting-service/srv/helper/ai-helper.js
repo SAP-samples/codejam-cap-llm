@@ -66,7 +66,7 @@ async function orchestrateJobPostingCreation(user_query) {
       embedding
     )})) DESC`;
 
-    let text_chunk = splits[0].text_chunks;
+    let text_chunk = splits[0].text_chunk;
 
     const filter = buildAzureContentFilter({
       Hate: 6,
