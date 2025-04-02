@@ -169,7 +169,7 @@ this.on('createJobPosting', async req => {
 
 ### Implement the AI orchestration in the AIHelper
 
-👉 Open the [AIHelper](../../project/job-posting-service/srv/ai-helper.js) file.
+👉 Open the [ai-helper.js](../../project/job-posting-service/srv/helper/ai-helper.js) file.
 
 Within the file you need to import the orchestration client and the content filter from the `@sap-ai-sdk/orchestration` package.
 
