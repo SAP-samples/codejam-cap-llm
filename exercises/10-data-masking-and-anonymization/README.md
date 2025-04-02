@@ -74,7 +74,7 @@ async function orchestrateJobPostingCreation(user_query) {
     let splits = await SELECT.from(DocumentChunks)
       .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
 
-    let text_chunk = splits[0].text_chunks;
+    let text_chunk = splits[0].text_chunk;
 
     const filter = buildAzureContentFilter({ Hate: 4, Violence: 4 });
     const orchestrationClient = new OrchestrationClient(
