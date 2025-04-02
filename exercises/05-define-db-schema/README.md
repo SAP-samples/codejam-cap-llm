@@ -39,7 +39,7 @@ Within a CAP application, you can define a database schema that can be built int
 
 For this project, the schema has two entities; `DocumentChunks` and `JobPostings`.
 
-The `DocumentChunks` entity contains the text chunks, embeddings for the provided context information and relevant metadata. In the next exercise [07 - Define the Job Posting Service](../07-define-job-posting-service/README.md), you will define a service for creating and deleting job postings. You will use a chat model to create job postings for specific job specifications and later use an embedding model to create vector embeddings providing additional business contextual information to the chat model. This information can then be used to generate an accurate job posting utilizing internal company specific information.
+The `DocumentChunks` entity contains the text chunks, embeddings for the provided context information and relevant metadata. In the exercise [07 - Define the Job Posting Service](../07-define-job-posting-service/README.md), you will define a service for creating and deleting job postings. You will use a chat model to create job postings for specific job specifications and in exercise [06 - Create Vector embeddings](../06-create-vector-embeddings/README.md) use an embedding model to create vector embeddings providing additional business contextual information to the chat model. This information can then be used to generate an accurate job posting utilizing internal company specific information.
 
 👉 Open the `schema.cds` file under the `db` directory.
 
@@ -152,6 +152,7 @@ cds deploy --to hana:<your-hdi-container-name> --auto-undeploy
 ```
 
 The `--auto-undeploy` argument causes the database to adjust to the new runtime definition of your database artifacts.
+Be aware that the command will create another service key for deployment to the HDI container. This is okay as you are using the binding for connection to the HDI container from within the CAP application.
 
 You will see a large terminal output listing the different steps of the building and deployment process.
 

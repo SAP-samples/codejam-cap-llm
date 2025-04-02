@@ -56,6 +56,24 @@ The profile `hybrid` relates to the hybrid testing scenario, which allows you to
   }
 ```
 
+The command will add a dependency to the `package.json` which you are not going to use in this workshop. This dependency needs to be removed.
+
+👉 Open the `package.json`.
+
+👉 Find the `@cap-js/hana` dependency and remove it.
+
+👉 For this project, remove the following block from the `cds section` of the `packaege.json`:
+
+```JSON
+"sql": {
+  "native_hana_associations": false
+},
+```
+
+👉 Save the file.
+
+There are two SAP HANA CDS adapter packages out there, one is the `@cap-js/hana` and the other is the `@sap/cds-hana`. The first one is just a newer unified database model package.
+
 ## Create your HDI container for HANA deployment
 
 For this CodeJam each of you will create their own HDI container.
@@ -63,6 +81,8 @@ For this CodeJam each of you will create their own HDI container.
 👉 Open a new terminal if not already open.
 
 👉 Log into SAP BTP using the Cloud Foundry CLI:
+
+> NOTE: If you are part of the SAP Surge event use the `https://api.cf.eu10.hana.ondemand.com` endpoint instead of the one listed below.
 
 ```bash
 cf login -a https://api.cf.us10.hana.ondemand.com
@@ -102,7 +122,7 @@ You can use the CDS CLI to bind your application to the SAP HANA Schemas & HDI C
 
 👉 Open a new terminal if not already open.
 
-👉 Create a binding for your CAP application **(replace the placeholder with a meaningful name like using your initials, e.g. KR-HDI-Service-Key)**:
+👉 Create a binding for your CAP application **(replace the placeholder of the hdi container with the container name previously set, and for the service key with a meaningful name like using your initials, e.g. KR-HDI-Service-Key)**:
 
 ```bash
 cds bind -2 <your-hdi-container-name>:<your-service-key-name>

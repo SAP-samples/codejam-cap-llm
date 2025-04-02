@@ -468,6 +468,23 @@ for (const [index, embedding] of embeddings.entries()) {
 return embeddingEntries;
 ```
 
+Your function implementation should look like this now:
+
+```JavaScript
+export function createEmbeddingEntries([embeddings, splitDocuments]) {
+    let embeddingEntries = [];
+    for (const [index, embedding] of embeddings.entries()) {
+        const embeddingEntry = {
+          metadata: splitDocuments[index].metadata.source,
+          text_chunk: splitDocuments[index].pageContent,
+          embedding: array2VectorBuffer(embedding)
+        };
+        embeddingEntries.push(embeddingEntry);
+      }
+    return embeddingEntries;
+}
+```
+
 As you might have noticed, you are calling a conversion function to convert the embeddings to a vector buffer for database insertion. This function needs to be implemented next.
 
 👉 Below the `insertVectorEmbeddings` function implement the following:
@@ -487,23 +504,6 @@ let array2VectorBuffer = data => {
   });
   return buffer;
 };
-```
-
-The complete `insertVectorEmbeddings` function should look like this:
-
-```JavaScript
-export function createEmbeddingEntries([embeddings, splitDocuments]) {
-  let embeddingEntries = [];
-  for (const [index, embedding] of embeddings.entries()) {
-    const embeddingEntry = {
-      metadata: splitDocuments[index].metadata.source,
-      text_chunk: splitDocuments[index].pageContent,
-      embedding: array2VectorBuffer(embedding)
-    };
-    embeddingEntries.push(embeddingEntry);
-  }
-  return embeddingEntries;
-}
 ```
 
 ## Implement the insertion of the vector embedding entries
@@ -677,6 +677,12 @@ cf login
 cds build --production
 ```
 
+Deploy the database schema delta to your HDI container again. This will ensure that the service will adjust according to your new service definition. CAP is auto-resolving names for tables out of the service and schema context. Because you have defined the service just now, you need to do a delta deployment:
+
+```bash
+cds deploy --to hana:<your-hdi-container-name> --auto-undeploy
+```
+
 Now, you will utilize the `cds watch --profile hybrid` command to run the project on localhost while establishing a real and live connection to the database. This is a way to speed up local development by working around the need of deployment to BTP.
 
 👉 From the CLI run:
@@ -715,7 +721,9 @@ You can use the URL to call your OData function handler for creating the vector 
 
 Congratulations! The call went through and apparently the vector embeddings were stored in the database. Wouldn't it be nice to have a certain way for checking the entries in the table?!
 
-Remember the exercise where you used the `hana-cli` to do exactly that. Try this step on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 05](../../exercises/05-define-db-schema/README.md) and check on the instructions.
+To inspect the database entries without the actual embeddings, you can use the running CAP service to call the `DocumentChunks` entity.
+If you want to inspect the actual embeddings use the `hana-cli` tool to do so.
+Try this step on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 05](../../exercises/05-define-db-schema/README.md) and check on the instructions.
 
 ### Questions for Discussion
 

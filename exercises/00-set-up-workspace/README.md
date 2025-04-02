@@ -12,7 +12,7 @@ Follow one of the two subsections here, as appropriate: either for a [primary en
 
 #### Create a Dev Space
 
-👉 Via this [link](https://cap-ai-codejam-op6zhda1.us10cf.applicationstudio.cloud.sap/) to the SAP Business Application Studio, create a new Dev Space, choosing the **Full Stack Cloud Application** type, ensure to select **SAP HANA Tools**, and if **SAP HANA Database Explorer** gets selected as well this is not a problem:
+👉 Via this [link](https://surge2-88bmb9o1.eu10cf.applicationstudio.cloud.sap/index.html) to the SAP Business Application Studio, create a new Dev Space, choosing the **Full Stack Cloud Application** type, ensure to select **SAP HANA Tools**, and if **SAP HANA Database Explorer** gets selected as well this is not a problem:
 
 ![Setting_up_a_dev_space](assets/create-full-stack-cloud-application-dev-space.png)
 
@@ -52,24 +52,6 @@ To work through the exercises make sure you are in the project folder. To do so,
 ```bash
 cd project/job-posting-service
 ```
-
-The SAP Business Application Studio will add a dependency to the `package.json` which you are not going to use in this workshop. This dependency needs to be removed.
-
-👉 Open the `package.json`.
-
-👉 Find the `@cap-js/hana` dependency and remove it.
-
-👉 For this project, remove the following block from the `cds section` of the `packaege.json`:
-
-```JSON
-"sql": {
-  "native_hana_associations": false
-},
-```
-
-👉 Save the file.
-
-There are two SAP HANA CDS adapter packages out there, one is the `@cap-js/hana` and the other is the `@sap/cds-hana`. The first one is just a newer unified database model package.
 
 ## Check the installation of the CDS development kit
 
