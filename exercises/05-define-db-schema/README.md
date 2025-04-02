@@ -121,8 +121,6 @@ entity JobPostings : cuid, managed {
 
 Because you created a binding to our HDI container, you have all configurations in place to deploy HANA database artifacts to the instance. To do so you need to build the artifacts first enter the `cds deploy` command.
 
-👉 Open a new terminal if not already open.
-
 👉 Make sure that you are still connected to the Cloud Foundry instance by checking the connection details:
 
 ```bash
@@ -190,7 +188,7 @@ hana-cli tables
 
 ![define-db-schema-list-tables](./assets/05-define-db-schema-list-tables.png)
 
-From the response, you can extract the schema name and the table name. You will use the information to fetch all information about that table.
+From the response, you can extract the schema name and the table name. You will use the information to fetch all information about that table. Be aware, sometimes if you copy the schema and table name from the previous CLI response it might add special characters which are not part of the name. You need to delete them.
 
 👉 Enter the following command to list the table information:
 
