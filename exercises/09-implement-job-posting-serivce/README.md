@@ -66,7 +66,7 @@ export default function () {
 
 ## Implement input parameter validation
 
-For both, the creation of a job posting and the deletion of a specific job posting, the API requires input parameters for the user query or the job id. These values need to be checked if they are `undefined` or `empty` to prevent runtime errors. You will implement a simple method checking these values and in case of an unwanted value throw an error.
+For both, the creation of a job posting and the deletion of a specific job posting, the API requires input parameters for the user query or the job id. These values need to be checked if they are `undefined` or `empty` to prevent runtime errors. You will implement a simple method checking these values and, in case of an unwanted value, throw an error.
 
 👉 Below the closing curly bracket of the function export add the following method declaration:
 
@@ -151,7 +151,7 @@ The last step is to insert the database entry into the database (Step 8).
 
 ```JavaScript
 await DBUtils.insertJobPosting(entry);
-return 'Job posting created and stored in database.';
+return 'Job posting created and stored in the database.';
 ```
 
 Your method should now look like this:
@@ -163,13 +163,13 @@ this.on('createJobPosting', async req => {
     let jobPosting = await AIHelper.orchestrateJobPostingCreation(user_query)
     let entry = await DBUtils.createJobPosting(jobPosting);
     await DBUtils.insertJobPosting(entry);
-    return 'Job posting created and stored in database.';
+    return 'Job posting created and stored in the database.';
 });
 ```
 
 ### Implement the AI orchestration in the AIHelper
 
-👉 Open the [AIHelper](../../project/job-posting-service/srv/AIHelper.js) file.
+👉 Open the [AIHelper](../../project/job-posting-service/srv/ai-helper.js) file.
 
 Within the file you need to import the orchestration client and the content filter from the `@sap-ai-sdk/orchestration` package.
 
@@ -230,7 +230,7 @@ const embeddingClient = new AzureOpenAiEmbeddingClient({
 });
 ```
 
-Embedding the user query will allow for the creation of a vector embedding. The vector embedding can then be used to calculate the closest distance to existing contextual embeddings in the SAP HANA Cloud vector engine. The result of this is that you will receive the contextual vector embedding with the highest relevance to the user query. This embedding can then be send to the chat model as contextual information to answer the user query.
+Embedding the user query will allow for the creation of a vector embedding. The vector embedding can then be used to calculate the closest distance to existing contextual embeddings in the SAP HANA Cloud vector engine. The result of this is that you will receive the contextual vector embedding with the highest relevance to the user query. This embedding can then be sent to the chat model as contextual information to answer the user query.
 
 👉 Embedd the user query with the embedding client:
 
@@ -245,7 +245,7 @@ let splits = await SELECT.from(DocumentChunks)
       .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
 ```
 
-The `cosine_similarity` call in the SQL statement is not default SQL. This is an added function by the HANA Cloud Vector Engine.
+The `cosine_similarity` call in the SQL statement is not the default SQL. This is an added function by the HANA Cloud Vector Engine.
 
 👉 Extract the first result from the list `splits`:
 
@@ -276,9 +276,9 @@ const orchestrationClient = new OrchestrationClient(
             {
               role: 'user',
               content:
-                ` You are an assistant for HR recruiter and manager.
+                ` You are an assistant for the HR recruiter and manager.
             You receive a user query to create a job posting for new hires.
-            Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
+            Consider the given context when creating the job posting to include company-relevant information like pay range and employee benefits.
             The contact details for the recruiter are: Jane Doe, E-Mail: jane.doe@company.com .
             Consider all the input before responding.
             context: ${text_chunk}` + user_query
@@ -298,7 +298,7 @@ A typical message to a chat model requires a couple of information. First of all
 
 The client is defined to connect to the `gpt-4o-mini` using a template describing what you want the chat model to do including the user query. Finally you define strict rules for the content filter. The service is not tolerating any inappropriate or discriminating language which is of utmost importance! Take a look at the official documentation to understand content filters and learn more about levels of severity: [Azure AI Content Filtering](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new).
 
-This helps you to prevent hateful speech, violant speech and other innapropriate input but also output from the model. This allows you to granuarily define how content should be filtered and to what degree such language should be allowed.
+This helps you to prevent hateful speech, violent speech and other inappropriate input but also output from the model. This allows you to granularly define how content should be filtered and to what degree such language should be allowed.
 
 If the user query successfully runs through the content filter, the response will be **200**, in case the content filter catches a user query you should receive a **400**. When you are testing your service, you can change the filter values to see how it applies to different user query inputs.
 
@@ -357,7 +357,7 @@ async function orchestrateJobPostingCreation(user_query) {
             {
               role: 'user',
               content:
-                ` You are an assistant for HR recruiter and manager.
+                ` You are an assistant for the HR recruiter and manager.
             You are receiving a user query to create a job posting for new hires.
             Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
             The contact details for the recruiter are: Jane Doe, E-Mail: jane.doe@company.com .
@@ -451,7 +451,7 @@ export async function insertJobPosting(jobPosting) {
 
 ```JavaScript
 await INSERT.into(JobPostings).entries(jobPosting);
-return 'Job Posting inserted successfully to table.';
+return 'Job Posting inserted successfully to the table.';
 ```
 
 The implementation should look like this now:
@@ -460,7 +460,7 @@ The implementation should look like this now:
 export async function insertJobPosting(jobPosting) {
   try {
     await INSERT.into(JobPostings).entries(jobPosting);
-    return 'Job Posting inserted successfully to table.';
+    return 'Job Posting inserted successfully to the table.';
   } catch (error) {
     console.log(
       `Error while storing the Job Posting to SAP HANA Cloud. \n Error: ${error.response}`
@@ -551,23 +551,23 @@ You can also use the URL directly:
 
 ![01-job-posting-listings](./assets/01-job-posting-listings.png)
 
-Feel free to expirement with different queries to see what happens. As you can see in the screenshot, the second posting as `SAP` as the company name filled in. This is because the company name was provided in the query.
+Feel free to experiment with different queries to see what happens. As you can see in the screenshot, the second posting as `SAP` as the company name filled in. This is because the company name was provided in the query.
 
 ## Experiment with the orchestration service filters
 
 You spend a lot of time implementing the code to get the orchestration service up and running. You have understood how the API works and how you can integrate it into a CAP application service.
 
-At this point, I would encourage you to go back to the service implementation and play around with the different content filter options on the orchestration service. See how the filter level changes make the chat model respond differently. This will give you a better understanding on how you can utilize content filters to make sure that your AI services behave ethical.
+At this point, I would encourage you to go back to the service implementation and play around with the different content filter options on the orchestration service. See how the filter level changes make the chat model respond differently. This will give you a better understanding on how you can utilize content filters to make sure that your AI services behave ethically.
 
 For example, you can send a user query asking the model to create a Job Posting which should include words like `stupid`. The filter should block the request.
 
 
 
-It makes sense to look at the documentation for content filtering with the langchain package [Content Safety - Harm Categories](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/harm-categories?tabs=warning)
+It makes sense to look at the documentation for content filtering with the `langchain` package [Content Safety - Harm Categories](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/harm-categories?tabs=warning)
 
 ## Summary
 
-In this exercise, you implemented the job posting service and it's OData function handlers. You have utilized the SAP Cloud SDK for AI to connect to SAP AI Core via the orchestration service. You have connected to the orchestration deployment to ask a chat model to create a job posting for you using the previously created vector embeddings.
+In this exercise, you implemented the job posting service and its OData function handlers. You have utilized the SAP Cloud SDK for AI to connect to SAP AI Core via the orchestration service. You have connected to the orchestration deployment to ask a chat model to create a job posting for you using the previously created vector embeddings.
 
 ### Questions for Discussion
 
