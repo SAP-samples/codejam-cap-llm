@@ -20,11 +20,11 @@ For this Codejam you will use the binding approach. If you are interested in the
 
 Before you execute the command below, make sure to open a new Terminal and run the Cloud Foundry login:
 
-👉 Open a new terminal if not already open.
+👉 Open a new terminal if **not already** open.
+
+👉 Make sure you are in the root of the CAP project before continuing: **/codejam-cap-llm/project/job-posting-service**.
 
 👉 Log into SAP BTP using the Cloud Foundry CLI:
-
-> NOTE: If you are part of the SAP Surge event use the `https://api.cf.eu10.hana.ondemand.com` endpoint instead of the one listed below.
 
 ```bash
 cf login -a https://api.cf.us10.hana.ondemand.com
