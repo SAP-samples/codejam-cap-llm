@@ -657,8 +657,6 @@ At this point you have achieved a lot! You have defined and implemented not only
 
 You will do this now!
 
-👉 Open a new terminal if not already open.
-
 👉 Make sure that you are still connected to the Cloud Foundry instance by checking the connection details:
 
 ```bash
@@ -701,7 +699,7 @@ From there you could access the database tables but you will see they are curren
 
 You can use the URL to call your OData function handler for creating the vector embeddings.
 
-👉 Call the following URL: `http://localhost:4004/odata/v4/job-posting/createVectorEmbeddings()`
+👉 You can call the `createVectorEmbeddings()` from the CAP provided service landing page in your Browser.
 
 👉 Take a look at the console output. You can tell that the connection to AI Core has been established.
 

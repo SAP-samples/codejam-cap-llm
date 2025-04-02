@@ -250,7 +250,7 @@ The `cosine_similarity` call in the SQL statement is not default SQL. This is an
 👉 Extract the first result from the list `splits`:
 
 ```JavaScript
-let text_chunk = splits[0].text_chunks;
+let text_chunk = splits[0].text_chunk;
 ```
 
 You have all relevant information at hand to construct the template which is getting send to the chat model via the orchestration client.
@@ -338,7 +338,7 @@ async function orchestrateJobPostingCreation(user_query) {
     let splits = await SELECT.from(DocumentChunks)
       .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
 
-    let text_chunk = splits[0].text_chunks;
+    let text_chunk = splits[0].text_chunk;
 
     const filter = buildAzureContentFilter({
       Hate: 6,
@@ -500,8 +500,6 @@ export async function deleteJobPostings() {
 ## Try out your new API
 
 If you want to try out the code you can do that by using the `cds watch` command. This command allows you to run your CAP application locally and test it live.
-
-👉 Go ahead and open a new terminal or use your existing one.
 
 👉 Make sure that all dependencies are installed by running the `npm install` command:`
 
