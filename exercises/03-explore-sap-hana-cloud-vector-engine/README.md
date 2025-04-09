@@ -108,10 +108,10 @@ You can use the CDS CLI to bind your application to the SAP HANA Schemas & HDI C
 
 👉 Open a new terminal if not already open.
 
-👉 Create a binding for your CAP application **(replace the placeholder of the hdi container with the container name previously set, and for the service key with a meaningful name like using your initials, e.g. KR-HDI-Service-Key)**:
+👉 Create a binding for your CAP application **(replace the placeholder of the hdi container with the container name previously set:
 
 ```bash
-cds bind -2 <use-your-own-hdi-container-name>:<define-your-own-service-key-name>
+cds bind -2 <use-your-own-hdi-container-name>
 ```
 
 ![explore-sap-hana-cloud-vector-engine-binding-config](./assets/02-explore-sap-hana-cloud-vector-engine-binding-config.png)
