@@ -1,4 +1,6 @@
-# Exercise 05 - Create the database schema for the CAP application
+# Exercise 04 - Create the database schema for the CAP application
+
+_Estimated Time: **15 - 30 min**_
 
 The repository you have cloned provides a skeleton project in the project directory (../../project/job-posting-service/). The skeleton project contains an already-set-up CAP application with the fully configured [package.json](../../project/job-posting-service/package.json) and supporting files for the following exercises.
 
@@ -14,7 +16,7 @@ The `package.json` file includes all Node.js project-specific configurations lik
 
 👉 Open the `package.json` file.
 
-👉 Examine the dependencies. Notice that there is a dependency for `"@sap-ai-sdk/orchestration": "1.7.0"` and the `"@sap-ai-sdk/langchain": "1.7.0"`.
+👉 Examine the dependencies. Notice that there is a dependency for `"@sap-ai-sdk/orchestration": "1.10.0"` and the `"@sap-ai-sdk/langchain": "1.10.0"`.
 
 The SAP Cloud SDK for AI provides four different packages for you to use depending on your use case.
 
@@ -27,11 +29,9 @@ In addition, the `package.json` allows you to define run scripts a sort of alias
 
 👉 Examine the listed scripts.
 
-- `build` : Runs the `cds build` command to build the CAP project.
-- `build_sqlite`: Builds the CAP application for usage on a SQLite database.
+- `build_production` : Runs the `cds build` command to build the CAP project for production.
 - `start` : Starts the CAP application.
-- `watch` : Deploys your changes specific to your service to localhost using the hybrid profile, establishing a connection to your real HDI container instance.
-- `sqlite` : Deploys your changes specific to your service to localhost using the hybrid profile, establishing a connection to a real SQLite database.
+- `watch_hybrid` : Deploys your changes specific to your service to localhost using the hybrid profile, establishing a connection to your real HDI container instance.
 
 ## Define the database schema
 
@@ -146,7 +146,7 @@ cds build --production
 > In case you forgot your HDI container name, you can simply call `cf services` to get a list of all available service instances including your HDI container.
 
 ```bash
-cds deploy --to hana:<your-hdi-container-name> --auto-undeploy
+cds deploy --to hana:<use-your-own-HDI-container-name > --auto-undeploy
 ```
 
 The `--auto-undeploy` argument causes the database to adjust to the new runtime definition of your database artifacts.
@@ -193,7 +193,7 @@ From the response, you can extract the schema name and the table name. You will 
 👉 Enter the following command to list the table information:
 
 ```bash
-hana-cli inspectTable <Your-schema-name> SAP_CODEJAM_DOCUMENTCHUNKS
+hana-cli inspectTable <your-schema-name> SAP_CODEJAM_DOCUMENTCHUNKS
 ```
 
 ![define-db-schema-inspect-table](./assets/06-define-db-schema-inspect-table.png)
@@ -266,4 +266,4 @@ At this point, you have learned how to define a database schema using CDS, how t
 
 ---
 
-[Next exercise](../06-create-vector-embeddings/README.md)
+[Next exercise](../05-create-vector-embeddings/README.md)

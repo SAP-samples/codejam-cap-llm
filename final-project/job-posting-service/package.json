@@ -7,29 +7,24 @@
   "private": false,
   "type": "module",
   "dependencies": {
-    "@langchain/community": "0.3.29",
+    "@langchain/community": "0.3.39",
     "@langchain/textsplitters": "0.1.0",
-    "@sap-ai-sdk/langchain": "1.7.0",
-    "@sap-ai-sdk/orchestration": "1.7.0",
+    "@sap-ai-sdk/langchain": "1.10.0",
+    "@sap-ai-sdk/orchestration": "1.10.0",
     "@sap-cloud-sdk/http-client": "3",
-    "@sap/cds": "8",
+    "@sap/cds": "8.9.1",
     "@sap/cds-hana": "2",
     "cors": "2.8.5",
-    "dotenv": "16.4.5",
-    "express": "4"
+    "dotenv": "16.4.7"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "1.7.3",
-    "@sap-cloud-sdk/eslint-config": "3.21.0",
-    "@sap/cds-dk": "8.0.2",
-    "eslint": "8.57.1"
+    "@sap/cds-dk": "8.9.1",
+    "eslint": "9"
   },
   "scripts": {
-    "build": "cds build",
-    "build_sqlite": "cds deploy --profile sqlite",
+    "build_production": "cds build --production",
     "start": "cds-serve",
-    "watch": "cds watch --profile hybrid --livereload false",
-    "sqlite": "cds watch --profile sqlite --livereload false"
+    "watch_hybrid": "cds watch --profile hybrid --livereload false"
   },
   "cds": {
     "requires": {

@@ -1,5 +1,7 @@
 # Exercise 00 - Set up your workspace
 
+_Estimated Time: **5 min**_
+
 At the end of this exercise, you'll have an environment to work in for the duration of this CodeJam, and your environment of choice will load the contents of this repository.
 
 ## Set up the environment and clone this repository
@@ -45,12 +47,12 @@ Once VS Code has started and opened the directory, it should notice the [dev con
 
 ## Navigate to the project folder
 
-To work through the exercises make sure you are in the project folder. To do so, use the terminal to change directory into `codejam-cap-llm/project/job-posting-service/`.
+To work through the exercises make sure you are in the project folder. To do so, use the terminal to change directory into `codejam-cap-llm/job-posting-service/`.
 
 👉 From the root of the CodeJam repository `/home/user/projects/codejam-cap-llm` change the directory:
 
 ```bash
-cd project/job-posting-service
+cd job-posting-service
 ```
 
 ## Check the installation of the CDS development kit
@@ -100,18 +102,18 @@ npm install
 You can double-check what's installed with `npm list`, which should show you something similar to this:
 
 ```text
-job-posting-service@1.0.0 /Users/Developer/GitHub/codejam-cap-llm/project/job-posting-service
-├── @cap-js/sqlite@1.7.3
-├── @sap-cloud-sdk/http-client@3.16.0
-├── @sap/cds-dk@7.9.5
-├── @sap/cds-hana@2.0.0
-├── @sap/cds@7.9.3
-├── @sap-ai-sdk/langchain@1.6.0
-├── @sap-ai-sdk/orchestration@1.6.0
-├── @langchain/community@0.3.11
+codejam-cap-llm@1.0.0 /Users/CoolDude/Developer/GitHub/codejams/codejam-cap-llm/job-posting-service
+├── @langchain/community@0.3.39
 ├── @langchain/textsplitters@0.1.0
-├── express@4.19.2
-└── langchain@0.1.37
+├── @sap-ai-sdk/langchain@1.10.0
+├── @sap-ai-sdk/orchestration@1.10.0
+├── @sap-cloud-sdk/http-client@3.26.4
+├── @sap/cds-dk@8.9.1
+├── @sap/cds-hana@2.0.0
+├── @sap/cds@8.9.1
+├── cors@2.8.5
+├── dotenv@16.4.7
+└── eslint@9.24.0
 ```
 
 No worries, we will talk about these dependencies later.
@@ -129,4 +131,4 @@ At this point, you have an environment set up to work through the remaining exer
 
 ---
 
-[Next exercise](../01-deploy-llm-ailaunchpad/README.md)
+[Next exercise](../01-explore-genai-hub/README.md)

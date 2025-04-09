@@ -1,10 +1,12 @@
-# Exercise 03 - Create the SAP AI Core connection configuration
+# Exercise 02 - Create the SAP AI Core connection configuration
+
+_Estimated Time: **5 - 10 min**_
 
 Using the SAP Cloud SDK for AI allows you to seamlessly connect to SAP AI Core, SAP Generative AI Hub, and the Orchestration service. The SDK is available for different programming languages like Python, JavaScript, Java, and ABAP. In this Codejam you will use the JavaScript version to complement a CAP OData service with AI functionality using the SAP Generative AI Hub and Orchestration service.
 
 In this exercise you will learn:
 
-- How to define an environment variable for the SAP Cloud SDK for AI connection.
+- How to bind your CAP service to the SAP AI Core instance.
 
 ## Understand how the SAP Cloud SDK for AI establishes connection to SAP AI Core
 
@@ -22,7 +24,7 @@ Before you execute the command below, make sure to open a new Terminal and run t
 
 👉 Open a new terminal if **not already** open.
 
-👉 Make sure you are in the root of the CAP project before continuing: **/codejam-cap-llm/project/job-posting-service**.
+👉 Make sure you are in the root of the CAP project before continuing: **/codejam-cap-llm/job-posting-service**.
 
 👉 Log into SAP BTP using the Cloud Foundry CLI:
 
@@ -68,4 +70,4 @@ There are two ways to configure the connection:
    </details>
 ---
 
-[Next exercise](../04-explore-sap-hana-cloud-vector-engine/README.md)
+[Next exercise](../03-explore-sap-hana-cloud-vector-engine/README.md)

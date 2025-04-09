@@ -1,4 +1,6 @@
-# Exercise 04 - Explore the SAP HANA Cloud Vector Engine
+# Exercise 03 - Explore the SAP HANA Cloud Vector Engine
+
+_Estimated Time: **20 min**_
 
 SAP HANA Cloud is the leading in-memory database on the market. It is also the go-to database for CAP applications. SAP has added the vector engine to the SAP HANA database. The vector engine provides a data foundation for a new set of natural and intuitive capabilities. For this CodeJam, you will use the vector engine to augment large language models with business context. You will use the vector engine for two things. The engine stores relevant business data as vector embeddings and, second, searches for similar and relevant vector embeddings based on the user's prompts. The corresponding text of these vector embeddings then gets passed along to a defined LLM for accurate business answers using that contextual information.
 
@@ -81,13 +83,13 @@ For this CodeJam each of you will create their own HDI container.
 Use the Cloud Foundry CLI to create your HDI container **(replace the placeholder with a meaningful name like using your initials, e.g. KR-HDI)**:
 
 ```bash
-cf create-service hana hdi-shared <your hdi-container name>
+cf create-service hana hdi-shared <define-your-own-hdi-container-name>
 ```
 
 Creating the HDI container takes some time. You can monitor the process using the following command:
 
 ```bash
-cf service <your hdi-container name>
+cf service <use-your-own-hdi-container-name>
 ```
 
 ![explore-sap-hana-cloud-vector-engine-create-hdi-instance](./assets/04-explore-sap-hana-cloud-vector-engine-create-hdi-instance.png)
@@ -109,7 +111,7 @@ You can use the CDS CLI to bind your application to the SAP HANA Schemas & HDI C
 👉 Create a binding for your CAP application **(replace the placeholder of the hdi container with the container name previously set, and for the service key with a meaningful name like using your initials, e.g. KR-HDI-Service-Key)**:
 
 ```bash
-cds bind -2 <your-hdi-container-name>:<your-service-key-name>
+cds bind -2 <use-your-own-hdi-container-name>:<define-your-own-service-key-name>
 ```
 
 ![explore-sap-hana-cloud-vector-engine-binding-config](./assets/02-explore-sap-hana-cloud-vector-engine-binding-config.png)
@@ -167,4 +169,4 @@ After the container is created, you can bind it to your CAP application to allow
 
 ---
 
-[Next exercise](../05-define-db-schema/README.md)
+[Next exercise](../04-define-db-schema/README.md)

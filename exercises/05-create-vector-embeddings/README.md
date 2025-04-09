@@ -1,4 +1,6 @@
-# Exercise 06 - Create vector embeddings using an embedding model
+# Exercise 05 - Create vector embeddings using an embedding model
+
+_Estimated Time: **30 - 45 min**_
 
 In this exercise you will get a quick introduction to vector embeddings and you will learn:
 
@@ -32,7 +34,7 @@ An easy approach to which algorithm to use is to simply try them both out and se
 
 You will define two OData endpoints in the provided cds file. These two endpoints are provided to help you trigger the creation and deletion of vector embeddings during this workshop. You can definetely create vector embeddings outside of such a project and pre-populate your HANA database. This can be done via code or via the SAP generative AI Hub. For this workshop, I want you to do this on your own within this project so you get a good understanding on how this works.
 
-👉 Open the [job-posting-service.cds](../../project/job-posting-service/srv/job-posting-service.cds) file.
+👉 Open the `job-posting-service.cds` file from the `srv` folder.
 
 You want to expose the entities `DocumentChunks` as well as the `JobPostings` via your OData service. To do so, you need a reference to the schema definition.
 
@@ -101,7 +103,7 @@ You will implement the function handlers, and you will call logic from within th
 
 The SDK uses ES6 for module loading which means that you need to export the function implementations differently compared to what you are used to using CAP. For this Codejam, you can simply use the `export default function()` approach.
 
-👉 Open the [job-posting-service.js](../../project/job-posting-service/srv/job-posting-service.js) file.
+👉 Open the `job-posting-service.js` file from the `srv` folder.
 
 👉 First, import the `AIHelper` and `DBUtils` files to have access to the functions within. You will implement the functions step-by-step throughout the exercises:
 
@@ -186,7 +188,7 @@ export default function () {
 
 This code won't execute as of now, because the corresponding functions are not defined nor implemented in the AIHelper and DBUtils. You will do this now.
 
-👉 Open the [ai-helper.js](../../project/job-posting-service/srv/helper/ai-helper.js).
+👉 Open the `ai-helper.js` file from the `srv/helper` folder.
 
 Within the file you need to import the embedding client from the `@sap-ai-sdk/langchain` package.
 
@@ -209,7 +211,7 @@ You define the embedding model's name in a constant because you will use the nam
 👉 Do the same for the resource group:
 
 ```JavaScript
-const resourceGroup = '<your-resource-group>';
+const resourceGroup = 'CAP-AI-Codejam';
 ```
 
 To create vector embeddings, you need to read the contextual information file which in your case is a text document.
@@ -365,7 +367,7 @@ import {
 } from '@sap-ai-sdk/langchain';
 
 const embeddingModelName = 'text-embedding-3-small';
-const resourceGroup = '<your-resource-group>';
+const resourceGroup = 'CAP-AI-Codejam';
 
 import { TextLoader } from 'langchain/document_loaders/fs/text';
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
@@ -413,7 +415,7 @@ export { createVectorEmbeddings};
 
 You are about to implement the storing of the generated vector embeddings to the SAP HANA Cloud Vector Engine.
 
-👉 Open the [db-utils.js](../../project/job-posting-service/srv/helper/db-utils.js) file.
+👉 Open the `db-utils.js` file from the `srv/helper` folder.
 
 👉 Add the following import statement to the top of the file:
 
@@ -678,7 +680,7 @@ cds build --production
 Deploy the database schema delta to your HDI container again. This will ensure that the service will adjust according to your new service definition. CAP is auto-resolving names for tables out of the service and schema context. Because you have defined the service just now, you need to do a delta deployment:
 
 ```bash
-cds deploy --to hana:<your-hdi-container-name> --auto-undeploy
+cds deploy --to hana:<use-your-hdi-container-name> --auto-undeploy
 ```
 
 Now, you will utilize the `cds watch --profile hybrid` command to run the project on localhost while establishing a real and live connection to the database. This is a way to speed up local development by working around the need of deployment to BTP.
@@ -756,4 +758,4 @@ The two algorithms used to compare vector embeddings are Euclidean Distance and 
 
 ---
 
-[Next exercise](../07-define-job-posting-service/README.md)
+[Next exercise](../06-define-job-posting-service/README.md)

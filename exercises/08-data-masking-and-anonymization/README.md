@@ -1,4 +1,6 @@
-# Exercise 10 - Understand data masking, anonymization and pseudonymization
+# Exercise 08 - Understand data masking, anonymization and pseudonymization
+
+_Estimated Time: **30 min**_
 
 In the past exercises, you have learned a lot about the interaction with an embedding and chat model. You have learned what vector embeddings are, what a vector engine is, how retrieval augmented generation means and how it works. You have learned and worked with content filtering to ensure that no harmful or ill content gets send or retrieved to or from a chat model.
 

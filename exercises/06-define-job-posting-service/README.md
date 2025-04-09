@@ -1,4 +1,6 @@
-# Exercise 07 - Define the Job Posting Service
+# Exercise 06 - Define the Job Posting Service
+
+_Estimated Time: **5 - 10 min**_
 
 Imagine you are an AI Engineer and you have been tasked with developing a solution to enable Hiring Managers to create job postings with ease. You are going to utilize Artificial Intelligence and the SAP Cloud Application Programming Model to create an application to create these job postings using a chat model provided through SAP AI Core. These job postings will then be stored in the SAP HANA Cloud database instance on SAP Business Technology Platform.
 
@@ -23,7 +25,7 @@ This function takes a `user_query` parameter, which represents the user's input 
 
 This function will execute a RAG flow to create a Job Posting. With the SAP Cloud SDK for AI, you get different levels of abstraction on how you want to use SAP's AI capabilities.
 
-You can use the orchestration service, which you will do in [exercise 09](../09-implement-job-posting-serivce/README.md), to have a given workflow on how to work with a chat and embedding model. It allows you to define aspects of a complete interaction flow with the different models in a more managed (orchestrated) way.
+You can use the orchestration service, which you will do in [exercise 08](../08-implement-job-posting-serivce/README.md), to have a given workflow on how to work with a chat and embedding model. It allows you to define aspects of a complete interaction flow with the different models in a more managed (orchestrated) way.
 
 If you have the need to go one level down and access different features Langchain is providing, you can use the langchain package by the SAP Cloud SDK for AI. This package is basically wrapping the Langchain APIs and adds additional features to it, helping you to more easily connect and interact with SAP's AI solutions. This is really handy as you don't have to implement the interface towards SAP yourself but still have the capabilities of Langchain right at your fingertips.
 
@@ -66,4 +68,4 @@ The orchestration service simplifies the interaction with SAP’s AI models by p
 
 ---
 
-[Next exercise](../08-understand-and-deploy-orchestration-model/README.md)
+[Next exercise](../07-implement-job-posting-serivce/README.md)
