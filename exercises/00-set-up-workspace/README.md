@@ -68,20 +68,23 @@ cds v
 You should see that the CDS development kit is installed. Depending on your workspace, you'll see slightly different output, but it should generally look something like this:
 
 ```text
-@cap-js/cds-types: 0.2.0
-@sap/cds: 7.6.1
-@sap/cds-compiler: 4.4.4
-@sap/cds-dk: 7.5.1
-@sap/cds-dk (global): 7.5.1
-@sap/cds-fiori: 1.2.2
-@sap/cds-foss: 5.0.0
-@sap/cds-mtxs: 1.15.0
-@sap/eslint-plugin-cds: 2.6.5
-Node.js: v18.14.2
-home: /managed-content/globals/pnpm/5/.pnpm/@sap+cds@7.6.1_express@4.18.2/node_modules/@sap/cds
+@cap-js/asyncapi: 1.0.3
+@cap-js/db-service: 1.19.1
+@cap-js/openapi: 1.2.1
+@sap/cds: 8.9.1
+@sap/cds-compiler: 5.9.2
+@sap/cds-dk: 8.8.2
+@sap/cds-dk (global): 8.8.2
+@sap/cds-fiori: 1.4.1
+@sap/cds-foss: 5.0.1
+@sap/cds-mtxs: 2.7.1
+@sap/eslint-plugin-cds: 3.2.0
+Node.js: v22.13.1
+codejam-cap-llm: 1.0.0
+home: /extbin/globals/pnpm/5/.pnpm/@sap+cds@8.9.1_@eslint+js@9.24.0_express@4.21.2/node_modules/@sap/cds
 ```
 
-> In case `cds` is not installed, run the following command from the Terminal:
+> In case `cds` is **not** installed, run the following command from the Terminal:
 >
 ```bash
 npm i @sap/cds-dk -g
