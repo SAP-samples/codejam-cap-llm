@@ -1,6 +1,6 @@
-import cds from '@sap/cds';
-const { INSERT, DELETE } = cds.ql;
-const { JobPostings, DocumentChunks } = cds.entities;
+import cds from '@sap/cds'
+const { INSERT, DELETE } = cds.ql
+const { JobPostings, DocumentChunks } = cds.entities
 
 /**
  * Create the object entry for the DB insert for the Job Posting.
@@ -10,9 +10,9 @@ const { JobPostings, DocumentChunks } = cds.entities;
 export function createJobPosting([userQuery, ragResponse]) {
   const entry = {
     user_query: userQuery,
-    rag_response: ragResponse
-  };
-  return entry;
+    rag_response: ragResponse,
+  }
+  return entry
 }
 
 /**
@@ -22,13 +22,11 @@ export function createJobPosting([userQuery, ragResponse]) {
  */
 export async function insertJobPosting(jobPosting) {
   try {
-    await INSERT.into(JobPostings).entries(jobPosting);
-    return 'Job Posting inserted successfully to table.';
+    await INSERT.into(JobPostings).entries(jobPosting)
+    return 'Job Posting inserted successfully to table.'
   } catch (error) {
-    console.log(
-      `Error while storing the Job Posting to SAP HANA Cloud. \n Error: ${error.response}`
-    );
-    throw error;
+    console.log(`Error while storing the Job Posting to SAP HANA Cloud. \n Error: ${error.response}`)
+    throw error
   }
 }
 
@@ -39,13 +37,11 @@ export async function insertJobPosting(jobPosting) {
  */
 export async function deleteJobPosting(withID) {
   try {
-    await DELETE.from(JobPostings).where(JobPostings.id == withID);
-    return `Successfully deleted Job Posting with ID: ${withID}`;
+    await DELETE.from(JobPostings).where(JobPostings.id == withID)
+    return `Successfully deleted Job Posting with ID: ${withID}`
   } catch (error) {
-    console.log(
-      `Error while deleting Job Posting with ID: ${withID} because: \n Error: ${error.response}`
-    );
-    throw error;
+    console.log(`Error while deleting Job Posting with ID: ${withID} because: \n Error: ${error.response}`)
+    throw error
   }
 }
 
@@ -55,12 +51,10 @@ export async function deleteJobPosting(withID) {
  */
 export async function deleteJobPostings() {
   try {
-    await DELETE.from(JobPostings);
-    return 'Successfully deleted Job Postings!';
+    await DELETE.from(JobPostings)
+    return 'Successfully deleted Job Postings!'
   } catch (error) {
-    console.log(
-      `Error while deleting Job Postings: \n Error: ${error.response}`
-    );
+    console.log(`Error while deleting Job Postings: \n Error: ${error.response}`)
   }
 }
 
@@ -70,16 +64,16 @@ export async function deleteJobPostings() {
  * @returns {[DocumentChunks]} - The DB entry object array containing DocumentSplits.
  */
 export function createEmbeddingEntries([embeddings, splitDocuments]) {
-  let embeddingEntries = [];
+  let embeddingEntries = []
   for (const [index, embedding] of embeddings.entries()) {
     const embeddingEntry = {
       metadata: splitDocuments[index].metadata.source,
       text_chunk: splitDocuments[index].pageContent,
-      embedding: array2VectorBuffer(embedding)
-    };
-    embeddingEntries.push(embeddingEntry);
+      embedding: `[${embedding}]`,
+    }
+    embeddingEntries.push(embeddingEntry)
   }
-  return embeddingEntries;
+  return embeddingEntries
 }
 
 /**
@@ -90,31 +84,14 @@ export function createEmbeddingEntries([embeddings, splitDocuments]) {
  */
 export async function insertVectorEmbeddings(embeddingEntries) {
   try {
-    await INSERT.into(DocumentChunks).entries(embeddingEntries);
+    await INSERT.into(DocumentChunks).entries(embeddingEntries)
 
-    return `Embeddings inserted successfully to table.`;
+    return `Embeddings inserted successfully to table.`
   } catch (error) {
-    console.log(
-      `Error while storing the vector embeddings to SAP HANA Cloud: ${error.toString()}`
-    );
-    throw error;
+    console.log(`Error while storing the vector embeddings to SAP HANA Cloud: ${error.toString()}`)
+    throw error
   }
 }
-
-// Helper method to convert embeddings to buffer for insertion
-let array2VectorBuffer = data => {
-  const sizeFloat = 4;
-  const sizeDimensions = 4;
-  const bufferSize = data.length * sizeFloat + sizeDimensions;
-
-  const buffer = Buffer.allocUnsafe(bufferSize);
-  // write size into buffer
-  buffer.writeUInt32LE(data.length, 0);
-  data.forEach((value, index) => {
-    buffer.writeFloatLE(value, index * sizeFloat + sizeDimensions);
-  });
-  return buffer;
-};
 
 /**
  * Delete all vector embeddings from the DocumentChunks table.
@@ -122,13 +99,9 @@ let array2VectorBuffer = data => {
  */
 export async function deleteVectorEmbeddings() {
   try {
-    await DELETE.from(DocumentChunks);
-    return 'Successfully deleted Document Chunks!';
+    await DELETE.from(DocumentChunks)
+    return 'Successfully deleted Document Chunks!'
   } catch (error) {
-    console.log(
-      `Error while deleting Document Chunks: \n ${JSON.stringify(
-        error.response
-      )}`
-    );
+    console.log(`Error while deleting Document Chunks: \n ${JSON.stringify(error.response)}`)
   }
 }

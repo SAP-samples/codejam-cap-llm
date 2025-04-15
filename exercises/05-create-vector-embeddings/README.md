@@ -267,7 +267,7 @@ With the file at hand you will define the text splitter and use it to split up t
 
 ```JavaScript
 const splitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 70,
+      chunkSize: 100,
       chunkOverlap: 0,
       addStartIndex: true
 });
@@ -323,7 +323,7 @@ async function createVectorEmbeddings() {
     const document = await loader.load();
 
     const splitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 70,
+      chunkSize: 100,
       chunkOverlap: 0,
       addStartIndex: true
     });
@@ -356,58 +356,6 @@ async function createVectorEmbeddings() {
 👉 Lastly, add the `createVectorEmbeddings` to the function export as last line to the `ai-helper.js` file:
 
 ```JavaScript
-export { createVectorEmbeddings};
-```
-
-Your `ai-helper.js` should look like this now:
-
-```JavaScript
-import {
-  AzureOpenAiEmbeddingClient,
-} from '@sap-ai-sdk/langchain';
-
-const embeddingModelName = 'text-embedding-3-small';
-const resourceGroup = 'CAP-AI-Codejam';
-
-import { TextLoader } from 'langchain/document_loaders/fs/text';
-import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
-import path from 'path';
-
-async function createVectorEmbeddings() {
-  try {
-    const loader = new TextLoader(path.resolve('db/data/demo_grounding.txt'));
-    const document = await loader.load();
-
-    const splitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 70,
-      chunkOverlap: 0,
-      addStartIndex: true
-    });
-
-    const splitDocuments = await splitter.splitDocuments(document);
-
-    const textSplits = [];
-    for (const chunk of splitDocuments) {
-      textSplits.push(chunk.pageContent);
-    }
-
-    const embeddingClient = new AzureOpenAiEmbeddingClient({
-      modelName: embeddingModelName,
-      maxRetries: 0,
-      resourceGroup: resourceGroup
-    });
-    const embeddings = await embeddingClient.embedDocuments(textSplits);
-
-    return [embeddings, splitDocuments];
-  } catch (error) {
-    console.log(
-      `Error while creating Vector Embeddings.
-      Error: ${error.response}`
-    );
-    throw error;
-  }
-}
-
 export { createVectorEmbeddings};
 ```
 
@@ -458,7 +406,7 @@ for (const [index, embedding] of embeddings.entries()) {
     const embeddingEntry = {
       metadata: splitDocuments[index].metadata.source,
       text_chunk: splitDocuments[index].pageContent,
-      embedding: array2VectorBuffer(embedding)
+      embedding: `[${embedding}]`
     };
     embeddingEntries.push(embeddingEntry);
   }
@@ -479,33 +427,12 @@ export function createEmbeddingEntries([embeddings, splitDocuments]) {
         const embeddingEntry = {
           metadata: splitDocuments[index].metadata.source,
           text_chunk: splitDocuments[index].pageContent,
-          embedding: array2VectorBuffer(embedding)
+          embedding: `[${embedding}]`
         };
         embeddingEntries.push(embeddingEntry);
       }
     return embeddingEntries;
 }
-```
-
-As you might have noticed, you are calling a conversion function to convert the embeddings to a vector buffer for database insertion. This function needs to be implemented next.
-
-👉 Below the `insertVectorEmbeddings` function implement the following:
-
-```JavaScript
-// Helper method to convert embeddings to buffer for insertion
-let array2VectorBuffer = data => {
-  const sizeFloat = 4;
-  const sizeDimensions = 4;
-  const bufferSize = data.length * sizeFloat + sizeDimensions;
-
-  const buffer = Buffer.allocUnsafe(bufferSize);
-  // write size into buffer
-  buffer.writeUInt32LE(data.length, 0);
-  data.forEach((value, index) => {
-    buffer.writeFloatLE(value, index * sizeFloat + sizeDimensions);
-  });
-  return buffer;
-};
 ```
 
 ## Implement the insertion of the vector embedding entries
@@ -586,68 +513,6 @@ export async function deleteVectorEmbeddings() {
   } catch (error) {
     console.log(
       `Error while deleting Document Chunks: \n ${JSON.stringify(error.response)}`
-    );
-  }
-}
-```
-
-The `db-utils.js` should look like this now:
-
-```JavaScript
-import cds from '@sap/cds';
-const { INSERT, DELETE } = cds.ql;
-const { JobPostings, DocumentChunks } = cds.entities;
-
-export function createEmbeddingEntries([embeddings, splitDocuments]) {
-  let embeddingEntries = [];
-  for (const [index, embedding] of embeddings.entries()) {
-    const embeddingEntry = {
-      metadata: splitDocuments[index].metadata.source,
-      text_chunk: splitDocuments[index].pageContent,
-      embedding: array2VectorBuffer(embedding)
-    };
-    embeddingEntries.push(embeddingEntry);
-  }
-  return embeddingEntries;
-}
-
-export async function insertVectorEmbeddings(embeddingEntries) {
-  try {
-    await INSERT.into(DocumentChunks).entries(embeddingEntries);
-
-    return `Embeddings inserted successfully to table.`;
-  } catch (error) {
-    console.log(
-      `Error while storing the vector embeddings to SAP HANA Cloud: ${error.toString()}`
-    );
-    throw error;
-  }
-}
-
-// Helper method to convert embeddings to buffer for insertion
-let array2VectorBuffer = data => {
-  const sizeFloat = 4;
-  const sizeDimensions = 4;
-  const bufferSize = data.length * sizeFloat + sizeDimensions;
-
-  const buffer = Buffer.allocUnsafe(bufferSize);
-  // write size into buffer
-  buffer.writeUInt32LE(data.length, 0);
-  data.forEach((value, index) => {
-    buffer.writeFloatLE(value, index * sizeFloat + sizeDimensions);
-  });
-  return buffer;
-};
-
-export async function deleteVectorEmbeddings() {
-  try {
-    await DELETE.from(DocumentChunks);
-    return 'Successfully deleted Document Chunks!';
-  } catch (error) {
-    console.log(
-      `Error while deleting Document Chunks: \n ${JSON.stringify(
-        error.response
-      )}`
     );
   }
 }

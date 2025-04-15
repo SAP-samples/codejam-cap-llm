@@ -58,24 +58,6 @@ The profile `hybrid` relates to the hybrid testing scenario, which allows you to
   }
 ```
 
-The command will add a dependency to the `package.json` which you are not going to use in this workshop. This dependency needs to be removed.
-
-👉 Open the `package.json`.
-
-👉 Find the `@cap-js/hana` dependency and remove it.
-
-👉 For this project, remove the following block from the `cds section` of the `packaege.json`:
-
-```JSON
-"sql": {
-  "native_hana_associations": false
-},
-```
-
-👉 Save the file.
-
-There are two SAP HANA CDS adapter packages out there, one is the `@cap-js/hana` and the other is the `@sap/cds-hana`. The first one is just a newer unified database model package.
-
 ## Create your HDI container for HANA deployment
 
 For this CodeJam each of you will create their own HDI container.

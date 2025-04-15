@@ -20,7 +20,7 @@ async function createVectorEmbeddings() {
     const document = await loader.load()
 
     const splitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 70,
+      chunkSize: 100,
       chunkOverlap: 0,
       addStartIndex: true,
     })
@@ -80,20 +80,26 @@ async function orchestrateJobPostingCreation(user_query) {
         templating: {
           template: [
             {
+              role: 'system',
+              content: `You are an assistant for HR recruiter and manager.
+              You are receiving a user query to create a job posting for new hires.
+              Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
+              Consider all the input before responding especially Recruiter information, Application deadline, Company Name, Location, Salary, Hiring Bonus and other benefits.
+              context: ${text_chunk}`,
+            },
+            {
               role: 'user',
-              content:
-                ` You are an assistant for HR recruiter and manager.
-            You are receiving a user query to create a job posting for new hires.
-            Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
-            The contact details for the recruiter are: Jane Doe, E-Mail: jane.doe@company.com .
-            Consider all the input before responding.
-            context: ${text_chunk}` + user_query,
+              content: user_query,
             },
           ],
         },
         filtering: {
-          input: filter,
-          output: filter,
+          input: {
+            filters: [filter],
+          },
+          output: {
+            filters: [filter],
+          },
         },
         masking: {
           masking_providers: [
