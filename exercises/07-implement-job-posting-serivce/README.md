@@ -178,10 +178,10 @@ Within the file you need to import the orchestration client and the content filt
 👉 Add the following lines of code to the top of the file:
 
 ```JavaScript
-import {
-  OrchestrationClient,
-  buildAzureContentFilter
-} from '@sap-ai-sdk/orchestration';
+import { 
+  OrchestrationClient, 
+  buildAzureContentSafetyFilter 
+  } from '@sap-ai-sdk/orchestration'
 ```
 
 👉 To use CDS methods import CDS by adding the following line of code directly below the import statement:
@@ -260,11 +260,11 @@ You have all relevant information at hand to construct the template which is get
 👉 Now, create a new orchestration client, passing in the required LLM, template, and filter:
 
 ```JavaScript
-const filter = buildAzureContentFilter({
-      Hate: 6,
-      Violence: 6,
-      Sexual: 6,
-      SelfHarm: 6,
+const filter = buildAzureContentSafetyFilter({
+      Hate: 'ALLOW_SAFE',
+      Violence: 'ALLOW_SAFE',
+      SelfHarm: 'ALLOW_SAFE',
+      Sexual: 'ALLOW_SAFE',
     })
 
 const orchestrationClient = new OrchestrationClient(
@@ -315,9 +315,26 @@ A typical message to a chat model requires a couple of information. First of all
 
 The client is defined to connect to the `gpt-4o-mini` using a template describing what you want the chat model to do including the user query. Finally you define strict rules for the content filter. The service is not tolerating any inappropriate or discriminating language which is of utmost importance! Take a look at the official documentation to understand content filters and learn more about levels of severity: [Azure AI Content Filtering](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new).
 
+The levels available are:
+
+- ALLOW_ALL
+- ALLOW_SAFE
+- ALLOW_SAFE_LOW
+- ALLOW_SAFE_LOW_Medium
+
 This helps you to prevent hateful speech, violent speech and other inappropriate input but also output from the model. This allows you to granularly define how content should be filtered and to what degree such language should be allowed.
 
 If the user query successfully runs through the content filter, the response will be **200**, in case the content filter catches a user query you should receive a **400**. When you are testing your service, you can change the filter values to see how it applies to different user query inputs.
+
+```bash
+HTTP Response: Request failed with status code 400
+{
+  "request_id": "8a707a92-7122-4c50-bc33-9f305e9028e6",
+  "code": 400,
+  "message": "Content filtered due to safety violations. Please modify the prompt and try again.",
+  "location": "Filtering Module - Input Filter",
+}
+```
 
 👉 Below the initialization of the orchestration client call the client's chat completion method:
 
@@ -358,11 +375,11 @@ async function orchestrateJobPostingCreation(user_query) {
 
     let text_chunk = splits[0].text_chunk
 
-    const filter = buildAzureContentFilter({
-      Hate: 6,
-      Violence: 6,
-      Sexual: 6,
-      SelfHarm: 6,
+    const filter = buildAzureContentSafetyFilter({
+      Hate: 'ALLOW_SAFE',
+      Violence: 'ALLOW_SAFE',
+      SelfHarm: 'ALLOW_SAFE',
+      Sexual: 'ALLOW_SAFE',
     })
 
     const orchestrationClient = new OrchestrationClient(

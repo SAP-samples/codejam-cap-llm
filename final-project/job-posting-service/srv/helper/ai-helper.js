@@ -1,4 +1,4 @@
-import { OrchestrationClient, buildAzureContentFilter } from '@sap-ai-sdk/orchestration'
+import { OrchestrationClient, buildAzureContentSafetyFilter } from '@sap-ai-sdk/orchestration'
 
 import { AzureOpenAiEmbeddingClient } from '@sap-ai-sdk/langchain'
 
@@ -64,11 +64,11 @@ async function orchestrateJobPostingCreation(user_query) {
 
     let text_chunk = splits[0].text_chunk
 
-    const filter = buildAzureContentFilter({
-      Hate: 6,
-      Violence: 6,
-      Sexual: 6,
-      SelfHarm: 6,
+    const filter = buildAzureContentSafetyFilter({
+      Hate: 'ALLOW_SAFE',
+      Violence: 'ALLOW_SAFE',
+      SelfHarm: 'ALLOW_SAFE',
+      Sexual: 'ALLOW_SAFE',
     })
 
     const orchestrationClient = new OrchestrationClient(
