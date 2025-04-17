@@ -284,7 +284,7 @@ const orchestrationClient = new OrchestrationClient(
         },
         {
           role: 'user',
-          content: `${user_query}, context information: ${text_chunks}`,,
+          content: `QUESTION: ${user_query} CONTEXT: ${text_chunks}`,
         },
       ],
     },
@@ -398,7 +398,7 @@ async function orchestrateJobPostingCreation(user_query) {
             },
             {
               role: 'user',
-              content: `${user_query}, context information: ${text_chunks}`,
+              content: `QUESTION: ${user_query} CONTEXT: ${text_chunks}`,
             },
           ],
         },
