@@ -62,7 +62,7 @@ async function orchestrateJobPostingCreation(user_query) {
       embedding
     )})) DESC`
 
-    let text_chunk = splits[0].text_chunk
+    let text_chunks = splits.slice(0, 3).map((split) => split.text_chunk)
 
     const filter = buildAzureContentSafetyFilter({
       Hate: 'ALLOW_SAFE',
@@ -84,12 +84,11 @@ async function orchestrateJobPostingCreation(user_query) {
               content: `You are an assistant for HR recruiter and manager.
               You are receiving a user query to create a job posting for new hires.
               Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
-              Consider all the input before responding especially Recruiter information, Application deadline, Company Name, Location, Salary, Hiring Bonus and other benefits.
-              context: ${text_chunk}`,
+              Consider all the input before responding especially Recruiter information, Application deadline, Company Name, Location, Salary, Hiring Bonus and other benefits.`,
             },
             {
               role: 'user',
-              content: user_query,
+              content: `${user_query}, context information: ${text_chunks}`,
             },
           ],
         },
