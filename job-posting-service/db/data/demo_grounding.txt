@@ -1,18 +1,175 @@
-Senior Developer Benefits document
+### 🌐 **Company Name:** CodeHaven Solutions  
+**Location:** Seattle, WA (Hybrid: 3 days on-site, 2 remote)  
+All positions come with a **collaborative, inclusive culture** and the opportunity to work with cutting-edge tech.
 
-Company Name: Great Tech Corp
-Location: Germany, Berlin
+---
 
-Benefits below:
-Salary: 80 000 - 120 000 EUR
-Company Car: Approved for Budget 24 000 EUR Gross list price for Car
-Vacation Days: 30 Days
-Stock Program: Approved
-Hiring Bonus: 20 000 EUR
+## 1. 🔰 Junior Developer
 
-Recruiter information: 
-Name: Jane Doe
-Email: jane.doe@company.com
-Phone: +4911111111111111
+**Salary:** $75,000 – $90,000  
+**Experience:** 0–2 years  
+**Type:** Full-Time, Hybrid
 
-Application Deadline: 20.04.2026
+### **About the Role**  
+We're looking for a passionate **Junior Developer** eager to learn and grow in a fast-paced environment. You’ll work alongside experienced engineers, contributing to real-world projects and building solid development fundamentals.
+
+### **Responsibilities**
+- Assist in developing and maintaining web applications
+- Collaborate with senior developers and designers
+- Write clean, testable code in JavaScript/TypeScript
+- Debug and troubleshoot bugs and performance issues
+- Participate in code reviews and team discussions
+
+### **Requirements**
+- Basic knowledge of JavaScript, HTML, and CSS
+- Familiarity with Git and version control
+- Strong willingness to learn and ask questions
+- Some exposure to React, Node.js, or similar tech is a plus
+
+---
+
+## 2. 👨‍💻 Senior Developer
+
+**Salary:** $135,000 – $160,000 + Bonus  
+**Experience:** 5+ years  
+**Type:** Full-Time, Hybrid
+
+### **About the Role**  
+As a **Senior Developer**, you’ll take ownership of technical design, lead projects, and mentor junior devs. You'll help shape our architecture and scale our systems.
+
+### **Responsibilities**
+- Design, develop, and maintain scalable applications
+- Lead code reviews and mentor junior team members
+- Collaborate on architecture and infrastructure
+- Implement best practices for performance and security
+
+### **Requirements**
+- Strong skills in backend (Node.js, Python) and modern frontend frameworks
+- Experience with RESTful APIs, databases, and CI/CD pipelines
+- Familiarity with cloud platforms (AWS/GCP)
+
+---
+
+## 3. 🧠 Engineering Manager
+
+**Salary:** $160,000 – $185,000 + Equity  
+**Experience:** 6+ years (2+ in management)  
+**Type:** Full-Time, Hybrid
+
+### **About the Role**  
+We're hiring an **Engineering Manager** to lead a growing dev team. You’ll balance people management with technical oversight, helping us deliver high-quality software at scale.
+
+### **Responsibilities**
+- Manage and mentor a team of 6–10 developers
+- Drive project execution and deliverables
+- Facilitate team rituals and performance reviews
+- Collaborate with product and design teams
+- Contribute to strategic planning and architecture
+
+### **Requirements**
+- Proven leadership and communication skills
+- Technical depth in full-stack development
+- Experience managing agile development teams
+
+---
+
+## 4. 📊 Data Scientist
+
+**Salary:** $125,000 – $145,000  
+**Experience:** 3–5 years  
+**Type:** Full-Time, Hybrid
+
+### **About the Role**  
+We're looking for a **Data Scientist** to extract insights from our data, build models, and contribute to smarter decision-making across our platform.
+
+### **Responsibilities**
+- Analyze large datasets to derive business insights
+- Build and deploy predictive models
+- Collaborate with product teams on experimentation
+- Visualize and present findings to stakeholders
+
+### **Requirements**
+- Strong background in statistics and machine learning
+- Proficient in Python, SQL, and data visualization tools
+- Experience with frameworks like scikit-learn or TensorFlow is a plus
+
+---
+
+## 5. 🤖 AI Expert / Machine Learning Engineer
+
+**Salary:** $150,000 – $180,000 + Equity  
+**Experience:** 5+ years  
+**Type:** Full-Time, Hybrid
+
+### **About the Role**  
+We’re seeking an **AI Expert** to help design and build intelligent systems using NLP, computer vision, and LLMs. You’ll work on innovative AI-powered features integrated directly into our platform.
+
+### **Responsibilities**
+- Build and fine-tune ML models and LLMs
+- Design pipelines for training, evaluation, and deployment
+- Research and integrate state-of-the-art AI methods
+- Collaborate closely with engineering and product teams
+
+### **Requirements**
+- Expertise in machine learning, deep learning, and NLP
+- Strong Python skills with ML libraries (e.g., PyTorch, Hugging Face)
+- Familiarity with cloud ML infrastructure (SageMaker, Vertex AI, etc.)
+
+---
+
+## 6. 🗣️ Developer Advocate
+
+**Salary:** $110,000 – $130,000  
+**Experience:** 3–6 years  
+**Type:** Full-Time, Hybrid with Travel
+
+### **About the Role**  
+As a **Developer Advocate**, you’ll be the bridge between developers and our platform. You’ll create technical content, speak at events, and build a thriving dev community.
+
+### **Responsibilities**
+- Write blog posts, tutorials, and documentation
+- Engage with dev communities online and at events
+- Gather developer feedback to inform product teams
+- Contribute sample apps and open-source tooling
+
+### **Requirements**
+- Strong communication and presentation skills
+- Background in software development
+- Comfortable working with APIs, SDKs, and modern dev tools
+
+---
+
+## 7. 🧪 QA / Quality Assurance Specialist
+
+**Salary:** $90,000 – $110,000  
+**Experience:** 2–4 years  
+**Type:** Full-Time, Hybrid
+
+### **About the Role**  
+We’re hiring a detail-oriented **QA Specialist** to ensure our products meet the highest quality standards. You’ll write test plans, catch bugs early, and champion quality.
+
+### **Responsibilities**
+- Develop and execute manual and automated test cases
+- Work with developers to identify and fix bugs
+- Track and report test results
+- Participate in planning and requirement reviews
+
+### **Requirements**
+- Experience with QA processes and tools (Selenium, Playwright, Cypress)
+- Strong attention to detail
+- Familiarity with CI/CD and agile development practices
+
+---
+
+## 🎁 Benefits for All Roles at CodeHaven Solutions
+
+- 🏥 Full Health, Dental & Vision (100% coverage for employees)  
+- ⏰ Flexible Hours & Hybrid Work  
+- 🏖️ 20 PTO days + Paid Holidays  
+- 💻 MacBook Pro + Workspace Stipend  
+- 💰 401(k) with 4% company match  
+- 📚 $2,000/year Learning & Development Budget  
+- 🧘‍♀️ Wellness and Mental Health Support  
+- ✈️ Team Offsites & Tech Conferences (Company Paid)
+
+---

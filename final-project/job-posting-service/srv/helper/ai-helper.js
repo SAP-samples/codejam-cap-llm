@@ -20,9 +20,9 @@ async function createVectorEmbeddings() {
     const document = await loader.load()
 
     const splitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 100,
-      chunkOverlap: 0,
-      addStartIndex: true,
+      chunkSize: 400, // Aim for ~400 characters/tokens
+      chunkOverlap: 50, // Include 50 chars of overlap to maintain context
+      separators: ['\n\n', '\n', '.', ' ', ''], // Recursive priority: break by paragraph > line > sentence > word > char
     })
 
     const splitDocuments = await splitter.splitDocuments(document)
