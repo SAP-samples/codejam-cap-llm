@@ -295,16 +295,7 @@ const orchestrationClient = new OrchestrationClient(
       output: {
         filters: [filter],
       },
-    },
-    masking: {
-      masking_providers: [
-        {
-          type: 'sap_data_privacy_integration',
-          method: 'anonymization',
-          entities: [{ type: 'profile-email' }, { type: 'profile-person' }],
-        },
-      ],
-    },
+    }
   },
   { resourceGroup: resourceGroup }
 )
@@ -409,16 +400,7 @@ async function orchestrateJobPostingCreation(user_query) {
           output: {
             filters: [filter],
           },
-        },
-        masking: {
-          masking_providers: [
-            {
-              type: 'sap_data_privacy_integration',
-              method: 'anonymization',
-              entities: [{ type: 'profile-email' }, { type: 'profile-person' }],
-            },
-          ],
-        },
+        }
       },
       { resourceGroup: resourceGroup }
     )
