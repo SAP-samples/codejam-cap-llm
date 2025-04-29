@@ -10,7 +10,7 @@ In this exercise, you will learn the following:
 
 ## Implement the OData function handler code stubs
 
-In [Exercise 05](../05-create-vector-embeddings/README.md), you implemented the code for creating and deleting vector embeddings out of a contextual document. You are not about to use the orchestration service to access these vector embeddings and execute a Retrival-Augmented generation workflow. 
+In [Exercise 05](../05-create-vector-embeddings/README.md), you implemented the code for creating and deleting vector embeddings out of a contextual document. You are now about to use the orchestration service to access these vector embeddings and execute a Retrival-Augmented generation workflow. 
 
 👉 Open the [job-posting-service.js](../../project/job-posting-service/srv/job-posting-service.js) file.
 
