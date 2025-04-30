@@ -46,40 +46,15 @@ In the **Chat Context** tab right under **Context History**, you can set the num
 
 ![chat_change_model_gpt_save](assets/chat_change_model_gpt_save.png)
 
-## Prompt Engineering
-
-👉 Try out different prompt engineering techniques following these examples:
-
-1. Zero shot:
-   ```
-    The capital of the U.S. is:
-   ```
-2. Few shot:
-   ```
-   Germany - Berlin
-   France - Paris
-   U.S. -
-   ```
-3. Chain of thought:
-   ```
-   1. What is the most important city of a country?
-   2. In which country was the Internet originally developed?
-   3. What is the >fill in the word from step 1< of the country >fill in the word from step 2<.
-   ```
-
-👉 Try to add something funny to the **System Message** like `always respond like a pirate` and try the prompts again. You can also ask it to speak more technical like a developer or rather shiny like Marketing.
-
 ## Use the Prompt Editor in Generative AI Hub
 
-The **Prompt Editor** is useful if you want to store a prompt and the response to come back to it later or compare prompts. Often you can identify tasks that an LLM can help you with on a regular basis. In that case you can also save different versions of the prompt that works well and you do not need to write the prompt again every time. The parameters you were able to set in the **Chat** you can also set here. You can also see the number of tokens your prompt used below the response.
-
-👉 Go over to **Prompt Editor**, select a model and set **Max Tokens** to the maximum again
+The **Prompt Editor** is useful if you want to store a prompt and the response to come back to it later or compare prompts. Often you can identify tasks that an LLM can help you with on a regular basis. In that case you can also save different versions of the prompt that works well and you don't need to write the prompt again every time. The parameters set bevor can also be set here. You can also see the number of tokens your prompt used below the response.
 
 👉 Paste the example below and click **Run** to try out the example below.
 
 👉 Give your prompt a `Name`, a `Collection` name, and **Save** the prompt.
 
-👉 If you now head over to **Prompt Management**, and you will find your previously saved prompt there. To run the prompt again click **Open in Prompt Editor**. You can also select other saved prompts by clicking on **Select**.
+👉 If you now head over to **Prompt Management**, you will find your previously saved prompt there. To run the prompt again click **Open in Prompt Editor**.
 
 1. Chain of thought prompt - customer support:
 
@@ -108,7 +83,26 @@ The **Prompt Editor** is useful if you want to store a prompt and the response t
 
 ![Prompt Editor](assets/prompt_editor.png)
 
-👉 If you still have time. Ask the LLM to come up with different support queries to have more data.
+👉 Try out different prompt engineering techniques following these examples by creating new prompts using the **Prompt Editor**:
+
+1. Zero shot:
+   ```
+    The capital of the U.S. is:
+   ```
+2. Few shot:
+   ```
+   Germany - Berlin
+   France - Paris
+   U.S. -
+   ```
+3. Chain of thought:
+   ```
+   1. What is the most important city of a country?
+   2. In which country was the Internet originally developed?
+   3. What is the >fill in the word from step 1< of the country >fill in the word from step 2<.
+   ```
+
+👉 Try to add something funny to the **System Message** like `always respond like a pirate` and try the prompts again. You can also ask it to speak more technical like a developer or rather shiny like Marketing.
 
 ## Summary
 
