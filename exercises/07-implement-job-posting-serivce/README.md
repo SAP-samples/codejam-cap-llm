@@ -590,9 +590,7 @@ At this point, I would encourage you to go back to the service implementation an
 
 For example, you can send a user query asking the model to create a Job Posting which should include words like `stupid`. The filter should block the request.
 
-
-
-It makes sense to look at the documentation for content filtering with the `langchain` package [Content Safety - Harm Categories](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/harm-categories?tabs=warning)
+It makes sense to look at the documentation for content filtering with the `langchain` package [Chat Completion - Azure Content Filter](https://sap.github.io/ai-sdk/docs/js/orchestration/chat-completion#azure-content-filter)
 
 ## Summary
 
@@ -609,6 +607,7 @@ The `orchestrateJobPostingCreation` function handles the RAG flow for creating j
 ## Further Reading
 
 - [@sap-ai-sdk/orchestration - Documentation](https://github.com/SAP/ai-sdk-js/blob/main/packages/orchestration/README.md)
+- [Chat Completion - Azure Content Filter](https://sap.github.io/ai-sdk/docs/js/orchestration/chat-completion#azure-content-filter)
 
 ---
 

@@ -135,9 +135,15 @@ async function orchestrateJobPostingCreation(user_query) {
 
 That is all you need to do. The pseudonymization gets applied each and every time the orchestration client gets initialized and called. I would encourage you to play around with the masking for a bit to familiarize yourself with its capabilities.
 
-More information about the data masking using the orchestration client can be found in the further reading section.
-
 Look at the result! You can see that both name and email address are anonymized in the response of the LLM. If you change the `anonymization` method to `pseudonymization` you can see that the name and email won't get send to the LLM but in the response of the LLM both values are filled in.
+
+👉 Go ahead and change the `method` within the `masking providers` array from `anonymization` to `pseudonumization`.
+
+👉 Run another query to see the result in the terminal.
+
+Right now the input and the grounding document get masked. You can change this to exclude the grounding document to be masked by setting an additional property `mask_grounding_input: false` within the masking provider.
+
+More information about the data masking using the orchestration client can be found in the further reading section.
 
 ## Summary
 
