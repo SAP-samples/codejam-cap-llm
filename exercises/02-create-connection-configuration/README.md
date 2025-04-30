@@ -44,7 +44,7 @@ cf login -a https://api.cf.us10.hana.ondemand.com --sso
 cds bind -2 default_aicore
 ```
 
-That will cause Cloud Foundry to create a new service key for the SAP AI Core instance on the BTP subaccount, and configure that service key within your project. This is basically the same thing as the `.env` approach with one major difference; It is creating and referencing a new service, rather than having the AI Core instance's major service key in clear text in your configuration.
+That will cause Cloud Foundry to create a new service key for the SAP AI Core instance on the BTP subaccount, and configure that service key within your project. This is basically the same as the `.env` approach with one major difference; It is creating a binding to the service by creating a fresh service key, rather than having the AI Core instance's major service key in clear text in your configuration.
 
 ## Summary
 
