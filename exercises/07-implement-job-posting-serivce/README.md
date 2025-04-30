@@ -284,7 +284,7 @@ const orchestrationClient = new OrchestrationClient(
         },
         {
           role: 'user',
-          content: `QUESTION: ${user_query} CONTEXT: ${text_chunks}`,
+          content: `Question: {{?question}}, context information: ${text_chunks}`,
         },
       ],
     },
@@ -405,7 +405,11 @@ async function orchestrateJobPostingCreation(user_query) {
       { resourceGroup: resourceGroup }
     )
 
-    const response = await orchestrationClient.chatCompletion()
+    const response = await orchestrationClient.chatCompletion({
+      inputParams: {
+        question: user_query
+      }
+    })
     console.log(`Successfully executed chat completion. ${response.getContent()}`)
     return [user_query, response.getContent()]
   } catch (error) {
@@ -554,10 +558,21 @@ cf login
 cds watch --profile hybrid
 ```
 
-You can observe the console output if you call your service endpoint. Add the following URL path to your base URL:
+You can observe the console output if you call your service endpoint. Add the following URL path to your base URL in order to directly test the API end-to-end:
+
+> NOTE: If you want to just test the query to the LLM, you can always inject your query directly in code by replacing the input_param of the chat completion call:
+```JavaScript
+const response = await orchestrationClient.chatCompletion({
+  inputParams: {
+    question: "Create a job posting for a Senior Developer for the company AwesomeTech Inc"
+  }
+})
+```
+
+I would encourage you to at least test the API endpoint once.
 
 ```text
-/odata/v4/job-posting/createJobPosting(user_query='Create a job posting for a Senior Developer for the company AwesomeTech inc')
+/odata/v4/job-posting/createJobPosting(user_query='Create a job posting for a Senior Developer for the company AwesomeTech Inc')
 ```
 
 The full URL should look something like this (depending on if you run it via BAS or locally):

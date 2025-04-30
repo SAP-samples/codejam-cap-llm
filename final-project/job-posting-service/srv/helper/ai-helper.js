@@ -88,7 +88,7 @@ async function orchestrateJobPostingCreation(user_query) {
             },
             {
               role: 'user',
-              content: `${user_query}, context information: ${text_chunks}`,
+              content: `Question: {{?question}}, context information: ${text_chunks}`,
             },
           ],
         },
@@ -113,7 +113,12 @@ async function orchestrateJobPostingCreation(user_query) {
       { resourceGroup: resourceGroup }
     )
 
-    const response = await orchestrationClient.chatCompletion()
+    const response = await orchestrationClient.chatCompletion({
+      inputParams: {
+        question: user_query
+      }
+    })
+    
     console.log(`Successfully executed chat completion. ${response.getContent()}`)
     return [user_query, response.getContent()]
   } catch (error) {
