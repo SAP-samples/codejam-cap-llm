@@ -496,6 +496,7 @@ export async function deleteVectorEmbeddings() {
       `Error while deleting Document Chunks: \n ${JSON.stringify(error.response)}`
     );
   }
+}
 ```
 
 👉 Within the `try` block add the following code:
