@@ -329,7 +329,11 @@ HTTP Response: Request failed with status code 400
 👉 Below the initialization of the orchestration client call the client's chat completion method:
 
 ```JavaScript
-const response = await orchestrationClient.chatCompletion();
+const response = await orchestrationClient.chatCompletion({
+    inputParams: {
+        question: user_query
+    }
+})
 console.log(
   `Successfully executed chat completion. ${response.getContent()}`
 );
