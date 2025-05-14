@@ -47,7 +47,9 @@ using {sap.codejam as db} from '../db/schema';
 👉 Create the service definition:
 
 ```CDS
-service JobPostingService { }
+service JobPostingService {
+      // implementation goes here...
+}
 ```
 
 Within the service definition you want to expose the before-mentioned entities. The `DocumentChunks` entity has a field containing the actual embeddings. These embeddings are of type `cds.Vector`. The OData specification doesn't know the type `cds.Vector` and so can't expose it via the OData service. For some custom types defined by CDS it is possible to create a mapping to OData types, but not in this case. There is no corresponding OData type you could map `cds.Vector` to, that means you have to exclude this field from the OData service.
