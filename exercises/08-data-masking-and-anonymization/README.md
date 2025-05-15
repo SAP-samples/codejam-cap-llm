@@ -137,7 +137,7 @@ That is all you need to do. The pseudonymization gets applied each and every tim
 
 Look at the result! You can see that both name and email address are anonymized in the response of the LLM. If you change the `anonymization` method to `pseudonymization` you can see that the name and email won't get send to the LLM but in the response of the LLM both values are filled in.
 
-👉 Go ahead and change the `method` within the `masking providers` array from `anonymization` to `pseudonumization`.
+👉 Go ahead and change the `method` within the `masking providers` array from `anonymization` to `pseudonymization`.
 
 👉 Run another query to see the result in the terminal.
 
