@@ -32,7 +32,7 @@ You need to configure your CAP project for SAP HANA deployment. You can do this 
 
 👉 Open a new terminal if **not already** open.
 
-👉 Make sure you are in the root of the CAP project before continuing: **/codejam-cap-llm/project/job-posting-service**.
+👉 Make sure you are in the root of the CAP project before continuing: **/codejam-cap-llm/job-posting-service**.
 
 👉 Execute the `cds add hana --for hybrid` command:
 
