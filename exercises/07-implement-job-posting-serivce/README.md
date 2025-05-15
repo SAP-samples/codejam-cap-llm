@@ -355,75 +355,73 @@ The complete implementation should look like this now:
 
 ```JavaScript
 async function orchestrateJobPostingCreation(user_query) {
-  try {
-    const embeddingClient = new AzureOpenAiEmbeddingClient({
-      modelName: embeddingModelName,
-      maxRetries: 0,
-      resourceGroup: resourceGroup,
-    })
+    try {
+        const embeddingClient = new AzureOpenAiEmbeddingClient({
+            modelName: embeddingModelName,
+            maxRetries: 0,
+            resourceGroup: resourceGroup
+        });
+        let embedding = await embeddingClient.embedQuery(user_query);
+        let splits = await SELECT.from(DocumentChunks).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
 
-    let embedding = await embeddingClient.embedQuery(user_query)
-    let splits = await SELECT.from(DocumentChunks).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(
-      embedding
-    )})) DESC`
+        let text_chunks = splits.slice(0, 3).map((split) => split.text_chunk)
 
-    let text_chunks = splits.slice(0, 3).map((split) => split.text_chunk)
-
-    const filter = buildAzureContentSafetyFilter({
-      Hate: 'ALLOW_SAFE',
-      Violence: 'ALLOW_SAFE',
-      SelfHarm: 'ALLOW_SAFE',
-      Sexual: 'ALLOW_SAFE',
-    })
-
-    const orchestrationClient = new OrchestrationClient(
-      {
-        llm: {
-          model_name: chatModelName,
-          model_params: { max_tokens: 1000, temperature: 0.1 },
-        },
-        templating: {
-          template: [
-            {
-              role: 'system',
-              content: `You are an assistant for HR recruiter and manager.
-              You are receiving a user query to create a job posting for new hires.
-              Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
-              Consider all the input before responding.`,
-            },
-            {
-              role: 'user',
-              content: `QUESTION: ${user_query} CONTEXT: ${text_chunks}`,
-            },
-          ],
-        },
-        filtering: {
-          input: {
-            filters: [filter],
+        const filter = buildAzureContentSafetyFilter({
+            Hate: 'ALLOW_SAFE',
+            Violence: 'ALLOW_SAFE',
+            SelfHarm: 'ALLOW_SAFE',
+            Sexual: 'ALLOW_SAFE',
+          })
+      
+      const orchestrationClient = new OrchestrationClient(
+        {
+          llm: {
+            model_name: chatModelName,
+            model_params: { max_tokens: 1000, temperature: 0.1 },
           },
-          output: {
-            filters: [filter],
+          templating: {
+            template: [
+              {
+                role: 'system',
+                content: `You are an assistant for HR recruiter and manager.
+                You are receiving a user query to create a job posting for new hires.
+                Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
+                Consider all the input before responding.`,
+              },
+              {
+                role: 'user',
+                content: `Question: {{?question}}, context information: ${text_chunks}`,
+              },
+            ],
           },
+          filtering: {
+            input: {
+              filters: [filter],
+            },
+            output: {
+              filters: [filter],
+            },
+          }
+        },
+        { resourceGroup: resourceGroup }
+      )
+      const response = await orchestrationClient.chatCompletion({
+        inputParams: {
+          question: user_query
         }
-      },
-      { resourceGroup: resourceGroup }
-    )
-
-    const response = await orchestrationClient.chatCompletion({
-      inputParams: {
-        question: user_query
-      }
-    })
-    console.log(`Successfully executed chat completion. ${response.getContent()}`)
-    return [user_query, response.getContent()]
-  } catch (error) {
+      })
     console.log(
-      `Error while generating Job Posting.
-      Error: ${error.response}`
-    )
-    throw error
+        `Successfully executed chat completion. ${response.getContent()}`
+    );
+    return [user_query, response.getContent()];
+      } catch (error) {
+      console.log(
+        `Error while generating Job Posting.
+        Error: ${error.response}`
+      );
+      throw error;
+    }
   }
-}
 ```
 
 ### Implement insertion and deletion of Job Postings
