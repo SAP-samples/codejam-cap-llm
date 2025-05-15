@@ -135,6 +135,7 @@ cf create-service hana hdi-shared <your-hdi-container-name>
 After the container is created, you can bind it to your CAP application to allow it to interact with the SAP HANA database.
 
 </details>
+
 ## Further reading
 
 - [RAG with SAP HANA Cloud Vector Engine, GenAI Hub & CAP](https://community.sap.com/t5/technology-blogs-by-sap/rag-with-sap-hana-cloud-vector-engine-genai-hub-amp-cap/ba-p/13700459)
