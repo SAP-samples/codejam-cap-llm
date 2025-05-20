@@ -10,6 +10,10 @@ You can access your deployed models either using the Python SDK, the SAP Cloud S
 
 👉 Open the [SAP AI Launchpad](https://cap-ai-codejam-op6zhda1.ai-launchpad.prod.us-east-1.aws.ai-prod.cloud.sap/aic/index.html).
 
+👉 Select the `CAP-AI-CodeJam` resource group under workspaces. A blue indicator shows you if the resource group is properly selected.
+
+![select-resource-group](./assets/select-resource-group.png)
+
 👉 Open the Generative AI Hub tab and select **Chat**.
 
 👉 Click **Configure** and have a look at the available fields.
