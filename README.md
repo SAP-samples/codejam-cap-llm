@@ -40,6 +40,19 @@ The instructor will start you on the first exercise, and that's the only one you
 
 For this CodeJam you are provided with a subaccount on SAP BTP. The subaccount is only available for the duration of this CodeJam.
 
+## Further Learning on AI
+
+### YouTube Videos
+- [What are AI Agents?](https://www.youtube.com/watch?v=bWYA8S54T14)
+- [SAP Business AI: Explore AI Across Your Business](https://youtube.com/playlist?list=PL3ZRUb1AKkpTarpiocxrL3JKnX8Da6YCB&si=Ck8wuB78GmbV3MUA)
+- [2 Minutes of AI@SAP](https://youtube.com/playlist?list=PL6RpkC85SLQD3XOnWmm_sMC3_Ks_KWy3V&si=LxNeGj8zXCc46eR9)
+- [SAP Business AI - SAP Developers](https://youtube.com/playlist?list=PL6RpkC85SLQCDxe58RfZaLCcPqcgwTIhj&si=DyZn64TF_oYyuOrY)
+- [Transformers (how LLMs work) explained visually | DL5 by 3Blue1Brown](https://www.youtube.com/watch?v=wjZofJX0v4M)
+- [But what is a neural network? | Deep learning chapter 1](https://www.youtube.com/watch?v=aircAruvnKk)
+
+### Learning
+- [SAP Business AI - learning.sap.com](https://learning.sap.com/search?query=SAP+Business+AI&page=1&access=free)
+
 ## Feedback
 
 If you can spare a couple of minutes at the end of the session, please provide feedback to help us improve next time.
