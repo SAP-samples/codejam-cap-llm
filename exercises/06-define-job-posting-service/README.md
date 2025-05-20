@@ -9,6 +9,13 @@ In this exercise, you will learn:
 - How to define a CAP OData service using Core Data Service (CDS).
 - How to expose entities from your OData service schema definition.
 
+## Table of Contents
+
+- [Create the job posting service CDS definition](#create-the-job-posting-service-cds-definition)
+- [Summary](#summary)
+  - [Questions for Discussion](#questions-for-discussion)
+- [Further reading](#further-reading)
+
 ## Create the job posting service CDS definition
 
 The job posting service is responsible for the creation and deletion of job postings. The creation of a job posting sends a user query to a chat model via SAP AI Core and the SAP Cloud SDK for AI. You will utilize the orchestration package of the SDK to easily create a message for the chat model and send it via an orchestration client. The response from the chat model will then be stored in the SAP HANA Cloud database. You will implement two ways to delete job postings, one which you can explicitly specify what posting should be deleted and one that let you drop the whole table.

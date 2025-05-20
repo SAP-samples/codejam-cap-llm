@@ -13,6 +13,17 @@ In this exercise, you will learn the following:
 - What anonymization and pseudonymization are.
 - How to use the SAP Cloud SDK for AI orchestration API to manage data privacy.
 
+## Table of Contents
+
+- [Data masking](#data-masking)
+  - [Anonymization](#anonymization)
+  - [Pseudonymization](#pseudonymization)
+- [Implement data masking into your orchestration workflow](#implement-data-masking-into-your-orchestration-workflow)
+  - [Use the orchestration API of the SAP Cloud SDK for AI](#use-the-orchestration-api-of-the-sap-cloud-sdk-for-ai)
+- [Summary](#summary)
+  - [Questions for Discussion](#questions-for-discussion)
+- [Further Reading](#further-reading)
+
 ## Data masking
 
 Data masking describes the process of making defined sets of data unreadable to a human or machine. This process can be achieved via anonymization or pseudonymization. In the following sections, you will learn what they are and how they differ.

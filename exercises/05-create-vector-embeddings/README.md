@@ -8,6 +8,19 @@ In this exercise you will get a quick introduction to vector embeddings and you 
 - How to create them.
 - How to store them in the SAP HANA Cloud Vector Engine.
 
+## Table of Contents
+
+- [What is a vector embedding?](#what-is-a-vector-embedding)
+- [Define a simple OData endpoint to trigger the creation of vector embeddings](#define-a-simple-odata-endpoint-to-trigger-the-creation-of-vector-embeddings)
+- [Implement the creation of vector embeddings](#implement-the-creation-of-vector-embeddings)
+- [Implement the creation of vector embedding entries](#implement-the-creation-of-vector-embedding-entries)
+- [Implement the insertion of the vector embedding entries](#implement-the-insertion-of-the-vector-embedding-entries)
+- [Implement the deletion for the vector embeddings](#implement-the-deletion-for-the-vector-embeddings)
+- [Create some vector embeddings](#create-some-vector-embeddings)
+- [Summary](#summary)
+  - [Questions for Discussion](#questions-for-discussion)
+- [Further reading](#further-reading)
+
 ## What is a vector embedding?
 
 AI models operate on data in a purely mathematical manner. An AI model by itself needs unstructured data such as text, audio or images be represented in a numerical way for it to operate on that data. To bridge the gap between unstructured data and the required numerical format for the AI model, the data must be converted to a numeric form. Vector embeddings are a way to represent unstructured data in a multi-dimensional numeric way for the AI model to process.

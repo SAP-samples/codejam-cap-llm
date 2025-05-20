@@ -2,6 +2,24 @@
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/codejam-cap-llm)](https://api.reuse.software/info/github.com/SAP-samples/codejam-cap-llm)
 
+## Table of Contents
+
+- [Description](#description)
+- [Overview](#overview)
+- [Session prerequisites](#session-prerequisites)
+- [Exercises](#exercises)
+- [Further Learning on AI](#further-learning-on-ai)
+  - [YouTube Videos](#youtube-videos)
+  - [Learning](#learning)
+  - [Customer & Partner projects](#customer--partner-projects)
+- [Feedback](#feedback)
+- [Other CodeJams](#other-codejams)
+  - [CodeJam repositories](#codejam-repositories)
+  - [CodeJam Community](#codejam-community)
+- [Acknowledgements](#acknowledgements)
+- [How to obtain support](#how-to-obtain-support)
+- [License](#license)
+
 ## Description
 
 This repository contains the material for the "Expose SAP AI Core capabilities with the SAP Cloud Application Programming Model" CodeJam.
@@ -40,6 +58,10 @@ The instructor will start you on the first exercise, and that's the only one you
 
 For this CodeJam you are provided with a subaccount on SAP BTP. The subaccount is only available for the duration of this CodeJam.
 
+## Frequently asked Questions
+
+You can find a list of frequently asked questions in the [Frequently Asked Questions Document](./frequently-asked-questions.md)
+
 ## Further Learning on AI
 
 ### YouTube Videos
@@ -52,6 +74,10 @@ For this CodeJam you are provided with a subaccount on SAP BTP. The subaccount i
 
 ### Learning
 - [SAP Business AI - learning.sap.com](https://learning.sap.com/search?query=SAP+Business+AI&page=1&access=free)
+
+### Customer & Partner projects
+
+- [SAP Content Discovery - Artificial Intelligence](https://content-discovery.int.sap/asset-explore/57a1f804-c7aa-454d-9bde-7eb67872f034/product-sub-categories_3937994e-19f8-4db9-901d-eb9db5b45c85?contentCategoryIds=CUSTOMER_REFERENCE&categoryItemIds=product-sub-categories_3937994e-19f8-4db9-901d-eb9db5b45c85)
 
 ## Feedback
 

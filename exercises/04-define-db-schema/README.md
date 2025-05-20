@@ -10,6 +10,16 @@ In this exercise you will learn:
 - How to define the database schema for the SAP HANA Cloud database.
 - How to build and deploy the schema to your HDI container.
 
+## Table of Contents
+
+- [Explore the package.json file and its contents](#explore-the-packagejson-file-and-its-contents)
+- [Define the database schema](#define-the-database-schema)
+- [Build and deploy the schema to your HDI container](#build-and-deploy-the-schema-to-your-hdi-container)
+- [Examine the database table](#examine-the-database-table)
+- [Summary](#summary)
+  - [Questions for Discussion](#questions-for-discussion)
+- [Further reading](#further-reading)
+
 ## Explore the package.json file and its contents
 
 The `package.json` file includes all Node.js project-specific configurations like project name, version, dependencies, and run scripts but also CDS-specific configurations like the HANA runtime information.

@@ -6,6 +6,14 @@ In order to leverage large language models (LLMs) or foundation models in your a
 
 You can access your deployed models either using the Python SDK, the SAP Cloud SDK for AI, any programming language or API platform, or you can use the user interface in SAP AI Launchpad. We offer the **Chat** interface or the **Prompt Editor** where you can also save prompts and the model's responses.
 
+## Table of Contents
+
+- [Use the Chat in Generative AI Hub](#use-the-chat-in-generative-ai-hub)
+- [Use the Prompt Editor in Generative AI Hub](#use-the-prompt-editor-in-generative-ai-hub)
+- [Summary](#summary)
+  - [Questions for Discussion](#questions-for-discussion)
+- [Further reading](#further-reading)
+
 ## Use the Chat in Generative AI Hub
 
 👉 Open the [SAP AI Launchpad](https://cap-ai-codejam-op6zhda1.ai-launchpad.prod.us-east-1.aws.ai-prod.cloud.sap/aic/index.html).

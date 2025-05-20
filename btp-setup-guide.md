@@ -15,6 +15,16 @@ If you want to learn more about BTP, regions, Free Tier, and the account structu
 - [Get started with SAP Business Technology Platform](https://help.sap.com/docs/btp/sap-business-technology-platform/sap-business-technology-platform)
 - [Regions](https://help.sap.com/docs/btp/sap-business-technology-platform/regions)
 
+## Table of Contents
+
+- [Enable SAP BTP, Cloud Foundry runtime, and create a development space](#enable-sap-btp-cloud-foundry-runtime-and-create-a-development-space)
+- [Enable and create an instance of SAP HANA Cloud](#enable-and-create-an-instance-of-sap-hana-cloud)
+- [Enable and create an instance of SAP HANA Schemas & HDI Containers](#enable-and-create-an-instance-of-sap-hana-schemas--hdi-containers)
+- [Enable and create an instance of SAP Business Application Studio](#enable-and-create-an-instance-of-sap-business-application-studio)
+- [Enable and create an instance of SAP AI Core](#enable-and-create-an-instance-of-sap-ai-core)
+- [Enable and create an instance of SAP AI Launchpad](#enable-and-create-an-instance-of-sap-ai-launchpad)
+- [Setup the SAP AI Launchpad service](#setup-the-sap-ai-launchpad-service)
+
 ## Enable SAP BTP, Cloud Foundry runtime, and create a development space
 
 Working with BTP allows us to create and start a runtime environment to start service instances, develop applications, and deploy them. BTP provides two different options as runtimes: a runtime allowing for working directly with Kubernetes without much abstraction, providing full access and power over how services run, and one that is also running Kubernetes underneath but gives a nice abstraction layer on top that makes development and deployment easier but takes away a lot of the fine-granular administration you would get with a pure Kubernetes instance. The first is called SAP BTP, Kyma runtime, and the latter is SAP BTP, Cloud Foundry runtime. You will progress with the SAP BTP, Cloud Foundry runtime (CF) for our purpose.

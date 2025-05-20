@@ -4,6 +4,19 @@ _Estimated Time: **5 min**_
 
 At the end of this exercise, you'll have an environment to work in for the duration of this CodeJam, and your environment of choice will load the contents of this repository.
 
+## Table of Contents
+
+- [Set up the environment and clone this repository](#set-up-the-environment-and-clone-this-repository)
+  - [Primary environment: A Dev Space in the SAP Business Application Studio](#primary-environment-a-dev-space-in-the-sap-business-application-studio)
+    - [Create a Dev Space](#create-a-dev-space)
+    - [Clone this repository](#clone-this-repository)
+  - [Alternative environment: VS Code and a container image](#alternative-environment-vs-code-and-a-container-image)
+- [Navigate to the project folder](#navigate-to-the-project-folder)
+- [Check the installation of the CDS development kit](#check-the-installation-of-the-cds-development-kit)
+- [Install the NPM package dependencies](#install-the-npm-package-dependencies)
+- [Summary](#summary)
+- [Further reading](#further-reading)
+
 ## Set up the environment and clone this repository
 
 To prepare the building blocks for this CodeJam, you'll need to clone this CodeJam repository and make its contents available in the workspace you chose. Your workspace will be a Dev Space in the SAP Business Application Studio or alternatively you can use VS Code with a dev container. Our recommendation for this workshop is to go with the SAP Business Application Studio approach.

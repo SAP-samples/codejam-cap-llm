@@ -8,6 +8,13 @@ In this exercise you will learn:
 
 - How to bind your CAP service to the SAP AI Core instance.
 
+## Table of Contents
+
+- [Understand how the SAP Cloud SDK for AI establishes connection to SAP AI Core](#understand-how-the-sap-cloud-sdk-for-ai-establishes-connection-to-sap-ai-core)
+- [Create a binding to the AI Core instance](#create-a-binding-to-the-ai-core-instance)
+- [Summary](#summary)
+  - [Questions for Discussion](#questions-for-discussion)
+
 ## Understand how the SAP Cloud SDK for AI establishes connection to SAP AI Core
 
 To establish a connection from your CAP application to each of the AI relevant service instances within SAP BTP, a connection configuration needs to be made. With the SAP Cloud SDK for AI, you have two options to do so.

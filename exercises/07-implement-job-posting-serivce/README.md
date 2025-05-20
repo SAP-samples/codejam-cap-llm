@@ -8,6 +8,20 @@ In this exercise, you will learn the following:
 
 - How to use the SAP Cloud SDK for AI orchestration API.
 
+## Table of Contents
+
+- [Implement the OData function handler code stubs](#implement-the-odata-function-handler-code-stubs)
+- [Implement input parameter validation](#implement-input-parameter-validation)
+- [Implement the job posting creation](#implement-the-job-posting-creation)
+  - [Implement the AI orchestration in the AIHelper](#implement-the-ai-orchestration-in-the-aihelper)
+  - [Implement insertion and deletion of Job Postings](#implement-insertion-and-deletion-of-job-postings)
+- [Try out your new API](#try-out-your-new-api)
+- [Check the database table for job postings](#check-the-database-table-for-job-postings)
+- [Experiment with the orchestration service filters](#experiment-with-the-orchestration-service-filters)
+- [Summary](#summary)
+  - [Questions for Discussion](#questions-for-discussion)
+- [Further Reading](#further-reading)
+
 ## Implement the OData function handler code stubs
 
 In [Exercise 05](../05-create-vector-embeddings/README.md), you implemented the code for creating and deleting vector embeddings out of a contextual document. You are now about to use the orchestration service to access these vector embeddings and execute a Retrival-Augmented generation workflow. 

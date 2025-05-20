@@ -15,6 +15,17 @@ In this exercise, you will learn:
 - How to configure your CAP application for SAP HANA deployment
 - How to bind your CAP application to a new HDI instance
 
+## Table of Contents
+
+- [What Are Vector Embeddings](#what-are-vector-embeddings)
+- [How do you enable SAP HANA Cloud Vector Engine](#how-do-you-enable-sap-hana-cloud-vector-engine)
+- [Configure the project for SAP HANA deployment](#configure-the-project-for-sap-hana-deployment)
+- [Create your HDI container for HANA deployment](#create-your-hdi-container-for-hana-deployment)
+- [Bind local service to SAP HANA Schemas & HDI Containers instance for hybrid testing](#bind-local-service-to-sap-hana-schemas--hdi-containers-instance-for-hybrid-testing)
+- [Summary](#summary)
+  - [Questions for Discussion](#questions-for-discussion)
+- [Further reading](#further-reading)
+
 ## What Are Vector Embeddings
 
 > "Vector embeddings are mathematical representations used to encode objects into multi-dimensional vector space. These embeddings capture the relationships and similarities between objects. SAP HANA Cloud Vector Engine will facilitate the storage and analysis of complex and unstructured vector data(embeddings) into a format that can be seamlessly processed, compared, and utilized to build various intelligent data applications and add more context in case of GenAI scenarios."

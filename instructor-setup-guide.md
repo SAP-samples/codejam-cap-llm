@@ -1,5 +1,22 @@
 # Instructor Setup for the CodeJam
 
+## Table of Contents
+
+- [The SAP BTP subaccount details](#the-sap-btp-subaccount-details)
+- [Enable Cloud Foundry runtime environment and create a development space](#enable-cloud-foundry-runtime-environment-and-create-a-development-space)
+- [Provisioning of SAP HANA Cloud](#provisioning-of-sap-hana-cloud)
+- [Adding attendees as users](#adding-attendees-as-users)
+- [Clean Up after the event](#clean-up-after-the-event)
+- [Create SAP AI Launchpad Resource Group and deployments](#create-sap-ai-launchpad-resource-group-and-deployments)
+  - [Open SAP AI Launchpad](#open-sap-ai-launchpad)
+  - [Create a New Resource Group](#create-a-new-resource-group)
+  - [Create a Configuration to Deploy a Proxy for a Large Language Model on SAP AI Core](#create-a-configuration-to-deploy-a-proxy-for-a-large-language-model-on-sap-ai-core)
+  - [Deploy a Proxy for a Large Language Model on SAP AI Core](#deploy-a-proxy-for-a-large-language-model-on-sap-ai-core)
+  - [Deploy a Proxy for an Embedding Model on SAP AI Core](#deploy-a-proxy-for-an-embedding-model-on-sap-ai-core)
+  - [Create an orchestration configuration](#create-an-orchestration-configuration)
+  - [Create an orchestration deployment](#create-an-orchestration-deployment)
+  - [Review your deployment](#review-your-deployment)
+
 ## The SAP BTP subaccount details
 
 1. Log in the [SAP BTP Global Account: Developer Advocates Free Tier](https://emea.cockpit.btp.cloud.sap/cockpit/#/globalaccount/275320f9-4c26-4622-8728-b6f5196075f5/accountModel&//?section=HierarchySection&view=TreeTableView)
