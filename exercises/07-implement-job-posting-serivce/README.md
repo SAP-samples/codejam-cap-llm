@@ -257,16 +257,16 @@ let embedding = await embeddingClient.embedQuery(user_query);
 👉 Execute the cosine similarity using a `SELECT` statement and ordering the result using the cosine similarity for the given vector of the user query:
 
 ```JavaScript
-let splits = await SELECT.from(DocumentChunks)
+let similarity_chunks = await SELECT.from(DocumentChunks)
       .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
 ```
 
 The `cosine_similarity` call in the SQL statement is not the default SQL. This is an added function by the HANA Cloud Vector Engine.
 
-👉 Extract the first three results from the list `splits`:
+👉 Extract the first three results from the list `similarity_chunks`:
 
 ```JavaScript
-let text_chunks = splits.slice(0, 3).map((split) => split.text_chunk)
+let context = similarity_chunks.slice(0, 3).map((split) => split.text_chunk)
 ```
 
 You have all relevant information at hand to construct the template which is getting send to the chat model via the orchestration client.
@@ -298,7 +298,7 @@ const orchestrationClient = new OrchestrationClient(
         },
         {
           role: 'user',
-          content: `Question: {{?question}}, context information: ${text_chunks}`,
+          content: `Question: {{?question}}, context information: ${context}`,
         },
       ],
     },
@@ -376,9 +376,9 @@ async function orchestrateJobPostingCreation(user_query) {
             resourceGroup: resourceGroup
         });
         let embedding = await embeddingClient.embedQuery(user_query);
-        let splits = await SELECT.from(DocumentChunks).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
+        let similarity_chunks = await SELECT.from(DocumentChunks).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
 
-        let text_chunks = splits.slice(0, 3).map((split) => split.text_chunk)
+        let context = similarity_chunks.slice(0, 3).map((split) => split.text_chunk)
 
         const filter = buildAzureContentSafetyFilter({
             Hate: 'ALLOW_SAFE',
@@ -404,7 +404,7 @@ async function orchestrateJobPostingCreation(user_query) {
               },
               {
                 role: 'user',
-                content: `Question: {{?question}}, context information: ${text_chunks}`,
+                content: `Question: {{?question}}, context information: ${context}`,
               },
             ],
           },

@@ -86,10 +86,9 @@ async function orchestrateJobPostingCreation(user_query) {
     });
 
     let embedding = await embeddingClient.embedQuery(user_query);
-    let splits = await SELECT.from(DocumentChunks)
-      .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
+    let similarity_chunks = await SELECT.from(DocumentChunks).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
 
-    let text_chunk = splits[0].text_chunk;
+    let context = similarity_chunks.slice(0, 3).map((split) => split.text_chunk)
 
     const filter = buildAzureContentFilter({ Hate: 4, Violence: 4 });
     const orchestrationClient = new OrchestrationClient(
@@ -100,17 +99,18 @@ async function orchestrateJobPostingCreation(user_query) {
         },
         templating: {
           template: [
-            {
-              role: 'user',
-              content:
-                ` You are an assistant for HR recruiter and manager.
-            You are receiving a user query to create a job posting for new hires.
-            Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
-            The contact details for the recruiter are: Jane Doe, E-Mail: jane.doe@company.com .
-            Consider all the input before responding.
-            context: ${text_chunk}` + user_query
-            }
-          ]
+              {
+                role: 'system',
+                content: `You are an assistant for HR recruiter and manager.
+                You are receiving a user query to create a job posting for new hires.
+                Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
+                Consider all the input before responding.`,
+              },
+              {
+                role: 'user',
+                content: `Question: {{?question}}, context information: ${context}`,
+              },
+            ],
         },
         filtering: {
           input: filter,
