@@ -58,11 +58,11 @@ async function orchestrateJobPostingCreation(user_query) {
     })
 
     let embedding = await embeddingClient.embedQuery(user_query)
-    let splits = await SELECT.from(DocumentChunks).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(
+    let similarity_chunks = await SELECT.from(DocumentChunks).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(
       embedding
     )})) DESC`
 
-    let text_chunks = splits.slice(0, 3).map((split) => split.text_chunk)
+    let context = similarity_chunks.slice(0, 3).map((split) => split.text_chunk)
 
     const filter = buildAzureContentSafetyFilter({
       Hate: 'ALLOW_SAFE',
@@ -88,7 +88,7 @@ async function orchestrateJobPostingCreation(user_query) {
             },
             {
               role: 'user',
-              content: `Question: {{?question}}, context information: ${text_chunks}`,
+              content: `Question: {{?question}}, context information: ${context}`,
             },
           ],
         },
