@@ -53,6 +53,7 @@ These are the exercises, each in their directory, sometimes with supporting file
 - [Exercise 06 - Define the Job Posting Service](./exercises/06-define-job-posting-service/README.md)
 - [Exercise 07 - Implement the Job Posting Service](./exercises/07-implement-job-posting-serivce/README.md)
 - [Exercise 08 - Understand data masking, what is anonymization and pseudonymization](./exercises/08-data-masking-and-anonymization/README.md)
+- [Optional Exercise 09 - Prompt Engineering with AI Launchpad](./exercises/09-prompt-engineering-with-ai-launchpad/)
 
 The instructor will start you on the first exercise, and that's the only one you should do. You should only proceed to the next exercise once the instructor tells you to.
 

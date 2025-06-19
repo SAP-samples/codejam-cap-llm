@@ -182,3 +182,9 @@ The SAP Cloud SDK for AI orchestration API allows you to integrate data masking 
 - [Data Masking - SAP Cloud SDK for AI](https://github.com/SAP/ai-sdk-js/blob/main/packages/orchestration/README.md#data-masking)
 - [Data Masking - SAP AI Launchpad documentation](https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/data-masking?locale=en-US&q=data+masking)
 - [Data Masking - Generative AI Hub documentation](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/data-masking?locale=en-US&q=data+masking)
+
+---
+
+The next exercise is optional, if you have time proceed and learn more about prompt engineering.
+
+[Next exercise](../09-prompt-engineering-with-ai-launchpad/readme.md)
