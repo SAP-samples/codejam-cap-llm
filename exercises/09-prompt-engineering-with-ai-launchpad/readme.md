@@ -1,4 +1,4 @@
-# Exercise 00 - Prompt Engineering with SAP AI Launchpad
+# Exercise 09 - Prompt Engineering with SAP AI Launchpad
 
 _Estimated Time: **45 min**_
 
