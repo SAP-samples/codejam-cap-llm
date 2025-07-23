@@ -248,7 +248,7 @@ const embeddingClient = new AzureOpenAiEmbeddingClient({
 
 Embedding the user query will allow for the creation of a vector embedding. The vector embedding can then be used to calculate the closest distance to existing contextual embeddings in the SAP HANA Cloud vector engine. The result of this is that you will receive the contextual vector embedding with the highest relevance to the user query. This embedding can then be sent to the chat model as contextual information to answer the user query.
 
-👉 Embedd the user query with the embedding client:
+👉 Embed the user query with the embedding client:
 
 ```JavaScript
 let embedding = await embeddingClient.embedQuery(user_query);
@@ -631,9 +631,9 @@ In this exercise, you implemented the job posting service and its OData function
 
 1. What is the main purpose of the `orchestrateJobPostingCreation` function in the implementation?
 
-<details><summary>Answer</summary>
-The `orchestrateJobPostingCreation` function handles the RAG flow for creating job postings. It takes a user query, creates a vector embedding for it using the `text-embedding-3-small` model, retrieves the most relevant context from the database using cosine similarity, and sends the user query along with the contextual information to a chat model (`gpt-4o-mini`). The response from the chat model is then returned and stored in the database as a new job posting.
-</details>
+    <details><summary>Answer</summary>
+    The `orchestrateJobPostingCreation` function handles the RAG flow for creating job postings. It takes a user query, creates a vector embedding for it using the `text-embedding-3-small` model, retrieves the most relevant context from the database using cosine similarity, and sends the user query along with the contextual information to a chat model (`gpt-4o-mini`). The response from the chat model is then returned and stored in the database as a new job posting.
+    </details>
 
 ## Further Reading
 
