@@ -62,19 +62,19 @@ In the next exercise you will start implementing the actual CAP service by defin
 ### Questions for Discussion
 
 1. What is the SAP Cloud SDK for AI, and how does it help connect to SAP AI Core?
-<details><summary>Answer</summary>
-   The SAP Cloud SDK for AI enables seamless integration with SAP AI Core, SAP Generative AI Hub, and the Orchestration service. It is available for multiple programming languages such as Python, JavaScript, Java, and ABAP. In this exercise, you'll use the JavaScript version to connect a CAP OData service to SAP AI functionality. The SDK helps in establishing the connection by reading authentication details from a service key or environment variables.
-   </details>
+      <details><summary>Answer</summary>
+         The SAP Cloud SDK for AI enables seamless integration with SAP AI Core, SAP Generative AI Hub, and the Orchestration service. It is available for multiple programming languages such as Python, JavaScript, Java, and ABAP. In this exercise, you'll use the JavaScript version to connect a CAP OData service to SAP AI functionality. The SDK helps in establishing the connection by reading authentication details from a service key or environment variables.
+         </details>
 
 2. What are the two options for configuring the connection to SAP AI Core with the SAP Cloud SDK for AI?
-<details><summary>Answer</summary>
+      <details><summary>Answer</summary>
 
-There are two ways to configure the connection:
+      There are two ways to configure the connection:
 
-   - For local development/testing: You can use a Cloud Foundry service key stored in the `.env` file or set it as an environment variable. This allows the SDK to parse the service key and connect to SAP AI Core for local testing, assuming the relevant AI services are deployed.
+         - For local development/testing: You can use a Cloud Foundry service key stored in the `.env` file or set it as an environment variable. This allows the SDK to parse the service key and connect to SAP AI Core for local testing, assuming the relevant AI services are deployed.
 
-   - For production: The SDK recommends creating a binding between your application and the SAP AI Core service instance. This method is more secure, as it does not expose sensitive authentication details in clear text.
-   </details>
+         - For production: The SDK recommends creating a binding between your application and the SAP AI Core service instance. This method is more secure, as it does not expose sensitive authentication details in clear text.
+         </details>
 ---
 
 [Next exercise](../03-explore-sap-hana-cloud-vector-engine/README.md)
