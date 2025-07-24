@@ -43,7 +43,7 @@ Below are direct links to the **Further Reading** sections in each exercise:
 - [Exercise 04 - Create the database schema for the CAP application](exercises/04-define-db-schema/README.md#further-reading)
 - [Exercise 05 - Create vector embeddings using an embedding model](exercises/05-create-vector-embeddings/README.md#further-reading)
 - [Exercise 06 - Define the Job Posting Service](exercises/06-define-job-posting-service/README.md#further-reading)
-- [Exercise 07 - Implement the Job Posting Service](exercises/07-implement-job-posting-serivce/README.md#further-reading)
+- [Exercise 07 - Implement the Job Posting Service](exercises/07-implement-job-posting-service/README.md#further-reading)
 - [Exercise 08 - Understand data masking, anonymization and pseudonymization](exercises/08-data-masking-and-anonymization/README.md#further-reading)
 
 ## Contact

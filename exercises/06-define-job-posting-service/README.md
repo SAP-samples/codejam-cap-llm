@@ -75,4 +75,4 @@ In the next exercise, you will implement the business logic, the function handle
 
 ---
 
-[Next exercise](../07-implement-job-posting-serivce/README.md)
+[Next exercise](../07-implement-job-posting-service/README.md)
