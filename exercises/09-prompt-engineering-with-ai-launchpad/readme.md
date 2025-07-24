@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Exercise 09 - Prompt Engineering with SAP AI Launchpad
 
 _Estimated Time: **45 min**_
@@ -8,9 +9,9 @@ You can access your deployed models either using the Python SDK, the SAP Cloud S
 
 In this exercise, you will use the SAP AI Launchpad to explore the capabilities of the platform and practice major prompt engineering techniques which generally apply to interacting with an LLM.
 
+<!-- omit in toc -->
 ## Table of Contents
 
-- [Exercise 00 - Prompt Engineering with SAP AI Launchpad](#exercise-00---prompt-engineering-with-sap-ai-launchpad)
 - [Use the Chat in Generative AI Hub](#use-the-chat-in-generative-ai-hub)
   - [Chat Settings](#chat-settings)
   - [Context History and Message Roles](#context-history-and-message-roles)
@@ -22,7 +23,7 @@ In this exercise, you will use the SAP AI Launchpad to explore the capabilities 
 - [Prompt Engineering](#prompt-engineering)
   - [Why is it important?](#why-is-it-important)
   - [Techniques](#techniques)
-    - [Prompt Clarity & Specificity](#prompt-clarity--specificity)
+    - [Prompt Clarity \& Specificity](#prompt-clarity--specificity)
     - [Prompt styles](#prompt-styles)
     - [Iterative prompt refinement](#iterative-prompt-refinement)
     - [Prompt compression](#prompt-compression)
@@ -163,57 +164,57 @@ Why is proper prompt engineering important?
 
 1. It boosts efficiency, saves time and money
 
-Well-engineered prompts can:
-  - Generate code, content, or analysis in fewer iterations.
-  - Minimize hallucinations or off-topic answers.
-  - Avoid the need for multiple corrections.
+    Well-engineered prompts can:
+      - Generate code, content, or analysis in fewer iterations.
+      - Minimize hallucinations or off-topic answers.
+      - Avoid the need for multiple corrections.
 
-The outcome in reality is faster prototyping, automation, and support with fewer errors.
+    The outcome in reality is faster prototyping, automation, and support with fewer errors.
 
 2. It influences output quality
 
-Depending on how the prompt is engineered, the language model can give vastly different answers even if, in essence, it is the same intent. Well-engineered prompts reduce ambiguity and lead to more accurate, complete, and relevant responses.
+    Depending on how the prompt is engineered, the language model can give vastly different answers even if, in essence, it is the same intent. Well-engineered prompts reduce ambiguity and lead to more accurate, complete, and relevant responses.
 
-Here is an example:
+    Here is an example:
 
-- Poor prompt: "Explain Enterprise Software."
-- Better prompt: "Write a short, beginner-friendly summary explaining what Enterprise Software is and how it differs from other software types like end-consumer software or games. Make sure to include examples."
+    - Poor prompt: "Explain Enterprise Software."
+    - Better prompt: "Write a short, beginner-friendly summary explaining what Enterprise Software is and how it differs from other software types like end-consumer software or games. Make sure to include examples."
 
 3. It helps to mitigate risks and errors
 
-A poorly written prompt can lead to different risks and errors like dangerous advice. It could lead to legal or ethical missteps, or nonsensical/hallucinated facts.
+    A poorly written prompt can lead to different risks and errors like dangerous advice. It could lead to legal or ethical missteps, or nonsensical/hallucinated facts.
 
-Applying prompt engineering techniques, proper system messages, and setting constraints can help to mitigate these issues.
+    Applying prompt engineering techniques, proper system messages, and setting constraints can help to mitigate these issues.
 
 4. It helps to align the LLM with your goals
 
-Setting tone, format, the role, and persona through your prompt helps the LLM to understand what you or the end-user want to achieve.
+    Setting tone, format, the role, and persona through your prompt helps the LLM to understand what you or the end-user want to achieve.
 
-For example, setting the tone for:
+    For example, setting the tone for:
 
-- Business writing
-- Customer support
-- Education
-- Creative writing
-- Coding tasks
+    - Business writing
+    - Customer support
+    - Education
+    - Creative writing
+    - Coding tasks
 
 5. It enables reusability, automation and is important for building AI Products and Workflows
 
-An LLM can be used within chatbots, virtual assistants, auto-reporting systems, and content generation platforms. That being said, you are not just writing text or asking a question—you are designing interactions.
+    An LLM can be used within chatbots, virtual assistants, auto-reporting systems, and content generation platforms. That being said, you are not just writing text or asking a question—you are designing interactions.
 
-Well-engineered prompts can be reused in workflows, templates, and can be used in Agentic AI to automate tasks.
+    Well-engineered prompts can be reused in workflows, templates, and can be used in Agentic AI to automate tasks.
 
-For example:
+    For example:
 
-- Data analysis
-- Report writing
-- Content pipelines
-- Email generation
-- System manipulation
+    - Data analysis
+    - Report writing
+    - Content pipelines
+    - Email generation
+    - System manipulation
 
 6. It enables testing and fine-tuning without re-/training
 
-When we talk about prompt engineering, we often refer to it as "zero-shot fine-tuning". That means with a well-engineered prompt, you can adapt behavior without retraining the model. You change the behaviour by changing the way you ask.
+    When we talk about prompt engineering, we often refer to it as "zero-shot fine-tuning". That means with a well-engineered prompt, you can adapt behavior without retraining the model. You change the behaviour by changing the way you ask.
 
 ### Techniques
 
@@ -233,103 +234,103 @@ When interacting with a language model, different prompt styles can be applied t
 
 1. Zero-shot prompting
 
-Asking a question or task with no examples—this is fast and efficient when it comes to simple or well-known tasks. This approach relies on the model's pre-trained knowledge to perform tasks with just instructions and no examples or further context.
-Some of these well-known tasks can be:
+    Asking a question or task with no examples—this is fast and efficient when it comes to simple or well-known tasks. This approach relies on the model's pre-trained knowledge to perform tasks with just instructions and no examples or further context.
+    Some of these well-known tasks can be:
 
-- Translation
-- Summarization
-- Sentiment Analysis
-- Math Problem
-- Question Answering
-- Text Classification
+    - Translation
+    - Summarization
+    - Sentiment Analysis
+    - Math Problem
+    - Question Answering
+    - Text Classification
 
-Examples:
+    Examples:
 
-```text
-- Translate 'Hello' to Spanish.
-- Summarize the following text...
-- What is 40 multiplied by 49.3?
-```
+    ```text
+    - Translate 'Hello' to Spanish.
+    - Summarize the following text...
+    - What is 40 multiplied by 49.3?
+    ```
 
-**Task:**
+    **Task:**
 
-Try out a zero-shot prompt by:
+    Try out a zero-shot prompt by:
 
-- finding the solution to the mathematical equation: 40 multiplied by 49.3
-- asking for a summary of "Alice in Wonderland" by Lewis Carroll
-- finding the sentiment for the following text: "Today is a great day because I am learning about AI!"
+    - finding the solution to the mathematical equation: 40 multiplied by 49.3
+    - asking for a summary of "Alice in Wonderland" by Lewis Carroll
+    - finding the sentiment for the following text: "Today is a great day because I am learning about AI!"
 
 2. Few-shot prompting
 
-Sometimes it makes sense to give the LLM examples of the desired output style. This should cause increased consistency and quality of the result, especially when applied for creative or structured tasks. The model can better understand the required pattern.
+    Sometimes it makes sense to give the LLM examples of the desired output style. This should cause increased consistency and quality of the result, especially when applied for creative or structured tasks. The model can better understand the required pattern.
 
-Example:
+    Example:
 
-```text
-Q: What is the capital of France?
-A: Paris
-Q: What is the capital of Italy?
-A: Rome
-Q: What is the capital of Germany?
-```
+    ```text
+    Q: What is the capital of France?
+    A: Paris
+    Q: What is the capital of Italy?
+    A: Rome
+    Q: What is the capital of Germany?
+    ```
 
-**Task:**
+    **Task:**
 
-Give the model some examples of email responses to customer questions and then ask:
+    Give the model some examples of email responses to customer questions and then ask:
 
-```text
-Please draft a professional response to this customer inquiry: 'Can I change the shipping address after placing an order?'
-```
+    ```text
+    Please draft a professional response to this customer inquiry: 'Can I change the shipping address after placing an order?'
+    ```
 
 3. Chain-of-Thought prompting
 
-Forcing the language model to reason step-by-step before giving a final answer to a question. This can help to improve performance in logical, complex reasoning, or multi-step tasks.
+    Forcing the language model to reason step-by-step before giving a final answer to a question. This can help to improve performance in logical, complex reasoning, or multi-step tasks.
 
-Example:
+    Example:
 
-Logic Puzzle
+    Logic Puzzle
 
-```text
-Prompt:
-Q: Tom, Lisa, and Mike are siblings. Mike is older than Lisa, but younger than Tom. Who is the oldest? Show your reasoning.
+    ```text
+    Prompt:
+    Q: Tom, Lisa, and Mike are siblings. Mike is older than Lisa, but younger than Tom. Who is the oldest? Show your reasoning.
 
-Expected answer:
-Mike is older than Lisa but younger than Tom. That means Tom is older than Mike, and Mike is older than Lisa. So, the oldest sibling is Tom.
-```
+    Expected answer:
+    Mike is older than Lisa but younger than Tom. That means Tom is older than Mike, and Mike is older than Lisa. So, the oldest sibling is Tom.
+    ```
 
-**Task:**
+    **Task:**
 
-Find a solution, using the LLM, for the following mathematical word problem:
+    Find a solution, using the LLM, for the following mathematical word problem:
 
-```text
-Q: A train travels 60 km in 1 hour and 30 minutes. What is the average speed of the train? Explain.
-```
+    ```text
+    Q: A train travels 60 km in 1 hour and 30 minutes. What is the average speed of the train? Explain.
+    ``` 
 
-Do another one:
+    Do another one:
 
-```text
-What was first - The hen or the egg? Explain your thought process.
-```
+    ```text
+    What was first - The hen or the egg? Explain your thought process.
+    ```
 
 4. Role-play prompting
 
-Using role-play prompting, you assign the language model a persona, identity, or a role to simulate a certain behaviour. Remember the pirate example in the system message. This produces a more context-aware, role-specific, and believable output.
+    Using role-play prompting, you assign the language model a persona, identity, or a role to simulate a certain behaviour. Remember the pirate example in the system message. This produces a more context-aware, role-specific, and believable output.
 
-Example:
+    Example:
 
-```text
-You are a support assistant for customer inquiries. Resolve the following customer question professionally: "Where is my shipment?"
-```
+    ```text
+    You are a support assistant for customer inquiries. Resolve the following customer question professionally: "Where is my shipment?"
+    ```
 
-**Task:**
+    **Task:**
 
-Get an answer for a coding question in JavaScript. Make sure to set the role properly before asking the question!
+    Get an answer for a coding question in JavaScript. Make sure to set the role properly before asking the question!
 
-Question:
+    Question:
 
-```text
-Write a function reverseString that takes a string as input and returns the string reversed.
-```
+    ```text
+    Write a function reverseString that takes a string as input and returns the string reversed.
+    ```
 
 #### Iterative prompt refinement
 
@@ -447,18 +448,18 @@ At this point, you will know how to use the user interface of Generative AI Hub 
 ### Questions for Discussion
 
 1. How can you configure and use the Chat feature in Generative AI Hub?
-<details><summary>Answer</summary>
-   To use the Chat feature in the Generative AI Hub, you first need to select a deployed model under Selected Model. You can then adjust parameters like Frequency Penalty to avoid repetition, Presence Penalty to encourage new topics, Max Tokens to control input/output size, and Temperature to control model creativity. You can also adjust the Chat Context to manage the history of the conversation and add a System Message to guide the model's behavior (e.g., make it speak like a pirate).
-   </details>
+    <details><summary>Answer</summary>
+      To use the Chat feature in the Generative AI Hub, you first need to select a deployed model under Selected Model. You can then adjust parameters like Frequency Penalty to avoid repetition, Presence Penalty to encourage new topics, Max Tokens to control input/output size, and Temperature to control model creativity. You can also adjust the Chat Context to manage the history of the conversation and add a System Message to guide the model's behavior (e.g., make it speak like a pirate).
+      </details>
 
 2. What is Prompt Engineering, and what are some techniques to try in SAP AI Launchpad?
-<details><summary>Answer</summary>
-Prompt Engineering is the practice of crafting prompts in a way that guides the model to produce the desired responses. Some common techniques include:
+    <details><summary>Answer</summary>
+    Prompt Engineering is the practice of crafting prompts in a way that guides the model to produce the desired responses. Some common techniques include:
 
-   - Zero shot: Asking a direct question without any examples (e.g., "The capital of the U.S. is:").
-   - Few shot: Providing a few examples before asking a question (e.g., "Germany - Berlin, France - Paris, U.S. -").
-   - Chain of thought: Structuring a series of steps for the model to follow (e.g., asking the model to identify important cities or countries in a structured format).
-</details>
+      - Zero shot: Asking a direct question without any examples (e.g., "The capital of the U.S. is:").
+      - Few shot: Providing a few examples before asking a question (e.g., "Germany - Berlin, France - Paris, U.S. -").
+      - Chain of thought: Structuring a series of steps for the model to follow (e.g., asking the model to identify important cities or countries in a structured format).
+    </details>
 
 ## Further reading
 
@@ -467,5 +468,3 @@ Prompt Engineering is the practice of crafting prompts in a way that guides the 
 - [This](https://developers.sap.com/tutorials/ai-core-generative-ai.html) is a good tutorial on how to prompt LLMs with Generative AI Hub.
 
 ---
-
-[Next exercise](../01-create-grounding-pipeline/readme.md)
