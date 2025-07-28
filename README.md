@@ -1,4 +1,4 @@
-# Build AI services using the SAP Cloud Application Programming Model, SAP AI Core and generative AI Hub
+# Build AI services using the SAP Cloud Application Programming Model, SAP AI Core and Generative AI Hub
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/codejam-cap-llm)](https://api.reuse.software/info/github.com/SAP-samples/codejam-cap-llm)
 
