@@ -10,16 +10,18 @@ In this exercise you will get a quick introduction to vector embeddings and you 
 
 ## Table of Contents
 
-- [What is a vector embedding?](#what-is-a-vector-embedding)
-- [Define a simple OData endpoint to trigger the creation of vector embeddings](#define-a-simple-odata-endpoint-to-trigger-the-creation-of-vector-embeddings)
-- [Implement the creation of vector embeddings](#implement-the-creation-of-vector-embeddings)
-- [Implement the creation of vector embedding entries](#implement-the-creation-of-vector-embedding-entries)
-- [Implement the insertion of the vector embedding entries](#implement-the-insertion-of-the-vector-embedding-entries)
-- [Implement the deletion for the vector embeddings](#implement-the-deletion-for-the-vector-embeddings)
-- [Create some vector embeddings](#create-some-vector-embeddings)
-- [Summary](#summary)
-  - [Questions for Discussion](#questions-for-discussion)
-- [Further reading](#further-reading)
+- [Exercise 05 - Create vector embeddings using an embedding model](#exercise-05---create-vector-embeddings-using-an-embedding-model)
+  - [Table of Contents](#table-of-contents)
+  - [What is a vector embedding?](#what-is-a-vector-embedding)
+  - [Define a simple OData endpoint to trigger the creation of vector embeddings](#define-a-simple-odata-endpoint-to-trigger-the-creation-of-vector-embeddings)
+  - [Implement the creation of vector embeddings](#implement-the-creation-of-vector-embeddings)
+  - [Implement the creation of vector embedding entries](#implement-the-creation-of-vector-embedding-entries)
+  - [Implement the insertion of the vector embedding entries](#implement-the-insertion-of-the-vector-embedding-entries)
+  - [Implement the deletion for the vector embeddings](#implement-the-deletion-for-the-vector-embeddings)
+  - [Create some vector embeddings](#create-some-vector-embeddings)
+  - [Summary](#summary)
+    - [Questions for Discussion](#questions-for-discussion)
+  - [Further reading](#further-reading)
 
 ## What is a vector embedding?
 
@@ -604,32 +606,32 @@ Congratulations! The call went through and apparently the vector embeddings were
 
 To inspect the database entries without the actual embeddings, you can use the running CAP service to call the `DocumentChunks` entity.
 If you want to inspect the actual embeddings use the `hana-cli` tool to do so.
-Try this step on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 05](../../exercises/05-define-db-schema/README.md) and check on the instructions.
+Try this step on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 04](../../exercises/04-define-db-schema/README.md) and check on the instructions.
 
 ### Questions for Discussion
 
 1. How are vector embeddings created in the SAP HANA Cloud system?
 
-<details><summary>Answer</summary>
-Vector embeddings are created using an embedding model, which can either be pre-trained or trained by the user. The process typically involves the following steps:
+    <details><summary>Answer</summary>
+    Vector embeddings are created using an embedding model, which can either be pre-trained or trained by the user. The process typically involves the following steps:
 
-- Load the unstructured data (e.g., text).
-- Split the text into meaningful chunks.
-- Feed these chunks into the embedding model to generate numerical vectors (embeddings).
-- Store the embeddings in the SAP HANA Cloud Vector Engine for later use.
+    - Load the unstructured data (e.g., text).
+    - Split the text into meaningful chunks.
+    - Feed these chunks into the embedding model to generate numerical vectors (embeddings).
+    - Store the embeddings in the SAP HANA Cloud Vector Engine for later use.
 
-</details>
+    </details>
 
 1. What are the two algorithms used to compare vector embeddings, and how do they differ?
 
-<details><summary>Answer</summary>
-The two algorithms used to compare vector embeddings are Euclidean Distance and Cosine Similarity.
+    <details><summary>Answer</summary>
+    The two algorithms used to compare vector embeddings are Euclidean Distance and Cosine Similarity.
 
-- **Euclidean Distance** measures the average linear distance between two vectors. The closer the vectors, the more similar they are.
+    - **Euclidean Distance** measures the average linear distance between two vectors. The closer the vectors, the more similar they are.
 
-- **Cosine Similarity** calculates the cosine of the angle between two vectors, resulting in a value between -1 and 1. A cosine similarity of 1 indicates complete similarity, while -1 means complete dissimilarity, and 0 indicates no relationship. These algorithms differ in how they compute the "distance" or "similarity" between vectors, with cosine similarity being more sensitive to the direction of the vector rather than the magnitude.
+    - **Cosine Similarity** calculates the cosine of the angle between two vectors, resulting in a value between -1 and 1. A cosine similarity of 1 indicates complete similarity, while -1 means complete dissimilarity, and 0 indicates no relationship. These algorithms differ in how they compute the "distance" or "similarity" between vectors, with cosine similarity being more sensitive to the direction of the vector rather than the magnitude.
 
-</details>
+    </details>
 
 ## Further reading
 
