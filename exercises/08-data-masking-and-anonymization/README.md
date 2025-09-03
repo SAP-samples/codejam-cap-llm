@@ -90,7 +90,7 @@ async function orchestrateJobPostingCreation(user_query) {
 
     let context = similarity_chunks.slice(0, 3).map((split) => split.text_chunk)
 
-    const filter = buildAzureContentFilter({ Hate: 4, Violence: 4 });
+    const filter = buildAzureContentSafetyFilter({ Hate: 4, Violence: 4 });
     const orchestrationClient = new OrchestrationClient(
       {
         llm: {
@@ -113,8 +113,12 @@ async function orchestrateJobPostingCreation(user_query) {
             ],
         },
         filtering: {
-          input: filter,
-          output: filter
+          input: {
+            filters: [filter],
+          },
+          output: {
+            filters: [filter],
+          },
         },
         masking: {
           masking_providers: [
