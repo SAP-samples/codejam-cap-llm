@@ -78,39 +78,53 @@ The implementation should look like this now:
 
 ```JavaScript
 async function orchestrateJobPostingCreation(user_query) {
+  console.log(user_query);
   try {
     const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
       maxRetries: 0,
-      resourceGroup: resourceGroup
+      resourceGroup: resourceGroup,
     });
 
     let embedding = await embeddingClient.embedQuery(user_query);
-    let similarity_chunks = await SELECT.from(DocumentChunks).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
+    let similarity_chunks = await SELECT.from(DocumentChunk).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(
+      embedding
+    )})) DESC`;
 
-    let context = similarity_chunks.slice(0, 3).map((split) => split.text_chunk)
+    let context = similarity_chunks.slice(0, 3).map((split) => split.text_chunk);
 
-    const filter = buildAzureContentSafetyFilter({ Hate: 4, Violence: 4 });
+    const filter = buildAzureContentSafetyFilter({
+      Hate: 'ALLOW_SAFE',
+      Violence: 'ALLOW_SAFE',
+      SelfHarm: 'ALLOW_SAFE',
+      Sexual: 'ALLOW_SAFE',
+    });
+
     const orchestrationClient = new OrchestrationClient(
       {
-        llm: {
-          model_name: chatModelName,
-          model_params: { max_tokens: 1000, temperature: 0.1 }
-        },
-        templating: {
-          template: [
+        promptTemplating: {
+          model: {
+            name: chatModelName,
+            params: {
+              max_tokens: 500,
+              temperature: 0.1
+            }
+          },
+          prompt: {
+            template: [
               {
                 role: 'system',
                 content: `You are an assistant for HR recruiter and manager.
-                You are receiving a user query to create a job posting for new hires.
-                Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
-                Consider all the input before responding.`,
+              You are receiving a user query to create a job posting for new hires.
+              Consider the given context when creating the job posting to include company relevant information like pay range and employee benefits.
+              Consider all the input before responding especially Recruiter information, Application deadline, Company Name, Location, Salary, Hiring Bonus and other benefits.`,
               },
               {
                 role: 'user',
                 content: `Question: {{?question}}, context information: ${context}`,
               },
             ],
+          },
         },
         filtering: {
           input: {
@@ -125,18 +139,19 @@ async function orchestrateJobPostingCreation(user_query) {
             {
               type: 'sap_data_privacy_integration',
               method: 'anonymization',
-              entities: [{ type: 'profile-email' }, { type: 'profile-person' }]
-            }
-          ]
-        }
+              entities: [{ type: 'profile-email' }, { type: 'profile-person' }],
+            },
+          ],
+        },
       },
       { resourceGroup: resourceGroup }
     );
-
-    const response = await orchestrationClient.chatCompletion();
-    console.log(
-      `Successfully executed chat completion. ${response.getContent()}`
-    );
+    console.log(orchestrationClient);
+    const response = await orchestrationClient.chatCompletion({
+      placeholderValues: { question: user_query }
+    });
+    console.log(response);
+    console.log(`Successfully executed chat completion. ${response.getContent()}`);
     return [user_query, response.getContent()];
   } catch (error) {
     console.log(
@@ -168,17 +183,17 @@ This exercise taught you how to apply data masking techniques, like anonymizatio
 
 1. What is the difference between anonymization and pseudonymization?
 
-    <details><summary>Answer</summary>
-    Anonymization is the process of completely removing or altering sensitive data, making it irreversible and unlinkable to any individual. This ensures compliance with privacy regulations like GDPR. The downside is that the data becomes irreversible, and you cannot restore the original information.
-    Pseudonymization, on the other hand, involves replacing identifiable information with artificial identifiers or pseudonyms. This allows you to map the pseudonyms back to the original data, ensuring that the information can still be restored if needed. However, pseudonymized data is still considered personal data and requires additional security measures.
+   <details><summary>Answer</summary>
+   Anonymization is the process of completely removing or altering sensitive data, making it irreversible and unlinkable to any individual. This ensures compliance with privacy regulations like GDPR. The downside is that the data becomes irreversible, and you cannot restore the original information.
+   Pseudonymization, on the other hand, involves replacing identifiable information with artificial identifiers or pseudonyms. This allows you to map the pseudonyms back to the original data, ensuring that the information can still be restored if needed. However, pseudonymized data is still considered personal data and requires additional security measures.
 
-    </details>
+   </details>
 
 1. How does the SAP Cloud SDK for AI orchestration API help with data masking?
 
-    <details><summary>Answer</summary>
-    The SAP Cloud SDK for AI orchestration API allows you to integrate data masking into your AI workflows by configuring the orchestration client to use a masking provider. In the exercise, pseudonymization is applied through the `sap_data_privacy_integration` masking provider, which replaces sensitive information like emails and names with pseudonyms before sending the data to the chat model. This ensures that personal data is not exposed to the model, while still allowing essential contextual information to be used.
-    </details>
+<details><summary>Answer</summary>
+The SAP Cloud SDK for AI orchestration API allows you to integrate data masking into your AI workflows by configuring the orchestration client to use a masking provider. In the exercise, pseudonymization is applied through the `sap_data_privacy_integration` masking provider, which replaces sensitive information like emails and names with pseudonyms before sending the data to the chat model. This ensures that personal data is not exposed to the model, while still allowing essential contextual information to be used.
+</details>
 
 ## Further Reading
 

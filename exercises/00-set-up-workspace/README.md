@@ -81,24 +81,23 @@ cds v
 You should see that the CDS development kit is installed. Depending on your workspace, you'll see slightly different output, but it should generally look something like this:
 
 ```text
+@sap/cds: 9.5.1
+@sap/cds-dk: 9.5.0
+@sap/cds-compiler: 6.5.0
+@sap/cds-dk (global): 9.2.0
+@sap/cds-fiori: 2.1.1
+@sap/cds-mtxs: 3.5.0
 @cap-js/asyncapi: 1.0.3
-@cap-js/db-service: 1.19.1
-@cap-js/openapi: 1.2.1
-@sap/cds: 8.9.1
-@sap/cds-compiler: 5.9.2
-@sap/cds-dk: 8.8.2
-@sap/cds-dk (global): 8.8.2
-@sap/cds-fiori: 1.4.1
-@sap/cds-foss: 5.0.1
-@sap/cds-mtxs: 2.7.1
-@sap/eslint-plugin-cds: 3.2.0
-Node.js: v22.13.1
-codejam-cap-llm: 1.0.0
-home: /extbin/globals/pnpm/5/.pnpm/@sap+cds@8.9.1_@eslint+js@9.24.0_express@4.21.2/node_modules/@sap/cds
+@cap-js/db-service: 2.7.0
+@cap-js/hana: 2.4.1
+@cap-js/openapi: 1.2.3
+@cap-js/sqlite: 2.1.0
+Node.js: v24.5.0
+home: /Users/Developer/GitHub/codejam-cap-llm/final-project/job-posting-service/node_modules/@sap/cds
 ```
 
 > In case `cds` is **not** installed, run the following command from the Terminal:
->
+
 ```bash
 npm i @sap/cds-dk -g
 ```
@@ -118,18 +117,16 @@ npm install
 You can double-check what's installed with `npm list`, which should show you something similar to this:
 
 ```text
-codejam-cap-llm@1.0.0 /Users/CoolDude/Developer/GitHub/codejams/codejam-cap-llm/job-posting-service
-├── @langchain/community@0.3.39
-├── @langchain/textsplitters@0.1.0
-├── @sap-ai-sdk/langchain@1.10.0
-├── @sap-ai-sdk/orchestration@1.10.0
-├── @sap-cloud-sdk/http-client@3.26.4
-├── @sap/cds-dk@8.9.1
-├── @sap/cds-hana@2.0.0
-├── @sap/cds@8.9.1
-├── cors@2.8.5
-├── dotenv@16.4.7
-└── eslint@9.24.0
+codejam-cap-llm@1.0.0 /Users/Developer/GitHub/codejam-cap-llm/final-project/job-posting-service
+├── @cap-js/hana@2.4.1
+├── @cap-js/sqlite@2.1.0
+├── @langchain/classic@1.0.5
+├── @sap-ai-sdk/langchain@2.3.0
+├── @sap-ai-sdk/orchestration@2.3.0
+├── @sap/cds-dk@9.5.0
+├── @sap/cds@9.5.1
+├── eslint@9.39.1
+└── langchain@1.1.3
 ```
 
 No worries, we will talk about these dependencies later.
@@ -140,10 +137,10 @@ At this point, you have an environment set up to work through the remaining exer
 
 ## Further reading
 
-* [Developing CAP in containers - three ways](https://qmacro.org/blog/posts/2024/01/15/developing-cap-in-containers-three-ways/)
-* [Developing inside a Container](https://code.visualstudio.com/docs/devcontainers/containers)
-* [Cloning repositories](https://help.sap.com/docs/SAP%20Business%20Application%20Studio/9d1db9835307451daa8c930fbd9ab264/7a68bfa7111b44f6b1e78b51e803238c.html) in SAP Business Application Studio
-* [The @sap/cds-dk package on NPM](https://www.npmjs.com/package/@sap/cds-dk)
+- [Developing CAP in containers - three ways](https://qmacro.org/blog/posts/2024/01/15/developing-cap-in-containers-three-ways/)
+- [Developing inside a Container](https://code.visualstudio.com/docs/devcontainers/containers)
+- [Cloning repositories](https://help.sap.com/docs/SAP%20Business%20Application%20Studio/9d1db9835307451daa8c930fbd9ab264/7a68bfa7111b44f6b1e78b51e803238c.html) in SAP Business Application Studio
+- [The @sap/cds-dk package on NPM](https://www.npmjs.com/package/@sap/cds-dk)
 
 ---
 

@@ -1,0 +1,171 @@
+### Job Posting Service - API Test Suite
+### This file can be used with the REST Client extension in VS Code
+
+@baseUrl = http://localhost:4004/odata/v4/job-posting
+
+###############################################################################
+# 1. Create Vector Embeddings (Unbound Action)
+###############################################################################
+
+### Create vector embeddings from grounding data
+# @name createEmbeddings
+POST {{baseUrl}}/createVectorEmbeddings
+Content-Type: application/json
+
+###############################################################################
+# 2. Read Entities (Standard CRUD)
+###############################################################################
+
+### Get all DocumentChunks (without embeddings)
+GET {{baseUrl}}/DocumentChunk
+Accept: application/json
+
+###
+
+### Get all JobPostings
+GET {{baseUrl}}/JobPosting
+Accept: application/json
+
+###
+
+### Get specific JobPosting by ID (replace with actual ID from create response)
+@jobPostingId = 550e8400-e29b-41d4-a716-446655440001
+GET {{baseUrl}}/JobPosting(ID={{jobPostingId}})
+Accept: application/json
+
+###############################################################################
+# 3. Create Job Posting (Unbound Action)
+###############################################################################
+
+### Create a job posting for Senior Developer
+# @name createSeniorDev
+POST {{baseUrl}}/createJobPosting
+Content-Type: application/json
+
+{
+  "user_query": "We need a Senior Developer with 5+ years experience in Node.js, React, and cloud platforms. Must have strong leadership skills."
+}
+
+###
+
+### Create a job posting for Data Scientist
+# @name createDataScientist
+POST {{baseUrl}}/createJobPosting
+Content-Type: application/json
+
+{
+  "user_query": "Looking for a Data Scientist with expertise in Python, machine learning, and statistical analysis. Experience with TensorFlow is a plus."
+}
+
+###
+
+### Create a job posting for AI Engineer
+# @name createAIEngineer
+POST {{baseUrl}}/createJobPosting
+Content-Type: application/json
+
+{
+  "user_query": "Seeking an AI Expert with deep knowledge in LLMs, NLP, and computer vision. Must have published research papers."
+}
+
+###
+
+### Create a job posting for Junior Developer
+# @name createJuniorDev
+POST {{baseUrl}}/createJobPosting
+Content-Type: application/json
+
+{
+  "user_query": "Junior Developer position available for recent graduates. We're looking for someone passionate about learning web development with React and Node.js."
+}
+
+###############################################################################
+# 4. Delete Specific Job Posting (Bound Action on Instance)
+###############################################################################
+
+### Delete a specific job posting (replace ID with actual value)
+@deleteJobId = 11d110a5-484a-4bc6-803a-870de78ab9b9
+POST {{baseUrl}}/JobPosting({{deleteJobId}})/deleteJobPosting()
+Content-Type: application/json
+
+###############################################################################
+# 5. Delete All Operations (Bound Actions on Collections)
+###############################################################################
+
+### Delete all job postings
+POST {{baseUrl}}/JobPosting/deleteAll
+Content-Type: application/json
+
+###
+
+### Delete all document chunks (vector embeddings)
+POST {{baseUrl}}/DocumentChunk/deleteAll
+Content-Type: application/json
+
+###############################################################################
+# 6. Complete Workflow Example
+###############################################################################
+
+### STEP 1: Create embeddings
+POST {{baseUrl}}/createVectorEmbeddings
+Content-Type: application/json
+
+###
+
+### STEP 2: Wait a moment for embeddings to be created, then create a job posting
+POST {{baseUrl}}/createJobPosting
+Content-Type: application/json
+
+{
+  "user_query": "Engineering Manager needed to lead a team of 8 developers. Must have 6+ years experience with 2+ years in management. Strong communication skills required."
+}
+
+###
+
+### STEP 3: Read all created job postings
+GET {{baseUrl}}/JobPosting
+Accept: application/json
+
+###
+
+### STEP 4: Read all document chunks (to verify embeddings were created)
+GET {{baseUrl}}/DocumentChunk
+Accept: application/json
+
+###############################################################################
+# 7. Error Testing
+###############################################################################
+
+### Test validation - missing required parameter
+POST {{baseUrl}}/createJobPosting
+Content-Type: application/json
+
+{
+  "user_query": ""
+}
+
+###
+
+### Test validation - no parameter at all
+POST {{baseUrl}}/createJobPosting
+Content-Type: application/json
+
+{}
+
+###
+
+### Test delete non-existent job posting
+POST {{baseUrl}}/JobPosting(00000000-0000-0000-0000-000000000000)/deleteJobPosting()
+Content-Type: application/json
+
+###############################################################################
+# Notes:
+###############################################################################
+# 
+# 1. Make sure the service is running: npm start or cds watch
+# 2. Update @baseUrl if your service runs on a different port
+# 3. After creating job postings, copy the ID from the response to test delete operations
+# 4. The REST Client extension will show response times and status codes
+# 5. You can click "Send Request" above each ### to execute individual requests
+#
+###############################################################################

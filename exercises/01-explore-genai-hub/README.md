@@ -36,27 +36,25 @@ With **Max Tokens**, you can set the size of the input and output of the model. 
 
 With the **Temperature** parameter you can set how creative the model should sound so flexible the model is allowed to be in selecting the next token in the sequence.
 
-For this workshop, you want to change the default model `mistralai--mistral-large-instruct (2407)` to `GPT-4o Mini`.
+For this workshop, you want to change the default model `mistralai--mistral-large-instruct (2407)` to `GPT-5-Mini`.
 
 👉 Click on the model.
 
 ![chat_change_model](assets/chat_change_model.png)
 
-👉 Select the `GPT-4o Mini` model.
+👉 Select the `GPT-5-Mini` model.
 
 ![chat_change_model_gpt](assets/chat_change_model_gpt.png)
 
-👉 Increase **Max Tokens** to the maximum amount by pulling the slide bar all the way to the right.
+In the **Chat Context** tab right under **Context History**, you can set the number of messages that should be send to the model.
 
 ![Chat 1/2](assets/chat.png)
 
-In the **Chat Context** tab right under **Context History**, you can set the number of messages that should be send to the model. So how much of the chat history should be provided as context to the model for each new request. You can add a **System Message** to describe the role or give more information of what is expected from the model. You can also provide example inputs and outputs.
+So how much of the chat history should be provided as context to the model for each new request. You can add a **System Message** to describe the role or give more information of what is expected from the model. You can also provide example inputs and outputs.
 
 ![Chat 2/2](assets/chat_2.png)
 
 👉 Save the configuration.
-
-![chat_change_model_gpt_save](assets/chat_change_model_gpt_save.png)
 
 ## Use the Prompt Editor in Generative AI Hub
 
@@ -122,24 +120,25 @@ At this point, you will know how to use the user interface of Generative AI Hub 
 
 ### Questions for Discussion
 
-1. How can you configure and use the Chat feature in Generative AI Hub?
-      <details><summary>Answer</summary>
-         To use the Chat feature in the Generative AI Hub, you first need to select a deployed model under Selected Model. You can then adjust parameters like Frequency Penalty to avoid repetition, Presence Penalty to encourage new topics, Max Tokens to control input/output size, and Temperature to control model creativity. You can also adjust the Chat Context to manage the history of the conversation and add a System Message to guide the model's behavior (e.g., make it speak like a pirate).
-         </details>
+1.  How can you configure and use the Chat feature in Generative AI Hub?
+<details><summary>Answer</summary>
+   To use the Chat feature in the Generative AI Hub, you first need to select a deployed model under Selected Model. You can then adjust parameters like Frequency Penalty to avoid repetition, Presence Penalty to encourage new topics, Max Tokens to control input/output size, and Temperature to control model creativity. You can also adjust the Chat Context to manage the history of the conversation and add a System Message to guide the model's behavior (e.g., make it speak like a pirate).
+   </details>
 
-2. What is Prompt Engineering, and what are some techniques to try in SAP AI Launchpad?
+2.  What is Prompt Engineering, and what are some techniques to try in SAP AI Launchpad?
       <details><summary>Answer</summary>
       Prompt Engineering is the practice of crafting prompts in a way that guides the model to produce the desired responses. Some common techniques include:
 
          - Zero shot: Asking a direct question without any examples (e.g., "The capital of the U.S. is:").
          - Few shot: Providing a few examples before asking a question (e.g., "Germany - Berlin, France - Paris, U.S. -").
          - Chain of thought: Structuring a series of steps for the model to follow (e.g., asking the model to identify important cities or countries in a structured format).
+
       </details>
 
-3. How can the Prompt Editor in SAP AI Launchpad help with storing and managing prompts?
-      <details><summary>Answer</summary>
-      The Prompt Editor allows you to save prompts and their responses for later use or comparison. It’s useful for tasks that require repeated use of the same prompt. You can save different versions of prompts, specify parameters like Max Tokens, and view the number of tokens used. For example, you can save a Chain of Thought prompt for customer support classification and reuse it in the future without retyping the prompt. Saved prompts can be managed under Prompt Management for easy access.
-      </details>
+3.  How can the Prompt Editor in SAP AI Launchpad help with storing and managing prompts?
+<details><summary>Answer</summary>
+The Prompt Editor allows you to save prompts and their responses for later use or comparison. It’s useful for tasks that require repeated use of the same prompt. You can save different versions of prompts, specify parameters like Max Tokens, and view the number of tokens used. For example, you can save a Chain of Thought prompt for customer support classification and reuse it in the future without retyping the prompt. Saved prompts can be managed under Prompt Management for easy access.
+</details>
 
 ## Further reading
 

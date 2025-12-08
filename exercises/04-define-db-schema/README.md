@@ -26,7 +26,7 @@ The `package.json` file includes all Node.js project-specific configurations lik
 
 👉 Open the `package.json` file.
 
-👉 Examine the dependencies. Notice that there is a dependency for `"@sap-ai-sdk/orchestration": "1.10.0"` and the `"@sap-ai-sdk/langchain": "1.10.0"`.
+👉 Examine the dependencies. Notice that there is a dependency for `"@sap-ai-sdk/orchestration": "2.3.0"` and the `"@sap-ai-sdk/langchain": "2.3.0"`.
 
 The SAP Cloud SDK for AI provides four different packages for you to use depending on your use case.
 
@@ -59,7 +59,7 @@ The `DocumentChunks` entity contains the text chunks, embeddings for the provide
 namespace sap.codejam;
 ```
 
-The namespace allows for better identification and provides uniqueness to the entities within that namespace. It also will cause the database table to be named `SAP_CODEJAM_<Entity Name>` in example `SAP_CODEJAM_DOCUMENTCHUNKS`.
+The namespace allows for better identification and provides uniqueness to the entities within that namespace. It also will cause the database table to be named `SAP_CODEJAM_<Entity Name>` in example `SAP_CODEJAM_DOCUMENTCHUNK`.
 
 👉 Right below, add the following line of code:
 
@@ -75,7 +75,7 @@ The entity should be managed, meaning it will utilize `cuid` to auto-generate a 
 👉 Add an entity to store job postings in the database. You will utilize this entity in a later exercise by using AI to generate job postings and store them in the corresponding table.
 
 ```cds
-entity JobPostings : cuid, managed {
+entity JobPosting : cuid, managed {
     user_query   : String;
     rag_response : String;
 }
@@ -86,10 +86,10 @@ The entity defines two fields:
 - `user_query`: Stores the incoming user query.
 - `rag_response` : Stores the response from the chat model.
 
-👉 Lastly, add the definition for the `DocumentChunks` entity. The entity is using the `managed` and `cuid` features from the `cds.common` package.
+👉 Lastly, add the definition for the `DocumentChunk` entity. The entity is using the `managed` and `cuid` features from the `cds.common` package.
 
 ```cds
-entity DocumentChunks : cuid, managed {
+entity DocumentChunk : cuid, managed {
     metadata    : LargeString;
     text_chunk : LargeString;
     embedding   : Vector(1536);
@@ -114,13 +114,13 @@ using {
     managed
 } from '@sap/cds/common';
 
-entity DocumentChunks : cuid, managed {
+entity DocumentChunk : cuid, managed {
     metadata   : LargeString;
     text_chunk : LargeString;
     embedding  : Vector(1536);
 }
 
-entity JobPostings : cuid, managed {
+entity JobPosting : cuid, managed {
     user_query   : String;
     rag_response : String;
 }
@@ -233,19 +233,20 @@ At this point, you have learned how to define a database schema using CDS, how t
 <details><summary>Answer</summary>
    To build and deploy the database schema to the HDI container, follow these steps:
 
-   1. Build the project with the command:
+1.  Build the project with the command:
 
-   ```bash
-   cds build --production
-   ```
+```bash
+cds build --production
+```
 
-   2. Deploy the database artifacts using:
+2.  Deploy the database artifacts using:
 
-   ```bash
-    cds deploy --to hana:<your-hdi-container-name> --auto-undeploy
-   ```
+```bash
+ cds deploy --to hana:<your-hdi-container-name> --auto-undeploy
+```
 
-   The `--auto-undeploy` flag ensures that the database is updated according to the new schema.
+The `--auto-undeploy` flag ensures that the database is updated according to the new schema.
+
    </details>
 
 3. How can you inspect the deployed database tables in your HDI container using the CLI?
@@ -253,19 +254,20 @@ At this point, you have learned how to define a database schema using CDS, how t
 <details><summary>Answer</summary>
    You can inspect the deployed database tables using the hana-cli tool. After installing it, follow these steps:
 
-   1. Run the command to view available tables::
+1.  Run the command to view available tables::
 
-   ```bash
-   hana-cli tables
-   ```
+```bash
+hana-cli tables
+```
 
-   2. To inspect a specific table, such as the DocumentChunks table, use:
+2.  To inspect a specific table, such as the DocumentChunks table, use:
 
-   ```bash
-    hana-cli inspectTable <Your-schema-name> SAP_CODEJAM_DOCUMENTCHUNKS
-   ```
+```bash
+ hana-cli inspectTable <Your-schema-name> SAP_CODEJAM_DOCUMENTCHUNKS
+```
 
-   This will display the schema and fields of the DocumentChunks table, allowing you to verify the deployment. You can also inspect the JobPostings table in a similar manner.
+This will display the schema and fields of the DocumentChunks table, allowing you to verify the deployment. You can also inspect the JobPostings table in a similar manner.
+
    </details>
 
 ## Further reading

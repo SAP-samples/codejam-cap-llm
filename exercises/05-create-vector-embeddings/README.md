@@ -51,7 +51,7 @@ You will define two OData endpoints in the provided cds file. These two endpoint
 
 👉 Open the `job-posting-service.cds` file from the `srv` folder.
 
-You want to expose the entities `DocumentChunks` as well as the `JobPostings` via your OData service. To do so, you need a reference to the schema definition.
+You want to expose the entities `DocumentChunk` as well as the `JobPosting` via your OData service. To do so, you need a reference to the schema definition.
 
 👉 Add the following line of code to create the reference to the schema definition:
 
@@ -67,31 +67,52 @@ service JobPostingService {
 }
 ```
 
-Within the service definition you want to expose the before-mentioned entities. The `DocumentChunks` entity has a field containing the actual embeddings. These embeddings are of type `cds.Vector`. The OData specification doesn't know the type `cds.Vector` and so can't expose it via the OData service. For some custom types defined by CDS it is possible to create a mapping to OData types, but not in this case. There is no corresponding OData type you could map `cds.Vector` to, that means you have to exclude this field from the OData service.
+Within the service definition you want to expose the before-mentioned entities. The `DocumentChunk` entity has a field containing the actual embeddings. These embeddings are of type `cds.Vector`. The OData specification doesn't know the type `cds.Vector` and so can't expose it via the OData service. For some custom types defined by CDS it is possible to create a mapping to OData types, but not in this case. There is no corresponding OData type you could map `cds.Vector` to, that means you have to exclude this field from the OData service.
 
-👉 Within the service definition, add an entity projection for `DocumentChunks`:
+👉 Within the service definition, add an entity projection for `DocumentChunk`:
 
 ```CDS
-entity DocumentChunks as
-      projection on db.DocumentChunks
+entity DocumentChunk as
+      projection on db.DocumentChunk
       excluding {
           embedding
       };
+      actions {
+          // Bound to collection - operates on all document chunks
+          action deleteAll(in: many $self) returns StatusResponse;
+      }
 ```
 
-👉 Right below the `DocumentChunks` entity, add a projection for the `JobPostings` entity:
+👉 Right below the `DocumentChunk` entity, add a projection for the `JobPosting` entity:
 
 ```CDS
-entity JobPostings as projection on db.JobPostings;
+entity JobPosting as projection on db.JobPosting;
 ```
 
-Great! You got both entities projected in the OData service. Now, you implement two OData functions in your service. One for creation and one for the deletion of vector embeddings.
+Great! You got both entities projected in the OData service. The bound actions are just there to be able to delete the entities if needed.
+Now, you implement two unbound actions in your service. One for creation of vector embeddings and one for the creation of job postings.
 
-👉 Add two function definitions right below the `JobPostings` entity projection:
+👉 Add an action definitions right below the `JobPosting` entity projection:
 
 ```CDS
-function createVectorEmbeddings()                   returns String;
-function deleteVectorEmbeddings()                   returns String;
+action createVectorEmbeddings()                      returns VectorEmbeddingResult;
+```
+
+Each of these actions return custom types which help to have a more structured return.
+Right below the first line in the file add the following types: `StatusResponse` and `VectorEmbeddingResult`
+
+```CDS
+// Type definitions for structured returns
+type StatusResponse {
+    success : Boolean;
+    message : String;
+}
+
+type VectorEmbeddingResult {
+    count   : Integer;
+    chunks  : Integer;
+    message : String;
+}
 ```
 
 The `job-posting-service.cds` should look like this now:
@@ -99,16 +120,40 @@ The `job-posting-service.cds` should look like this now:
 ```CDS
 using {sap.codejam as db} from '../db/schema';
 
+// Type definitions for structured returns
+type StatusResponse {
+    success : Boolean;
+    message : String;
+}
+
+type VectorEmbeddingResult {
+    count   : Integer;
+    chunks  : Integer;
+    message : String;
+}
+
 service JobPostingService {
-    entity DocumentChunks as
-        projection on db.DocumentChunks
+    entity DocumentChunk as
+        projection on db.DocumentChunk
         excluding {
             embedding
+        }
+        actions {
+            // Bound to collection - operates on all document chunks
+            action deleteAll(in: many $self) returns StatusResponse;
         };
 
-    entity JobPostings    as projection on db.JobPostings;
-    function createVectorEmbeddings()              returns String;
-    function deleteVectorEmbeddings()              returns String;
+    entity JobPosting    as projection on db.JobPosting
+        actions {
+            // Bound to specific instance - delete this job posting
+            action deleteJobPosting()        returns StatusResponse;
+            // Bound to collection - delete all job postings
+            action deleteAll(in: many $self) returns StatusResponse;
+        };
+
+    // Unbound actions for operations not tied to a specific entity
+    action createVectorEmbeddings()                      returns VectorEmbeddingResult;
+    action createJobPosting(user_query: String not null) returns JobPosting;
 }
 ```
 
@@ -116,7 +161,7 @@ service JobPostingService {
 
 To achieve a more clean code structure, you will implement most of the business logic in separate files achieving separation of concerns. The separation will be treated lightly, so you will only create two separate files, one for handling all AI relevant tasks, and one for handling all database related tasks. The project provides you with the two files that are currently empty: `AIHelper` and `DBUtils`.
 
-You will implement the function handlers, and you will call logic from within the `AIHelper` and the `DBUtils`. You will jump back and forth between these files to implement the needed business logic.
+You will implement the handlers, and you will call logic from within the `AIHelper` and the `DBUtils`. You will jump back and forth between these files to implement the needed business logic.
 
 The SDK uses ES6 for module loading which means that you need to export the function implementations differently compared to what you are used to using CAP. For this Codejam, you can simply use the `export default function()` approach.
 
@@ -129,6 +174,8 @@ import * as AIHelper from './helper/ai-helper.js';
 import * as DBUtils from './helper/db-utils.js';
 ```
 
+Let's implement the different handlers.
+
 👉 Add the following code block to the file:
 
 ```JavaScript
@@ -137,25 +184,27 @@ export default function () {
 }
 ```
 
-👉 In the code block add the following function handlers:
+👉 In the code block add the following handler for the creation of vector embeddings:
 
 ```JavaScript
 this.on('createVectorEmbeddings', async req => {
   // implementation goes here
 });
 
-this.on('deleteVectorEmbeddings', async req => {
-  // implementation goes here
-});
 ```
 
-👉 In the `createVectorEmbeddings()` function, implement the following lines of code calling the creation of the vector embeddings from the `AIHelper` and store the result from this call in the database.
+👉 In the `createVectorEmbeddings()` handler, implement the following lines of code calling the creation of the vector embeddings from the `AIHelper` and store the result from this call in the database.
 
 ```JavaScript
 const embeddings = await AIHelper.createVectorEmbeddings();
 const embeddingEntries = await DBUtils.createEmbeddingEntries(embeddings);
 await DBUtils.insertVectorEmbeddings(embeddingEntries);
-return 'Vector embeddings created and stored in database';
+
+return {
+    count: embeddingEntries.length,
+    chunks: embeddingEntries.length,
+    message: 'Vector embeddings created and stored in database'
+};
 ```
 
 Your function should look like this now:
@@ -165,21 +214,25 @@ this.on('createVectorEmbeddings', async () => {
     const embeddings = await AIHelper.createVectorEmbeddings();
     const embeddingEntries = await DBUtils.createEmbeddingEntries(embeddings);
     await DBUtils.insertVectorEmbeddings(embeddingEntries);
-    return 'Vector embeddings created and stored in database';
-  });
+
+    return {
+      count: embeddingEntries.length,
+      chunks: embeddingEntries.length,
+      message: 'Vector embeddings created and stored in database'
+    };
+});
 ```
 
-👉 Implement the `deleteVectorEmbeddings` next:
+👉 Implement the `deleteAll` bound action on the Document Chunk entity next:
 
 ```JavaScript
-return await DBUtils.deleteVectorEmbeddings();
-```
+this.on('deleteAll', 'DocumentChunk', async (req) => {
+  const result = await DBUtils.deleteVectorEmbeddings();
 
-The function should look like this now:
-
-```JavaScript
-this.on('deleteVectorEmbeddings', async () => {
-  return await DBUtils.deleteVectorEmbeddings();
+  return {
+    success: true,
+    message: result
+  };
 });
 ```
 
@@ -194,16 +247,26 @@ export default function () {
     const embeddings = await AIHelper.createVectorEmbeddings();
     const embeddingEntries = await DBUtils.createEmbeddingEntries(embeddings);
     await DBUtils.insertVectorEmbeddings(embeddingEntries);
-    return 'Vector embeddings created and stored in database';
+
+    return {
+      count: embeddingEntries.length,
+      chunks: embeddingEntries.length,
+      message: 'Vector embeddings created and stored in database'
+    };
   });
 
-  this.on('deleteVectorEmbeddings', async () => {
-    return await DBUtils.deleteVectorEmbeddings();
+  this.on('deleteAll', 'DocumentChunk', async (req) => {
+    const result = await DBUtils.deleteVectorEmbeddings();
+
+    return {
+      success: true,
+      message: result
+    };
   });
 }
 ```
 
-This code won't execute as of now, because the corresponding functions are not defined nor implemented in the AIHelper and DBUtils. You will do this now.
+This code won't execute as of now, because the corresponding functions are not defined nor implemented in the `AIHelper` and `DBUtils`. You will do this now.
 
 👉 Open the `ai-helper.js` file from the `srv/helper` folder.
 
@@ -231,12 +294,19 @@ You define the embedding model's name in a constant because you will use the nam
 const resourceGroup = 'CAP-AI-Codejam';
 ```
 
+> FOR TODAY'S WORKSHOP USE THE FOLLOWING INSTEAD:
+
+```JavaScript
+const resourceGroup_embedding = 'CAP-AI-Codejam';
+const resourceGroup = 'Object-Store-AI-Resource-Group';
+```
+
 To create vector embeddings, you need to read the contextual information file which in your case is a text document.
 
 👉 Import a text loader from lanchain to read the needed document from file:
 
 ```JavaScript
-import { TextLoader } from 'langchain/document_loaders/fs/text';
+import { TextLoader } from '@langchain/classic/document_loaders/fs/text';
 ```
 
 👉 Import a text splitter for splitting up the text document into meaningful chunks for the embedding model to process into vector embeddings:
@@ -397,10 +467,10 @@ const { INSERT, DELETE } = cds.ql;
 👉 Add the following line of code to make the database entities available to you:
 
 ```JavaScript
-const { JobPostings, DocumentChunks } = cds.entities;
+const { JobPosting, DocumentChunk } = cds.entities;
 ```
 
-To make your code easier to read, you will seperate the functionality of creating the embedding entries and the insertion to the database. You will utilize the `DocumentChunks` entity you have defined above to create the JSON object for database insertion.
+To make your code easier to read, you will seperate the functionality of creating the embedding entries and the insertion to the database. You will utilize the `DocumentChunk` entity you have defined above to create the JSON object for database insertion.
 
 👉 Define the `createEmbeddingEntries()` function:
 
@@ -454,7 +524,7 @@ export function createEmbeddingEntries([embeddings, splitDocuments]) {
 
 ## Implement the insertion of the vector embedding entries
 
-The insertion into the database is simple. You use the CAP CQL syntax to insert all entries to the `DocumentChunks` table.
+The insertion into the database is simple. You use the CAP CQL syntax to insert all entries to the `DocumentChunk` table.
 
 👉 Create the function `insertVectorEmbeddings` first:
 
@@ -474,7 +544,7 @@ export async function insertVectorEmbeddings(embeddingEntries) {
 👉 Create the code the database insertion within the try block:
 
 ```JavaScript
-await INSERT.into(DocumentChunks).entries(embeddingEntries);
+await INSERT.into(DocumentChunk).entries(embeddingEntries);
 
 return `Embeddings inserted successfully to table.`;
 ```
@@ -484,7 +554,7 @@ The `insertVectorEmbeddings` should look like this now:
 ```JavaScript
 export async function insertVectorEmbeddings(embeddingEntries) {
   try {
-    await INSERT.into(DocumentChunks).entries(embeddingEntries);
+    await INSERT.into(DocumentChunk).entries(embeddingEntries);
 
     return `Embeddings inserted successfully to table.`;
   } catch (error) {
@@ -517,7 +587,7 @@ export async function deleteVectorEmbeddings() {
 👉 Within the `try` block add the following code:
 
 ```JavaScript
-await DELETE.from(DocumentChunks);
+await DELETE.from(DocumentChunk);
 return 'Successfully deleted Document Chunks!';
 ```
 
@@ -526,7 +596,7 @@ The `deleteVectorEmbeddings` should look like this now:
 ```JavaScript
 export async function deleteVectorEmbeddings() {
   try {
-    await DELETE.from(DocumentChunks);
+    await DELETE.from(DocumentChunk);
     return 'Successfully deleted Document Chunks!';
   } catch (error) {
     console.log(
@@ -612,26 +682,26 @@ Try this step on your own to use the CLI tool to check the database entries. If 
 
 1. How are vector embeddings created in the SAP HANA Cloud system?
 
-    <details><summary>Answer</summary>
-    Vector embeddings are created using an embedding model, which can either be pre-trained or trained by the user. The process typically involves the following steps:
+   <details><summary>Answer</summary>
+   Vector embeddings are created using an embedding model, which can either be pre-trained or trained by the user. The process typically involves the following steps:
 
-    - Load the unstructured data (e.g., text).
-    - Split the text into meaningful chunks.
-    - Feed these chunks into the embedding model to generate numerical vectors (embeddings).
-    - Store the embeddings in the SAP HANA Cloud Vector Engine for later use.
+   - Load the unstructured data (e.g., text).
+   - Split the text into meaningful chunks.
+   - Feed these chunks into the embedding model to generate numerical vectors (embeddings).
+   - Store the embeddings in the SAP HANA Cloud Vector Engine for later use.
 
-    </details>
+   </details>
 
 1. What are the two algorithms used to compare vector embeddings, and how do they differ?
 
-    <details><summary>Answer</summary>
-    The two algorithms used to compare vector embeddings are Euclidean Distance and Cosine Similarity.
+   <details><summary>Answer</summary>
+   The two algorithms used to compare vector embeddings are Euclidean Distance and Cosine Similarity.
 
-    - **Euclidean Distance** measures the average linear distance between two vectors. The closer the vectors, the more similar they are.
+   - **Euclidean Distance** measures the average linear distance between two vectors. The closer the vectors, the more similar they are.
 
-    - **Cosine Similarity** calculates the cosine of the angle between two vectors, resulting in a value between -1 and 1. A cosine similarity of 1 indicates complete similarity, while -1 means complete dissimilarity, and 0 indicates no relationship. These algorithms differ in how they compute the "distance" or "similarity" between vectors, with cosine similarity being more sensitive to the direction of the vector rather than the magnitude.
+   - **Cosine Similarity** calculates the cosine of the angle between two vectors, resulting in a value between -1 and 1. A cosine similarity of 1 indicates complete similarity, while -1 means complete dissimilarity, and 0 indicates no relationship. These algorithms differ in how they compute the "distance" or "similarity" between vectors, with cosine similarity being more sensitive to the direction of the vector rather than the magnitude.
 
-    </details>
+   </details>
 
 ## Further reading
 

@@ -25,7 +25,7 @@ The job posting service is responsible for the creation and deletion of job post
 👉 Below the `JobPostings` projection add the `createJobPosting` function:
 
 ```CDS
-function createJobPosting(user_query : String) returns String;
+action createJobPosting(user_query: String not null) returns JobPosting;
 ```
 
 This function takes a `user_query` parameter, which represents the user's input to the chat model. The function returns a String that is simply a error or success message.
@@ -40,11 +40,15 @@ In this CodeJam, you are using the orchestration client to make the RAG flow as 
 
 Now, let's add additional functions to make it possible to delete job postings.
 
-👉 Right below the last function definition, add the `deleteJobPosting` and `deleteJobPostings` functions:
+👉 Right below the `JobPosting` entity projection, add the `deleteJobPosting` and `deleteAll` actions:
 
 ```CDS
-function deleteJobPosting(id : String) returns String;
-function deleteJobPostings() returns String;
+actions {
+  // Bound to specific instance - delete this job posting
+  action deleteJobPosting()        returns StatusResponse;
+  // Bound to collection - delete all job postings
+  action deleteAll(in: many $self) returns StatusResponse;
+};
 ```
 
 ## Summary
@@ -57,15 +61,15 @@ In the next exercise, you will implement the business logic, the function handle
 
 1. What is the purpose of the `createJobPosting` function in the CDS definition?
 
-    <details><summary>Answer</summary>
-    The `createJobPosting` function is responsible for creating a job posting by taking a `user_query` (which is the user input to the chat model) as its parameter. It interacts with SAP generative AI Hub to process the query and let the proxy chat model generate a job posting. The creation process involves a Retrieval-Augmented Generation (RAG) flow, which helps in generating the job posting content based on contextual information provided by you.
-    </details>
+<details><summary>Answer</summary>
+The `createJobPosting` function is responsible for creating a job posting by taking a `user_query` (which is the user input to the chat model) as its parameter. It interacts with SAP generative AI Hub to process the query and let the proxy chat model generate a job posting. The creation process involves a Retrieval-Augmented Generation (RAG) flow, which helps in generating the job posting content based on contextual information provided by you.
+</details>
 
 1. What are the benefits of using the orchestration service or Langchain package in this exercise?
 
-    <details><summary>Answer</summary>
-    The orchestration service simplifies the interaction with SAP’s AI models by providing a high-level workflow for handling chat and embedding models. It allows you to define the interaction flow in a more managed way. Alternatively, the Langchain package gives more control and flexibility by wrapping Langchain APIs and adding features that help easily connect and interact with SAP AI solutions. It allows you to dive deeper into the AI functionality while still benefiting from the integration features offered by the SAP Cloud SDK for AI.
-    </details>
+<details><summary>Answer</summary>
+The orchestration service simplifies the interaction with SAP’s AI models by providing a high-level workflow for handling chat and embedding models. It allows you to define the interaction flow in a more managed way. Alternatively, the Langchain package gives more control and flexibility by wrapping Langchain APIs and adding features that help easily connect and interact with SAP AI solutions. It allows you to dive deeper into the AI functionality while still benefiting from the integration features offered by the SAP Cloud SDK for AI.
+</details>
 
 ## Further reading
 
