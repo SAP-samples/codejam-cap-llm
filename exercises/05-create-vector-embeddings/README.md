@@ -294,13 +294,6 @@ You define the embedding model's name in a constant because you will use the nam
 const resourceGroup = 'CAP-AI-Codejam';
 ```
 
-> FOR TODAY'S WORKSHOP USE THE FOLLOWING INSTEAD:
-
-```JavaScript
-const resourceGroup_embedding = 'CAP-AI-Codejam';
-const resourceGroup = 'Object-Store-AI-Resource-Group';
-```
-
 To create vector embeddings, you need to read the contextual information file which in your case is a text document.
 
 👉 Import a text loader from lanchain to read the needed document from file:
