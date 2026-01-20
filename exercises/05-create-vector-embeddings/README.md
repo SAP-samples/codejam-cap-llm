@@ -153,7 +153,6 @@ service JobPostingService {
 
     // Unbound actions for operations not tied to a specific entity
     action createVectorEmbeddings()                      returns VectorEmbeddingResult;
-    action createJobPosting(user_query: String not null) returns JobPosting;
 }
 ```
 
