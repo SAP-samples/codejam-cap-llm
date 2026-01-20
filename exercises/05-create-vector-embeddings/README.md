@@ -76,7 +76,7 @@ entity DocumentChunk as
       projection on db.DocumentChunk
       excluding {
           embedding
-      };
+      }
       actions {
           // Bound to collection - operates on all document chunks
           action deleteAll(in: many $self) returns StatusResponse;
