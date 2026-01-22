@@ -10,11 +10,9 @@ import cds from '@sap/cds';
 const { DocumentChunk } = cds.entities;
 const { SELECT } = cds.ql;
 
-// const chatModelName = 'gpt-5-mini';
-const chatModelName = 'gpt-4.1';
+const chatModelName = 'gpt-5-mini';
 const embeddingModelName = 'text-embedding-3-small';
-const resourceGroup_embedding = 'CAP-AI-Codejam';
-const resourceGroup = 'Object-Store-AI-Resource-Group';
+const resourceGroup = 'CAP-AI-Codejam';
 
 async function createVectorEmbeddings() {
   try {
@@ -37,7 +35,7 @@ async function createVectorEmbeddings() {
     const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
       maxRetries: 0,
-      resourceGroup: resourceGroup_embedding,
+      resourceGroup: resourceGroup,
     });
     const embeddings = await embeddingClient.embedDocuments(textSplits);
 
@@ -57,7 +55,7 @@ async function orchestrateJobPostingCreation(user_query) {
     const embeddingClient = new AzureOpenAiEmbeddingClient({
       modelName: embeddingModelName,
       maxRetries: 0,
-      resourceGroup: resourceGroup_embedding,
+      resourceGroup: resourceGroup,
     });
 
     let embedding = await embeddingClient.embedQuery(user_query);
@@ -81,7 +79,7 @@ async function orchestrateJobPostingCreation(user_query) {
             name: chatModelName,
             params: {
               max_tokens: 500,
-              temperature: 0.1
+              temperature: 1
             }
           },
           prompt: {
