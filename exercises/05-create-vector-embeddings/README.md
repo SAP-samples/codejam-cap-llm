@@ -491,7 +491,7 @@ for (const [index, embedding] of embeddings.entries()) {
   }
 ```
 
-👉 As last line of the `insertVectorEmbeddings` return the embedding entry list:
+👉 As last line of the `createEmbeddingEntries` return the embedding entry list:
 
 ```JavaScript
 return embeddingEntries;
