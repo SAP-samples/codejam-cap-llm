@@ -155,6 +155,8 @@ cds build --production
 
 > In case you forgot your HDI container name, you can simply call `cf services` to get a list of all available service instances including your HDI container.
 
+> Hint: Replace everything between <> including the <> symbol.
+
 ```bash
 cds deploy --to hana:<use-your-own-HDI-container-name > --auto-undeploy
 ```
@@ -167,50 +169,6 @@ You will see a large terminal output listing the different steps of the building
 ![define-db-schema-deployment](./assets/04-define-db-schema-deploy.png)
 
 Great! The database is initialized, and the table with all necessary fields is created.
-
-## Examine the database table
-
-There are multiple ways of viewing your database artifacts on SAP HANA Cloud. One would be to use the **SAP HANA Database Explorer** and, of course, the CLI if you don't want to use the UI. If you are interested in using the **SAP HANA Database Explorer**, you will find a tutorial in the **Further Reading** section. You should use the CLI today because it is faster. `#TheFutureIsTerminal`
-
-You have to install the [hana-cli](https://github.com/SAP-samples/hana-developer-cli-tool-example?tab=readme-ov-file#requirements--download-and-installation) first.
-
-👉 Open a new terminal or use an existing one.
-
-👉 Run the install command:
-
-```bash
-npm install -g hana-cli
-```
-
-> Note that you install the HANA CLI globally here. You can always install the CLI for the project only and remmove the `-g` argument. If you want to use the HANA CLI in multiple projects it makes sense to install it globally.
-
-👉 Enter the `hana-cli help` command to get a list of all available commands:
-
-```bash
-hana-cli help
-```
-
-👉 To get a list of all available tables within your HDI container you can execute the following command:
-
-```bash
-hana-cli tables
-```
-
-![define-db-schema-list-tables](./assets/05-define-db-schema-list-tables.png)
-
-From the response, you can extract the schema name and the table name. You will use the information to fetch all information about that table. Be aware, sometimes if you copy the schema and table name from the previous CLI response it might add special characters which are not part of the name. You need to delete them.
-
-👉 Enter the following command to list the table information:
-
-```bash
-hana-cli inspectTable <your-schema-name> SAP_CODEJAM_DOCUMENTCHUNKS
-```
-
-![define-db-schema-inspect-table](./assets/06-define-db-schema-inspect-table.png)
-
-You can see all created fields as defined in the [schema.cds](../../project/cap-documentation-ai-helper/db/schema.cds). Notice that it also has all the fields from the `managed` feature from the `cds.common` package.
-
-👉 Go ahead and try inspecting the job postings table.
 
 ## Summary
 

@@ -624,6 +624,8 @@ cds build --production
 
 Deploy the database schema delta to your HDI container again. This will ensure that the service will adjust according to your new service definition. CAP is auto-resolving names for tables out of the service and schema context. Because you have defined the service just now, you need to do a delta deployment:
 
+> Hint: Replace everything between <> including the <> symbol.
+
 ```bash
 cds deploy --to hana:<use-your-hdi-container-name> --auto-undeploy
 ```
@@ -638,29 +640,17 @@ cds watch --profile hybrid
 
 Look at the console output! You can tell that it is running your project on localhost but also using the `cdsrc-private.json` to look up the binding to your HDI container within the SAP HANA Cloud instance. This look up is being used to establish a connection to the database.
 
-👉 Open the localhost in a browser or use the prompt in Business Application Studio to directly open landing page.
+To test your new OData API, open the `test-api.http` file. This file contains all OData endpoints with already prefilled examples for you to test your services. This is a common testing approach when developing CAP applications.
 
-![01_localhost.png](./assets/01_localhost.png)
+👉 Open the `test-api.http` file.
 
-From there you could access the database tables but you will see they are currently empty.
+👉 Execute the `POST {{baseUrl}}/createVectorEmbeddings` call using the `Send request` link.
 
-You can use the URL to call your OData function handler for creating the vector embeddings.
+You can now see that the request gets send to your locally running service and a new window should open showing you the result.
 
-👉 You can call the `createVectorEmbeddings()` from the CAP provided service landing page in your Browser.
+With the vector embeddings created, inspect the entries in your database.
 
-👉 Take a look at the console output. You can tell that the connection to AI Core has been established.
-
-![02_ai_core_connection.png](./assets/02_ai_core_connection.png)
-
-👉 Take a look at your browser window. You can see the success message you have implemented.
-
-![03_success.png](./assets/03_success.png)
-
-👉 You can go back to the `localhost:4004` service landing page and click on the `DocumentChunks` entity to load all entries from the database table.
-
-![01_localhost.png](./assets/01_localhost.png)
-
-![04_localhost_document_chunks.png](./assets/04_localhost_document_chunks.png)
+👉 Execute the `GET {{baseUrl}}/DocumentChunk` call using the `Send request` link.
 
 ## Summary
 

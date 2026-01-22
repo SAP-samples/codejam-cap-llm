@@ -75,11 +75,15 @@ For this CodeJam each of you will create their own HDI container.
 
 Use the Cloud Foundry CLI to create your HDI container **(replace the placeholder with a meaningful name like using your initials, e.g. KR-HDI)**:
 
+> Hint: Replace everything between <> including the <> symbol.
+
 ```bash
 cf create-service hana hdi-shared <define-your-own-hdi-container-name>
 ```
 
 Creating the HDI container takes some time. You can monitor the process using the following command:
+
+> Hint: Replace everything between <> including the <> symbol.
 
 ```bash
 cf service <use-your-own-hdi-container-name>
@@ -101,7 +105,9 @@ You can use the CDS CLI to bind your application to the SAP HANA Schemas & HDI C
 
 👉 Open a new terminal if not already open.
 
-👉 Create a binding for your CAP application **(replace the placeholder of the hdi container with the container name previously set:
+👉 Create a binding for your CAP application \*\*(replace the placeholder of the hdi container with the container name previously set:
+
+> Hint: Replace everything between <> including the <> symbol.
 
 ```bash
 cds bind -2 <use-your-own-hdi-container-name>
@@ -116,36 +122,36 @@ At this point, you have learned what the SAP HANA Cloud Vector Engine is, how ve
 ### Questions for Discussion
 
 1. What are vector embeddings and how do they work with the SAP HANA Cloud Vector Engine?
-    <details><summary>Answer</summary>
-      Vector embeddings are mathematical representations that encode objects into a multi-dimensional vector space. They capture relationships and similarities between different objects. The SAP HANA Cloud Vector Engine facilitates the storage, analysis, and comparison of complex and unstructured vector data (embeddings).
-      </details>
+<details><summary>Answer</summary>
+  Vector embeddings are mathematical representations that encode objects into a multi-dimensional vector space. They capture relationships and similarities between different objects. The SAP HANA Cloud Vector Engine facilitates the storage, analysis, and comparison of complex and unstructured vector data (embeddings).
+  </details>
 
 2. How can you enable the SAP HANA Cloud Vector Engine in your SAP BTP environment?
-    <details><summary>Answer</summary>
-    The SAP HANA Cloud Vector Engine comes bundled with SAP HANA Cloud on the SAP Business Technology Platform.
-    </details>
+<details><summary>Answer</summary>
+The SAP HANA Cloud Vector Engine comes bundled with SAP HANA Cloud on the SAP Business Technology Platform.
+</details>
 
 3. How do you configure your CAP application for SAP HANA deployment?
-    <details><summary>Answer</summary>
-    To configure your CAP application for SAP HANA deployment, you can run the command:
+   <details><summary>Answer</summary>
+   To configure your CAP application for SAP HANA deployment, you can run the command:
 
-    ```bash
-    cds add hana --for hybrid
-    ```
+   ```bash
+   cds add hana --for hybrid
+   ```
 
-    </details>
+   </details>
 
 4. What is the purpose of creating an HDI container for HANA deployment, and how do you do it?
-    <details><summary>Answer</summary>
-    An HDI (HANA Deployment Infrastructure) container is a secure storage container for database artifacts like tables and views in SAP HANA Cloud. Each CAP application can use its own HDI container to store and read data from the HANA databaase. To create an HDI container, you can use the Cloud Foundry CLI.
+   <details><summary>Answer</summary>
+   An HDI (HANA Deployment Infrastructure) container is a secure storage container for database artifacts like tables and views in SAP HANA Cloud. Each CAP application can use its own HDI container to store and read data from the HANA databaase. To create an HDI container, you can use the Cloud Foundry CLI.
 
-    ```bash
-    cf create-service hana hdi-shared <your-hdi-container-name>
-    ```
+   ```bash
+   cf create-service hana hdi-shared <your-hdi-container-name>
+   ```
 
-    After the container is created, you can bind it to your CAP application to allow it to interact with the SAP HANA database.
+   After the container is created, you can bind it to your CAP application to allow it to interact with the SAP HANA database.
 
-    </details>
+   </details>
 
 ## Further reading
 

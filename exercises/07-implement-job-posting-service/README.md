@@ -481,37 +481,13 @@ async function orchestrateJobPostingCreation(user_query) {
 
 I would encourage you to at least test the API endpoint once.
 
-```text
-/odata/v4/job-posting/createJobPosting(user_query='Create a job posting for a Senior Developer for the company AwesomeTech Inc')
-```
-
-The full URL should look something like this (depending on if you run it via BAS or locally):
-
-```text
--- BAS
-
-https://port4004-workspaces-ws-l2nzh.eu10.applicationstudio.cloud.sap/odata/v4/job-posting/createJobPosting(user_query='Create%20a%20job%20posting%20for%20a%20Senior%20Developer%20for%20the%20company%20AwesomeTech%20inc')
-
--- Locally
-
-http://localhost:4004/odata/v4/job-posting/createJobPosting(user_query='Create%20a%20job%20posting%20for%20a%20Senior%20Developer%20for%20the%20company%20AwesomeTech%20inc')
-```
-
-Instead of testing it through the browser, it is easier to use the `test-api.http` file. Within that file the possible calls are maintained and you can test them directly from within the file.
+Test it using the `test-api.http` file. Within that file the possible calls are maintained and you can test them directly from within the file.
 
 ## Check the database table for job postings
 
 Use the learned technics to inspect the entries in the Job Postings table.
 
 If you run the `cds watch` command, or if you still have the `localhost` open, you can click on the `Job Postings` entity to load all entries from the database and display them in a JSON format.
-
-You can also use the URL directly:
-
-```bash
-/odata/v4/job-posting/JobPostings
-```
-
-![01-job-posting-listings](./assets/01-job-posting-listings.png)
 
 Feel free to experiment with different queries to see what happens. As you can see in the screenshot, the second posting as `SAP` as the company name filled in. This is because the company name was provided in the query.
 
