@@ -85,7 +85,7 @@ Content-Type: application/json
 
 ### Delete a specific job posting (replace ID with actual value)
 @deleteJobId = 11d110a5-484a-4bc6-803a-870de78ab9b9
-POST {{baseUrl}}/JobPosting({{deleteJobId}})/deleteJobPosting()
+POST {{baseUrl}}/JobPosting({{deleteJobId}})/deleteJobPosting
 Content-Type: application/json
 
 ###############################################################################
@@ -155,7 +155,7 @@ Content-Type: application/json
 ###
 
 ### Test delete non-existent job posting
-POST {{baseUrl}}/JobPosting(00000000-0000-0000-0000-000000000000)/deleteJobPosting()
+POST {{baseUrl}}/JobPosting(00000000-0000-0000-0000-000000000000)/deleteJobPosting
 Content-Type: application/json
 
 ###############################################################################
