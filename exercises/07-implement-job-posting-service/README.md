@@ -484,7 +484,7 @@ async function orchestrateJobPostingCreation(user_query) {
 
 👉 Open the [db-utils.js](../../project/job-posting-service/srv/helper/db-utils.js) file.
 
-👉 Add the following lines of code to the top of the file as these functions **createJobPosting**, **insertJobPosting** and **deleteJobPosting** are being called from **job-posting-service.js**(../../project/job-posting-service/srv/job-posting-service.js) file.
+👉 Add the following lines of code to the top of the file as these function implementations **createJobPosting**, **insertJobPosting** and **deleteJobPosting** are used in the **job-posting-service.js**(../../project/job-posting-service/srv/job-posting-service.js) file to create, insert and delete job postings.
 
 ```JavaScript
 
