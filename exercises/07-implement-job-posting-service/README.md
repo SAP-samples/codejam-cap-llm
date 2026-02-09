@@ -479,9 +479,51 @@ async function orchestrateJobPostingCreation(user_query) {
 }
 ```
 
+
+## Implement insertion and deletion of Job Postings
+
+👉 Open the [db-utils.js](../../project/job-posting-service/srv/helper/db-utils.js) file.
+
+👉 Add the following lines of code to the top of the file as these functions **createJobPosting**, **insertJobPosting** and **deleteJobPosting** are being called from **job-posting-service.js**(../../project/job-posting-service/srv/job-posting-service.js) file.
+
+```JavaScript
+
+export function createJobPosting([userQuery, ragResponse]) {
+  const entry = {
+    user_query: userQuery,
+    rag_response: ragResponse,
+  };
+  return entry;
+}
+
+export async function insertJobPosting(jobPosting) {
+  try {
+    await INSERT.into(JobPosting).entries(jobPosting);
+    return 'Job Posting inserted successfully to table.';
+  } catch (error) {
+    console.log(`Error while storing the Job Posting to SAP HANA Cloud. \n Error: ${error.response}`);
+    throw error;
+  }
+}
+
+export async function deleteJobPosting(withID) {
+  try {
+    await DELETE.from(JobPosting).where(JobPosting.id == withID);
+    return `Successfully deleted Job Posting with ID: ${withID}`;
+  } catch (error) {
+    console.log(`Error while deleting Job Posting with ID: ${withID} because: \n Error: ${error.response}`);
+    throw error;
+  }
+}
+
+```
+
+## Try out your new API
+
 I would encourage you to at least test the API endpoint once.
 
 Test it using the `test-api.http` file. Within that file the possible calls are maintained and you can test them directly from within the file.
+
 
 ## Check the database table for job postings
 
