@@ -164,7 +164,7 @@ With the input validation in place, you can go ahead and implement the RAG flow.
 1. A user inputs a query describing what kind of job posting should be created.
 2. Your OData service takes the input and passes it through to the OData function handler for the RAG execution.
 3. The user query needs to be sent to an embedding client to get a vector for that user query. This is required to execute the similarity search on the already embedded vector embeddings in the SAP HANA Cloud Vector Engine. You will use the cosine similarity algorithm.
-4. A chat client establishes a connection to a specific chat model; for this Codejam, you will use the `gpt-4o-mini`.
+4. A chat client establishes a connection to a specific chat model; for this Codejam, you will use the `GPT-5-Mini`.
 5. The vector of the user query together with the textual user query, is sent to the chat model using a template giving extra context.
 6. The chat model processes the request and returns a response to your client.
 7. The response gets passed to the `DBUtils` to create a new database entry.
@@ -552,7 +552,7 @@ In this exercise, you implemented the job posting service and its OData function
 1. What is the main purpose of the `orchestrateJobPostingCreation` function in the implementation?
 
 <details><summary>Answer</summary>
-The `orchestrateJobPostingCreation` function handles the RAG flow for creating job postings. It takes a user query, creates a vector embedding for it using the `text-embedding-3-small` model, retrieves the most relevant context from the database using cosine similarity, and sends the user query along with the contextual information to a chat model (`gpt-4o-mini`). The response from the chat model is then returned and stored in the database as a new job posting.
+The `orchestrateJobPostingCreation` function handles the RAG flow for creating job postings. It takes a user query, creates a vector embedding for it using the `text-embedding-3-small` model, retrieves the most relevant context from the database using cosine similarity, and sends the user query along with the contextual information to a chat model (`gpt-5-mini`). The response from the chat model is then returned and stored in the database as a new job posting.
 </details>
 
 ## Further Reading

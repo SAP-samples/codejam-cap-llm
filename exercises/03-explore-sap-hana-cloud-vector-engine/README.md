@@ -73,20 +73,20 @@ The profile `hybrid` relates to the hybrid testing scenario, which allows you to
 
 For this CodeJam each of you will create their own HDI container.
 
-Use the Cloud Foundry CLI to create your HDI container **(replace the placeholder with a meaningful name like using your initials, e.g. KR-HDI)**:
+Use the Cloud Foundry CLI to create your HDI container
 
-> Hint: Replace everything between <> including the <> symbol.
+> Hint: Replace "XXX" with your initials.
 
 ```bash
-cf create-service hana hdi-shared <define-your-own-hdi-container-name>
+cf create-service hana hdi-shared cap-ai-codejam-hdi-XXX
 ```
 
 Creating the HDI container takes some time. You can monitor the process using the following command:
 
-> Hint: Replace everything between <> including the <> symbol.
+> Hint: Replace "XXX" with your initials.
 
 ```bash
-cf service <use-your-own-hdi-container-name>
+cf service cap-ai-codejam-hdi-XXX
 ```
 
 ![explore-sap-hana-cloud-vector-engine-create-hdi-instance](./assets/04-explore-sap-hana-cloud-vector-engine-create-hdi-instance.png)
@@ -105,12 +105,12 @@ You can use the CDS CLI to bind your application to the SAP HANA Schemas & HDI C
 
 👉 Open a new terminal if not already open.
 
-👉 Create a binding for your CAP application \*\*(replace the placeholder of the hdi container with the container name previously set:
+👉 Create a binding for your CAP application (replace the name of the hdi container with the container name previously set)
 
-> Hint: Replace everything between <> including the <> symbol.
+> Hint: Replace "XXX" with your initials.
 
 ```bash
-cds bind -2 <use-your-own-hdi-container-name>
+cds bind -2 cap-ai-codejam-hdi-XXX
 ```
 
 ![explore-sap-hana-cloud-vector-engine-binding-config](./assets/02-explore-sap-hana-cloud-vector-engine-binding-config.png)
@@ -146,7 +146,7 @@ The SAP HANA Cloud Vector Engine comes bundled with SAP HANA Cloud on the SAP Bu
    An HDI (HANA Deployment Infrastructure) container is a secure storage container for database artifacts like tables and views in SAP HANA Cloud. Each CAP application can use its own HDI container to store and read data from the HANA databaase. To create an HDI container, you can use the Cloud Foundry CLI.
 
    ```bash
-   cf create-service hana hdi-shared <your-hdi-container-name>
+   cf create-service hana hdi-shared cap-ai-codejam-hdi-XXX
    ```
 
    After the container is created, you can bind it to your CAP application to allow it to interact with the SAP HANA database.
