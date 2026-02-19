@@ -155,10 +155,10 @@ cds build --production
 
 > In case you forgot your HDI container name, you can simply call `cf services` to get a list of all available service instances including your HDI container.
 
-> Hint: Replace everything between <> including the <> symbol.
+> Hint: Replace "XXX" with your initials.
 
 ```bash
-cds deploy --to hana:<use-your-own-HDI-container-name > --auto-undeploy
+cds deploy --to hana:cap-ai-codejam-hdi-XXX --auto-undeploy
 ```
 
 The `--auto-undeploy` argument causes the database to adjust to the new runtime definition of your database artifacts.
