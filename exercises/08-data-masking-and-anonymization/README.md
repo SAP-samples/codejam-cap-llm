@@ -106,8 +106,7 @@ async function orchestrateJobPostingCreation(user_query) {
           model: {
             name: chatModelName,
             params: {
-              max_tokens: 500,
-              temperature: 0.1
+              max_tokens: 500
             }
           },
           prompt: {
