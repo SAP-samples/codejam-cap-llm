@@ -73,9 +73,9 @@ The orchestration service simplifies the interaction with SAP’s AI models by p
 
 ## Further reading
 
-- [CAP Service Integration CodeJam](https://github.com/SAP-samples/cap-service-integration-codejam)
-- [Back to Basics with SAP Cloud Application Programming Model(CAP) - YouTube](https://youtube.com/playlist?list=PL6RpkC85SLQABOpzhd7WI-hMpy99PxUo0&si=V9Rqcbg84UGLQOi-)
-- [Providing Services - CAP Documentation](https://cap.cloud.sap/docs/guides/providing-services#providing-services)
+- <a href="https://github.com/SAP-samples/cap-service-integration-codejam" target="_blank">CAP Service Integration CodeJam</a>
+- <a href="https://youtube.com/playlist?list=PL6RpkC85SLQABOpzhd7WI-hMpy99PxUo0&si=V9Rqcbg84UGLQOi-" target="_blank">Back to Basics with SAP Cloud Application Programming Model(CAP) - YouTube</a>
+- <a href="https://cap.cloud.sap/docs/guides/providing-services#providing-services" target="_blank">Providing Services - CAP Documentation</a>
 
 ---
 

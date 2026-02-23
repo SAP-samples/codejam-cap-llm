@@ -30,10 +30,10 @@ The `package.json` file includes all Node.js project-specific configurations lik
 
 The SAP Cloud SDK for AI provides four different packages for you to use depending on your use case.
 
-- **[@sap-ai-sdk/orchestration](https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdkorchestration)**: The orchestration package incorporates generative AI orchestration capabilities into your AI activities in SAP AI Core and SAP AI Launchpad.
-- **[@sap-ai-sdk/langchain](https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdklangchain)**: The langchain package provides LangChain model clients, built on top of the foundation model clients of the SAP Cloud SDK for AI.
-- **[@sap-ai-sdk/foundation-models](https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdkfoundation-models)**: The foundation models package incorporates generative AI foundation models into your AI activities in SAP AI Core and SAP AI Launchpad.
-- **[@sap-ai-sdk/ai-api](https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdkai-api)**: The AI SDK API package provides tools to manage your scenarios and workflows in SAP AI Core.
+- <a href="https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdkorchestration" target="_blank">**@sap-ai-sdk/orchestration**</a>: The orchestration package incorporates generative AI orchestration capabilities into your AI activities in SAP AI Core and SAP AI Launchpad.
+- <a href="https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdklangchain" target="_blank">**@sap-ai-sdk/langchain**</a>: The langchain package provides LangChain model clients, built on top of the foundation model clients of the SAP Cloud SDK for AI.
+- <a href="https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdkfoundation-models" target="_blank">**@sap-ai-sdk/foundation-models**</a>: The foundation models package incorporates generative AI foundation models into your AI activities in SAP AI Core and SAP AI Launchpad.
+- <a href="https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdkai-api" target="_blank">**@sap-ai-sdk/ai-api**</a>: The AI SDK API package provides tools to manage your scenarios and workflows in SAP AI Core.
 
 In addition, the `package.json` allows you to define run scripts a sort of alias for more complex commands.
 
@@ -230,9 +230,9 @@ This will display the schema and fields of the DocumentChunks table, allowing yo
 
 ## Further reading
 
-- [hana-cli commands](https://github.com/SAP-samples/hana-developer-cli-tool-example?tab=readme-ov-file#commands)
-- [Deploying to SAP HANA](https://cap.cloud.sap/docs/guides/databases-hana#deploying-to-sap-hana)
-- [Deploy to SAP HANA - Tutorial](https://developers.sap.com/tutorials/hana-cloud-deploying..html)
+- <a href="https://github.com/SAP-samples/hana-developer-cli-tool-example?tab=readme-ov-file#commands" target="_blank">hana-cli commands</a>
+- <a href="https://cap.cloud.sap/docs/guides/databases-hana#deploying-to-sap-hana" target="_blank">Deploying to SAP HANA</a>
+- <a href="https://developers.sap.com/tutorials/hana-cloud-deploying..html" target="_blank">Deploy to SAP HANA - Tutorial</a>
 
 ---
 

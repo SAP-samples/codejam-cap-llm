@@ -666,7 +666,6 @@ Try this step on your own to use the CLI tool to check the database entries. If 
 
    <details><summary>Answer</summary>
    Vector embeddings are created using an embedding model, which can either be pre-trained or trained by the user. The process typically involves the following steps:
-
    - Load the unstructured data (e.g., text).
    - Split the text into meaningful chunks.
    - Feed these chunks into the embedding model to generate numerical vectors (embeddings).
@@ -678,7 +677,6 @@ Try this step on your own to use the CLI tool to check the database entries. If 
 
    <details><summary>Answer</summary>
    The two algorithms used to compare vector embeddings are Euclidean Distance and Cosine Similarity.
-
    - **Euclidean Distance** measures the average linear distance between two vectors. The closer the vectors, the more similar they are.
 
    - **Cosine Similarity** calculates the cosine of the angle between two vectors, resulting in a value between -1 and 1. A cosine similarity of 1 indicates complete similarity, while -1 means complete dissimilarity, and 0 indicates no relationship. These algorithms differ in how they compute the "distance" or "similarity" between vectors, with cosine similarity being more sensitive to the direction of the vector rather than the magnitude.
@@ -687,9 +685,9 @@ Try this step on your own to use the CLI tool to check the database entries. If 
 
 ## Further reading
 
-- [SAP Cloud SDK for AI](https://github.com/SAP/ai-sdk-js)
-- [SAP Cloud Application Programming Model - Documentation](https://cap.cloud.sap/docs/)
-- [CAP & Vector Embeddings](https://cap.cloud.sap/docs/guides/databases-hana#vector-embeddings)
+- <a href="https://github.com/SAP/ai-sdk-js" target="_blank">SAP Cloud SDK for AI</a>
+- <a href="https://cap.cloud.sap/docs/" target="_blank">SAP Cloud Application Programming Model - Documentation</a>
+- <a href="https://cap.cloud.sap/docs/guides/databases-hana#vector-embeddings" target="_blank">CAP & Vector Embeddings</a>
 
 ---
 

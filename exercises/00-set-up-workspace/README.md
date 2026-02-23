@@ -6,16 +6,18 @@ At the end of this exercise, you'll have an environment to work in for the durat
 
 ## Table of Contents
 
-- [Set up the environment and clone this repository](#set-up-the-environment-and-clone-this-repository)
-  - [Primary environment: A Dev Space in the SAP Business Application Studio](#primary-environment-a-dev-space-in-the-sap-business-application-studio)
-    - [Create a Dev Space](#create-a-dev-space)
-    - [Clone this repository](#clone-this-repository)
-  - [Alternative environment: VS Code and a container image](#alternative-environment-vs-code-and-a-container-image)
-- [Navigate to the project folder](#navigate-to-the-project-folder)
-- [Check the installation of the CDS development kit](#check-the-installation-of-the-cds-development-kit)
-- [Install the NPM package dependencies](#install-the-npm-package-dependencies)
-- [Summary](#summary)
-- [Further reading](#further-reading)
+- [Exercise 00 - Set up your workspace](#exercise-00---set-up-your-workspace)
+  - [Table of Contents](#table-of-contents)
+  - [Set up the environment and clone this repository](#set-up-the-environment-and-clone-this-repository)
+    - [Primary environment: A Dev Space in the SAP Business Application Studio](#primary-environment-a-dev-space-in-the-sap-business-application-studio)
+      - [Create a Dev Space](#create-a-dev-space)
+      - [Clone this repository](#clone-this-repository)
+    - [Alternative environment: VS Code and a container image](#alternative-environment-vs-code-and-a-container-image)
+  - [Navigate to the project folder](#navigate-to-the-project-folder)
+  - [Check the installation of the CDS development kit](#check-the-installation-of-the-cds-development-kit)
+  - [Install the NPM package dependencies](#install-the-npm-package-dependencies)
+  - [Summary](#summary)
+  - [Further reading](#further-reading)
 
 ## Set up the environment and clone this repository
 
@@ -27,7 +29,7 @@ Follow one of the two subsections here, as appropriate: either for a [primary en
 
 #### Create a Dev Space
 
-👉 Via this [link](https://cap-ai-codejam-op6zhda1.us10cf.applicationstudio.cloud.sap/index.html) to the SAP Business Application Studio, create a new Dev Space, choosing the **Full Stack Cloud Application** type, ensure to select **SAP HANA Tools**, and if **SAP HANA Database Explorer** gets selected as well this is not a problem:
+👉 Via this <a href="https://cap-ai-codejam-op6zhda1.us10cf.applicationstudio.cloud.sap/index.html" target="_blank">link</a> to the SAP Business Application Studio, create a new Dev Space, choosing the **Full Stack Cloud Application** type, ensure to select **SAP HANA Tools**, and if **SAP HANA Database Explorer** gets selected as well this is not a problem:
 
 ![Setting_up_a_dev_space](assets/create-full-stack-cloud-application-dev-space.png)
 
@@ -137,10 +139,10 @@ At this point, you have an environment set up to work through the remaining exer
 
 ## Further reading
 
-- [Developing CAP in containers - three ways](https://qmacro.org/blog/posts/2024/01/15/developing-cap-in-containers-three-ways/)
-- [Developing inside a Container](https://code.visualstudio.com/docs/devcontainers/containers)
-- [Cloning repositories](https://help.sap.com/docs/SAP%20Business%20Application%20Studio/9d1db9835307451daa8c930fbd9ab264/7a68bfa7111b44f6b1e78b51e803238c.html) in SAP Business Application Studio
-- [The @sap/cds-dk package on NPM](https://www.npmjs.com/package/@sap/cds-dk)
+- <a href="https://qmacro.org/blog/posts/2024/01/15/developing-cap-in-containers-three-ways/" target="_blank">Developing CAP in containers - three ways</a>
+- <a href="https://code.visualstudio.com/docs/devcontainers/containers" target="_blank">Developing inside a Container</a>
+- <a href="https://help.sap.com/docs/SAP%20Business%20Application%20Studio/9d1db9835307451daa8c930fbd9ab264/7a68bfa7111b44f6b1e78b51e803238c.html" target="_blank">Cloning repositories</a> in SAP Business Application Studio
+- <a href="https://www.npmjs.com/package/@sap/cds-dk" target="_blank">The @sap/cds-dk package on NPM</a>
 
 ---
 

@@ -155,17 +155,14 @@ The SAP HANA Cloud Vector Engine comes bundled with SAP HANA Cloud on the SAP Bu
 
 ## Further reading
 
-- [RAG with SAP HANA Cloud Vector Engine, GenAI Hub & CAP](https://community.sap.com/t5/technology-blogs-by-sap/rag-with-sap-hana-cloud-vector-engine-genai-hub-amp-cap/ba-p/13700459)
-- [SAP HANA Cloud Vector Engine: Quick FAQ Reference](https://community.sap.com/t5/technology-blogs-by-sap/sap-hana-cloud-vector-engine-quick-faq-reference/ba-p/13675212)
-- [SAP HANA Vector Engine and LangChain](https://community.sap.com/t5/technology-blogs-by-sap/hana-vector-engine-and-langchain/ba-p/13636959)
-- [Retrieval Augmented Generation and Generative AI on SAP BTP
-  ](https://discovery-center.cloud.sap/refArchDetail/ref-arch-open-ai)
-- [Harnessing Generative AI Capabilities with SAP HANA Cloud Vector Engine
-  ](https://discovery-center.cloud.sap/missiondetail/4405/4691/?tab=overview)
-- [SAP HANA Cloud, SAP HANA Database Vector Engine Guide](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine-guide/sap-hana-cloud-sap-hana-database-vector-engine-guide?locale=en-US)
-- [Start your free trial of SAP HANA Cloud](https://www.sap.com/products/technology-platform/hana/trial.html)
-- [Using SAP HANA Cloud for Production
-  ](https://cap.cloud.sap/docs/guides/databases-hana)
+- <a href="https://community.sap.com/t5/technology-blogs-by-sap/rag-with-sap-hana-cloud-vector-engine-genai-hub-amp-cap/ba-p/13700459" target="_blank">RAG with SAP HANA Cloud Vector Engine, GenAI Hub & CAP</a>
+- <a href="https://community.sap.com/t5/technology-blogs-by-sap/sap-hana-cloud-vector-engine-quick-faq-reference/ba-p/13675212" target="_blank">SAP HANA Cloud Vector Engine: Quick FAQ Reference</a>
+- <a href="https://community.sap.com/t5/technology-blogs-by-sap/hana-vector-engine-and-langchain/ba-p/13636959" target="_blank">SAP HANA Vector Engine and LangChain</a>
+- <a href="https://discovery-center.cloud.sap/refArchDetail/ref-arch-open-ai" target="_blank">Retrieval Augmented Generation and Generative AI on SAP BTP</a>
+- <a href="https://discovery-center.cloud.sap/missiondetail/4405/4691/?tab=overview" target="_blank">Harnessing Generative AI Capabilities with SAP HANA Cloud Vector Engine</a>
+- <a href="https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine-guide/sap-hana-cloud-sap-hana-database-vector-engine-guide?locale=en-US" target="_blank">SAP HANA Cloud, SAP HANA Database Vector Engine Guide</a>
+- <a href="https://www.sap.com/products/technology-platform/hana/trial.html" target="_blank">Start your free trial of SAP HANA Cloud</a>
+- <a href="https://cap.cloud.sap/docs/guides/databases-hana" target="_blank">Using SAP HANA Cloud for Production</a>
 
 ---
 

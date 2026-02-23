@@ -196,10 +196,10 @@ The SAP Cloud SDK for AI orchestration API allows you to integrate data masking 
 
 ## Further Reading
 
-- [Data Masking using Orchestration Client - Sample Code](https://github.com/SAP/ai-sdk-js/blob/f0d290f76b4abb813088f50bedf18a8a4e97187f/sample-code/src/orchestration.ts#L231)
-- [Data Masking - SAP Cloud SDK for AI](https://github.com/SAP/ai-sdk-js/blob/main/packages/orchestration/README.md#data-masking)
-- [Data Masking - SAP AI Launchpad documentation](https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/data-masking?locale=en-US&q=data+masking)
-- [Data Masking - Generative AI Hub documentation](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/data-masking?locale=en-US&q=data+masking)
+- <a href="https://github.com/SAP/ai-sdk-js/blob/f0d290f76b4abb813088f50bedf18a8a4e97187f/sample-code/src/orchestration.ts#L231" target="_blank">Data Masking using Orchestration Client - Sample Code</a>
+- <a href="https://github.com/SAP/ai-sdk-js/blob/main/packages/orchestration/README.md#data-masking" target="_blank">Data Masking - SAP Cloud SDK for AI</a>
+- <a href="https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/data-masking?locale=en-US&q=data+masking" target="_blank">Data Masking - SAP AI Launchpad documentation</a>
+- <a href="https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/data-masking?locale=en-US&q=data+masking" target="_blank">Data Masking - Generative AI Hub documentation</a>
 
 ---
 

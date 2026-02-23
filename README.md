@@ -66,25 +66,27 @@ You can find a list of frequently asked questions in the [Frequently Asked Quest
 ## Further Learning on AI
 
 ### YouTube Videos
-- [What are AI Agents?](https://www.youtube.com/watch?v=bWYA8S54T14)
-- [SAP Business AI: Explore AI Across Your Business](https://youtube.com/playlist?list=PL3ZRUb1AKkpTarpiocxrL3JKnX8Da6YCB&si=Ck8wuB78GmbV3MUA)
-- [2 Minutes of AI@SAP](https://youtube.com/playlist?list=PL6RpkC85SLQD3XOnWmm_sMC3_Ks_KWy3V&si=LxNeGj8zXCc46eR9)
-- [SAP Business AI - SAP Developers](https://youtube.com/playlist?list=PL6RpkC85SLQCDxe58RfZaLCcPqcgwTIhj&si=DyZn64TF_oYyuOrY)
-- [Transformers (how LLMs work) explained visually | DL5 by 3Blue1Brown](https://www.youtube.com/watch?v=wjZofJX0v4M)
-- [But what is a neural network? | Deep learning chapter 1](https://www.youtube.com/watch?v=aircAruvnKk)
+
+- <a href="https://www.youtube.com/watch?v=bWYA8S54T14" target="_blank">What are AI Agents?</a>
+- <a href="https://youtube.com/playlist?list=PL3ZRUb1AKkpTarpiocxrL3JKnX8Da6YCB&si=Ck8wuB78GmbV3MUA" target="_blank">SAP Business AI: Explore AI Across Your Business</a>
+- <a href="https://youtube.com/playlist?list=PL6RpkC85SLQD3XOnWmm_sMC3_Ks_KWy3V&si=LxNeGj8zXCc46eR9" target="_blank">2 Minutes of AI@SAP</a>
+- <a href="https://youtube.com/playlist?list=PL6RpkC85SLQCDxe58RfZaLCcPqcgwTIhj&si=DyZn64TF_oYyuOrY" target="_blank">SAP Business AI - SAP Developers</a>
+- <a href="https://www.youtube.com/watch?v=wjZofJX0v4M" target="_blank">Transformers (how LLMs work) explained visually | DL5 by 3Blue1Brown</a>
+- <a href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank">But what is a neural network? | Deep learning chapter 1</a>
 
 ### Learning
-- [SAP Business AI - learning.sap.com](https://learning.sap.com/search?query=SAP+Business+AI&page=1&access=free)
+
+- <a href="https://learning.sap.com/search?query=SAP+Business+AI&page=1&access=free" target="_blank">SAP Business AI - learning.sap.com</a>
 
 ### Customer & Partner projects
 
-- [SAP Content Discovery - Artificial Intelligence](https://content-discovery.int.sap/asset-explore/57a1f804-c7aa-454d-9bde-7eb67872f034/product-sub-categories_3937994e-19f8-4db9-901d-eb9db5b45c85?contentCategoryIds=CUSTOMER_REFERENCE&categoryItemIds=product-sub-categories_3937994e-19f8-4db9-901d-eb9db5b45c85)
+- <a href="https://content-discovery.int.sap/asset-explore/57a1f804-c7aa-454d-9bde-7eb67872f034/product-sub-categories_3937994e-19f8-4db9-901d-eb9db5b45c85?contentCategoryIds=CUSTOMER_REFERENCE&categoryItemIds=product-sub-categories_3937994e-19f8-4db9-901d-eb9db5b45c85" target="_blank">SAP Content Discovery - Artificial Intelligence</a>
 
 ## Feedback
 
 If you can spare a couple of minutes at the end of the session, please provide feedback to help us improve next time.
 
-Use this [Give feedback](https://github.com/SAP-samples/codejam-cap-llm/issues/new?assignees=&labels=feedback&template=session-feedback-template.md&title=Session%20Feedback) link to create a special "feedback" issue, and follow the instructions in there.
+Use this <a href="https://github.com/SAP-samples/codejam-cap-llm/issues/new?assignees=&labels=feedback&template=session-feedback-template.md&title=Session%20Feedback" target="_blank">Give feedback</a> link to create a special "feedback" issue, and follow the instructions in there.
 
 Thank you!
 
@@ -92,17 +94,17 @@ Thank you!
 
 ### CodeJam repositories
 
-- [Service integration with SAP Cloud Application Programming Model](https://github.com/SAP-samples/cap-service-integration-codejam)
-- [CodeJam - Getting Started with Machine Learning using SAP HANA and Python](https://github.com/SAP-samples/hana-ml-py-codejam)
-- [Hands-on with the btp CLI and APIs](https://github.com/SAP-samples/cloud-btp-cli-api-codejam)
-- [CodeJam - Combine SAP Cloud Application Programming Model with SAP HANA Cloud to Create Full-Stack Applications](https://github.com/SAP-samples/cap-hana-exercises-codejam)
-- [All CodeJams in one list](https://github.com/orgs/SAP-samples/repositories?language=&q=Codejam&sort=&type=all)
+- <a href="https://github.com/SAP-samples/cap-service-integration-codejam" target="_blank">Service integration with SAP Cloud Application Programming Model</a>
+- <a href="https://github.com/SAP-samples/hana-ml-py-codejam" target="_blank">CodeJam - Getting Started with Machine Learning using SAP HANA and Python</a>
+- <a href="https://github.com/SAP-samples/cloud-btp-cli-api-codejam" target="_blank">Hands-on with the btp CLI and APIs</a>
+- <a href="https://github.com/SAP-samples/cap-hana-exercises-codejam" target="_blank">CodeJam - Combine SAP Cloud Application Programming Model with SAP HANA Cloud to Create Full-Stack Applications</a>
+- <a href="https://github.com/orgs/SAP-samples/repositories?language=&q=Codejam&sort=&type=all" target="_blank">All CodeJams in one list</a>
 
 ### CodeJam Community
 
-- [SAP CodeJam Events](https://community.sap.com/t5/sap-codejam/eb-p/codejam-events)
-- [SAP CodeJam Community](https://community.sap.com/t5/sap-codejam/gh-p/code-jam)
-- [SAP CodeJam Discussions](https://community.sap.com/t5/sap-codejam-discussions/bd-p/code-jamforum-board)
+- <a href="https://community.sap.com/t5/sap-codejam/eb-p/codejam-events" target="_blank">SAP CodeJam Events</a>
+- <a href="https://community.sap.com/t5/sap-codejam/gh-p/code-jam" target="_blank">SAP CodeJam Community</a>
+- <a href="https://community.sap.com/t5/sap-codejam-discussions/bd-p/code-jamforum-board" target="_blank">SAP CodeJam Discussions</a>
 
 ## Acknowledgements
 

@@ -16,7 +16,7 @@ You can access your deployed models either using the Python SDK, the SAP Cloud S
 
 ## Use the Chat in Generative AI Hub
 
-👉 Open the [SAP AI Launchpad](https://cap-ai-codejam-op6zhda1.ai-launchpad.prod.us-east-1.aws.ai-prod.cloud.sap/aic/index.html).
+👉 Open the <a href="https://cap-ai-codejam-op6zhda1.ai-launchpad.prod.us-east-1.aws.ai-prod.cloud.sap/aic/index.html" target="_blank">SAP AI Launchpad</a>.
 
 👉 Select the `CAP-AI-CodeJam` resource group under workspaces. A blue indicator shows you if the resource group is properly selected.
 
@@ -142,9 +142,9 @@ The Prompt Editor allows you to save prompts and their responses for later use o
 
 ## Further reading
 
-- [Generative AI Hub on SAP AI Core - Help Portal (Documentation)](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/generative-ai-hub-in-sap-ai-core-7db524ee75e74bf8b50c167951fe34a5)
-- [This](https://www.promptingguide.ai/) is a good recourse if you want to know more about prompt engineering.
-- [This](https://developers.sap.com/tutorials/ai-core-generative-ai.html) is a good tutorial on how to prompt LLMs with Generative AI Hub.
+- <a href="https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/generative-ai-hub-in-sap-ai-core-7db524ee75e74bf8b50c167951fe34a5" target="_blank">Generative AI Hub on SAP AI Core - Help Portal (Documentation)</a>
+- <a href="https://www.promptingguide.ai/" target="_blank">This</a> is a good recourse if you want to know more about prompt engineering.
+- <a href="https://developers.sap.com/tutorials/ai-core-generative-ai.html" target="_blank">This</a> is a good tutorial on how to prompt LLMs with Generative AI Hub.
 
 ---
 

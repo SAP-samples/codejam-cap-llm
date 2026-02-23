@@ -351,7 +351,7 @@ const orchestrationClient = new OrchestrationClient(
 
 A message to a chat model requires a couple of information. First of all, you need to specify if you are sending an user message or a system message. In your case, you are constructing a system message with the general instructions for the LLM. You add the result of the cosine similarity search to the instructions for the model to give a better response. To the user, this additional information is hidden so they can focus on their request. The user query itself is being sent with the user profile to the LLM.
 
-The client is defined to connect to the `GPT-5-Mini` using a template describing what you want the chat model to do including the user query. Finally you define strict rules for the content filter. The service is not tolerating any inappropriate or discriminating language which is of utmost importance! Take a look at the official documentation to understand content filters and learn more about levels of severity: [Azure AI Content Filtering](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new).
+The client is defined to connect to the `GPT-5-Mini` using a template describing what you want the chat model to do including the user query. Finally you define strict rules for the content filter. The service is not tolerating any inappropriate or discriminating language which is of utmost importance! Take a look at the official documentation to understand content filters and learn more about levels of severity: <a href="https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new" target="_blank">Azure AI Content Filtering</a>.
 
 The levels available are:
 
@@ -477,7 +477,6 @@ async function orchestrateJobPostingCreation(user_query) {
 }
 ```
 
-
 ## Implement insertion and deletion of Job Postings
 
 👉 Open the [db-utils.js](../../project/job-posting-service/srv/helper/db-utils.js) file.
@@ -522,7 +521,6 @@ I would encourage you to at least test the API endpoint once.
 
 Test it using the `test-api.http` file. Within that file the possible calls are maintained and you can test them directly from within the file.
 
-
 ## Check the database table for job postings
 
 Use the learned technics to inspect the entries in the Job Postings table.
@@ -539,7 +537,7 @@ At this point, I would encourage you to go back to the service implementation an
 
 For example, you can send a user query asking the model to create a Job Posting which should include words like `stupid`. The filter should block the request.
 
-It makes sense to look at the documentation for content filtering with the `langchain` package [Chat Completion - Azure Content Filter](https://sap.github.io/ai-sdk/docs/js/orchestration/chat-completion#azure-content-filter)
+It makes sense to look at the documentation for content filtering with the `langchain` package <a href="https://sap.github.io/ai-sdk/docs/js/orchestration/chat-completion#azure-content-filter" target="_blank">Chat Completion - Azure Content Filter</a>
 
 ## Summary
 
@@ -555,8 +553,8 @@ The `orchestrateJobPostingCreation` function handles the RAG flow for creating j
 
 ## Further Reading
 
-- [@sap-ai-sdk/orchestration - Documentation](https://github.com/SAP/ai-sdk-js/blob/main/packages/orchestration/README.md)
-- [Chat Completion - Azure Content Filter](https://sap.github.io/ai-sdk/docs/js/orchestration/chat-completion#azure-content-filter)
+- <a href="https://github.com/SAP/ai-sdk-js/blob/main/packages/orchestration/README.md" target="_blank">@sap-ai-sdk/orchestration - Documentation</a>
+- <a href="https://sap.github.io/ai-sdk/docs/js/orchestration/chat-completion#azure-content-filter" target="_blank">Chat Completion - Azure Content Filter</a>
 
 ---
 
