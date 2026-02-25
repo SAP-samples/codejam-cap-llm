@@ -139,10 +139,10 @@ cf target
 
 ![define-db-schema-check-cf-login](./assets/03-define-db-schema-check-cf-login.png)
 
-If the reply from the CLI tells you to log in again simply enter `cf login`.
+If the reply from the CLI tells you to log in again, authenticate directly against the custom IDP using the provided credentials. Fill in the `<provided-user-name>` and `<provided-password>` with the credentials that were provided to you:
 
 ```bash
-cf login
+cf login -a https://api.cf.us10.hana.ondemand.com -u <provided-user-name> -p <provided-password> --origin a7rg4vxjp-platform
 ```
 
 👉 Build the project first by calling the `cds build --production` command.

@@ -610,10 +610,10 @@ You will do this now!
 cf target
 ```
 
-If the reply from the CLI tells you to log in again simply enter `cf login`.
+If the reply from the CLI tells you to log in again, authenticate directly against the custom IDP using the provided credentials. Fill in the `<provided-user-name>` and `<provided-password>` with the credentials that were provided to you:
 
 ```bash
-cf login
+cf login -a https://api.cf.us10.hana.ondemand.com -u <provided-user-name> -p <provided-password> --origin a7rg4vxjp-platform
 ```
 
 👉 Build the project first by calling the `cds build --production` command.
@@ -678,7 +678,6 @@ Try this step on your own to use the CLI tool to check the database entries. If 
    <details><summary>Answer</summary>
    The two algorithms used to compare vector embeddings are Euclidean Distance and Cosine Similarity.
    - **Euclidean Distance** measures the average linear distance between two vectors. The closer the vectors, the more similar they are.
-
    - **Cosine Similarity** calculates the cosine of the angle between two vectors, resulting in a value between -1 and 1. A cosine similarity of 1 indicates complete similarity, while -1 means complete dissimilarity, and 0 indicates no relationship. These algorithms differ in how they compute the "distance" or "similarity" between vectors, with cosine similarity being more sensitive to the direction of the vector rather than the magnitude.
 
    </details>
