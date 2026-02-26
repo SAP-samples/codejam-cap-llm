@@ -17,14 +17,16 @@ In this exercise, you will learn:
 
 ## Table of Contents
 
-- [What Are Vector Embeddings](#what-are-vector-embeddings)
-- [How do you enable SAP HANA Cloud Vector Engine](#how-do-you-enable-sap-hana-cloud-vector-engine)
-- [Configure the project for SAP HANA deployment](#configure-the-project-for-sap-hana-deployment)
-- [Create your HDI container for HANA deployment](#create-your-hdi-container-for-hana-deployment)
-- [Bind local service to SAP HANA Schemas & HDI Containers instance for hybrid testing](#bind-local-service-to-sap-hana-schemas--hdi-containers-instance-for-hybrid-testing)
-- [Summary](#summary)
-  - [Questions for Discussion](#questions-for-discussion)
-- [Further reading](#further-reading)
+- [Exercise 03 - Explore the SAP HANA Cloud Vector Engine](#exercise-03---explore-the-sap-hana-cloud-vector-engine)
+  - [Table of Contents](#table-of-contents)
+  - [What Are Vector Embeddings](#what-are-vector-embeddings)
+  - [How do you enable SAP HANA Cloud Vector Engine](#how-do-you-enable-sap-hana-cloud-vector-engine)
+  - [Configure the project for SAP HANA deployment](#configure-the-project-for-sap-hana-deployment)
+  - [Create your HDI container for HANA deployment](#create-your-hdi-container-for-hana-deployment)
+  - [Bind local service to SAP HANA Schemas \& HDI Containers instance for hybrid testing](#bind-local-service-to-sap-hana-schemas--hdi-containers-instance-for-hybrid-testing)
+  - [Summary](#summary)
+    - [Questions for Discussion](#questions-for-discussion)
+  - [Further reading](#further-reading)
 
 ## What Are Vector Embeddings
 
@@ -158,11 +160,9 @@ The SAP HANA Cloud Vector Engine comes bundled with SAP HANA Cloud on the SAP Bu
 - <a href="https://community.sap.com/t5/technology-blogs-by-sap/rag-with-sap-hana-cloud-vector-engine-genai-hub-amp-cap/ba-p/13700459" target="_blank">RAG with SAP HANA Cloud Vector Engine, GenAI Hub & CAP</a>
 - <a href="https://community.sap.com/t5/technology-blogs-by-sap/sap-hana-cloud-vector-engine-quick-faq-reference/ba-p/13675212" target="_blank">SAP HANA Cloud Vector Engine: Quick FAQ Reference</a>
 - <a href="https://community.sap.com/t5/technology-blogs-by-sap/hana-vector-engine-and-langchain/ba-p/13636959" target="_blank">SAP HANA Vector Engine and LangChain</a>
-- <a href="https://discovery-center.cloud.sap/refArchDetail/ref-arch-open-ai" target="_blank">Retrieval Augmented Generation and Generative AI on SAP BTP</a>
 - <a href="https://discovery-center.cloud.sap/missiondetail/4405/4691/?tab=overview" target="_blank">Harnessing Generative AI Capabilities with SAP HANA Cloud Vector Engine</a>
 - <a href="https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine-guide/sap-hana-cloud-sap-hana-database-vector-engine-guide?locale=en-US" target="_blank">SAP HANA Cloud, SAP HANA Database Vector Engine Guide</a>
 - <a href="https://www.sap.com/products/technology-platform/hana/trial.html" target="_blank">Start your free trial of SAP HANA Cloud</a>
-- <a href="https://cap.cloud.sap/docs/guides/databases-hana" target="_blank">Using SAP HANA Cloud for Production</a>
 
 ---
 
