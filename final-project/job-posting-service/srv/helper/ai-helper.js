@@ -59,11 +59,11 @@ async function orchestrateJobPostingCreation(user_query) {
     });
 
     let embedding = await embeddingClient.embedQuery(user_query);
-    let similarity_chunks = await SELECT.from(DocumentChunk).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(
-      embedding
-    )})) DESC`;
+    let similarity_chunks = await SELECT.from(DocumentChunk)
+      .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`
+      .limit(3);
 
-    let context = similarity_chunks.slice(0, 3).map((split) => split.text_chunk);
+    let context = similarity_chunks.map((split) => split.text_chunk);
 
     const filter = buildAzureContentSafetyFilter({
       Hate: 'ALLOW_SAFE',

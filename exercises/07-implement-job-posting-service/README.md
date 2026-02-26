@@ -287,15 +287,16 @@ let embedding = await embeddingClient.embedQuery(user_query);
 
 ```JavaScript
 let similarity_chunks = await SELECT.from(DocumentChunk)
-      .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`;
+      .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`
+      .limit(3);
 ```
 
 The `cosine_similarity` call in the SQL statement is not the default SQL. This is an added function by the HANA Cloud Vector Engine.
 
-👉 Extract the first three results from the list `similarity_chunks`:
+👉 Extract the text chunks from the similarity results:
 
 ```JavaScript
-let context = similarity_chunks.slice(0, 3).map((split) => split.text_chunk)
+let context = similarity_chunks.map((split) => split.text_chunk)
 ```
 
 You have all relevant information at hand to construct the template which is getting send to the chat model via the orchestration client.
@@ -412,9 +413,9 @@ async function orchestrateJobPostingCreation(user_query) {
     let embedding = await embeddingClient.embedQuery(user_query);
     let similarity_chunks = await SELECT.from(DocumentChunk).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(
       embedding
-    )})) DESC`;
+    )})) DESC`.limit(3);
 
-    let context = similarity_chunks.slice(0, 3).map((split) => split.text_chunk);
+    let context = similarity_chunks.map((split) => split.text_chunk);
 
     const filter = buildAzureContentSafetyFilter({
       Hate: 'ALLOW_SAFE',

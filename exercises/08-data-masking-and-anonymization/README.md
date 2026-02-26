@@ -15,14 +15,16 @@ In this exercise, you will learn the following:
 
 ## Table of Contents
 
-- [Data masking](#data-masking)
-  - [Anonymization](#anonymization)
-  - [Pseudonymization](#pseudonymization)
-- [Implement data masking into your orchestration workflow](#implement-data-masking-into-your-orchestration-workflow)
-  - [Use the orchestration API of the SAP Cloud SDK for AI](#use-the-orchestration-api-of-the-sap-cloud-sdk-for-ai)
-- [Summary](#summary)
-  - [Questions for Discussion](#questions-for-discussion)
-- [Further Reading](#further-reading)
+- [Exercise 08 - Understand data masking, anonymization and pseudonymization](#exercise-08---understand-data-masking-anonymization-and-pseudonymization)
+  - [Table of Contents](#table-of-contents)
+  - [Data masking](#data-masking)
+    - [Anonymization](#anonymization)
+    - [Pseudonymization](#pseudonymization)
+  - [Implement data masking into your orchestration workflow](#implement-data-masking-into-your-orchestration-workflow)
+    - [Use the orchestration API of the SAP Cloud SDK for AI](#use-the-orchestration-api-of-the-sap-cloud-sdk-for-ai)
+  - [Summary](#summary)
+    - [Questions for Discussion](#questions-for-discussion)
+  - [Further Reading](#further-reading)
 
 ## Data masking
 
@@ -89,9 +91,9 @@ async function orchestrateJobPostingCreation(user_query) {
     let embedding = await embeddingClient.embedQuery(user_query);
     let similarity_chunks = await SELECT.from(DocumentChunk).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(
       embedding
-    )})) DESC`;
+    )})) DESC`.limit(3);
 
-    let context = similarity_chunks.slice(0, 3).map((split) => split.text_chunk);
+    let context = similarity_chunks.map((split) => split.text_chunk);
 
     const filter = buildAzureContentSafetyFilter({
       Hate: 'ALLOW_SAFE',
