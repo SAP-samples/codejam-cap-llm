@@ -12,7 +12,7 @@ const { SELECT } = cds.ql;
 
 const chatModelName = 'gpt-5-mini';
 const embeddingModelName = 'text-embedding-3-small';
-const resourceGroup = 'CAP-AI-Codejam';
+const resourceGroup = 'CAP-AI-CodeJam';
 
 async function createVectorEmbeddings() {
   try {
