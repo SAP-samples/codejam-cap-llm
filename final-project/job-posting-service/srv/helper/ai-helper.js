@@ -14,6 +14,13 @@ const chatModelName = 'gpt-5-mini';
 const embeddingModelName = 'text-embedding-3-small';
 const resourceGroup = 'CAP-AI-CodeJam';
 
+// Initialize embedding client once for reuse
+const embeddingClient = new AzureOpenAiEmbeddingClient({
+  modelName: embeddingModelName,
+  maxRetries: 0,
+  resourceGroup: resourceGroup,
+});
+
 async function createVectorEmbeddings() {
   try {
     const loader = new TextLoader(path.resolve('db/data/demo_grounding.txt'));
@@ -32,11 +39,6 @@ async function createVectorEmbeddings() {
       textSplits.push(chunk.pageContent);
     }
 
-    const embeddingClient = new AzureOpenAiEmbeddingClient({
-      modelName: embeddingModelName,
-      maxRetries: 0,
-      resourceGroup: resourceGroup,
-    });
     const embeddings = await embeddingClient.embedDocuments(textSplits);
 
     return [embeddings, splitDocuments];
@@ -52,12 +54,6 @@ async function createVectorEmbeddings() {
 async function orchestrateJobPostingCreation(user_query) {
   console.log(user_query);
   try {
-    const embeddingClient = new AzureOpenAiEmbeddingClient({
-      modelName: embeddingModelName,
-      maxRetries: 0,
-      resourceGroup: resourceGroup,
-    });
-
     let embedding = await embeddingClient.embedQuery(user_query);
     let similarity_chunks = await SELECT.from(DocumentChunk)
       .orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(embedding)})) DESC`

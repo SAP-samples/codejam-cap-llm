@@ -82,12 +82,6 @@ The implementation should look like this now:
 async function orchestrateJobPostingCreation(user_query) {
   console.log(user_query);
   try {
-    const embeddingClient = new AzureOpenAiEmbeddingClient({
-      modelName: embeddingModelName,
-      maxRetries: 0,
-      resourceGroup: resourceGroup,
-    });
-
     let embedding = await embeddingClient.embedQuery(user_query);
     let similarity_chunks = await SELECT.from(DocumentChunk).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(
       embedding

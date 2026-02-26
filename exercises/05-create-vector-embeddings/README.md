@@ -293,6 +293,18 @@ You define the embedding model's name in a constant because you will use the nam
 const resourceGroup = 'CAP-AI-CodeJam';
 ```
 
+👉 Initialize the embedding client once for reuse across both functions:
+
+```JavaScript
+const embeddingClient = new AzureOpenAiEmbeddingClient({
+  modelName: embeddingModelName,
+  maxRetries: 0,
+  resourceGroup: resourceGroup,
+});
+```
+
+By creating the embedding client at the module level, you avoid creating a new instance every time you need to generate embeddings. This improves performance and is a best practice for singleton-like resources.
+
 To create vector embeddings, you need to read the contextual information file which in your case is a text document.
 
 👉 Import a text loader from lanchain to read the needed document from file:
@@ -369,19 +381,9 @@ for (const chunk of splitDocuments) {
 }
 ```
 
-You need a way to feed the document splits to the embedding model. If you remember, you've deployed an embedding model to SAP AI Launchpad. You will use this model to create the vector embeddings. SAP has provided you with the SAP Cloud SDK for AI that allows you to utilize Langchain APIs that has been enhanced with SAP functionality like connectivity to SAP AI Launchpad. You will create an `AzureOpenAiEmbeddingClient`instance which can automatically connect to SAP AI Launchpad using a service binding or the `.env` file.
+You need a way to feed the document splits to the embedding model. You will use this model to create the vector embeddings. The embedding client you created earlier at the module level can automatically connect to SAP AI Launchpad using a service binding or the `.env` file.
 
-👉 Create the embedding client by adding the following code:
-
-```JavaScript
-const embeddingClient = new AzureOpenAiEmbeddingClient({
-      modelName: embeddingModelName,
-      maxRetries: 0,
-      resourceGroup: resourceGroup
-});
-```
-
-👉 Call the embedding client to embedd the document splits:
+👉 Call the embedding client to embed the document splits:
 
 ```JavaScript
 const embeddings = await embeddingClient.embedDocuments(textSplits);
@@ -414,11 +416,6 @@ async function createVectorEmbeddings() {
       textSplits.push(chunk.pageContent);
     }
 
-    const embeddingClient = new AzureOpenAiEmbeddingClient({
-      modelName: embeddingModelName,
-      maxRetries: 0,
-      resourceGroup: resourceGroup
-    });
     const embeddings = await embeddingClient.embedDocuments(textSplits);
 
     return [embeddings, splitDocuments];

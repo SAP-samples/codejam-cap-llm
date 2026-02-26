@@ -239,13 +239,15 @@ import cds from '@sap/cds';
 const { DocumentChunk } = cds.entities;
 ```
 
-👉 Right below the `DocumentChunk` statement add the following constants containing the chat and embedding model's name:
+👉 Right below the `DocumentChunk` statement add the following constant for the chat model's name:
 
 ```JavaScript
 const chatModelName = 'gpt-4o-mini';
 ```
 
 You define the chat model's name as a constant because you'll use it later. This gives you a single point of truth in case you want to change the chat model in the future.
+
+> Note: The `embeddingModelName`, `resourceGroup`, and `embeddingClient` constants are already defined in this file from Exercise 05. You will reuse the existing `embeddingClient` instance for creating embeddings in the RAG flow.
 
 👉 Below the `createVectorEmbeddings` function handler, add the `orchestrateJobPostingCreation` function you have called in the `job-posting-service.js`:
 
@@ -265,19 +267,9 @@ async function orchestrateJobPostingCreation(user_query) {
 
 Within the `try` block, you will add the complete logic for the RAG flow. You will start by implementing the creation of the vector embedding for the given user query. This is necessary for the similarity search using the cosine similarity algorithm.
 
-👉 Initialize an embedding client for the `text-embedding-3-small` model:
-
-```JavaScript
-const embeddingClient = new AzureOpenAiEmbeddingClient({
-    modelName: embeddingModelName,
-    maxRetries: 0,
-    resourceGroup: resourceGroup
-});
-```
-
 Embedding the user query will allow for the creation of a vector embedding. The vector embedding can then be used to calculate the closest distance to existing contextual embeddings in the SAP HANA Cloud vector engine. The result of this is that you will receive the contextual vector embedding with the highest relevance to the user query. This embedding can then be sent to the chat model as contextual information to answer the user query.
 
-👉 Embed the user query with the embedding client:
+👉 Embed the user query using the existing embedding client:
 
 ```JavaScript
 let embedding = await embeddingClient.embedQuery(user_query);
@@ -404,12 +396,6 @@ The complete implementation should look like this now:
 async function orchestrateJobPostingCreation(user_query) {
   console.log(user_query);
   try {
-    const embeddingClient = new AzureOpenAiEmbeddingClient({
-      modelName: embeddingModelName,
-      maxRetries: 0,
-      resourceGroup: resourceGroup,
-    });
-
     let embedding = await embeddingClient.embedQuery(user_query);
     let similarity_chunks = await SELECT.from(DocumentChunk).orderBy`cosine_similarity(embedding, to_real_vector(${JSON.stringify(
       embedding
