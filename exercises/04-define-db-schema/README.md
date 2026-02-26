@@ -172,7 +172,7 @@ Great! The database is initialized, and the table with all necessary fields is c
 
 ## Summary
 
-At this point, you have learned how to define a database schema using CDS, how to build and deploy database artifacts, and how you can use the hana-cli to inspect your database tables.
+At this point, you have learned how to define a database schema using CDS, and how to build and deploy database artifacts.
 
 ### Questions for Discussion
 
