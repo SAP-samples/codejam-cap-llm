@@ -36,13 +36,13 @@ With **Max Tokens**, you can set the size of the input and output of the model. 
 
 With the **Temperature** parameter you can set how creative the model should sound so flexible the model is allowed to be in selecting the next token in the sequence.
 
-For this workshop, you want to change the default model `mistralai--mistral-large-instruct (2407)` to `GPT-5-Mini`.
+For this workshop, you want to change the default model `mistralai--mistral-large-instruct (2407)` to `GPT-4o-Mini`.
 
 👉 Click on the model.
 
 ![chat_change_model](assets/chat_change_model.png)
 
-👉 Select the `GPT-5-Mini` model.
+👉 Select the `GPT-4o-Mini` model.
 
 ![chat_change_model_gpt](assets/chat_change_model_gpt.png)
 

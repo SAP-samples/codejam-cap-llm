@@ -49,7 +49,7 @@ In this exercise, you will use the SAP AI Launchpad to explore the capabilities 
 
 Under **Selected Model**, you will find the currently selected model.
 
-For this exercise, you want to change the default model `mistralai--mistral-large-instruct (2407)` to `GPT-5-Mini`.
+For this exercise, you want to change the default model `mistralai--mistral-large-instruct (2407)` to `GPT-4o-Mini`.
 
 👉 Click on the model to open the **Model Library**.
 
@@ -57,7 +57,7 @@ The **Model Library** of the SAP AI Launchpad is a catalogue of all available LL
 
 The Model Library gives you a great overview and filter options to find the correct model for your use case, be it Text, Image, Audio, or Video input. You can filter by model provider, access type, or capabilities too.
 
-👉 Select the `GPT-5-Mini` model.
+👉 Select the `GPT-4o-Mini` model.
 
 ![chat_change_model_gpt](assets/prompt-engineering-02.png)
 

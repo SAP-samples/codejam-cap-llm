@@ -10,7 +10,7 @@ import cds from '@sap/cds';
 const { DocumentChunk } = cds.entities;
 const { SELECT } = cds.ql;
 
-const chatModelName = 'gpt-5-mini';
+const chatModelName = 'gpt-4o-mini';
 const embeddingModelName = 'text-embedding-3-small';
 const resourceGroup = 'CAP-AI-CodeJam';
 
