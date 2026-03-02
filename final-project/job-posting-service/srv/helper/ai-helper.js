@@ -1,4 +1,4 @@
-import { OrchestrationClient, buildAzureContentSafetyFilter } from '@sap-ai-sdk/orchestration';
+import { OrchestrationClient } from '@sap-ai-sdk/orchestration';
 
 import { AzureOpenAiEmbeddingClient } from '@sap-ai-sdk/langchain';
 
@@ -61,13 +61,6 @@ async function orchestrateJobPostingCreation(user_query) {
 
     let context = similarity_chunks.map((split) => split.text_chunk);
 
-    const filter = buildAzureContentSafetyFilter({
-      Hate: 'ALLOW_SAFE',
-      Violence: 'ALLOW_SAFE',
-      SelfHarm: 'ALLOW_SAFE',
-      Sexual: 'ALLOW_SAFE',
-    });
-
     const orchestrationClient = new OrchestrationClient(
       {
         promptTemplating: {
@@ -96,10 +89,50 @@ async function orchestrateJobPostingCreation(user_query) {
         },
         filtering: {
           input: {
-            filters: [filter],
+            filters: [
+              {
+                type: 'llama_guard_3_8b',
+                config: {
+                  child_exploitation: true,
+                  code_interpreter_abuse: true,
+                  defamation: true,
+                  elections: true,
+                  hate: true,
+                  indiscriminate_weapons: true,
+                  intellectual_property: true,
+                  non_violent_crimes: true,
+                  privacy: true,
+                  self_harm: true,
+                  sex_crimes: true,
+                  sexual_content: true,
+                  specialized_advice: true,
+                  violent_crimes: true
+                }
+              }
+            ],
           },
           output: {
-            filters: [filter],
+            filters: [
+              {
+                type: 'llama_guard_3_8b',
+                config: {
+                  child_exploitation: true,
+                  code_interpreter_abuse: true,
+                  defamation: true,
+                  elections: true,
+                  hate: true,
+                  indiscriminate_weapons: true,
+                  intellectual_property: true,
+                  non_violent_crimes: true,
+                  privacy: true,
+                  self_harm: true,
+                  sex_crimes: true,
+                  sexual_content: true,
+                  specialized_advice: true,
+                  violent_crimes: true
+                }
+              }
+            ],
           },
         },
         masking: {

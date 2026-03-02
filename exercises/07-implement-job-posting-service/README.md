@@ -10,17 +10,19 @@ In this exercise, you will learn the following:
 
 ## Table of Contents
 
-- [Implement the OData function handler code stubs](#implement-the-odata-function-handler-code-stubs)
-- [Implement input parameter validation](#implement-input-parameter-validation)
-- [Implement the job posting creation](#implement-the-job-posting-creation)
-  - [Implement the AI orchestration in the AIHelper](#implement-the-ai-orchestration-in-the-aihelper)
+- [Exercise 07 - Implement the Job Posting Service](#exercise-07---implement-the-job-posting-service)
+  - [Table of Contents](#table-of-contents)
+  - [Implement the OData function handler code stubs](#implement-the-odata-function-handler-code-stubs)
+  - [Implement input parameter validation](#implement-input-parameter-validation)
+  - [Implement the job posting creation](#implement-the-job-posting-creation)
+    - [Implement the AI orchestration in the AIHelper](#implement-the-ai-orchestration-in-the-aihelper)
   - [Implement insertion and deletion of Job Postings](#implement-insertion-and-deletion-of-job-postings)
-- [Try out your new API](#try-out-your-new-api)
-- [Check the database table for job postings](#check-the-database-table-for-job-postings)
-- [Experiment with the orchestration service filters](#experiment-with-the-orchestration-service-filters)
-- [Summary](#summary)
-  - [Questions for Discussion](#questions-for-discussion)
-- [Further Reading](#further-reading)
+  - [Try out your new API](#try-out-your-new-api)
+  - [Check the database table for job postings](#check-the-database-table-for-job-postings)
+  - [Experiment with the orchestration service filters](#experiment-with-the-orchestration-service-filters)
+  - [Summary](#summary)
+    - [Questions for Discussion](#questions-for-discussion)
+  - [Further Reading](#further-reading)
 
 ## Implement the OData function handler code stubs
 
@@ -221,10 +223,7 @@ Within the file you need to import the orchestration client and the content filt
 👉 Add the following lines of code to the top of the file:
 
 ```JavaScript
-import {
-  OrchestrationClient,
-  buildAzureContentSafetyFilter
-  } from '@sap-ai-sdk/orchestration'
+import { OrchestrationClient } from '@sap-ai-sdk/orchestration'
 ```
 
 👉 To use CDS methods import CDS by adding the following line of code directly below the import statement:
@@ -293,16 +292,9 @@ let context = similarity_chunks.map((split) => split.text_chunk)
 
 You have all relevant information at hand to construct the template which is getting send to the chat model via the orchestration client.
 
-👉 Now, create a new orchestration client, passing in the required LLM, template, and filter:
+👉 Now, create a new orchestration client, passing in the required LLM, template, and filters:
 
 ```JavaScript
-const filter = buildAzureContentSafetyFilter({
-      Hate: 'ALLOW_SAFE',
-      Violence: 'ALLOW_SAFE',
-      SelfHarm: 'ALLOW_SAFE',
-      Sexual: 'ALLOW_SAFE',
-    })
-
 const orchestrationClient = new OrchestrationClient(
       {
         promptTemplating: {
@@ -330,10 +322,50 @@ const orchestrationClient = new OrchestrationClient(
         },
         filtering: {
           input: {
-            filters: [filter],
+            filters: [
+              {
+                type: 'llama_guard_3_8b',
+                config: {
+                  child_exploitation: true,
+                  code_interpreter_abuse: true,
+                  defamation: true,
+                  elections: true,
+                  hate: true,
+                  indiscriminate_weapons: true,
+                  intellectual_property: true,
+                  non_violent_crimes: true,
+                  privacy: true,
+                  self_harm: true,
+                  sex_crimes: true,
+                  sexual_content: true,
+                  specialized_advice: true,
+                  violent_crimes: true
+                }
+              }
+            ],
           },
           output: {
-            filters: [filter],
+            filters: [
+              {
+                type: 'llama_guard_3_8b',
+                config: {
+                  child_exploitation: true,
+                  code_interpreter_abuse: true,
+                  defamation: true,
+                  elections: true,
+                  hate: true,
+                  indiscriminate_weapons: true,
+                  intellectual_property: true,
+                  non_violent_crimes: true,
+                  privacy: true,
+                  self_harm: true,
+                  sex_crimes: true,
+                  sexual_content: true,
+                  specialized_advice: true,
+                  violent_crimes: true
+                }
+              }
+            ],
           },
         },
         // Masking goes here...
@@ -344,16 +376,26 @@ const orchestrationClient = new OrchestrationClient(
 
 A message to a chat model requires a couple of information. First of all, you need to specify if you are sending an user message or a system message. In your case, you are constructing a system message with the general instructions for the LLM. You add the result of the cosine similarity search to the instructions for the model to give a better response. To the user, this additional information is hidden so they can focus on their request. The user query itself is being sent with the user profile to the LLM.
 
-The client is defined to connect to the `GPT-4o-Mini` using a template describing what you want the chat model to do including the user query. Finally you define strict rules for the content filter. The service is not tolerating any inappropriate or discriminating language which is of utmost importance! Take a look at the official documentation to understand content filters and learn more about levels of severity: <a href="https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new" target="_blank">Azure AI Content Filtering</a>.
+The client is defined to connect to the `GPT-4o-Mini` using a template describing what you want the chat model to do including the user query. Finally you define strict rules for the content filter using LlamaGuard 3 8B. The service is not tolerating any inappropriate or discriminating language which is of utmost importance!
 
-The levels available are:
+LlamaGuard 3 8B provides comprehensive content filtering across 14 categories:
 
-- ALLOW_ALL
-- ALLOW_SAFE
-- ALLOW_SAFE_LOW
-- ALLOW_SAFE_LOW_Medium
+- **violent_crimes**: Content about violent criminal activity
+- **non_violent_crimes**: Content about non-violent criminal activity
+- **sex_crimes**: Content about sexual crimes
+- **child_exploitation**: Content exploiting or harming children
+- **defamation**: Defamatory or libelous content
+- **specialized_advice**: Specialized professional advice (legal, financial, medical)
+- **privacy**: Privacy violations
+- **intellectual_property**: Intellectual property violations
+- **indiscriminate_weapons**: Content about weapons of mass destruction
+- **hate**: Hateful or discriminatory content
+- **self_harm**: Self-harm or suicide content
+- **sexual_content**: Sexual or erotic content
+- **elections**: Election interference content
+- **code_interpreter_abuse**: Malicious code or hacking content
 
-This helps you to prevent hateful speech, violent speech and other inappropriate input but also output from the model. This allows you to granularly define how content should be filtered and to what degree such language should be allowed.
+This helps you to prevent harmful content in both input and output from the model. You can enable or disable specific categories based on your use case requirements.
 
 If the user query successfully runs through the content filter, the response will be **200**, in case the content filter catches a user query you should receive a **400**. When you are testing your service, you can change the filter values to see how it applies to different user query inputs.
 
@@ -403,13 +445,6 @@ async function orchestrateJobPostingCreation(user_query) {
 
     let context = similarity_chunks.map((split) => split.text_chunk);
 
-    const filter = buildAzureContentSafetyFilter({
-      Hate: 'ALLOW_SAFE',
-      Violence: 'ALLOW_SAFE',
-      SelfHarm: 'ALLOW_SAFE',
-      Sexual: 'ALLOW_SAFE',
-    });
-
     const orchestrationClient = new OrchestrationClient(
       {
         promptTemplating: {
@@ -437,10 +472,50 @@ async function orchestrateJobPostingCreation(user_query) {
         },
         filtering: {
           input: {
-            filters: [filter],
+            filters: [
+              {
+                type: 'llama_guard_3_8b',
+                config: {
+                  child_exploitation: true,
+                  code_interpreter_abuse: true,
+                  defamation: true,
+                  elections: true,
+                  hate: true,
+                  indiscriminate_weapons: true,
+                  intellectual_property: true,
+                  non_violent_crimes: true,
+                  privacy: true,
+                  self_harm: true,
+                  sex_crimes: true,
+                  sexual_content: true,
+                  specialized_advice: true,
+                  violent_crimes: true
+                }
+              }
+            ],
           },
           output: {
-            filters: [filter],
+            filters: [
+              {
+                type: 'llama_guard_3_8b',
+                config: {
+                  child_exploitation: true,
+                  code_interpreter_abuse: true,
+                  defamation: true,
+                  elections: true,
+                  hate: true,
+                  indiscriminate_weapons: true,
+                  intellectual_property: true,
+                  non_violent_crimes: true,
+                  privacy: true,
+                  self_harm: true,
+                  sex_crimes: true,
+                  sexual_content: true,
+                  specialized_advice: true,
+                  violent_crimes: true
+                }
+              }
+            ],
           },
         },
         // Masking goes here ...
@@ -524,7 +599,7 @@ At this point, I would encourage you to go back to the service implementation an
 
 For example, you can send a user query asking the model to create a Job Posting which should include words like `stupid`. The filter should block the request.
 
-It makes sense to look at the documentation for content filtering with the `langchain` package <a href="https://sap.github.io/ai-sdk/docs/js/orchestration/chat-completion#azure-content-filter" target="_blank">Chat Completion - Azure Content Filter</a>
+It makes sense to look at the documentation for content filtering <a href="https://sap.github.io/ai-sdk/docs/js/orchestration/chat-completion#content-filtering" target="_blank">Chat Completion - Content Filtering</a>
 
 ## Summary
 
@@ -541,7 +616,7 @@ The `orchestrateJobPostingCreation` function handles the RAG flow for creating j
 ## Further Reading
 
 - <a href="https://github.com/SAP/ai-sdk-js/blob/main/packages/orchestration/README.md" target="_blank">@sap-ai-sdk/orchestration - Documentation</a>
-- <a href="https://sap.github.io/ai-sdk/docs/js/orchestration/chat-completion#azure-content-filter" target="_blank">Chat Completion - Azure Content Filter</a>
+- <a href="https://sap.github.io/ai-sdk/docs/js/orchestration/chat-completion#content-filtering" target="_blank">Chat Completion - Content Filtering</a>
 
 ---
 
