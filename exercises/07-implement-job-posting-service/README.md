@@ -164,7 +164,7 @@ With the input validation in place, you can go ahead and implement the RAG flow.
 1. A user inputs a query describing what kind of job posting should be created.
 2. Your OData service takes the input and passes it through to the OData function handler for the RAG execution.
 3. The user query needs to be sent to an embedding client to get a vector for that user query. This is required to execute the similarity search on the already embedded vector embeddings in the SAP HANA Cloud Vector Engine. You will use the cosine similarity algorithm.
-4. A chat client establishes a connection to a specific chat model; for this Codejam, you will use the `GPT-5-Mini`.
+4. A chat client establishes a connection to a specific chat model; for this Codejam, you will use the `GPT-4o-Mini`.
 5. The vector of the user query together with the textual user query, is sent to the chat model using a template giving extra context.
 6. The chat model processes the request and returns a response to your client.
 7. The response gets passed to the `DBUtils` to create a new database entry.
@@ -242,7 +242,7 @@ const { DocumentChunk } = cds.entities;
 👉 Right below the `DocumentChunk` statement add the following constants containing the chat and embedding model's name:
 
 ```JavaScript
-const chatModelName = 'gpt-5-mini';
+const chatModelName = 'gpt-4o-mini';
 ```
 
 You define the chat model's name as a constant because you'll use it later. This gives you a single point of truth in case you want to change the chat model in the future.
@@ -351,7 +351,7 @@ const orchestrationClient = new OrchestrationClient(
 
 A message to a chat model requires a couple of information. First of all, you need to specify if you are sending an user message or a system message. In your case, you are constructing a system message with the general instructions for the LLM. You add the result of the cosine similarity search to the instructions for the model to give a better response. To the user, this additional information is hidden so they can focus on their request. The user query itself is being sent with the user profile to the LLM.
 
-The client is defined to connect to the `GPT-5-Mini` using a template describing what you want the chat model to do including the user query. Finally you define strict rules for the content filter. The service is not tolerating any inappropriate or discriminating language which is of utmost importance! Take a look at the official documentation to understand content filters and learn more about levels of severity: <a href="https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new" target="_blank">Azure AI Content Filtering</a>.
+The client is defined to connect to the `GPT-4o-Mini` using a template describing what you want the chat model to do including the user query. Finally you define strict rules for the content filter. The service is not tolerating any inappropriate or discriminating language which is of utmost importance! Take a look at the official documentation to understand content filters and learn more about levels of severity: <a href="https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new" target="_blank">Azure AI Content Filtering</a>.
 
 The levels available are:
 
@@ -548,7 +548,7 @@ In this exercise, you implemented the job posting service and its OData function
 1. What is the main purpose of the `orchestrateJobPostingCreation` function in the implementation?
 
 <details><summary>Answer</summary>
-The `orchestrateJobPostingCreation` function handles the RAG flow for creating job postings. It takes a user query, creates a vector embedding for it using the `text-embedding-3-small` model, retrieves the most relevant context from the database using cosine similarity, and sends the user query along with the contextual information to a chat model (`gpt-5-mini`). The response from the chat model is then returned and stored in the database as a new job posting.
+The `orchestrateJobPostingCreation` function handles the RAG flow for creating job postings. It takes a user query, creates a vector embedding for it using the `text-embedding-3-small` model, retrieves the most relevant context from the database using cosine similarity, and sends the user query along with the contextual information to a chat model (`gpt-4o-mini`). The response from the chat model is then returned and stored in the database as a new job posting.
 </details>
 
 ## Further Reading
