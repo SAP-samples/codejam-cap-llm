@@ -42,7 +42,7 @@ For this workshop, you want to change the default model `mistralai--mistral-larg
 
 ![chat_change_model](assets/chat_change_model.png)
 
-👉 Select the `GPT-4o-Mini` model.
+👉 Select the `GPT-5-Mini` model.
 
 ![chat_change_model_gpt](assets/chat_change_model_gpt.png)
 
