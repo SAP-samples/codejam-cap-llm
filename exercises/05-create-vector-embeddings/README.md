@@ -624,7 +624,7 @@ Deploy the database schema delta to your HDI container again. This will ensure t
 > Hint: Replace everything between <> including the <> symbol.
 
 ```bash
-cds deploy --to hana:<use-your-hdi-container-name> --auto-undeploy
+cds deploy --to hana:cap-ai-codejam-hdi-XXX --auto-undeploy
 ```
 
 Now, you will utilize the `cds watch --profile hybrid` command to run the project on localhost while establishing a real and live connection to the database. This is a way to speed up local development by working around the need of deployment to BTP.
