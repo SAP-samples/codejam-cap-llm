@@ -1,16 +1,17 @@
 # syntax=docker/dockerfile:1
 
-ARG VARIANT="18"
-FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}
+ARG VARIANT="22"
+FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:1-${VARIANT}-bookworm
 
 # Install cf CLI
-
 USER node
 RUN wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
 RUN echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
 RUN sudo apt-get update
-RUN sudo apt-get install cf8-cli
+RUN sudo apt-get install -y cf8-cli
 
-# Install hana-cli gloablly
+# Install hana-cli globally
+# HOME must be set explicitly — hana-cli's postinstall script reads it
 USER node
+ENV HOME=/home/node
 RUN npm install -g hana-cli
