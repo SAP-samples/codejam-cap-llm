@@ -38,8 +38,8 @@ Below are direct links to the **Further Reading** sections in each exercise:
 
 - [Exercise 00 - Set up your workspace](exercises/00-set-up-workspace/README.md#further-reading)
 - [Exercise 01 - Explore Generative AI Hub in SAP AI Launchpad](exercises/01-explore-genai-hub/README.md#further-reading)
-- [Exercise 02 - Create the SAP AI Core connection configuration](exercises/02-create-connection-configuration/README.md#further-reading)
-- [Exercise 03 - Explore the SAP HANA Cloud Vector Engine](exercises/03-explore-sap-hana-cloud-vector-engine/README.md#further-reading)
+- [Exercise 02 - Create the SAP AI Core connection configuration](exercises/02-create-ai-core-connection/README.md#further-reading)
+- [Exercise 03 - Connect to SAP HANA Cloud Vector Engine](exercises/03-create-hana-cloud-connection/README.md#further-reading)
 - [Exercise 04 - Create the database schema for the CAP application](exercises/04-define-db-schema/README.md#further-reading)
 - [Exercise 05 - Create vector embeddings using an embedding model](exercises/05-create-vector-embeddings/README.md#further-reading)
 - [Exercise 06 - Define the Job Posting Service](exercises/06-define-job-posting-service/README.md#further-reading)
