@@ -18,9 +18,8 @@ In this exercise you will learn:
     - [Explore the package.json file and its contents](#explore-the-packagejson-file-and-its-contents)
     - [Define the database schema](#define-the-database-schema)
     - [Build and deploy the schema to your HDI container](#build-and-deploy-the-schema-to-your-hdi-container)
-    - [Examine the database table](#examine-the-database-table)
     - [Summary](#summary)
-    - [Questions for Discussion](#questions-for-discussion)
+        - [Questions for Discussion](#questions-for-discussion)
     - [Further reading](#further-reading)
 
 ## Explore the package.json file and its contents
