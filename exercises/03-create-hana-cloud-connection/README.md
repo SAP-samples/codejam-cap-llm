@@ -1,3 +1,5 @@
+[⬅️ Previous exercise](../02-create-ai-core-connection/README.md)
+
 # Exercise 03 - Connect to SAP HANA Cloud Vector Engine
 
 _Estimated Time: **20 min**_
@@ -160,4 +162,4 @@ At this point, you have learned what the SAP HANA Cloud Vector Engine is, how to
 
 ---
 
-[Next exercise](../04-define-db-schema/README.md)
+[⬅️ Previous exercise](../02-create-ai-core-connection/README.md) | [Next exercise ➡️](../04-define-db-schema/README.md)

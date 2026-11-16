@@ -146,4 +146,4 @@ At this point, you have an environment set up to work through the remaining exer
 
 ---
 
-[Next exercise](../01-explore-genai-hub/README.md)
+[Next exercise ➡️](../01-explore-genai-hub/README.md)

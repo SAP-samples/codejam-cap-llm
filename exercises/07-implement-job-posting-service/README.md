@@ -1,3 +1,5 @@
+[⬅️ Previous exercise](../06-define-job-posting-service/README.md)
+
 # Exercise 07 - Implement the Job Posting Service
 
 _Estimated Time: **45 - 60 min**_
@@ -622,4 +624,4 @@ In this exercise, you implemented the job posting service and its OData function
 
 ---
 
-[Next exercise](../08-data-masking-and-anonymization/README.md)
+[⬅️ Previous exercise](../06-define-job-posting-service/README.md) | [Next exercise ➡️](../08-data-masking-and-anonymization/README.md)

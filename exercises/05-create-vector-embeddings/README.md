@@ -1,3 +1,5 @@
+[⬅️ Previous exercise](../04-define-db-schema/README.md)
+
 # Exercise 05 - Create vector embeddings using an embedding model
 
 _Estimated Time: **30 - 45 min**_
@@ -679,4 +681,4 @@ To inspect the database entries (without the actual embeddings), you can use the
 
 ---
 
-[Next exercise](../06-define-job-posting-service/README.md)
+[⬅️ Previous exercise](../04-define-db-schema/README.md) | [Next exercise ➡️](../06-define-job-posting-service/README.md)

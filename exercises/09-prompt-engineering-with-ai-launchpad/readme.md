@@ -1,3 +1,5 @@
+[⬅️ Previous exercise](../08-data-masking-and-anonymization/README.md)
+
 <!-- omit in toc -->
 
 # Exercise 09 - Prompt Engineering with SAP AI Launchpad
@@ -469,3 +471,5 @@ At this point, you will know how to use the user interface of Generative AI Hub 
 - [This](https://developers.sap.com/tutorials/ai-core-generative-ai.html) is a good tutorial on how to prompt LLMs with Generative AI Hub.
 
 ---
+
+[⬅️ Previous exercise](../08-data-masking-and-anonymization/README.md)

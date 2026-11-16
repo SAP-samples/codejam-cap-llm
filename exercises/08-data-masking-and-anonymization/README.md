@@ -1,3 +1,5 @@
+[⬅️ Previous exercise](../07-implement-job-posting-service/README.md)
+
 # Exercise 08 - Understand data masking, anonymization and pseudonymization
 
 _Estimated Time: **30 min**_
@@ -233,6 +235,6 @@ This exercise taught you how to apply data masking techniques, like anonymizatio
 
 ---
 
-The next exercise is optional, if you have time proceed and learn more about prompt engineering.
+[⬅️ Previous exercise](../07-implement-job-posting-service/README.md) | [Next exercise ➡️](../09-prompt-engineering-with-ai-launchpad/readme.md)
 
-[Next exercise](../09-prompt-engineering-with-ai-launchpad/readme.md)
+> The next exercise is optional, if you have time proceed and learn more about prompt engineering.

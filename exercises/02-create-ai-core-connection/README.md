@@ -1,3 +1,5 @@
+[⬅️ Previous exercise](../01-explore-genai-hub/README.md)
+
 # Exercise 02 - Create the SAP AI Core connection configuration
 
 _Estimated Time: **5 - 10 min**_
@@ -72,4 +74,4 @@ In the next exercise you will start implementing the actual CAP service by defin
 
 ---
 
-[Next exercise](../03-create-hana-cloud-connection/README.md)
+[⬅️ Previous exercise](../01-explore-genai-hub/README.md) | [Next exercise ➡️](../03-create-hana-cloud-connection/README.md)

@@ -1,3 +1,5 @@
+[⬅️ Previous exercise](../00-set-up-workspace/README.md)
+
 # Exercise 01 - Explore Generative AI Hub in SAP AI Launchpad
 
 _Estimated Time: **25 min**_
@@ -149,4 +151,4 @@ At this point, you will know how to use the user interface of Generative AI Hub 
 
 ---
 
-[Next exercise](../02-create-ai-core-connection/README.md)
+[⬅️ Previous exercise](../00-set-up-workspace/README.md) | [Next exercise ➡️](../02-create-ai-core-connection/README.md)

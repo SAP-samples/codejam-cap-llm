@@ -1,3 +1,5 @@
+[⬅️ Previous exercise](../03-create-hana-cloud-connection/README.md)
+
 # Exercise 04 - Create the database schema for the CAP application
 
 _Estimated Time: **15 - 30 min**_
@@ -216,4 +218,4 @@ At this point, you have learned how to define a database schema using CDS, and h
 
 ---
 
-[Next exercise](../05-create-vector-embeddings/README.md)
+[⬅️ Previous exercise](../03-create-hana-cloud-connection/README.md) | [Next exercise ➡️](../05-create-vector-embeddings/README.md)

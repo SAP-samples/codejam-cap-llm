@@ -1,3 +1,5 @@
+[⬅️ Previous exercise](../05-create-vector-embeddings/README.md)
+
 # Exercise 06 - Define the Job Posting Service
 
 _Estimated Time: **5 - 10 min**_
@@ -81,4 +83,4 @@ In the next exercise, you will implement the business logic, the function handle
 
 ---
 
-[Next exercise](../07-implement-job-posting-service/README.md)
+[⬅️ Previous exercise](../05-create-vector-embeddings/README.md) | [Next exercise ➡️](../07-implement-job-posting-service/README.md)
