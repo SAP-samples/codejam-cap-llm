@@ -14,26 +14,27 @@ In this exercise, you will use the SAP AI Launchpad to explore the capabilities 
 
 ## Table of Contents
 
-- [Use the Chat in Generative AI Hub](#use-the-chat-in-generative-ai-hub)
-  - [Chat Settings](#chat-settings)
-  - [Context History and Message Roles](#context-history-and-message-roles)
-    - [System Role](#system-role)
-    - [User Role](#user-role)
-    - [Assistant Role](#assistant-role)
-  - [Putting together a sample message sequence](#putting-together-a-sample-message-sequence)
-  - [Try out your chat configuration](#try-out-your-chat-configuration)
-- [Prompt Engineering](#prompt-engineering)
-  - [Why is it important?](#why-is-it-important)
-  - [Techniques](#techniques)
-    - [Prompt Clarity \& Specificity](#prompt-clarity--specificity)
-    - [Prompt styles](#prompt-styles)
-    - [Iterative prompt refinement](#iterative-prompt-refinement)
-    - [Prompt compression](#prompt-compression)
-    - [Data-Driven prompting](#data-driven-prompting)
-    - [Meta-Prompting](#meta-prompting)
-- [Summary](#summary)
-  - [Questions for Discussion](#questions-for-discussion)
-- [Further reading](#further-reading)
+- [Exercise 09 - Prompt Engineering with SAP AI Launchpad](#exercise-09---prompt-engineering-with-sap-ai-launchpad)
+   - [Use the Chat in Generative AI Hub](#use-the-chat-in-generative-ai-hub)
+   - [Chat Settings](#chat-settings)
+   - [Context History and Message Roles](#context-history-and-message-roles)
+      - [System Role](#system-role)
+      - [User Role](#user-role)
+      - [Assistant Role](#assistant-role)
+   - [Putting together a sample message sequence](#putting-together-a-sample-message-sequence)
+   - [Try out your chat configuration](#try-out-your-chat-configuration)
+   - [Prompt Engineering](#prompt-engineering)
+   - [Why is it important?](#why-is-it-important)
+   - [Techniques](#techniques)
+      - [Prompt Clarity \& Specificity](#prompt-clarity--specificity)
+      - [Prompt styles](#prompt-styles)
+      - [Iterative prompt refinement](#iterative-prompt-refinement)
+      - [Prompt compression](#prompt-compression)
+      - [Data-Driven prompting](#data-driven-prompting)
+      - [Meta-Prompting](#meta-prompting)
+   - [Summary](#summary)
+   - [Questions for Discussion](#questions-for-discussion)
+   - [Further reading](#further-reading)
 
 ## Use the Chat in Generative AI Hub
 
@@ -51,7 +52,7 @@ In this exercise, you will use the SAP AI Launchpad to explore the capabilities 
 
 Under **Selected Model**, you will find the currently selected model.
 
-For this exercise, you want to change the default model `mistralai--mistral-large-instruct (2407)` to `GPT-4o-Mini`.
+For this exercise, you want to change the default model to `GPT-4.1 mini`.
 
 👉 Click on the model to open the **Model Library**.
 
@@ -59,7 +60,7 @@ The **Model Library** of the SAP AI Launchpad is a catalogue of all available LL
 
 The Model Library gives you a great overview and filter options to find the correct model for your use case, be it Text, Image, Audio, or Video input. You can filter by model provider, access type, or capabilities too.
 
-👉 Select the `GPT-4o-Mini` model.
+👉 Select the `GPT-4.1 mini` model.
 
 ![chat_change_model_gpt](assets/prompt-engineering-02.png)
 
@@ -445,17 +446,21 @@ At this point, you will know how to use the user interface of Generative AI Hub 
 ### Questions for Discussion
 
 1. How can you configure and use the Chat feature in Generative AI Hub?
-<details><summary>Answer</summary>
-  To use the Chat feature in the Generative AI Hub, you first need to select a deployed model under Selected Model. You can then adjust parameters like Frequency Penalty to avoid repetition, Presence Penalty to encourage new topics, Max Tokens to control input/output size, and Temperature to control model creativity. You can also adjust the Chat Context to manage the history of the conversation and add a System Message to guide the model's behavior (e.g., make it speak like a pirate).
-  </details>
+      <details><summary>Answer</summary>
+
+      To use the Chat feature in the Generative AI Hub, you first need to select a deployed model under Selected Model. You can then adjust parameters like Frequency Penalty to avoid repetition, Presence Penalty to encourage new topics, Max Tokens to control input/output size, and Temperature to control model creativity. You can also adjust the Chat Context to manage the history of the conversation and add a System Message to guide the model's behavior (e.g., make it speak like a pirate).
+
+      </details>
 
 2. What is Prompt Engineering, and what are some techniques to try in SAP AI Launchpad?
-   <details><summary>Answer</summary>
-   Prompt Engineering is the practice of crafting prompts in a way that guides the model to produce the desired responses. Some common techniques include:
-   - Zero shot: Asking a direct question without any examples (e.g., "The capital of the U.S. is:").
-   - Few shot: Providing a few examples before asking a question (e.g., "Germany - Berlin, France - Paris, U.S. -").
-   - Chain of thought: Structuring a series of steps for the model to follow (e.g., asking the model to identify important cities or countries in a structured format).
-   </details>
+      <details><summary>Answer</summary>
+
+      Prompt Engineering is the practice of crafting prompts in a way that guides the model to produce the desired responses. Some common techniques include:
+      - Zero shot: Asking a direct question without any examples (e.g., "The capital of the U.S. is:").
+      - Few shot: Providing a few examples before asking a question (e.g., "Germany - Berlin, France - Paris, U.S. -").
+      - Chain of thought: Structuring a series of steps for the model to follow (e.g., asking the model to identify important cities or countries in a structured format).
+      
+      </details>
 
 ## Further reading
 

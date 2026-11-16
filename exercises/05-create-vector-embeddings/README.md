@@ -143,13 +143,7 @@ service JobPostingService {
             action deleteAll(in: many $self) returns StatusResponse;
         };
 
-    entity JobPosting    as projection on db.JobPosting
-        actions {
-            // Bound to specific instance - delete this job posting
-            action deleteJobPosting()        returns StatusResponse;
-            // Bound to collection - delete all job postings
-            action deleteAll(in: many $self) returns StatusResponse;
-        };
+    entity JobPosting    as projection on db.JobPosting;
 
     // Unbound actions for operations not tied to a specific entity
     action createVectorEmbeddings()                      returns VectorEmbeddingResult;
@@ -653,7 +647,7 @@ With the vector embeddings created, inspect the entries in your database.
 
 Congratulations! The call went through and apparently the vector embeddings were stored in the database.
 
-To inspect the database entries without the actual embeddings, you can use the running CAP service to call the `DocumentChunks` entity.
+To inspect the database entries (without the actual embeddings), you can use the running CAP service to call the `DocumentChunks` entity.
 
 ### Questions for Discussion
 

@@ -2,7 +2,7 @@
 
 _Estimated Time: **45 - 60 min**_
 
-In the last exercise, you created a deployment for orchestration, allowing you to create an orchestration workflow. This workflow can be created with the SAP Cloud SDK for AI including templating, data masking, document grounding and content filtering. Grounding describes the process of retrieval-augmented generation (RAG). Grounding allows you to create vector embeddings for a given contextual document or information source, and also get the correct embedding for a given user query making it easy to communicate with the chat model without having to do all of that manually.
+With all the scaffolding in place, it is time to implement the actual job posting workflow, which includes templating, data masking, document grounding and content filtering. Grounding describes the process of retrieval-augmented generation (RAG), which involves creating vector embeddings for a given contextual document or information source and retrieving the correct embedding for a given user query. All of this — templating, data masking, grounding, and content filtering — is handled by the SAP Cloud SDK for AI.
 
 In this exercise, you will learn the following:
 
@@ -26,9 +26,9 @@ In this exercise, you will learn the following:
 
 ## Implement the OData function handler code stubs
 
-In [Exercise 05](../05-create-vector-embeddings/README.md), you implemented the code for creating and deleting vector embeddings out of a contextual document. You are now about to use the orchestration service to access these vector embeddings and execute a Retrival-Augmented generation workflow.
+In [Exercise 05](../05-create-vector-embeddings/README.md), you implemented the code for creating and deleting vector embeddings out of a contextual document. You are now about to use the orchestration service to access these vector embeddings and execute a Retrieval-Augmented generation workflow.
 
-👉 Open the [job-posting-service.js](../../project/job-posting-service/srv/job-posting-service.js) file.
+👉 Open the [job-posting-service.js](../../job-posting-service/srv/job-posting-service.js) file.
 
 👉 In the function export, right below the `createVectorEmbeddings`, add the following function handlers:
 
@@ -167,7 +167,7 @@ With the input validation in place, you can go ahead and implement the RAG flow.
 2. Your OData service takes the input and passes it through to the OData function handler for the RAG execution.
 3. The user query needs to be sent to an embedding client to get a vector for that user query. This is required to execute the similarity search on the already embedded vector embeddings in the SAP HANA Cloud Vector Engine. You will use the cosine similarity algorithm.
 4. A chat client establishes a connection to a specific chat model; for this Codejam, you will use the `GPT-4o-Mini`.
-5. The vector of the user query together with the textual user query, is sent to the chat model using a template giving extra context.
+5. The similar document chunks (similarity search) and the the textual user query are sent to the chat model using a template giving extra context.
 6. The chat model processes the request and returns a response to your client.
 7. The response gets passed to the `DBUtils` to create a new database entry.
 8. The entry is inserted into the database using CQL.
@@ -216,7 +216,7 @@ this.on('createJobPosting', async (req) => {
 
 ### Implement the AI orchestration in the AIHelper
 
-👉 Open the [ai-helper.js](../../project/job-posting-service/srv/helper/ai-helper.js) file.
+👉 Open the [ai-helper.js](../../job-posting-service/srv/helper/ai-helper.js) file.
 
 Within the file you need to import the orchestration client and the content filter from the `@sap-ai-sdk/orchestration` package.
 
@@ -246,7 +246,7 @@ const chatModelName = 'gpt-4o-mini';
 
 You define the chat model's name as a constant because you'll use it later. This gives you a single point of truth in case you want to change the chat model in the future.
 
-> Note: The `embeddingModelName`, `resourceGroup`, and `embeddingClient` constants are already defined in this file from Exercise 05. You will reuse the existing `embeddingClient` instance for creating embeddings in the RAG flow.
+> Note: The `embeddingModelName`, `resourceGroup`, and `embeddingClient` constants are already defined in this file from [Exercise 05 - Create vector embeddings using an embedding model](../05-create-vector-embeddings/README.md). You will reuse the existing `embeddingClient` instance for creating embeddings in the RAG flow.
 
 👉 Below the `createVectorEmbeddings` function handler, add the `orchestrateJobPostingCreation` function you have called in the `job-posting-service.js`:
 
@@ -541,9 +541,9 @@ async function orchestrateJobPostingCreation(user_query) {
 
 ## Implement insertion and deletion of Job Postings
 
-👉 Open the [db-utils.js](../../project/job-posting-service/srv/helper/db-utils.js) file.
+👉 Open the [db-utils.js](../../job-posting-service/srv/helper/db-utils.js) file.
 
-👉 Add the following lines of code to the top of the file as these function implementations **createJobPosting**, **insertJobPosting** and **deleteJobPosting** are used in the **job-posting-service.js**(../../project/job-posting-service/srv/job-posting-service.js) file to create, insert and delete job postings.
+👉 Add the following lines of code to the top of the file as these function implementations **createJobPosting**, **insertJobPosting** and **deleteJobPosting** are used in the [job-posting-service.js](../../job-posting-service/srv/job-posting-service.js) file to create, insert and delete job postings.
 
 ```JavaScript
 
@@ -609,9 +609,11 @@ In this exercise, you implemented the job posting service and its OData function
 
 1. What is the main purpose of the `orchestrateJobPostingCreation` function in the implementation?
 
-<details><summary>Answer</summary>
-The `orchestrateJobPostingCreation` function handles the RAG flow for creating job postings. It takes a user query, creates a vector embedding for it using the `text-embedding-3-small` model, retrieves the most relevant context from the database using cosine similarity, and sends the user query along with the contextual information to a chat model (`gpt-4o-mini`). The response from the chat model is then returned and stored in the database as a new job posting.
-</details>
+    <details><summary>Answer</summary>
+
+    The `orchestrateJobPostingCreation` function handles the RAG flow for creating job postings. It takes a user query, creates a vector embedding for it using the `text-embedding-3-small` model, retrieves the most relevant context from the database using cosine similarity, and sends the user query along with the contextual information to a chat model (`gpt-4o-mini`). The response from the chat model is then returned and stored in the database as a new job posting.
+    
+    </details>
 
 ## Further Reading
 
