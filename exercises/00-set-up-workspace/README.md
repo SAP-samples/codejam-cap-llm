@@ -64,7 +64,7 @@ Once VS Code has started and opened the directory, it should notice the [dev con
 
 To work through the exercises make sure you are in the project folder. To do so, use the terminal to change directory into `codejam-cap-llm/job-posting-service/`.
 
-👉 From the root of the CodeJam repository `/home/user/projects/codejam-cap-llm` change the directory:
+👉 From the root of the CodeJam repository `/home/user/projects/codejam-cap-llm/` change the directory:
 
 ```bash
 cd job-posting-service
@@ -106,9 +106,9 @@ npm i @sap/cds-dk -g
 
 ## Install the NPM package dependencies
 
-You'll work primarily within the `project/job-posting-service` directory of this repo, which contains a starter CAP project with code already written to provide UI and some of the service functionalities to make the CodeJam experience more accessible. The `package.json` file contains runtime and design-time dependencies.
+You'll work primarily within the `job-posting-service/` directory of this repo, which contains a starter CAP project with code already written to provide UI and some of the service functionalities to make the CodeJam experience more accessible. The `package.json` file contains runtime and design-time dependencies.
 
-👉 Make sure you're in the `project/job-posting-service` directory (where `package.json` lives):
+👉 Make sure you're in the `job-posting-service/` directory (where `package.json` lives):
 
 👉 Now install the dependencies thus:
 
@@ -146,4 +146,4 @@ At this point, you have an environment set up to work through the remaining exer
 
 ---
 
-[Next exercise](../01-explore-genai-hub/README.md)
+[Next exercise ➡️](../01-explore-genai-hub/README.md)

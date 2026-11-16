@@ -1,3 +1,5 @@
+[⬅️ Previous exercise](../00-set-up-workspace/README.md)
+
 # Exercise 01 - Explore Generative AI Hub in SAP AI Launchpad
 
 _Estimated Time: **25 min**_
@@ -8,11 +10,12 @@ You can access your deployed models either using the Python SDK, the SAP Cloud S
 
 ## Table of Contents
 
-- [Use the Chat in Generative AI Hub](#use-the-chat-in-generative-ai-hub)
-- [Use the Prompt Editor in Generative AI Hub](#use-the-prompt-editor-in-generative-ai-hub)
-- [Summary](#summary)
-  - [Questions for Discussion](#questions-for-discussion)
-- [Further reading](#further-reading)
+- [Exercise 01 - Explore Generative AI Hub in SAP AI Launchpad](#exercise-01---explore-generative-ai-hub-in-sap-ai-launchpad)
+    - [Use the Chat in Generative AI Hub](#use-the-chat-in-generative-ai-hub)
+    - [Use the Prompt Editor in Generative AI Hub](#use-the-prompt-editor-in-generative-ai-hub)
+    - [Summary](#summary)
+    - [Questions for Discussion](#questions-for-discussion)
+    - [Further reading](#further-reading)
 
 ## Use the Chat in Generative AI Hub
 
@@ -36,9 +39,9 @@ With **Max Tokens**, you can set the size of the input and output of the model. 
 
 With the **Temperature** parameter you can set how creative the model should sound so flexible the model is allowed to be in selecting the next token in the sequence.
 
-For this workshop, you want to change the default model `mistralai--mistral-large-instruct (2407)` to `GPT-5-Mini`.
+For this workshop, you want to change the default model to `GPT-5-Mini`.
 
-👉 Click on the model.
+👉 Click on the current model.
 
 ![chat_change_model](assets/chat_change_model.png)
 
@@ -46,7 +49,7 @@ For this workshop, you want to change the default model `mistralai--mistral-larg
 
 ![chat_change_model_gpt](assets/chat_change_model_gpt.png)
 
-In the **Chat Context** tab right under **Context History**, you can set the number of messages that should be send to the model.
+In the **Chat Context** tab right under **Context History**, you can set the number of messages that should be sent to the model.
 
 ![Chat 1/2](assets/chat.png)
 
@@ -62,55 +65,55 @@ The **Prompt Editor** is useful if you want to store a prompt and the response t
 
 👉 Paste the example below and click **Run** to try out the example below.
 
-👉 Give your prompt a `Name`, a `Collection` name, and **Save** the prompt.
+👉 Click on **Run**, select the scenario name `codejam` and give your prompt a unique template name. The save the prompt.
 
 👉 If you now head over to **Prompt Management**, you will find your previously saved prompt there. To run the prompt again click **Open in Prompt Editor**.
 
 1. Chain of thought prompt - customer support:
 
-   ```
-   You are working at a big tech company and you are part of the support team.
-   You are tasked with sorting the incoming support requests into: German, English or Spanish.
+    ```
+    You are working at a big tech company and you are part of the support team.
+    You are tasked with sorting the incoming support requests into: German, English or Spanish.
 
-   Read the incoming query
-   Then classify the language of the query into German, English or Spanish
-   Examples: 'bad usability. very confusing user interface.' - English
-   Then count how many German, English or Spanish queries there are
-   Then summarize in bullet points the most important pain points in the queries.
+    Read the incoming query
+    Then classify the language of the query into German, English or Spanish
+    Examples: 'bad usability. very confusing user interface.' - English
+    Then count how many German, English or Spanish queries there are
+    Then summarize in bullet points the most important pain points in the queries.
 
-   Queries:
-   - What are the shipping costs to Australia?
-   - Kann ich einen Artikel ohne Kassenbon umtauschen?
-   - ¿Ofrecen descuentos para compras al por mayor?
-   - Can I change the delivery address after placing the order?
-   - ¿Cómo puedo cancelar mi suscripción?
-   - Wo kann ich den Status meiner Reparatur einsehen?
-   - What payment methods do you accept?
-   - ¿Cuál es el tiempo estimado de entrega para México?
-   - Gibt es eine Garantie auf elektronische Geräte?
-   - I’m having trouble logging into my account, what should I do?
-   ```
+    Queries:
+    - What are the shipping costs to Australia?
+    - Kann ich einen Artikel ohne Kassenbon umtauschen?
+    - ¿Ofrecen descuentos para compras al por mayor?
+    - Can I change the delivery address after placing the order?
+    - ¿Cómo puedo cancelar mi suscripción?
+    - Wo kann ich den Status meiner Reparatur einsehen?
+    - What payment methods do you accept?
+    - ¿Cuál es el tiempo estimado de entrega para México?
+    - Gibt es eine Garantie auf elektronische Geräte?
+    - I’m having trouble logging into my account, what should I do?
+    ```
 
 ![Prompt Editor](assets/prompt_editor.png)
 
 👉 Try out different prompt engineering techniques following these examples by creating new prompts using the **Prompt Editor**:
 
 1. Zero shot:
-   ```
+    ```
     The capital of the U.S. is:
-   ```
+    ```
 2. Few shot:
-   ```
-   Germany - Berlin
-   France - Paris
-   U.S. -
-   ```
+    ```
+    Germany - Berlin
+    France - Paris
+    U.S. -
+    ```
 3. Chain of thought:
-   ```
-   1. What is the most important city of a country?
-   2. In which country was the Internet originally developed?
-   3. What is the >fill in the word from step 1< of the country >fill in the word from step 2<.
-   ```
+    ```
+    1. What is the most important city of a country?
+    2. In which country was the Internet originally developed?
+    3. What is the >fill in the word from step 1< of the country >fill in the word from step 2<.
+    ```
 
 👉 Try to add something funny to the **System Message** like `always respond like a pirate` and try the prompts again. You can also ask it to speak more technical like a developer or rather shiny like Marketing.
 
@@ -120,25 +123,25 @@ At this point, you will know how to use the user interface of Generative AI Hub 
 
 ### Questions for Discussion
 
-1.  How can you configure and use the Chat feature in Generative AI Hub?
-<details><summary>Answer</summary>
-   To use the Chat feature in the Generative AI Hub, you first need to select a deployed model under Selected Model. You can then adjust parameters like Frequency Penalty to avoid repetition, Presence Penalty to encourage new topics, Max Tokens to control input/output size, and Temperature to control model creativity. You can also adjust the Chat Context to manage the history of the conversation and add a System Message to guide the model's behavior (e.g., make it speak like a pirate).
-   </details>
+1.  How can you configure and use the **Chat** feature in Generative AI Hub?
+        <details><summary>Answer</summary>
+        To use the **Chat** feature in the Generative AI Hub, you first need to select a deployed model under `Selected Model`. You can then adjust parameters like `Frequency Penalty` to avoid repetition, `Presence Penalty` to encourage new topics, `Max Tokens` to control input/output size, and `Temperature` to control model creativity. You can also adjust the `Chat Context` to manage the history of the conversation and add a `System Message` to guide the model's behavior (e.g., make it speak like a pirate).
+        </details>
 
-2.  What is Prompt Engineering, and what are some techniques to try in SAP AI Launchpad?
-      <details><summary>Answer</summary>
-      Prompt Engineering is the practice of crafting prompts in a way that guides the model to produce the desired responses. Some common techniques include:
+2.  What is prompt engineering, and what are some techniques to try in SAP AI Launchpad?
+        <details><summary>Answer</summary>
+        Prompt engineering is the practice of crafting prompts in a way that guides the model to produce the desired responses. Some common techniques include:
 
-         - Zero shot: Asking a direct question without any examples (e.g., "The capital of the U.S. is:").
-         - Few shot: Providing a few examples before asking a question (e.g., "Germany - Berlin, France - Paris, U.S. -").
-         - Chain of thought: Structuring a series of steps for the model to follow (e.g., asking the model to identify important cities or countries in a structured format).
+              - Zero shot: Asking a direct question without any examples (e.g., "The capital of the U.S. is:").
+              - Few shot: Providing a few examples before asking a question (e.g., "Germany - Berlin, France - Paris, U.S. -").
+              - Chain of thought: Structuring a series of steps for the model to follow (e.g., asking the model to identify important cities or countries in a structured format).
 
-      </details>
+        </details>
 
-3.  How can the Prompt Editor in SAP AI Launchpad help with storing and managing prompts?
-<details><summary>Answer</summary>
-The Prompt Editor allows you to save prompts and their responses for later use or comparison. It’s useful for tasks that require repeated use of the same prompt. You can save different versions of prompts, specify parameters like Max Tokens, and view the number of tokens used. For example, you can save a Chain of Thought prompt for customer support classification and reuse it in the future without retyping the prompt. Saved prompts can be managed under Prompt Management for easy access.
-</details>
+3.  How can the **Prompt Editor** in SAP AI Launchpad help with storing and managing prompts?
+        <details><summary>Answer</summary>
+        The **Prompt Editor** allows you to save prompts and their responses for later use or comparison. It’s useful for tasks that require repeated use of the same prompt. You can save different versions of prompts, specify parameters like `Max Tokens`, and view the number of tokens used. For example, you can save a chain of thought prompt for customer support classification and reuse it in the future without retyping the prompt. Saved prompts can be managed under **Prompt Management** for easy access.
+        </details>
 
 ## Further reading
 
@@ -148,4 +151,4 @@ The Prompt Editor allows you to save prompts and their responses for later use o
 
 ---
 
-[Next exercise](../02-create-connection-configuration/README.md)
+[⬅️ Previous exercise](../00-set-up-workspace/README.md) | [Next exercise ➡️](../02-create-ai-core-connection/README.md)

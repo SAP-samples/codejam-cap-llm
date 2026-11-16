@@ -1,3 +1,5 @@
+[⬅️ Previous exercise](../04-define-db-schema/README.md)
+
 # Exercise 05 - Create vector embeddings using an embedding model
 
 _Estimated Time: **30 - 45 min**_
@@ -143,13 +145,7 @@ service JobPostingService {
             action deleteAll(in: many $self) returns StatusResponse;
         };
 
-    entity JobPosting    as projection on db.JobPosting
-        actions {
-            // Bound to specific instance - delete this job posting
-            action deleteJobPosting()        returns StatusResponse;
-            // Bound to collection - delete all job postings
-            action deleteAll(in: many $self) returns StatusResponse;
-        };
+    entity JobPosting    as projection on db.JobPosting;
 
     // Unbound actions for operations not tied to a specific entity
     action createVectorEmbeddings()                      returns VectorEmbeddingResult;
@@ -621,7 +617,7 @@ cds build --production
 
 Deploy the database schema delta to your HDI container again. This will ensure that the service will adjust according to your new service definition. CAP is auto-resolving names for tables out of the service and schema context. Because you have defined the service just now, you need to do a delta deployment:
 
-> Hint: Replace everything between <> including the <> symbol.
+> Hint: Replace "XXX" with your initials.
 
 ```bash
 cds deploy --to hana:cap-ai-codejam-hdi-XXX --auto-undeploy
@@ -651,24 +647,22 @@ With the vector embeddings created, inspect the entries in your database.
 
 ## Summary
 
-Congratulations! The call went through and apparently the vector embeddings were stored in the database. Wouldn't it be nice to have a certain way for checking the entries in the table?!
+Congratulations! The call went through and apparently the vector embeddings were stored in the database.
 
-To inspect the database entries without the actual embeddings, you can use the running CAP service to call the `DocumentChunks` entity.
-If you want to inspect the actual embeddings use the `hana-cli` tool to do so.
-Try this step on your own to use the CLI tool to check the database entries. If you need a quick recap, go back to [Exercise 04](../../exercises/04-define-db-schema/README.md) and check on the instructions.
+To inspect the database entries (without the actual embeddings), you can use the running CAP service to call the `DocumentChunks` entity.
 
 ### Questions for Discussion
 
 1. How are vector embeddings created in the SAP HANA Cloud system?
 
-   <details><summary>Answer</summary>
-   Vector embeddings are created using an embedding model, which can either be pre-trained or trained by the user. The process typically involves the following steps:
-   - Load the unstructured data (e.g., text).
-   - Split the text into meaningful chunks.
-   - Feed these chunks into the embedding model to generate numerical vectors (embeddings).
-   - Store the embeddings in the SAP HANA Cloud Vector Engine for later use.
+    <details><summary>Answer</summary>
+    Vector embeddings are created using an embedding model, which can either be pre-trained or trained by the user. The process typically involves the following steps:
+      - Load the unstructured data (e.g., text).
+      - Split the text into meaningful chunks.
+      - Feed these chunks into the embedding model to generate numerical vectors (embeddings).
+      - Store the embeddings in the SAP HANA Cloud Vector Engine for later use.
 
-   </details>
+    </details>
 
 1. What are the two algorithms used to compare vector embeddings, and how do they differ?
 
@@ -687,4 +681,4 @@ Try this step on your own to use the CLI tool to check the database entries. If 
 
 ---
 
-[Next exercise](../06-define-job-posting-service/README.md)
+[⬅️ Previous exercise](../04-define-db-schema/README.md) | [Next exercise ➡️](../06-define-job-posting-service/README.md)

@@ -1,8 +1,10 @@
+[⬅️ Previous exercise](../07-implement-job-posting-service/README.md)
+
 # Exercise 08 - Understand data masking, anonymization and pseudonymization
 
 _Estimated Time: **30 min**_
 
-In the past exercises, you have learned a lot about the interaction with an embedding and chat model. You have learned what vector embeddings are, what a vector engine is, how retrieval augmented generation means and how it works. You have learned and worked with content filtering to ensure that no harmful or ill content gets send or retrieved to or from a chat model.
+In the past exercises, you have learned a lot about the interaction with an embedding and chat model. You have learned what vector embeddings are, what a vector engine is, what retrieval augmented generation means and how it works. You have learned and worked with content filtering to ensure that no harmful or ill content gets send or retrieved to or from a chat model.
 
 As of now, you're sending data straight to the chat model without regard for data privacy. You want to change this to enhance data privacy for your generative AI use case. Every business is responsible for safeguarding personal data to comply with regulations like the **General Data Protection Regulation (GDPR)** or **California Consumer Privacy Act (CCPA)**. For that reason, it is important that you learn the mechanisms to protect personal data and ensure that only data needed by the LLM is sent to the LLM.
 
@@ -32,33 +34,33 @@ Data masking describes the process of making defined sets of data unreadable to 
 
 ### Anonymization
 
-Anonymization describes the process of completely removing or altering any sensitive data like names, addresses, financial data or healthcare data. The result of the anonymization process makes the data irreversable which results in data privacy compliance for most privacy regulations like GDPR and CCPA. Because the data gets completely removed or altered it is not linkable to any individual person and so anonymized data is exempt from most privacy regulations.
+Anonymization describes the process of completely removing or altering any sensitive data like names, addresses, financial data or healthcare data. The result of the anonymization process makes the data irreversible which results in data privacy compliance for most privacy regulations like GDPR and CCPA. Because the data gets completely removed or altered it is not linkable to any individual person and so anonymized data is exempt from most privacy regulations.
 
-A downside of this is the point of unreversability of the data. Sometimes, you want to send contextual information to the LLM, removing all personal and sensitive data to comply with data privacy but after receiving the result of the LLM you want to restore the original information to have all data available for your use case. In that case, you might want to consider using pseudonymization.
+A downside of this is the point of irreversibility of the data. Sometimes, you want to send contextual information to the LLM, removing all personal and sensitive data to comply with data privacy but after receiving the result of the LLM you want to restore the original information to have all data available for your use case. In that case, you might want to consider using pseudonymization.
 
 ### Pseudonymization
 
-Pseudonymization describes the process of replacing identifiable information with artificial identifiers or pseudonyms hence the name pseudonymization. This allows for the creation of a mapping table where these identifiers or pseudonyms can be mapped to the original information allowing you to restore the pseudonymized data. Because you are just replacing information with pseudonyms, it is still considered personal data, which requires you to handle data privacy concerns by privacy regulations. That means security measurements for data theft, data misuse and unauthorized re-identification using the mapping table.
+Pseudonymization describes the process of replacing identifiable information with artificial identifiers or pseudonyms (hence the name pseudonymization). This allows for the creation of a mapping table where these identifiers or pseudonyms can be mapped to the original information allowing you to restore the pseudonymized data. Because you are just replacing information with pseudonyms, it is still considered personal data, which requires you to handle data privacy concerns by privacy regulations. That means security measurements for data theft, data misuse and unauthorized re-identification using the mapping table.
 
 The benefits for a lot of generative AI use cases are that you can pseudonymize the data of the contextual information you're sending to the LLM and restoring the full data set after you have received the LLM's response. You are also still allowing for regulatory compliance with GDPR or CCAP but must ensure that security measures are in place.
 
-In both cases, pseudonymization or anonymization it is always good to have legal involved to ensure complete compliance.
+In both cases, pseudonymization or anonymization, it is always good to have legal involved to ensure complete compliance.
 
 ## Implement data masking into your orchestration workflow
 
-To apply data masking to your orchestration workflow you can use the orchestration API of the SAP Cloud SDK for AI configuring the needed measurements within the orchestration client. If you want to manage data masking on a more central place in case you are re-using this configurations for multiple projects or you want to have this maintained outside of code to ease continuous updates of your workflow the SAP AI Launchpad allows you to configure data masking in the orchestration workflow editor.
+To apply data masking to your orchestration workflow you can use the orchestration API of the SAP Cloud SDK for AI to configure the needed measurements within the orchestration client. If you want to manage data masking on a more central place in case you are re-using this configurations for multiple projects or you want to have this maintained outside of code to ease continuous updates of your workflow the SAP AI Launchpad allows you to configure data masking in the orchestration workflow editor.
 
-You will apply anonymization for both approaches in the beginning and change that to pseudonymization to see the difference.
+You will first apply anonymization to the orchestration workflow and change that to pseudonymization to see the difference.
 
 ### Use the orchestration API of the SAP Cloud SDK for AI
 
-Using the orchestration API allows you to define data masking options within the initializer of the orchestration client. You will now define a masking provider, a piece of software responsible for performing the data masking, to your client initialization. The used masking provider for today is the SAP Data Privacy Integration, and you are going to use anonymization and pseudonymization as data masking method.
+Using the orchestration API allows you to define data masking options within the initializer of the orchestration client. You will now define a masking provider, a piece of software responsible for performing the data masking, as part of your client initialization. The used masking provider for today is the SAP Data Privacy Integration, and you are going to use anonymization and pseudonymization as data masking method.
 
 Because the prompt to the chat model includes the email address, first and last name of the recruiter you want to make sure that this information is not being sent to the chat model. You can define what entities you want to mask and you can look at the full list via the link in the further reading section of this exercise.
 
 To perform the masking, you use so-called masking providers. SAP is offering it's own data masking provider with the name of SAP Data Privacy Integration. This is a reuse service on the SAP Business Technology Platform. This service can be utilized using the SAP Cloud SDK for AI as a masking provider.
 
-👉 Open the [ai-helper.js](../../project/job-posting-service/srv/helper/ai-helper.js) file.
+👉 Open the [ai-helper.js](../../job-posting-service/srv/helper/ai-helper.js) file.
 
 In the `orchestrateJobPostingCreation` function handler, within the orchestration client initialization add the masking definition. Because this initializer expects that JSON format definition style you need to find the right spot to add the masking bit.
 
@@ -191,9 +193,7 @@ async function orchestrateJobPostingCreation(user_query) {
 }
 ```
 
-That is all you need to do. The pseudonymization gets applied each and every time the orchestration client gets initialized and called. I would encourage you to play around with the masking for a bit to familiarize yourself with its capabilities.
-
-Look at the result! You can see that both name and email address are anonymized in the response of the LLM. If you change the `anonymization` method to `pseudonymization` you can see that the name and email won't get send to the LLM but in the response of the LLM both values are filled in.
+That is all you need to do. The pseudonymization gets applied each and every time the orchestration client gets initialized and called. I would encourage you to play around with the masking for a bit to familiarize yourself with its capabilities. You can do so by adding (dummy) names and email addresses to the `user_query` texts in the `test-api.http` file. You will see in the console logs that both name and email address are anonymized in the response of the LLM (look for hints like `[MASKED_EMAIL]`). If you change the `anonymization` method to `pseudonymization`, the name and email won't get send to the LLM, but in the response of the LLM both values are filled in.
 
 👉 Go ahead and change the `method` within the `masking providers` array from `anonymization` to `pseudonymization`.
 
@@ -211,17 +211,20 @@ This exercise taught you how to apply data masking techniques, like anonymizatio
 
 1. What is the difference between anonymization and pseudonymization?
 
-   <details><summary>Answer</summary>
-   Anonymization is the process of completely removing or altering sensitive data, making it irreversible and unlinkable to any individual. This ensures compliance with privacy regulations like GDPR. The downside is that the data becomes irreversible, and you cannot restore the original information.
-   Pseudonymization, on the other hand, involves replacing identifiable information with artificial identifiers or pseudonyms. This allows you to map the pseudonyms back to the original data, ensuring that the information can still be restored if needed. However, pseudonymized data is still considered personal data and requires additional security measures.
+    <details><summary>Answer</summary>
+    
+    Anonymization is the process of completely removing or altering sensitive data, making it irreversible and unlinkable to any individual. This ensures compliance with privacy regulations like GDPR. The downside is that the data becomes irreversible, and you cannot restore the original information.
+    Pseudonymization, on the other hand, involves replacing identifiable information with artificial identifiers or pseudonyms. This allows you to map the pseudonyms back to the original data, ensuring that the information can still be restored if needed. However, pseudonymized data is still considered personal data and requires additional security measures.
 
-   </details>
+    </details>
 
 1. How does the SAP Cloud SDK for AI orchestration API help with data masking?
 
-<details><summary>Answer</summary>
-The SAP Cloud SDK for AI orchestration API allows you to integrate data masking into your AI workflows by configuring the orchestration client to use a masking provider. In the exercise, pseudonymization is applied through the `sap_data_privacy_integration` masking provider, which replaces sensitive information like emails and names with pseudonyms before sending the data to the chat model. This ensures that personal data is not exposed to the model, while still allowing essential contextual information to be used.
-</details>
+    <details><summary>Answer</summary>
+
+    The SAP Cloud SDK for AI orchestration API allows you to integrate data masking into your AI workflows by configuring the orchestration client to use a masking provider. In the exercise, pseudonymization is applied through the `sap_data_privacy_integration` masking provider, which replaces sensitive information like emails and names with pseudonyms before sending the data to the chat model. This ensures that personal data is not exposed to the model, while still allowing essential contextual information to be used.
+
+    </details>
 
 ## Further Reading
 
@@ -232,6 +235,6 @@ The SAP Cloud SDK for AI orchestration API allows you to integrate data masking 
 
 ---
 
-The next exercise is optional, if you have time proceed and learn more about prompt engineering.
+[⬅️ Previous exercise](../07-implement-job-posting-service/README.md) | [Next exercise ➡️](../09-prompt-engineering-with-ai-launchpad/readme.md)
 
-[Next exercise](../09-prompt-engineering-with-ai-launchpad/readme.md)
+> The next exercise is optional, if you have time proceed and learn more about prompt engineering.
