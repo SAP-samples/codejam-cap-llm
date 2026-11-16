@@ -130,6 +130,7 @@ At this point, you will know how to use the user interface of Generative AI Hub 
 
 2.  What is prompt engineering, and what are some techniques to try in SAP AI Launchpad?
         <details><summary>Answer</summary>
+
         Prompt engineering is the practice of crafting prompts in a way that guides the model to produce the desired responses. Some common techniques include:
 
               - Zero shot: Asking a direct question without any examples (e.g., "The capital of the U.S. is:").
@@ -140,7 +141,9 @@ At this point, you will know how to use the user interface of Generative AI Hub 
 
 3.  How can the **Prompt Editor** in SAP AI Launchpad help with storing and managing prompts?
         <details><summary>Answer</summary>
+
         The **Prompt Editor** allows you to save prompts and their responses for later use or comparison. It’s useful for tasks that require repeated use of the same prompt. You can save different versions of prompts, specify parameters like `Max Tokens`, and view the number of tokens used. For example, you can save a chain of thought prompt for customer support classification and reuse it in the future without retyping the prompt. Saved prompts can be managed under **Prompt Management** for easy access.
+
         </details>
 
 ## Further reading
