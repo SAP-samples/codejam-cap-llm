@@ -1,0 +1,221 @@
+[⬅️ Previous exercise](../03-create-hana-cloud-connection/README.md)
+
+# Exercise 04 - Create the database schema for the CAP application
+
+_Estimated Time: **15 - 30 min**_
+
+This repository already provides a skeleton project containing CAP application with the fully configured [package.json](../../job-posting-service/package.json) and supporting files for the following exercises.
+
+In this exercise you will learn:
+
+- How to explore the `package.json` and its contents.
+- How to define the database schema for the SAP HANA Cloud database.
+- How to build and deploy the schema to your HDI container.
+
+## Table of Contents
+
+- [Exercise 04 - Create the database schema for the CAP application](#exercise-04---create-the-database-schema-for-the-cap-application)
+    - [Explore the package.json file and its contents](#explore-the-packagejson-file-and-its-contents)
+    - [Define the database schema](#define-the-database-schema)
+    - [Build and deploy the schema to your HDI container](#build-and-deploy-the-schema-to-your-hdi-container)
+    - [Examine the database table](#examine-the-database-table)
+    - [Summary](#summary)
+    - [Questions for Discussion](#questions-for-discussion)
+    - [Further reading](#further-reading)
+
+## Explore the package.json file and its contents
+
+The `package.json` file includes all Node.js project-specific configurations like project name, version, dependencies, and run scripts but also CDS-specific configurations like the HANA runtime information.
+
+👉 Open the `package.json` file.
+
+👉 Examine the dependencies. Notice that there is a dependency for `@sap-ai-sdk/orchestration` and the `@sap-ai-sdk/langchain`.
+
+The SAP Cloud SDK for AI provides four different packages for you to use depending on your use case.
+
+- <a href="https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdkorchestration" target="_blank">**@sap-ai-sdk/orchestration**</a>: The orchestration package incorporates generative AI orchestration capabilities into your AI activities in SAP AI Core and SAP AI Launchpad.
+- <a href="https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdklangchain" target="_blank">**@sap-ai-sdk/langchain**</a>: The langchain package provides LangChain model clients, built on top of the foundation model clients of the SAP Cloud SDK for AI.
+- <a href="https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdkfoundation-models" target="_blank">**@sap-ai-sdk/foundation-models**</a>: The foundation models package incorporates generative AI foundation models into your AI activities in SAP AI Core and SAP AI Launchpad.
+- <a href="https://github.com/SAP/ai-sdk-js/tree/35c048e3f73ff2487c72d36369e96b3e143c5d13?tab=readme-ov-file#sap-ai-sdkai-api" target="_blank">**@sap-ai-sdk/ai-api**</a>: The AI SDK API package provides tools to manage your scenarios and workflows in SAP AI Core.
+
+In addition, the `package.json` allows you to define run scripts a sort of aliases for more complex commands.
+
+👉 Examine the listed scripts.
+
+- `build_production` : Runs the `cds build` command to build the CAP project for production.
+- `start` : Starts the CAP application.
+- `watch_hybrid` : Runs the application and watches changes (livereload) using the hybrid profile, establishing a connection to your real HDI container instance.
+
+## Define the database schema
+
+Within a CAP application, you can define a database schema that can be built into HANA database artifacts. The artifacts can be deployed to a bound HDI container, which will cause the creation of the database tables, relationships, views, and any other HANA database artifacts.
+
+For this project, the schema has two entities; `DocumentChunks` and `JobPostings`.
+
+The `DocumentChunks` entity contains the text chunks, embeddings for the provided context information and relevant metadata. In [Exercise 06 - Define the Job Posting Service](../06-define-job-posting-service/), you will define a service for creating and deleting job postings. You will use a chat model to create job postings for specific job specifications and in [Exercise 05 - Create vector embeddings using an embedding model](../05-create-vector-embeddings/) you will create vector embeddings providing additional business contextual information to the chat model. This information can then be used to generate an accurate job posting utilizing internal company specific information.
+
+👉 Open the `schema.cds` file under the `db` directory.
+
+👉 In the file define a namespace `sap.codejam`:
+
+```cds
+namespace sap.codejam;
+```
+
+The namespace allows for better identification and provides uniqueness to the entities within that namespace. It also will cause the database table to be named `SAP_CODEJAM_<Entity Name>` in example `SAP_CODEJAM_DOCUMENTCHUNK`.
+
+👉 Right below, add the following line of code:
+
+```cds
+using {
+    cuid,
+    managed
+} from '@sap/cds/common';
+```
+
+The entity should be managed, meaning it will utilize `cuid` to auto-generate a `UUID`, create time stamps for creation and mutation of the table entries including auditing.
+
+👉 Add an entity to store job postings in the database. You will utilize this entity in a later exercise by using AI to generate job postings and store them in the corresponding table.
+
+```cds
+entity JobPosting : cuid, managed {
+    user_query   : String;
+    rag_response : String;
+}
+```
+
+The entity defines two fields:
+
+- `user_query`: Stores the incoming user query.
+- `rag_response` : Stores the response from the chat model.
+
+👉 Lastly, add the definition for the `DocumentChunk` entity. The entity is using the `managed` and `cuid` features from the `cds.common` package.
+
+```cds
+entity DocumentChunk : cuid, managed {
+    metadata   : LargeString;
+    text_chunk : LargeString;
+    embedding  : Vector(1536);
+}
+```
+
+The entity defines three fields:
+
+- `metadata`: Stores the path to the information document. The document is a PDF that includes business contextual information.
+- `text_chunk` : Stores the individual-created text chunks.
+- `embedding` : Stores the encoded vector embeddings created by an embedding model.
+
+👉 Save the file.
+
+The complete `schema.cds` should look like this now:
+
+```cds
+namespace sap.codejam;
+
+using {
+    cuid,
+    managed
+} from '@sap/cds/common';
+
+entity DocumentChunk : cuid, managed {
+    metadata   : LargeString;
+    text_chunk : LargeString;
+    embedding  : Vector(1536);
+}
+
+entity JobPosting : cuid, managed {
+    user_query   : String;
+    rag_response : String;
+}
+
+```
+
+## Build and deploy the schema to your HDI container
+
+Because you created a binding to our HDI container, you have all configurations in place to deploy HANA database artifacts to the instance. However, first make sure you are properly logged in and build the artifacts.
+
+👉 Make sure that you are still connected to the Cloud Foundry instance by checking the connection details:
+
+```bash
+cf target
+```
+
+![define-db-schema-check-cf-login](./assets/03-define-db-schema-check-cf-login.png)
+
+If the reply from the CLI tells you to log in again, authenticate directly against the custom IDP using the provided credentials. Fill in the `<provided-user-name>` and `<provided-password>` with the credentials that were provided to you:
+
+```bash
+cf login -a https://api.cf.us10.hana.ondemand.com -u <provided-user-name> -p <provided-password> --origin a7rg4vxjp-platform
+```
+
+👉 Build the project first by calling the `cds build --production` command.
+
+```bash
+cds build --production
+```
+
+👉 To deploy the build db artifacts in the `.gen` folder, call the `cds deploy --to hana:<hdi-instance>` command **(Use the HDI container name you defined in Exercise 03)**.
+
+> In case you forgot your HDI container name, you can simply call `cf services` to get a list of all available service instances including your HDI container.
+
+> Hint: Replace "XXX" with your initials.
+
+```bash
+cds deploy --to hana:cap-ai-codejam-hdi-XXX --auto-undeploy
+```
+
+The `--auto-undeploy` argument causes the database to adjust to the new runtime definition of your database artifacts.
+Be aware that the command will create another service key for deployment to the HDI container. This is okay as you are using the binding for connection to the HDI container from within the CAP application.
+
+You will see a large terminal output listing the different steps of the building and deployment process.
+
+![define-db-schema-deployment](./assets/04-define-db-schema-deploy.png)
+
+Great! The database is initialized, and the table with all necessary fields is created.
+
+## Summary
+
+At this point, you have learned how to define a database schema using CDS, and how to build and deploy database artifacts.
+
+### Questions for Discussion
+
+1. How do you define a database schema in a CAP application, and what entities are included in this exercise?
+    <details><summary>Answer</summary>
+
+    In a CAP application, you define the database schema using a `schema.cds` file. This file specifies the entities that represent database tables, their fields, and relationships. In this exercise, two key entities are defined:
+
+    - **DocumentChunks**: Stores text chunks, vector embeddings, and relevant metadata for business context.
+    - **JobPostings**: Stores job posting data, including the user query and the response generated by a chat model.
+
+    </details>
+
+2. What is the command to build and deploy the database schema to the HDI container, and what steps must you follow?
+
+    <details><summary>Answer</summary>
+    To build and deploy the database schema to the HDI container, follow these steps:
+
+    1.  Build the project with the command:
+
+    ```bash
+    cds build --production
+    ```
+
+    2.  Deploy the database artifacts using:
+
+    ```bash
+    cds deploy --to hana:<your-hdi-container-name> --auto-undeploy
+    ```
+
+    The `--auto-undeploy` flag ensures that the database is updated according to the new schema.
+
+   </details>
+
+
+## Further reading
+
+- <a href="https://cap.cloud.sap/docs/guides/databases-hana#deploying-to-sap-hana" target="_blank">Deploying to SAP HANA</a>
+- <a href="https://developers.sap.com/tutorials/hana-cloud-deploying..html" target="_blank">Deploy to SAP HANA - Tutorial</a>
+
+---
+
+[⬅️ Previous exercise](../03-create-hana-cloud-connection/README.md) | [Next exercise ➡️](../05-create-vector-embeddings/README.md)
